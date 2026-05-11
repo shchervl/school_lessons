@@ -1,0 +1,3122 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Геометрія · Готуємось до річного заліку</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Cotton Candy — light theme (calm cream) */
+  --bg: #faf7f4;
+  --paper: #ffffff;
+  --paper-2: #fdfbf9;
+  --ink: #2d1830;
+  --ink-soft: #6b4d68;
+  --line: #ebe0e4;
+  --rule: #d9c8d0;
+  --orange: #b03171;       /* muted rose — chapter 1 */
+  --orange-soft: #fbe6ee;
+  --teal: #0d6f87;         /* deep cyan — chapter 2 */
+  --teal-soft: #d6effa;
+  --blue: #5b21b6;         /* deep violet — chapter 3 */
+  --blue-soft: #ece5f8;
+  --gold: #92400e;         /* warm amber — chapter 4 */
+  --gold-soft: #fbedd9;
+  --plum: #a21caf;         /* deep magenta — chapter 5 */
+  --plum-soft: #f6e1f5;
+  --shadow: 0 1px 0 rgba(76,29,79,.06), 0 18px 40px -22px rgba(76,29,79,.18);
+  --bg-glow-1: rgba(176,49,113,.025);
+  --bg-glow-2: rgba(91,33,182,.025);
+  --quiz-ok-bg: #d8efd2;
+  --quiz-ok-border: #4a8a3a;
+  --quiz-ok-text: #2a5520;
+  --quiz-no-bg: #fde2e4;
+  --quiz-no-border: #b04a4a;
+  --quiz-no-text: #762020;
+  --quiz-reveal-bg: #ecf6e8;
+  --bar-track: rgba(255,255,255,.18);
+}
+
+[data-theme="dark"]{
+  /* Plum Glow — dark theme */
+  --bg: #1a0e2a;
+  --paper: #261438;
+  --paper-2: #2e1a44;
+  --ink: #fce7f3;
+  --ink-soft: #d8b8e8;
+  --line: #3d1f5e;
+  --rule: #4d2f6e;
+  --orange: #f9a8d4;       /* light pink */
+  --orange-soft: rgba(249,168,212,.18);
+  --teal: #67e8f9;         /* light cyan */
+  --teal-soft: rgba(103,232,249,.16);
+  --blue: #c084fc;         /* light violet */
+  --blue-soft: rgba(192,132,252,.16);
+  --gold: #fcd34d;         /* peach */
+  --gold-soft: rgba(252,211,77,.16);
+  --plum: #f472b6;         /* hot pink */
+  --plum-soft: rgba(244,114,182,.16);
+  --shadow: 0 1px 0 rgba(0,0,0,.4), 0 18px 40px -22px rgba(0,0,0,.6);
+  --bg-glow-1: rgba(249,168,212,.06);
+  --bg-glow-2: rgba(192,132,252,.06);
+  --quiz-ok-bg: rgba(74,138,58,.18);
+  --quiz-ok-border: #6abb55;
+  --quiz-ok-text: #b8e9aa;
+  --quiz-no-bg: rgba(176,74,74,.18);
+  --quiz-no-border: #d96a6a;
+  --quiz-no-text: #fbb8b8;
+  --quiz-reveal-bg: rgba(74,138,58,.10);
+  --bar-track: rgba(252,231,243,.18);
+}
+
+/* ── SVG illustration colours — dark-theme overrides ── */
+[data-theme="dark"] svg.illu [fill="#2d1830"]   { fill:   #e8d4f5; }
+[data-theme="dark"] svg.illu [stroke="#2d1830"] { stroke: #e8d4f5; }
+[data-theme="dark"] svg.illu [fill="#b03171"]   { fill:   #f9a8d4; }
+[data-theme="dark"] svg.illu [stroke="#b03171"] { stroke: #f9a8d4; }
+[data-theme="dark"] svg.illu [fill="#0d6f87"]   { fill:   #67e8f9; }
+[data-theme="dark"] svg.illu [stroke="#0d6f87"] { stroke: #67e8f9; }
+[data-theme="dark"] svg.illu [fill="#6b4d68"]   { fill:   #c4a8d8; }
+[data-theme="dark"] svg.illu [stroke="#6b4d68"] { stroke: #c4a8d8; }
+[data-theme="dark"] svg.illu [fill="#5b21b6"]   { fill:   #c084fc; }
+[data-theme="dark"] svg.illu [stroke="#5b21b6"] { stroke: #c084fc; }
+[data-theme="dark"] svg.illu [fill="#92400e"]   { fill:   #fcd34d; }
+[data-theme="dark"] svg.illu [stroke="#92400e"] { stroke: #fcd34d; }
+[data-theme="dark"] svg.illu [fill="#a21caf"]   { fill:   #f472b6; }
+[data-theme="dark"] svg.illu [stroke="#a21caf"] { stroke: #f472b6; }
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(circle at 20% 10%, var(--bg-glow-1), transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--bg-glow-2), transparent 40%);
+  min-height: 100vh;
+  transition: background-color .35s ease, color .35s ease;
+}
+
+/* subtle paper texture */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+}
+
+.wrap{
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 28px 100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ───────── HEADER ───────── */
+.tag{
+  font-family: 'Caveat', cursive;
+  color: var(--orange);
+  font-size: 1.6rem;
+  letter-spacing: .02em;
+  display: inline-block;
+}
+
+h1.title{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 14px 0 18px;
+  color: var(--ink);
+}
+h1.title em{
+  font-style: italic;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.lede{
+  font-size: 1.18rem;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin-bottom: 28px;
+}
+
+.meta{
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--ink-soft);
+}
+.meta span strong{ color: var(--ink); }
+
+/* ───────── PLAN ───────── */
+.plan{
+  margin: 56px 0 64px;
+  padding: 32px 28px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.plan::before{
+  content:"⌂";
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  background: var(--bg);
+  padding: 0 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  color: var(--orange);
+}
+.plan h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 1.6rem;
+  margin-bottom: 22px;
+  color: var(--ink);
+}
+.days{ display: grid; gap: 10px; }
+.day{
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 18px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--rule);
+}
+.day:last-child{ border-bottom: none; }
+.day .num{
+  font-family: 'Caveat', cursive;
+  font-size: 1.7rem;
+  color: var(--orange);
+  font-weight: 700;
+}
+.day .what{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.day .what small{
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin-top: 3px;
+}
+.day .pill{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--orange-soft);
+  color: var(--orange);
+}
+.day.t1 .pill{ background: var(--orange-soft); color: var(--orange); }
+.day.t2 .pill{ background: var(--teal-soft); color: var(--teal); }
+.day.t3 .pill{ background: var(--blue-soft); color: var(--blue); }
+.day.t4 .pill{ background: var(--gold-soft); color: var(--gold); }
+.day.t5 .pill{ background: var(--plum-soft); color: var(--plum); }
+
+/* ───────── CHAPTERS ───────── */
+.chapter{
+  margin: 80px 0;
+  position: relative;
+}
+.chapter-head{
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+.chapter-num{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  letter-spacing: .05em;
+}
+.chapter-line{
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.chapter h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.chapter .sub{
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  margin-bottom: 32px;
+}
+
+.c1 .chapter h2 em, .c1 .sub{ color: var(--orange); }
+.c2 .chapter h2 em, .c2 .sub{ color: var(--teal); }
+.c3 .chapter h2 em, .c3 .sub{ color: var(--blue); }
+.c4 .chapter h2 em, .c4 .sub{ color: var(--gold); }
+.c5 .chapter h2 em, .c5 .sub{ color: var(--plum); }
+.chapter h2 em{ font-style: italic; font-weight: 600; }
+
+/* paragraphs */
+p{ margin-bottom: 16px; }
+p + p{ margin-top: 0; }
+
+h3{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 36px 0 14px;
+  letter-spacing: -0.005em;
+}
+h3::before{
+  content: "§ ";
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* call-out boxes */
+.box{
+  margin: 24px 0;
+  padding: 22px 24px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+  position: relative;
+}
+.c2 .box{ border-left-color: var(--teal); }
+.c3 .box{ border-left-color: var(--blue); }
+.c4 .box{ border-left-color: var(--gold); }
+.c5 .box{ border-left-color: var(--plum); }
+
+.box .label{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  margin-bottom: 8px;
+  display: block;
+}
+.c2 .box .label{ color: var(--teal); }
+.c3 .box .label{ color: var(--blue); }
+.c4 .box .label{ color: var(--gold); }
+.c5 .box .label{ color: var(--plum); }
+
+/* collapsible proof box */
+details.proof{
+  margin: 24px 0;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+}
+details.proof > summary{
+  padding: 14px 24px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  user-select: none;
+}
+details.proof > summary::-webkit-details-marker{ display: none; }
+details.proof > summary::before{
+  content: '▶';
+  font-size: .65rem;
+  transition: transform .2s;
+  display: inline-block;
+}
+details.proof[open] > summary::before{ transform: rotate(90deg); }
+details.proof > .proof-body{
+  padding: 0 24px 22px;
+}
+
+/* formula card */
+.formula{
+  margin: 28px 0;
+  padding: 28px 24px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 14px 30px -14px rgba(31,29,26,.4);
+}
+.formula::before, .formula::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--bg);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.formula::before{ left: -4px; }
+.formula::after{ right: -4px; }
+
+.formula .eq{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+  margin-bottom: 10px;
+}
+.formula .where{
+  font-size: .92rem;
+  opacity: .85;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* example block */
+.example{
+  margin: 24px 0;
+  padding: 24px;
+  background: var(--orange-soft);
+  border-radius: 4px;
+  position: relative;
+}
+.c2 .example{ background: var(--teal-soft); }
+.c3 .example{ background: var(--blue-soft); }
+.c4 .example{ background: var(--gold-soft); }
+.c5 .example{ background: var(--plum-soft); }
+
+.example::before{
+  content: "З життя";
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  background: var(--bg);
+  padding: 0 10px;
+  color: var(--orange);
+  transform: rotate(-1.5deg);
+}
+.c2 .example::before{ color: var(--teal); }
+.c3 .example::before{ color: var(--blue); }
+.c4 .example::before{ color: var(--gold); }
+.c5 .example::before{ color: var(--plum); }
+
+.example p:last-child{ margin-bottom: 0; }
+
+/* important inline */
+b, strong{ font-weight: 600; color: var(--ink); }
+.hl-o{ background: linear-gradient(transparent 60%, var(--orange-soft) 60%); padding: 0 2px; }
+.hl-t{ background: linear-gradient(transparent 60%, var(--teal-soft) 60%); padding: 0 2px; }
+.hl-b{ background: linear-gradient(transparent 60%, var(--blue-soft) 60%); padding: 0 2px; }
+.hl-g{ background: linear-gradient(transparent 60%, var(--gold-soft) 60%); padding: 0 2px; }
+
+ul, ol{ padding-left: 24px; margin: 14px 0 18px; }
+li{ margin-bottom: 8px; }
+li::marker{ color: var(--orange); }
+.c2 li::marker{ color: var(--teal); }
+.c3 li::marker{ color: var(--blue); }
+.c4 li::marker{ color: var(--gold); }
+.c5 li::marker{ color: var(--plum); }
+
+/* illustrations */
+.illu{
+  margin: 24px auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* small note */
+.note{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  padding: 12px 0 8px;
+  transform: rotate(-.5deg);
+}
+
+/* density table */
+.dtable{
+  border-collapse: collapse;
+  width: 100%;
+  margin: 18px 0;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+.dtable th, .dtable td{
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: .96rem;
+}
+.dtable th{
+  background: var(--bg);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: .88rem;
+  letter-spacing: .04em;
+}
+.dtable tr:last-child td{ border-bottom: none; }
+.dtable .num{ font-family: 'Space Grotesk', sans-serif; font-feature-settings: "tnum"; color: var(--teal); font-weight: 600; }
+
+/* solution problem */
+.problem{
+  margin: 32px 0;
+  padding: 28px 28px 24px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+.problem .num{
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  color: var(--plum);
+  font-weight: 700;
+  line-height: 1;
+}
+.problem .stmt{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  margin: 8px 0 20px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--plum);
+  background: var(--bg);
+}
+.steps{
+  counter-reset: step;
+}
+.step{
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+  align-items: start;
+}
+.step::before{
+  content: counter(step);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--plum);
+  background: var(--plum-soft);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.step .body p{ margin-bottom: 6px; }
+.answer{
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/* footer */
+.outro{
+  margin-top: 90px;
+  padding: 40px 28px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  text-align: center;
+}
+.outro h3{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: var(--paper);
+}
+.outro h3::before{ content: ""; }
+.outro p{ opacity: .85; max-width: 540px; margin: 0 auto 12px; }
+.outro .sig{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--orange);
+  margin-top: 18px;
+}
+
+/* small SVG decorations */
+.deco-line{ display: block; margin: 24px auto; opacity: .5; }
+
+.tip{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  display: inline-block;
+  background: var(--gold-soft);
+  padding: 4px 14px;
+  border-radius: 20px;
+  color: var(--gold);
+  margin: 8px 0;
+}
+
+/* ───────── FLIP CARDS / CAROUSEL ───────── */
+.cards-section{ margin: 56px 0 64px; }
+.cards-head{
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+.cards-section h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.8rem;
+  color: var(--ink);
+}
+.cards-section .sub{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  margin-bottom: 22px;
+}
+
+.cards-counter{
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  letter-spacing: .08em;
+  margin-bottom: 14px;
+}
+.cards-counter .now{ color: var(--orange); font-weight: 600; }
+
+.cards-carousel{
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  gap: 18px;
+  align-items: center;
+}
+.cards-arrow{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background .15s, color .15s, transform .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+.cards-arrow:hover{
+  background: var(--ink);
+  color: var(--paper);
+  transform: scale(1.06);
+}
+.cards-arrow:active{ transform: scale(.96); }
+
+.cards-stage{
+  position: relative;
+  height: 360px;
+  perspective: 1400px;
+}
+.flip-card{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+.flip-card.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+.flip-card-inner{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .7s cubic-bezier(.4,.2,.2,1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-card-inner{ transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back{
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.flip-card-front{
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+}
+.flip-card-back{
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotateY(180deg);
+  border-color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  padding: 22px 24px;
+  text-align: left;
+}
+.flip-card-q{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 3rem;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.flip-card-hint{
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  color: var(--ink-soft);
+  margin-top: 16px;
+}
+.flip-card-a{
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  line-height: 1.15;
+  text-align: center;
+  margin: 4px 0 0;
+}
+.flip-card-a small{
+  display: inline;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem;
+  opacity: .75;
+  margin-left: 6px;
+  font-weight: 400;
+}
+.flip-card-purpose{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  text-align: center;
+  opacity: .92;
+  margin: 6px 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(255,255,255,.18);
+}
+.flip-card-vars{
+  display: grid;
+  grid-template-columns: minmax(48px, auto) 1fr;
+  column-gap: 18px;
+  row-gap: 8px;
+  align-content: start;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+.flip-card-vars dt{
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--orange);
+  text-align: right;
+  font-size: 1rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+.flip-card-vars dd{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .85rem;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  padding-top: 1px;
+  color: inherit;
+  opacity: .92;
+}
+.flip-card.c-o .flip-card-vars dt{ color: var(--orange); }
+.flip-card.c-t .flip-card-vars dt{ color: var(--teal); }
+.flip-card.c-b .flip-card-vars dt{ color: var(--blue); }
+.flip-card.c-g .flip-card-vars dt{ color: var(--gold); }
+.flip-card.c-p .flip-card-vars dt{ color: var(--plum); }
+
+/* override the global b{color: var(--ink)} inside dark cards */
+.flip-card-back b, .flip-card-back strong{ color: inherit; font-weight: 700; }
+
+.flip-card-note{
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255,255,255,.15);
+  opacity: .88;
+  line-height: 1.25;
+}
+.flip-card-tag{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  margin-top: 18px;
+  opacity: .85;
+}
+.flip-card.c-o .flip-card-tag{ color: var(--orange-soft); }
+.flip-card.c-t .flip-card-tag{ color: var(--teal-soft); }
+.flip-card.c-b .flip-card-tag{ color: var(--blue-soft); }
+.flip-card.c-g .flip-card-tag{ color: var(--gold-soft); }
+.flip-card.c-p .flip-card-tag{ color: var(--plum-soft); }
+.flip-card.c-o .flip-card-front{ border-top: 4px solid var(--orange); }
+.flip-card.c-t .flip-card-front{ border-top: 4px solid var(--teal); }
+.flip-card.c-b .flip-card-front{ border-top: 4px solid var(--blue); }
+.flip-card.c-g .flip-card-front{ border-top: 4px solid var(--gold); }
+.flip-card.c-p .flip-card-front{ border-top: 4px solid var(--plum); }
+
+.cards-dots{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.cards-dot{
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--rule);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+}
+.cards-dot:hover{ transform: scale(1.4); background: var(--ink-soft); }
+.cards-dot.active{ background: var(--orange); transform: scale(1.4); }
+
+.cards-tip{
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 18px;
+}
+
+/* ───────── QUIZ ───────── */
+.quiz{
+  margin: 40px 0 8px;
+  padding: 30px 28px 22px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.quiz::before{
+  content: "?";
+  position: absolute;
+  top: -20px;
+  left: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+.c2 .quiz::before{ background: var(--teal); }
+.c3 .quiz::before{ background: var(--blue); }
+.c4 .quiz::before{ background: var(--gold); }
+.c5 .quiz::before{ background: var(--plum); }
+
+.quiz-title{
+  font-family: 'Caveat', cursive;
+  font-size: 1.7rem;
+  color: var(--orange);
+  display: block;
+  line-height: 1.1;
+}
+.c2 .quiz-title{ color: var(--teal); }
+.c3 .quiz-title{ color: var(--blue); }
+.c4 .quiz-title{ color: var(--gold); }
+.c5 .quiz-title{ color: var(--plum); }
+
+.quiz-sub{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin-bottom: 22px;
+}
+
+.quiz-q{
+  margin: 22px 0;
+  padding-top: 22px;
+  border-top: 1px dashed var(--rule);
+}
+.quiz-q:first-of-type{ border-top: none; padding-top: 6px; }
+
+.quiz-q-text{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 10px;
+}
+.quiz-q-text .qn{
+  color: var(--ink-soft);
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+.quiz-options{ display: grid; gap: 8px; }
+.quiz-option{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  color: var(--ink);
+  transition: background .15s, border-color .15s, transform .15s;
+}
+.quiz-option:hover:not(:disabled){
+  background: var(--bg);
+  border-color: var(--rule);
+  transform: translateX(2px);
+}
+.quiz-option:disabled{ cursor: default; }
+.quiz-option.correct{
+  background: var(--quiz-ok-bg);
+  border-color: var(--quiz-ok-border);
+  color: var(--quiz-ok-text);
+}
+.quiz-option.wrong{
+  background: var(--quiz-no-bg);
+  border-color: var(--quiz-no-border);
+  color: var(--quiz-no-text);
+}
+.quiz-option.reveal{
+  border-color: var(--quiz-ok-border);
+  background: var(--quiz-reveal-bg);
+  color: var(--quiz-ok-text);
+}
+
+.quiz-feedback{
+  margin-top: 12px;
+  padding: 10px 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .96rem;
+  border-left: 3px solid var(--ink-soft);
+  background: var(--bg);
+  border-radius: 0 3px 3px 0;
+  display: none;
+}
+.quiz-feedback.show{ display: block; }
+.quiz-feedback.ok{ border-left-color: var(--quiz-ok-border); color: var(--quiz-ok-text); }
+.quiz-feedback.no{ border-left-color: var(--quiz-no-border); color: var(--quiz-no-text); }
+
+.quiz-result{
+  margin-top: 26px;
+  padding: 20px 22px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  display: none;
+}
+.quiz-result.show{ display: block; }
+.quiz-result-line{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.quiz-score{ font-size: 1.3rem; font-style: italic; font-weight: 600; }
+.quiz-percent{ font-family: 'Caveat', cursive; font-size: 1.4rem; color: var(--orange); }
+.c2 .quiz-percent{ color: var(--teal-soft); }
+.c3 .quiz-percent{ color: var(--blue-soft); }
+.c4 .quiz-percent{ color: var(--gold-soft); }
+.c5 .quiz-percent{ color: var(--plum-soft); }
+.quiz-bar{
+  height: 8px;
+  background: var(--bar-track);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.quiz-bar-fill{
+  height: 100%;
+  background: var(--orange);
+  width: 0;
+  transition: width .8s cubic-bezier(.4,.2,.2,1);
+}
+.c2 .quiz-bar-fill{ background: var(--teal-soft); }
+.c3 .quiz-bar-fill{ background: var(--blue-soft); }
+.c4 .quiz-bar-fill{ background: var(--gold-soft); }
+.c5 .quiz-bar-fill{ background: var(--plum-soft); }
+.quiz-verdict{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--paper);
+  opacity: .92;
+  display: block;
+  margin-top: 8px;
+}
+.quiz-restart{
+  margin-top: 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .92rem;
+  background: transparent;
+  border: 1px solid var(--paper);
+  color: var(--paper);
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: .85;
+  transition: opacity .15s, background .15s;
+}
+.quiz-restart:hover{ opacity: 1; background: rgba(251,246,234,.1); }
+
+/* ───────── DARK-THEME OVERRIDES (inverted cards stay readable) ───────── */
+[data-theme="dark"] .formula,
+[data-theme="dark"] .answer,
+[data-theme="dark"] .outro,
+[data-theme="dark"] .quiz-result,
+[data-theme="dark"] .flip-card-back{
+  background: linear-gradient(135deg, #2e1a44, #3d1f5e);
+  color: #fce7f3;
+  border: 1px solid #4d2f6e;
+}
+[data-theme="dark"] .formula .where{ color: #d8b8e8; opacity: .9; }
+[data-theme="dark"] .outro h3{ color: #fce7f3; }
+[data-theme="dark"] .outro p{ color: #d8b8e8; }
+[data-theme="dark"] .outro .sig{ color: var(--orange); }
+[data-theme="dark"] .quiz-verdict{ color: #fce7f3; }
+[data-theme="dark"] .quiz-restart{ border-color: #d8b8e8; color: #fce7f3; }
+[data-theme="dark"] .quiz-percent{ color: var(--orange); }
+[data-theme="dark"] .flip-card-back{ border-radius: 6px; }
+[data-theme="dark"] .flip-card-tag{ opacity: 1; }
+
+/* dark — softer contrast for body radial glows is already done via --bg-glow-* */
+
+/* ───────── THEME TOGGLE ───────── */
+.theme-toggle{
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  font-family: 'JetBrains Mono', monospace;
+  backdrop-filter: blur(8px);
+}
+.theme-toggle button{
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: .72rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background .2s, color .2s;
+}
+.theme-toggle button:hover{ color: var(--ink); }
+.theme-toggle button.on{
+  background: var(--orange);
+  color: var(--paper);
+}
+[data-theme="dark"] .theme-toggle button.on{ color: var(--bg); }
+
+/* All elements smoothly transition colors */
+.wrap, .plan, .day, .chapter, .box, .formula, .example, .problem, .answer,
+.outro, .quiz, .quiz-option, .quiz-feedback, .quiz-result, .flip-card-front,
+.flip-card-back, .cards-arrow, .cards-dot, .dtable, .dtable th, .dtable td{
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+
+@media (max-width: 600px){
+  .theme-toggle{ top: 12px; right: 12px; padding: 3px; }
+  .theme-toggle button{ padding: 5px 9px; font-size: .68rem; }
+  body{ font-size: 17px; }
+  .wrap{ padding: 32px 18px 80px; }
+  .formula .eq{ font-size: 1.6rem; }
+  .day{ grid-template-columns: 60px 1fr; }
+  .day .pill{ grid-column: 1 / -1; justify-self: start; margin-top: 4px; }
+  .cards-carousel{ grid-template-columns: 44px 1fr 44px; gap: 10px; }
+  .cards-arrow{ width: 44px; height: 44px; font-size: 1.3rem; }
+  .cards-stage{ height: 340px; }
+  .flip-card-front{ padding: 20px; }
+  .flip-card-back{ padding: 18px 18px; }
+  .flip-card-q{ font-size: 2.1rem; }
+  .flip-card-a{ font-size: 1.45rem; }
+  .flip-card-hint{ font-size: 1.3rem; }
+  .flip-card-purpose{ font-size: 1.15rem; margin: 4px 0 10px; padding-bottom: 8px; }
+  .flip-card-vars{ column-gap: 12px; row-gap: 6px; }
+  .flip-card-vars dt{ font-size: .92rem; }
+  .flip-card-vars dd{ font-size: .78rem; line-height: 1.35; }
+  .flip-card-note{ font-size: 1.1rem; padding-top: 8px; margin-top: 10px; }
+  .flip-card-tag{ font-size: 1.15rem; }
+}
+</style>
+<script>
+(function(){
+  try {
+    var saved = localStorage.getItem('geometria-theme');
+    var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch(e) {}
+})();
+</script>
+</head>
+<body>
+<div class="theme-toggle" role="group" aria-label="Тема оформлення">
+  <button type="button" class="tt-light on" data-theme-set="light" aria-label="Світла тема">☀ light</button>
+  <button type="button" class="tt-dark" data-theme-set="dark" aria-label="Темна тема">☾ dark</button>
+</div>
+<div class="wrap">
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header>
+  <div class="tag">~ для тих, хто хоче нарешті розібратися ~</div>
+  <h1 class="title">Геометрія, яку справді<br/><em>можна зрозуміти</em></h1>
+  <p class="lede">Курс готує до річного заліку з геометрії за 7 клас. Усі 20 запитань програми — без зазубрювання, з малюнками, прикладами і ключовою ідеєю кожної теореми. Перевір себе тестами в кінці кожного розділу.</p>
+  <div class="meta">
+    <span><strong>5</strong> розділів</span>
+    <span><strong>7</strong> днів</span>
+    <span><strong>5</strong> тестів</span>
+    <span><strong>14</strong> карток</span>
+    <span>≈ <strong>30</strong> хв на день</span>
+  </div>
+</header>
+
+<!-- ═══════════════════ PLAN ═══════════════════ -->
+<section class="plan">
+  <h2>Як вчитися: план на тиждень</h2>
+  <div class="days">
+    <div class="day t1">
+      <span class="num">День 1</span>
+      <span class="what">Кути та паралельні прямі <small>суміжні, вертикальні, паралельні — і коли який кут якому дорівнює</small></span>
+      <span class="pill">розділ 1</span>
+    </div>
+    <div class="day t2">
+      <span class="num">День 2–3</span>
+      <span class="what">Трикутник: рівність, кути, нерівність <small>сума кутів, зовнішній кут, рівнобедрений, ознаки рівності, нерівність трикутника</small></span>
+      <span class="pill">розділ 2</span>
+    </div>
+    <div class="day t3">
+      <span class="num">День 4</span>
+      <span class="what">Особливі властивості прямокутного трикутника <small>катет навпроти 30°, медіана до гіпотенузи</small></span>
+      <span class="pill">розділ 3</span>
+    </div>
+    <div class="day t4">
+      <span class="num">День 5–6</span>
+      <span class="what">Чудові точки трикутника <small>центри вписаного, описаного та зовнівписаного кіл, формули кутів</small></span>
+      <span class="pill">розділ 4</span>
+    </div>
+    <div class="day t5">
+      <span class="num">День 7</span>
+      <span class="what">Коло: дотичні, хорди, вписане коло <small>теорема про «ковпак», p − a, p − b, p − c, радіус для прямокутного</small></span>
+      <span class="pill">розділ 5</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FLASHCARDS ═══════════════════ -->
+<section class="cards-section" id="kartki">
+  <div class="cards-head">
+    <h2>Картки-нагадувалки</h2>
+  </div>
+  <div class="sub">клікни на картку, щоб побачити; ← / → — перелистати</div>
+
+  <div class="cards-counter"><span class="now">1</span> / <span class="total">14</span></div>
+
+  <div class="cards-carousel">
+    <button type="button" class="cards-arrow cards-prev" aria-label="Попередня картка">◂</button>
+    <div class="cards-stage">
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: суміжні кути">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">α + β = ?</div>
+          <div class="flip-card-hint">суміжні кути</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= 180°</div>
+          <div class="flip-card-purpose">суміжні кути в сумі дають розгорнутий кут</div>
+          <dl class="flip-card-vars">
+            <dt>суміжні</dt><dd>спільна вершина і сторона, дві інші утворюють пряму</dd>
+            <dt>знаєш один</dt><dd>другий = 180° − перший</dd>
+          </dl>
+          <p class="flip-card-note">знаєш 73° → другий = 107°</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: сума кутів трикутника">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">∠A + ∠B + ∠C = ?</div>
+          <div class="flip-card-hint">будь-який трикутник</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= 180°</div>
+          <div class="flip-card-purpose">сума внутрішніх кутів трикутника</div>
+          <dl class="flip-card-vars">
+            <dt>гострокутний</dt><dd>усі кути &lt; 90°</dd>
+            <dt>прямокутний</dt><dd>один = 90°, два інші разом 90°</dd>
+            <dt>тупокутний</dt><dd>один &gt; 90°</dd>
+          </dl>
+          <p class="flip-card-note">знаєш два кути — третій знайдеш одразу</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: зовнішній кут">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">∠зовн = ?</div>
+          <div class="flip-card-hint">зовнішній кут</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= ∠B + ∠C</div>
+          <div class="flip-card-purpose">зовнішній кут = сумі двох внутрішніх не суміжних із ним</div>
+          <dl class="flip-card-vars">
+            <dt>при A</dt><dd>= ∠B + ∠C</dd>
+            <dt>наслідок</dt><dd>зовн. кут &gt; будь-якого внутрішнього не суміжного</dd>
+          </dl>
+          <p class="flip-card-note">бо ∠A + ∠зовн = 180° і ∠A + ∠B + ∠C = 180°</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: рівнобедрений">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">AB = AC ⇒ ?</div>
+          <div class="flip-card-hint">рівнобедрений</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">∠B = ∠C</div>
+          <div class="flip-card-purpose">кути при основі рівнобедреного трикутника рівні</div>
+          <dl class="flip-card-vars">
+            <dt>пряма</dt><dd>рівні сторони → рівні кути при основі</dd>
+            <dt>обернена</dt><dd>рівні кути при основі → рівні сторони</dd>
+            <dt>бонус</dt><dd>висота, медіана й бісектриса з вершини — це одне й те саме</dd>
+          </dl>
+          <p class="flip-card-note">«рівнобедрений» — за бічними сторонами, не за основою</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: нерівність трикутника">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">a &lt; b + c?</div>
+          <div class="flip-card-hint">чи існує такий трикутник</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">так, для кожної сторони</div>
+          <div class="flip-card-purpose">нерівність трикутника: кожна сторона менша за суму двох інших</div>
+          <dl class="flip-card-vars">
+            <dt>a &lt; b + c</dt><dd>обов'язково</dd>
+            <dt>b &lt; a + c</dt><dd>обов'язково</dd>
+            <dt>c &lt; a + b</dt><dd>обов'язково</dd>
+          </dl>
+          <p class="flip-card-note">3, 4, 8 — НЕ трикутник, бо 3 + 4 &lt; 8</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: ознаки рівності трикутників">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">3 ознаки рівності Δ</div>
+          <div class="flip-card-hint">загальний трикутник</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">І, ІІ, ІІІ</div>
+          <div class="flip-card-purpose">три способи довести рівність без накладання</div>
+          <dl class="flip-card-vars">
+            <dt>І</dt><dd>2 сторони + кут <em>між ними</em></dd>
+            <dt>ІІ</dt><dd>сторона + 2 прилеглих кути</dd>
+            <dt>ІІІ</dt><dd>3 сторони</dd>
+          </dl>
+          <p class="flip-card-note">у І ознаці кут — саме між двома рівними сторонами</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: кут 30 градусів">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">∠ = 30° → катет = ?</div>
+          <div class="flip-card-hint">прямокутний трикутник</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= ½ гіпотенузи</div>
+          <div class="flip-card-purpose">катет проти кута 30° — половина гіпотенузи</div>
+          <dl class="flip-card-vars">
+            <dt>пряма</dt><dd>якщо ∠ = 30°, то проти нього катет c/2</dd>
+            <dt>обернена</dt><dd>якщо катет = c/2, то кут проти нього = 30°</dd>
+          </dl>
+          <p class="flip-card-note">гіпотенуза 10 → катет проти 30° дорівнює 5</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: медіана до гіпотенузи">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">m<sub>c</sub> = ?</div>
+          <div class="flip-card-hint">медіана до гіпотенузи</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= ½ гіпотенузи</div>
+          <div class="flip-card-purpose">медіана з прямого кута до гіпотенузи дорівнює її половині</div>
+          <dl class="flip-card-vars">
+            <dt>чому</dt><dd>середина гіпотенузи — центр описаного кола</dd>
+            <dt>вершини A, B, C</dt><dd>усі на однаковій відстані від цієї середини</dd>
+          </dl>
+          <p class="flip-card-note">найкорисніша властивість прямокутного трикутника</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: серединний перпендикуляр">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">точка M на серед. ⊥</div>
+          <div class="flip-card-hint">що про неї знаємо</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">MA = MB</div>
+          <div class="flip-card-purpose">ГМТ серединного перпендикуляра до AB — точки на однаковій відстані від A і B</div>
+          <dl class="flip-card-vars">
+            <dt>пряма</dt><dd>точка на серед. ⊥ → рівновіддалена від кінців</dd>
+            <dt>обернена</dt><dd>рівновіддалена від кінців → лежить на серед. ⊥</dd>
+          </dl>
+          <p class="flip-card-note">серединні ⊥ трикутника перетинаються в центрі описаного кола</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: бісектриса як ГМТ">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">точка M на бісектрисі</div>
+          <div class="flip-card-hint">що про неї знаємо</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">d(M, OA) = d(M, OB)</div>
+          <div class="flip-card-purpose">ГМТ бісектриси кута — точки, рівновіддалені від його сторін</div>
+          <dl class="flip-card-vars">
+            <dt>пряма</dt><dd>точка на бісектрисі → рівновіддалена від сторін</dd>
+            <dt>обернена</dt><dd>рівновіддалена від сторін → на бісектрисі</dd>
+          </dl>
+          <p class="flip-card-note">бісектриси трикутника перетинаються в центрі вписаного кола</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: кут BIC">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">∠BIC = ?</div>
+          <div class="flip-card-hint">I — інцентр</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= 90° + ∠A/2</div>
+          <div class="flip-card-purpose">кут між бісектрисами B і C через кут A</div>
+          <dl class="flip-card-vars">
+            <dt>I</dt><dd>точка перетину бісектрис, центр вписаного кола</dd>
+            <dt>∠A = 60°</dt><dd>∠BIC = 120°</dd>
+            <dt>∠A = 90°</dt><dd>∠BIC = 135°</dd>
+          </dl>
+          <p class="flip-card-note">завжди тупий — бо більше за 90°</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: кут BIaC">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">∠BI<sub>a</sub>C = ?</div>
+          <div class="flip-card-hint">I<sub>a</sub> — ексцентр</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= 90° − ∠A/2</div>
+          <div class="flip-card-purpose">центр зовнівписаного кола (з боку A)</div>
+          <dl class="flip-card-vars">
+            <dt>I<sub>a</sub></dt><dd>перетин бісектрис зовнішніх кутів B і C</dd>
+            <dt>∠A = 60°</dt><dd>∠BI<sub>a</sub>C = 60°</dd>
+            <dt>∠A = 90°</dt><dd>∠BI<sub>a</sub>C = 45°</dd>
+          </dl>
+          <p class="flip-card-note">обидві формули мають ∠A/2 — лише знаки різні</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: дотична і радіус">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">OT та дотична</div>
+          <div class="flip-card-hint">точка дотику T</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">OT ⊥ дотичній</div>
+          <div class="flip-card-purpose">радіус, проведений у точку дотику, перпендикулярний до дотичної</div>
+          <dl class="flip-card-vars">
+            <dt>O</dt><dd>центр кола</dd>
+            <dt>T</dt><dd>точка дотику</dd>
+            <dt>дотична</dt><dd>пряма, що має з колом одну спільну точку</dd>
+          </dl>
+          <p class="flip-card-note">завжди шукай прямий кут між OT і дотичною</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: ковпак">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">AT<sub>1</sub> та AT<sub>2</sub></div>
+          <div class="flip-card-hint">дві дотичні з однієї точки</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">AT<sub>1</sub> = AT<sub>2</sub></div>
+          <div class="flip-card-purpose">теорема про «ковпак»: дотичні з однієї зовнішньої точки рівні</div>
+          <dl class="flip-card-vars">
+            <dt>+ бонус</dt><dd>AO — бісектриса кута T<sub>1</sub>AT<sub>2</sub></dd>
+            <dt>+ бонус</dt><dd>AO — серединний ⊥ до T<sub>1</sub>T<sub>2</sub></dd>
+          </dl>
+          <p class="flip-card-note">ця рівність — основа всіх формул p − a, p − b, p − c</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: AK = p мінус a">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">AK = ?</div>
+          <div class="flip-card-hint">вписане коло, K — точка дотику</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">AK = p − a</div>
+          <div class="flip-card-purpose">довжина дотичного відрізка з вершини</div>
+          <dl class="flip-card-vars">
+            <dt>p</dt><dd>півпериметр: p = (a+b+c)/2</dd>
+            <dt>a</dt><dd>сторона BC (проти A)</dd>
+            <dt>BK = p − b</dt><dd>з вершини B</dd>
+            <dt>CK = p − c</dt><dd>з вершини C</dd>
+          </dl>
+          <p class="flip-card-note">правило: відрізок з вершини = півпериметр − протилежна сторона</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: радіус прямокутного">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">r = ?</div>
+          <div class="flip-card-hint">вписане коло прямокутного Δ</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">r = (a + b − c)/2</div>
+          <div class="flip-card-purpose">радіус вписаного кола в прямокутний трикутник</div>
+          <dl class="flip-card-vars">
+            <dt>a, b</dt><dd>катети</dd>
+            <dt>c</dt><dd>гіпотенуза</dd>
+            <dt>= p − c</dt><dd>теж правильно</dd>
+          </dl>
+          <p class="flip-card-note">катети 3 і 4, гіпотенуза 5: r = (3+4−5)/2 = 1</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: діаметр перпендикулярний до хорди">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">діаметр ⊥ хорді → ?</div>
+          <div class="flip-card-hint">хорда, що не є діаметром</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">ділить хорду навпіл</div>
+          <div class="flip-card-purpose">діаметр, перпендикулярний до хорди, є її серединним перпендикуляром</div>
+          <dl class="flip-card-vars">
+            <dt>пряма</dt><dd>діаметр ⊥ хорді → ділить навпіл</dd>
+            <dt>обернена</dt><dd>діаметр через середину хорди → ⊥ до неї</dd>
+          </dl>
+          <p class="flip-card-note">центр кола лежить на серединному ⊥ будь-якої хорди</p>
+        </div>
+      </div>
+    </button>
+
+    </div>
+    <button type="button" class="cards-arrow cards-next" aria-label="Наступна картка">▸</button>
+  </div>
+
+  <div class="cards-dots" aria-hidden="true"></div>
+  <div class="cards-tip">~ перевір себе: спершу спробуй згадати, потім перегортай ~</div>
+</section>
+
+<!-- ═══════════════════ CHAPTER 1 ═══════════════════ -->
+<div class="c1">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ I</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Кути та <em>паралельні прямі</em></h2>
+  <div class="sub">з чого взагалі починається геометрія</div>
+
+  <h3>Суміжні кути</h3>
+  <p>Уяви: ти стоїш на прямій і дивишся прямо. Тепер повертаєш голову на якийсь кут — від нової лінії погляду до прямої залишилось рівно стільки, щоб разом вийшло пів оберту. Це і є <b>суміжні кути</b>: два кути, у яких одна сторона спільна, а дві інші — продовження одна одної.</p>
+
+  <svg class="illu" viewBox="0 0 600 180" width="100%" style="max-width:520px">
+    <!-- horizontal line -->
+    <line x1="60" y1="120" x2="540" y2="120" stroke="#2d1830" stroke-width="2"/>
+    <!-- ray going up-right -->
+    <line x1="300" y1="120" x2="450" y2="40" stroke="#2d1830" stroke-width="2"/>
+    <!-- arc alpha -->
+    <path d="M 360 120 A 60 60 0 0 0 340 80" fill="none" stroke="#b03171" stroke-width="2"/>
+    <text x="375" y="100" font-family="Caveat" font-size="26" fill="#b03171">α</text>
+    <!-- arc beta -->
+    <path d="M 240 120 A 60 60 0 0 1 340 80" fill="none" stroke="#0d6f87" stroke-width="2"/>
+    <text x="245" y="95" font-family="Caveat" font-size="26" fill="#0d6f87">β</text>
+    <!-- labels -->
+    <text x="300" y="160" text-anchor="middle" font-family="Space Grotesk" font-size="16" font-style="italic" fill="#6b4d68">α + β = 180°</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">α + β = 180°</div>
+    <div class="where">сума суміжних кутів завжди дорівнює розгорнутому куту</div>
+  </div>
+
+  <h3>Вертикальні кути</h3>
+  <p>Якщо дві прямі перетинаються, утворюються <b>чотири кути</b>. Ті, що лежать «через точку перетину» (не торкаються одна одної жодною стороною) — <b>вертикальні</b>. І в них є чудова властивість:</p>
+
+  <svg class="illu" viewBox="0 0 600 240" width="100%" style="max-width:520px">
+    <!-- first line (slopes down-right) -->
+    <line x1="80" y1="60" x2="520" y2="180" stroke="#2d1830" stroke-width="2"/>
+    <!-- second line (slopes up-right) -->
+    <line x1="80" y1="180" x2="520" y2="60" stroke="#2d1830" stroke-width="2"/>
+    <!-- intersection point -->
+    <circle cx="300" cy="120" r="3" fill="#2d1830"/>
+    <!-- arc for angle 1 (top, between left-up and right-up rays) -->
+    <path d="M 252 107 A 50 50 0 0 1 348 107" fill="none" stroke="#b03171" stroke-width="2"/>
+    <text x="288" y="86" font-family="Caveat" font-size="26" fill="#b03171">∠1</text>
+    <!-- arc for angle 3 (bottom, vertical to ∠1) -->
+    <path d="M 348 133 A 50 50 0 0 1 252 133" fill="none" stroke="#b03171" stroke-width="2"/>
+    <text x="288" y="170" font-family="Caveat" font-size="26" fill="#b03171">∠3</text>
+    <!-- arc for angle 2 (right, between right-up and right-down rays) -->
+    <path d="M 348 107 A 50 50 0 0 1 348 133" fill="none" stroke="#0d6f87" stroke-width="2"/>
+    <text x="362" y="128" font-family="Caveat" font-size="26" fill="#0d6f87">∠2</text>
+    <!-- arc for angle 4 (left, vertical to ∠2) -->
+    <path d="M 252 133 A 50 50 0 0 1 252 107" fill="none" stroke="#0d6f87" stroke-width="2"/>
+    <text x="208" y="128" font-family="Caveat" font-size="26" fill="#0d6f87">∠4</text>
+    <!-- caption -->
+    <text x="300" y="220" text-anchor="middle" font-family="Space Grotesk" font-size="16" font-style="italic" fill="#6b4d68">∠1 = ∠3,&nbsp;&nbsp;∠2 = ∠4</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">∠1 = ∠3,&nbsp;&nbsp;∠2 = ∠4</div>
+    <div class="where">вертикальні кути рівні</div>
+  </div>
+
+  <p>Чому? Кожен з них суміжний з тим самим кутом. А якщо два кути дають у сумі 180° з тим самим кутом — вони рівні між собою.</p>
+
+  <div class="example">
+    <p><b>Звідки життєва аналогія?</b> Подивись на ножиці: коли ти їх відкриваєш, верхня й нижня «розщілини» завжди однакові. Це і є вертикальні кути. Як би ти їх не повертав — вони залишаються рівними.</p>
+  </div>
+
+  <h3>Кут між бісектрисами суміжних кутів</h3>
+  <p>Це класичне запитання на залік. Бісектриса ділить кут навпіл. Якщо суміжні кути α і β = 180° − α, то їхні бісектриси «дивляться» в напрямках α/2 і (180° − α)/2 від спільної прямої. Між ними:</p>
+
+  <svg class="illu" viewBox="0 0 600 240" width="100%" style="max-width:520px">
+    <!-- horizontal line -->
+    <line x1="40" y1="200" x2="560" y2="200" stroke="#2d1830" stroke-width="2"/>
+    <!-- splitting ray creating adjacent angles α and β -->
+    <line x1="300" y1="200" x2="375" y2="70" stroke="#2d1830" stroke-width="2"/>
+
+    <!-- α arc (right side) -->
+    <path d="M 355 200 A 55 55 0 0 0 328 152" fill="none" stroke="#0d6f87" stroke-width="2"/>
+    <text x="338" y="190" font-family="Caveat" font-size="24" fill="#0d6f87">α</text>
+    <!-- β arc (left side) -->
+    <path d="M 328 152 A 55 55 0 0 0 245 200" fill="none" stroke="#6b4d68" stroke-width="2"/>
+    <text x="262" y="180" font-family="Caveat" font-size="24" fill="#6b4d68">β</text>
+
+    <!-- bisector of α (dashed) -->
+    <line x1="300" y1="200" x2="413" y2="135" stroke="#b03171" stroke-width="2" stroke-dasharray="6,4"/>
+    <text x="418" y="132" font-family="Caveat" font-size="20" fill="#b03171">α/2</text>
+    <!-- bisector of β (dashed) -->
+    <line x1="300" y1="200" x2="235" y2="87" stroke="#b03171" stroke-width="2" stroke-dasharray="6,4"/>
+    <text x="190" y="85" font-family="Caveat" font-size="20" fill="#b03171">β/2</text>
+
+    <!-- 90° arc between the two bisectors -->
+    <path d="M 330 183 A 35 35 0 0 0 283 170" fill="none" stroke="#b03171" stroke-width="2.5"/>
+    <text x="305" y="155" text-anchor="middle" font-family="Caveat" font-size="22" fill="#b03171">90°</text>
+
+    <!-- vertex -->
+    <circle cx="300" cy="200" r="3" fill="#2d1830"/>
+
+    <!-- caption -->
+    <text x="300" y="230" text-anchor="middle" font-family="Space Grotesk" font-size="16" font-style="italic" fill="#6b4d68">α/2 + β/2 = 90°</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">α/2 + (180° − α)/2 = 90°</div>
+    <div class="where">кут між бісектрисами суміжних кутів = 90°</div>
+  </div>
+
+  <p>Запам'ятай: <span class="hl-o">бісектриси суміжних кутів завжди перпендикулярні</span>. Незалежно від того, які саме це кути.</p>
+
+  <h3>Паралельні прямі</h3>
+  <p>Дві прямі на площині, які <b>не перетинаються</b>, називаються паралельними. Якщо третя пряма (січна) перетинає їх обох — утворюються 8 кутів. Серед них є кілька «знайомих пар»:</p>
+
+  <svg class="illu" viewBox="0 0 600 240" width="100%" style="max-width:520px">
+    <!-- line 1 -->
+    <line x1="40" y1="70" x2="560" y2="70" stroke="#2d1830" stroke-width="2"/>
+    <!-- line 2 -->
+    <line x1="40" y1="170" x2="560" y2="170" stroke="#2d1830" stroke-width="2"/>
+    <!-- transversal -->
+    <line x1="180" y1="20" x2="420" y2="220" stroke="#b03171" stroke-width="2"/>
+    <!-- angle marks -->
+    <text x="270" y="60" font-family="Caveat" font-size="22" fill="#0d6f87">1</text>
+    <text x="225" y="95" font-family="Caveat" font-size="22" fill="#0d6f87">2</text>
+    <text x="370" y="160" font-family="Caveat" font-size="22" fill="#0d6f87">3</text>
+    <text x="320" y="195" font-family="Caveat" font-size="22" fill="#0d6f87">4</text>
+    <!-- parallel ticks -->
+    <text x="100" y="65" font-family="Caveat" font-size="20" fill="#6b4d68">›</text>
+    <text x="100" y="165" font-family="Caveat" font-size="20" fill="#6b4d68">›</text>
+  </svg>
+
+  <div class="box">
+    <span class="label">Три головні пари кутів (на схемі вище)</span>
+    <ul>
+      <li><b>Відповідні</b> — однакове розташування на кожному перетині: наприклад, <b>∠1 і ∠3</b> (обидва праворуч від січної). Якщо прямі паралельні — <b>рівні</b>.</li>
+      <li><b>Внутрішні різносторонні</b> — між прямими, по різні боки січної: наприклад, <b>∠2 і ∠3</b>. Якщо прямі паралельні — <b>рівні</b>.</li>
+      <li><b>Внутрішні односторонні</b> — між прямими, з одного боку: наприклад, <b>∠2</b> і кут над лінією b ліворуч від січної (на схемі не підписаний). Якщо прямі паралельні — у сумі дають <b>180°</b>.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <span class="label">Ознаки паралельності (обернена сторона)</span>
+    <p>Властивості вище — це «якщо паралельні → кути рівні». Але можна і навпаки: за кутами <em>довести</em>, що прямі паралельні.</p>
+    <ul>
+      <li>Якщо відповідні кути <b>рівні</b> → прямі паралельні.</li>
+      <li>Якщо внутрішні різносторонні <b>рівні</b> → прямі паралельні.</li>
+      <li>Якщо внутрішні односторонні дають у сумі <b>180°</b> → прямі паралельні.</li>
+    </ul>
+    <p class="tip">«властивість» — це наслідок паралельності; «ознака» — це спосіб її довести</p>
+  </div>
+
+  <div class="example">
+    <p><b>Як це бачити в реальності?</b> Залізничні рейки — паралельні. Шпали — січні. Кожна шпала створює з обома рейками рівні відповідні кути. Якщо рейки розійшлися — потяг зійде з колії: ознака паралельності зламалась.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: кути та паралельні прямі</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Один із суміжних кутів дорівнює 73°. Чому дорівнює другий?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це властивість вертикальних кутів, не суміжних.">73°</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Суміжні кути в сумі дають 180°. 180° − 73° = 107°.">107°</button>
+        <button type="button" class="quiz-option" data-explain="Це різниця 180° − 90°, але кут не прямий.">90°</button>
+        <button type="button" class="quiz-option" data-explain="Це 360° − 73°, повний кут не до речі.">287°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Дві прямі перетинаються. Один із кутів дорівнює 40°. Скільки серед чотирьох кутів дорівнюють 140°?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Сам кут 40° + його вертикальний 40° — це ДВА кути по 40°.">1</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Дві суміжних зі стороною кута 40° — кожен 140°. І вони вертикальні між собою — ще 140°. Усього два кути по 140°.">2</button>
+        <button type="button" class="quiz-option" data-explain="Тоді б усі кути були рівні, а так буває лише при перпендикулярних прямих (по 90°).">4</button>
+        <button type="button" class="quiz-option" data-explain="Один кут не може бути 140° сам по собі без пари.">0</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Чому дорівнює кут між бісектрисами двох суміжних кутів?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="180° — це сума самих суміжних кутів, а не між їхніми бісектрисами.">180°</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Завжди 90°: α/2 + (180°−α)/2 = 90°. Не залежить від конкретних α.">90°</button>
+        <button type="button" class="quiz-option" data-explain="Залежить тільки якщо рахувати неправильно. Перевір формулу.">залежить від кутів</button>
+        <button type="button" class="quiz-option" data-explain="Це сума самих кутів, поділена на щось ще.">60°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Прямі a і b паралельні, січна утворює з a кут 65°. Чому дорівнює внутрішній односторонній кут із прямою b?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="65° — це або відповідний, або внутрішній різносторонній. Односторонній має доповнювати до 180°.">65°</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Внутрішні односторонні дають у сумі 180°. 180° − 65° = 115°.">115°</button>
+        <button type="button" class="quiz-option" data-explain="90° буває лише при перпендикулярах.">90°</button>
+        <button type="button" class="quiz-option" data-explain="Це сума двох однакових по 65° — не та властивість.">130°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 4</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 2 ═══════════════════ -->
+<div class="c2">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ II</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Трикутник: <em>рівність, кути, нерівність</em></h2>
+  <div class="sub">найпопулярніша фігура в усій геометрії</div>
+
+  <h3>Сума кутів трикутника</h3>
+  <p>Це не аксіома, а теорема — і її доводять через паралельну пряму. Через одну з вершин проводять пряму, паралельну протилежній стороні. Тоді три кути, що лежать на розгорнутому куті біля цієї вершини, виявляються рівними кутам трикутника (як внутрішні різносторонні). А разом вони — 180°.</p>
+
+  <svg class="illu" viewBox="0 0 600 240" width="100%" style="max-width:480px">
+    <!-- triangle -->
+    <polygon points="300,50 130,200 470,200" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <!-- arc at A (top, opens down) -->
+    <path d="M 326 73 A 35 35 0 0 1 274 73" fill="none" stroke="#b03171" stroke-width="2"/>
+    <!-- arc at B (bottom-left, opens up-right) -->
+    <path d="M 165 200 A 35 35 0 0 0 156 177" fill="none" stroke="#0d6f87" stroke-width="2"/>
+    <!-- arc at C (bottom-right, opens up-left) -->
+    <path d="M 444 177 A 35 35 0 0 0 435 200" fill="none" stroke="#6b4d68" stroke-width="2"/>
+    <!-- vertex labels -->
+    <text x="293" y="38" font-family="Caveat" font-size="24" fill="#2d1830">A</text>
+    <text x="110" y="220" font-family="Caveat" font-size="24" fill="#2d1830">B</text>
+    <text x="478" y="220" font-family="Caveat" font-size="24" fill="#2d1830">C</text>
+    <!-- caption -->
+    <text x="300" y="232" text-anchor="middle" font-family="Space Grotesk" font-size="16" font-style="italic" fill="#6b4d68">∠A + ∠B + ∠C = 180°</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">∠A + ∠B + ∠C = 180°</div>
+    <div class="where">сума внутрішніх кутів будь-якого трикутника</div>
+  </div>
+
+  <details class="proof">
+    <summary>Теорема та доведення</summary>
+    <div class="proof-body">
+    <p><b>Теорема.</b> Сума кутів будь-якого трикутника дорівнює <b>180°</b>.</p>
+    <p><b>Доведення.</b> Розглянемо трикутник ABC. Через вершину A проведемо пряму ℓ, паралельну стороні BC. Тоді сторони AB і AC стають січними для пари паралельних прямих ℓ і BC.</p>
+
+    <svg class="illu" viewBox="0 0 600 280" width="100%" style="max-width:520px">
+      <!-- parallel line ℓ through A (dashed) -->
+      <line x1="60" y1="90" x2="540" y2="90" stroke="#b03171" stroke-width="2" stroke-dasharray="6,4"/>
+      <text x="546" y="95" font-family="Caveat" font-size="22" fill="#b03171" font-style="italic">ℓ</text>
+      <!-- parallel line through BC (dashed extensions beyond B and C) -->
+      <line x1="60" y1="230" x2="130" y2="230" stroke="#0d6f87" stroke-width="2" stroke-dasharray="6,4"/>
+      <line x1="470" y1="230" x2="540" y2="230" stroke="#0d6f87" stroke-width="2" stroke-dasharray="6,4"/>
+      <!-- parallel ticks (ℓ and BC) -->
+      <text x="210" y="85" font-family="Caveat" font-size="22" fill="#6b4d68">›</text>
+      <text x="290" y="225" font-family="Caveat" font-size="22" fill="#6b4d68">›</text>
+      <!-- triangle ABC -->
+      <polygon points="300,90 130,230 470,230" fill="none" stroke="#2d1830" stroke-width="2"/>
+
+      <!-- angle B inside triangle -->
+      <path d="M 160 230 A 30 30 0 0 0 153 211" fill="none" stroke="#0d6f87" stroke-width="2"/>
+      <text x="158" y="222" font-family="Caveat" font-size="20" fill="#0d6f87">B</text>
+      <!-- angle C inside triangle -->
+      <path d="M 447 211 A 30 30 0 0 0 440 230" fill="none" stroke="#6b4d68" stroke-width="2"/>
+      <text x="430" y="222" font-family="Caveat" font-size="20" fill="#6b4d68">C</text>
+
+      <!-- three angles at vertex A on line ℓ -->
+      <!-- left: alt-interior to ∠B -->
+      <path d="M 270 90 A 30 30 0 0 0 277 109" fill="none" stroke="#0d6f87" stroke-width="2"/>
+      <text x="258" y="108" font-family="Caveat" font-size="20" fill="#0d6f87">B</text>
+      <!-- middle: original ∠A -->
+      <path d="M 277 109 A 30 30 0 0 0 323 109" fill="none" stroke="#b03171" stroke-width="2"/>
+      <text x="294" y="128" font-family="Caveat" font-size="20" fill="#b03171">A</text>
+      <!-- right: alt-interior to ∠C -->
+      <path d="M 323 109 A 30 30 0 0 0 330 90" fill="none" stroke="#6b4d68" stroke-width="2"/>
+      <text x="332" y="108" font-family="Caveat" font-size="20" fill="#6b4d68">C</text>
+
+      <!-- vertex labels -->
+      <text x="293" y="82" font-family="Caveat" font-size="24" fill="#2d1830">A</text>
+      <text x="110" y="252" font-family="Caveat" font-size="24" fill="#2d1830">B</text>
+      <text x="478" y="252" font-family="Caveat" font-size="24" fill="#2d1830">C</text>
+
+      <!-- caption -->
+      <text x="300" y="272" text-anchor="middle" font-family="Space Grotesk" font-size="16" font-style="italic" fill="#6b4d68">три кути при A разом — розгорнутий кут на ℓ</text>
+    </svg>
+
+    <ul>
+      <li>AB — січна для ℓ ‖ BC ⇒ кут між ℓ (ліворуч від A) і AB дорівнює <b style="color:#0d6f87">∠B</b> (внутрішні різносторонні).</li>
+      <li>AC — січна для ℓ ‖ BC ⇒ кут між AC і ℓ (праворуч від A) дорівнює <b style="color:#6b4d68">∠C</b> (внутрішні різносторонні).</li>
+      <li>Три кути при вершині A — <b style="color:#0d6f87">∠B</b>, <b style="color:#b03171">∠A</b>, <b style="color:#6b4d68">∠C</b> — лежать на одній прямій ℓ, а отже у сумі дають розгорнутий кут.</li>
+    </ul>
+
+    <div class="formula">
+      <div class="eq">∠A + ∠B + ∠C = 180°</div>
+      <div class="where">що й треба було довести</div>
+    </div>
+    </div>
+  </details>
+
+  <h3>Зовнішній кут трикутника</h3>
+  <p>Якщо одну сторону продовжити за вершину — утвориться <b>зовнішній кут</b> при цій вершині. Він суміжний із внутрішнім, тож разом вони 180°. Але є ще краще:</p>
+
+  <svg class="illu" viewBox="0 0 600 235" width="100%" style="max-width:520px">
+    <!-- triangle B-C-A -->
+    <polygon points="80,200 200,50 460,200" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <!-- extension of BA beyond A (dashed) -->
+    <line x1="460" y1="200" x2="560" y2="200" stroke="#2d1830" stroke-width="2" stroke-dasharray="6,4"/>
+
+    <!-- interior arc at B -->
+    <path d="M 115 200 A 35 35 0 0 0 102 173" fill="none" stroke="#0d6f87" stroke-width="2"/>
+    <text x="116" y="196" font-family="Caveat" font-size="21" fill="#0d6f87">∠B</text>
+
+    <!-- interior arc at C -->
+    <path d="M 230 68 A 35 35 0 0 1 178 77" fill="none" stroke="#6b4d68" stroke-width="2"/>
+    <text x="188" y="62" font-family="Caveat" font-size="21" fill="#6b4d68">∠C</text>
+
+    <!-- exterior angle at A, split: teal part (= ∠B), then muted part (= ∠C) -->
+    <path d="M 505 200 A 45 45 0 0 0 488 165" fill="none" stroke="#0d6f87" stroke-width="2.5"/>
+    <path d="M 488 165 A 45 45 0 0 0 421 178" fill="none" stroke="#6b4d68" stroke-width="2.5"/>
+    <text x="516" y="181" font-family="Caveat" font-size="20" fill="#0d6f87">∠B</text>
+    <text x="452" y="142" font-family="Caveat" font-size="20" fill="#6b4d68">∠C</text>
+
+    <!-- vertex labels -->
+    <text x="62" y="218" font-family="Caveat" font-size="23" fill="#2d1830">B</text>
+    <text x="192" y="40" font-family="Caveat" font-size="23" fill="#2d1830">C</text>
+    <text x="454" y="218" font-family="Caveat" font-size="23" fill="#2d1830">A</text>
+    <text x="550" y="218" font-family="Caveat" font-size="23" fill="#2d1830">D</text>
+
+    <!-- caption -->
+    <text x="270" y="229" text-anchor="middle" font-family="Space Grotesk" font-size="15" font-style="italic" fill="#6b4d68">∠зовн = ∠B + ∠C</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">∠зовн<sub>A</sub> = ∠B + ∠C</div>
+    <div class="where">зовнішній кут = сумі двох внутрішніх не суміжних з ним</div>
+  </div>
+
+  <p>Чому це працює: ∠A + ∠B + ∠C = 180° і ∠A + ∠зовн = 180°. Прирівнюємо — ∠зовн = ∠B + ∠C. <span class="hl-t">Наслідок:</span> зовнішній кут більший за кожен з двох внутрішніх не суміжних.</p>
+
+  <h3>Рівнобедрений трикутник</h3>
+  <p>Дві сторони рівні — це <b>бічні</b>, а третя — <b>основа</b>. Кути при основі рівні. І це працює в обидва боки:</p>
+
+  <svg class="illu" viewBox="0 0 600 220" width="100%" style="max-width:480px">
+    <!-- isosceles triangle: A top, B bottom-left, C bottom-right -->
+    <polygon points="300,30 140,190 460,190" fill="none" stroke="#0d6f87" stroke-width="2"/>
+
+    <!-- equal marks on AB (perpendicular to AB direction −0.707,+0.707 → tick dir +0.707,+0.707) -->
+    <line x1="212" y1="109" x2="222" y2="119" stroke="#0d6f87" stroke-width="2"/>
+    <line x1="219" y1="102" x2="229" y2="112" stroke="#0d6f87" stroke-width="2"/>
+
+    <!-- equal marks on AC (perpendicular to AC direction +0.707,+0.707 → tick dir +0.707,−0.707) -->
+    <line x1="372" y1="112" x2="382" y2="102" stroke="#0d6f87" stroke-width="2"/>
+    <line x1="379" y1="119" x2="389" y2="109" stroke="#0d6f87" stroke-width="2"/>
+
+    <!-- equal angle arcs at B and C -->
+    <path d="M 170 190 A 30 30 0 0 0 161 169" fill="none" stroke="#b03171" stroke-width="2"/>
+    <path d="M 439 169 A 30 30 0 0 0 430 190" fill="none" stroke="#b03171" stroke-width="2"/>
+
+    <!-- vertex labels -->
+    <text x="293" y="20" font-family="Caveat" font-size="24" fill="#2d1830">A</text>
+    <text x="120" y="210" font-family="Caveat" font-size="24" fill="#2d1830">B</text>
+    <text x="463" y="210" font-family="Caveat" font-size="24" fill="#2d1830">C</text>
+
+    <!-- side labels -->
+    <text x="172" y="98" font-family="Caveat" font-size="21" fill="#0d6f87">бічна</text>
+    <text x="385" y="98" font-family="Caveat" font-size="21" fill="#0d6f87">бічна</text>
+    <text x="300" y="212" text-anchor="middle" font-family="Caveat" font-size="21" fill="#6b4d68">основа</text>
+  </svg>
+
+  <div class="box">
+    <span class="label">Властивості та ознаки</span>
+    <ul>
+      <li><b>Властивість:</b> якщо AB = AC, то ∠B = ∠C.</li>
+      <li><b>Ознака:</b> якщо ∠B = ∠C, то AB = AC.</li>
+      <li><b>Бонус:</b> у рівнобедреному трикутнику <b>висота</b>, <b>медіана</b> й <b>бісектриса</b>, проведені з вершини, — це одна й та сама пряма (а ще вона є серединним перпендикуляром до основи).</li>
+    </ul>
+    <p class="tip">троє в одному — фішка рівнобедреного</p>
+  </div>
+
+  <h3>Ознаки рівності трикутників</h3>
+  <p>Два трикутники <b>рівні</b>, якщо їх можна сумістити накладанням. Але доказати накладанням завжди — нудно. Тому є три зручні ознаки:</p>
+
+  <div class="box">
+    <span class="label">Три ознаки</span>
+    <ul>
+      <li><b>I (за двома сторонами і кутом між ними):</b> якщо у двох трикутниках по дві сторони і кут між ними рівні — трикутники рівні.<br><small style="color:var(--ink-soft)">⚠ Важливо: кут має бути саме <em>між</em> двома рівними сторонами. Якщо він при протилежній вершині — ця ознака не діє.</small></li>
+      <li><b>II (за стороною і двома прилеглими кутами):</b> якщо сторона і два кути, що до неї прилягають, рівні — трикутники рівні.</li>
+      <li><b>III (за трьома сторонами):</b> якщо всі три сторони відповідно рівні — трикутники рівні.</li>
+    </ul>
+  </div>
+
+  <h3>Ознаки рівності прямокутних трикутників</h3>
+  <p>Прямокутні — особливі: один кут уже відомий (90°), тому решта форми «підлаштовується» під задані сторони або кути. Через це можна задати <b>менше умов</b>, ніж у загальному випадку — трикутник все одно визначається однозначно.</p>
+
+  <div class="box">
+    <span class="label">Чотири зручні ознаки</span>
+    <ul>
+      <li>За <b>двома катетами</b>.</li>
+      <li>За <b>катетом і прилеглим гострим кутом</b>.</li>
+      <li>За <b>гіпотенузою і гострим кутом</b>.</li>
+      <li>За <b>гіпотенузою і катетом</b> — це найкорисніша, її часто пропускають.</li>
+    </ul>
+  </div>
+
+  <h3>Нерівність трикутника</h3>
+  <p>Не будь-які три відрізки можна скласти в трикутник. Уяви: береш палички довжиною 3, 4 і 8. Поклади дві (3 і 4) кінець-у-кінець — вони разом дадуть лише 7. Третя паличка (8) виявиться довшою за обидві разом — кінці просто не зійдуться. Трикутника немає.</p>
+
+  <div class="formula">
+    <div class="eq">a &lt; b + c,&nbsp;&nbsp;b &lt; a + c,&nbsp;&nbsp;c &lt; a + b</div>
+    <div class="where">кожна сторона менша за суму двох інших — інакше трикутник не існує</div>
+  </div>
+
+  <div class="box">
+    <span class="label">Як перевірити на заліку</span>
+    <ol>
+      <li>Знайди <b>найбільшу</b> зі сторін.</li>
+      <li>Перевір: чи менша вона за <b>суму двох інших</b>?</li>
+      <li>Якщо так — трикутник існує. Якщо ні — не існує.</li>
+    </ol>
+    <p class="tip">перевіряти всі три нерівності не треба — достатньо однієї</p>
+  </div>
+
+  <div class="example">
+    <p><b>Два приклади поруч.</b><br>
+    Сторони <b>3, 4, 8</b>: найбільша — 8. Перевірка: 3 + 4 = 7 &lt; 8. ❌ Трикутника <b>не існує</b>.<br>
+    Сторони <b>3, 4, 6</b>: найбільша — 6. Перевірка: 3 + 4 = 7 &gt; 6. ✓ Трикутник <b>існує</b>.</p>
+  </div>
+
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: трикутники</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>У трикутниках ABC і DEF: AB = DE, AC = DF, ∠BAC = ∠EDF. За якою ознакою вони рівні?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="∠BAC — кут при вершині A між сторонами AB і AC. Обидві ці сторони рівні відповідним у DEF. Саме так: дві сторони і кут між ними — I ознака.">I ознака (2 сторони + кут між ними)</button>
+        <button type="button" class="quiz-option" data-explain="II ознака — це сторона і два прилеглих кути. Тут задані дві сторони і кут, а не сторона і два кути.">II ознака (сторона + 2 кути)</button>
+        <button type="button" class="quiz-option" data-explain="III ознака — три рівні сторони. Тут задані лише дві сторони і кут.">III ознака (3 сторони)</button>
+        <button type="button" class="quiz-option" data-explain="Даних цілком достатньо — перевір, між якими сторонами стоїть рівний кут.">Даних недостатньо</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Зовнішній кут трикутника при вершині A дорівнює 130°. ∠B = 80°. Чому дорівнює ∠C?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Зовнішній кут = ∠B + ∠C, тож ∠C = 130° − 80° = 50°.">50°</button>
+        <button type="button" class="quiz-option" data-explain="80° — це вже ∠B.">80°</button>
+        <button type="button" class="quiz-option" data-explain="Це не та властивість. Зовнішній = сумі двох інших, не різниці зі 180°.">130°</button>
+        <button type="button" class="quiz-option" data-explain="Це залишок до 180° від ∠B, без використання зовнішнього кута.">100°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>У рівнобедреному трикутнику кут при вершині дорівнює 80°. Чому дорівнює кут при основі?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це сам кут при вершині.">80°</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Сума двох рівних кутів при основі = 180° − 80° = 100°. Кожен по 50°.">50°</button>
+        <button type="button" class="quiz-option" data-explain="100° — це сума двох кутів при основі, а кожен — половина.">100°</button>
+        <button type="button" class="quiz-option" data-explain="40° — це 80°/2, але кути при основі ділять не сам кут при вершині.">40°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Чи існує трикутник зі сторонами 5, 7, 13?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Перевір нерівність: 5 + 7 = 12 &lt; 13. Не виконується.">так</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Ні: найбільша сторона 13 ≥ 5 + 7 = 12. Нерівність трикутника не виконується.">ні</button>
+        <button type="button" class="quiz-option" data-explain="Існування не залежить від виду трикутника.">тільки якщо тупокутний</button>
+        <button type="button" class="quiz-option" data-explain="Можна перевірити нерівність — вона дає однозначну відповідь.">залежить від креслення</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>За якою ознакою рівні два прямокутні трикутники, у яких рівні гіпотенузи й по одному гострому куту?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Тут не потрібно знати катети — досить гіпотенузи й кута.">за двома катетами</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Це і є ознака «гіпотенуза + гострий кут».">за гіпотенузою і гострим кутом</button>
+        <button type="button" class="quiz-option" data-explain="Гіпотенуза і катет — інша ознака.">за гіпотенузою і катетом</button>
+        <button type="button" class="quiz-option" data-explain="Тут немає катета — тільки гіпотенуза й кут.">за катетом і прилеглим гострим кутом</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">6.</span><span>У трикутниках ABC і DEF: AB = DE, BC = EF, ∠BAC = ∠EDF. Чи можна стверджувати рівність за I ознакою?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Рівні сторони AB і BC — кут між ними є ∠B, а не ∠A. Але задано рівність ∠BAC = ∠EDF — кут при A. I ознака не діє: кут не між двома рівними сторонами.">Ні — кут не між рівними сторонами</button>
+        <button type="button" class="quiz-option" data-explain="Наявність двох рівних сторін і кута ще не достатня для I ознаки — кут має бути саме між цими двома сторонами.">Так, I ознака</button>
+        <button type="button" class="quiz-option" data-explain="II ознака — це сторона і два прилеглих кути. Тут інші дані.">Так, II ознака</button>
+        <button type="button" class="quiz-option" data-explain="Відповідь однозначна — достатньо перевірити положення кута.">Залежить від розмірів</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">7.</span><span>Два прямокутні трикутники мають рівні гіпотенузи і по одному рівному катету. Яка ознака доводить їх рівність?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Це і є ознака «гіпотенуза і катет» — одна з чотирьох ознак рівності прямокутних трикутників.">За гіпотенузою і катетом</button>
+        <button type="button" class="quiz-option" data-explain="Два катети тут не задані — є лише один катет і гіпотенуза.">За двома катетами</button>
+        <button type="button" class="quiz-option" data-explain="Гострий кут не задано — є лише гіпотенуза і катет.">За гіпотенузою і гострим кутом</button>
+        <button type="button" class="quiz-option" data-explain="Така ознака існує — це одна з чотирьох ознак рівності прямокутних трикутників.">Такої ознаки не існує</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 3 ═══════════════════ -->
+<div class="c3">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ III</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Прямокутний трикутник: <em>дві магічні властивості</em></h2>
+  <div class="sub">тут починається все цікаве</div>
+
+  <h3>Катет навпроти кута 30°</h3>
+  <p>У прямокутному трикутнику, де один з гострих кутів дорівнює <b>30°</b>, відбувається щось майже неймовірне. Катет, що лежить навпроти цього кута, — рівно <b>половина гіпотенузи</b>.</p>
+
+  <svg class="illu" viewBox="0 0 600 240" width="100%" style="max-width:520px">
+    <!-- right triangle -->
+    <polygon points="100,200 500,200 100,80" fill="none" stroke="#5b21b6" stroke-width="2"/>
+    <!-- right angle marker -->
+    <polyline points="100,180 120,180 120,200" fill="none" stroke="#5b21b6" stroke-width="2"/>
+    <!-- 30 deg arc -->
+    <path d="M 470 200 A 30 30 0 0 0 472 192" fill="none" stroke="#b03171" stroke-width="2"/>
+    <text x="425" y="195" font-family="Caveat" font-size="22" fill="#b03171">30°</text>
+    <!-- labels -->
+    <text x="60" y="200" font-family="Space Grotesk" font-size="18" font-weight="600" fill="#2d1830">B</text>
+    <text x="510" y="210" font-family="Space Grotesk" font-size="18" font-weight="600" fill="#2d1830">A</text>
+    <text x="60" y="80" font-family="Space Grotesk" font-size="18" font-weight="600" fill="#2d1830">C</text>
+    <text x="80" y="145" text-anchor="end" font-family="Caveat" font-size="22" fill="#5b21b6">a</text>
+    <text x="295" y="235" text-anchor="middle" font-family="Caveat" font-size="22" fill="#5b21b6">b</text>
+    <text x="320" y="130" font-family="Caveat" font-size="22" fill="#5b21b6">c</text>
+    <text x="295" y="60" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-style="italic" fill="#6b4d68">∠A = 30° → BC = AC/2</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">a = c/2</div>
+    <div class="where">a — катет проти кута 30°&nbsp;·&nbsp;c — гіпотенуза</div>
+  </div>
+
+  <p><b>І обернено:</b> якщо в прямокутному трикутнику катет вдвічі менший за гіпотенузу, то кут, що лежить проти цього катета, — рівно 30°.</p>
+
+  <div class="example">
+    <p><b>Чому це працює?</b> Уяви прямокутний трикутник із кутом 30°. Зроби «дзеркальну копію» поряд (відобрази через катет b) — отримаєш рівносторонній трикутник з кутами 60°, 60°, 60°. У ньому всі сторони рівні, а наш катет a — це половина однієї зі сторін. От і вся магія.</p>
+
+    <svg class="illu" viewBox="0 0 600 285" width="100%" style="max-width:500px">
+      <!-- original right triangle T-B-M (solid) -->
+      <polygon points="300,48 190,240 300,240" fill="none" stroke="#5b21b6" stroke-width="2"/>
+
+      <!-- mirror copy T-M-D (dashed) -->
+      <line x1="300" y1="48" x2="410" y2="240" stroke="#6b4d68" stroke-width="2" stroke-dasharray="6,4"/>
+      <line x1="410" y1="240" x2="300" y2="240" stroke="#6b4d68" stroke-width="2" stroke-dasharray="6,4"/>
+
+      <!-- right angle mark at M -->
+      <polyline points="300,220 280,220 280,240" fill="none" stroke="#5b21b6" stroke-width="2"/>
+
+      <!-- 30° arc at T, left side (original) -->
+      <path d="M 300 78 A 30 30 0 0 0 285 74" fill="none" stroke="#b03171" stroke-width="2"/>
+      <text x="256" y="85" font-family="Caveat" font-size="19" fill="#b03171">30°</text>
+
+      <!-- 30° arc at T, right side (mirror) -->
+      <path d="M 315 74 A 30 30 0 0 1 300 78" fill="none" stroke="#b03171" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="316" y="85" font-family="Caveat" font-size="19" fill="#b03171">30°</text>
+
+      <!-- 60° arc at B (original) -->
+      <path d="M 205 215 A 30 30 0 0 1 220 240" fill="none" stroke="#0d6f87" stroke-width="2"/>
+      <text x="204" y="232" font-family="Caveat" font-size="19" fill="#0d6f87">60°</text>
+
+      <!-- 60° arc at D (mirror, dashed) -->
+      <path d="M 395 215 A 30 30 0 0 0 380 240" fill="none" stroke="#0d6f87" stroke-width="2" stroke-dasharray="4,3"/>
+      <text x="363" y="232" font-family="Caveat" font-size="19" fill="#0d6f87">60°</text>
+
+      <!-- side labels -->
+      <text x="224" y="142" font-family="Caveat" font-size="22" fill="#5b21b6">c</text>
+      <text x="364" y="142" font-family="Caveat" font-size="22" fill="#6b4d68">c</text>
+      <text x="308" y="152" font-family="Caveat" font-size="22" fill="#5b21b6">b</text>
+      <text x="238" y="263" font-family="Caveat" font-size="22" fill="#5b21b6">a</text>
+      <text x="347" y="263" font-family="Caveat" font-size="22" fill="#6b4d68">a</text>
+
+      <!-- vertex labels -->
+      <text x="293" y="38" font-family="Caveat" font-size="22" fill="#2d1830">T</text>
+      <text x="170" y="257" font-family="Caveat" font-size="22" fill="#2d1830">B</text>
+      <text x="293" y="257" font-family="Caveat" font-size="22" fill="#2d1830">M</text>
+      <text x="413" y="257" font-family="Caveat" font-size="22" fill="#2d1830">D</text>
+
+      <!-- caption -->
+      <text x="300" y="280" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-style="italic" fill="#6b4d68">TB = TD = BD = c &nbsp;→&nbsp; BM = c/2 = a</text>
+    </svg>
+  </div>
+
+  <h3>Медіана до гіпотенузи</h3>
+  <p>Тепер ще одна супер-властивість. У прямокутному трикутнику медіана, проведена до гіпотенузи, <b>дорівнює половині гіпотенузи</b>.</p>
+
+  <svg class="illu" viewBox="0 0 600 240" width="100%" style="max-width:520px">
+    <!-- right triangle -->
+    <polygon points="100,200 500,200 100,40" fill="none" stroke="#5b21b6" stroke-width="2"/>
+    <!-- right angle marker -->
+    <polyline points="100,180 120,180 120,200" fill="none" stroke="#5b21b6" stroke-width="2"/>
+    <!-- median to hypotenuse -->
+    <line x1="100" y1="200" x2="300" y2="120" stroke="#b03171" stroke-width="2" stroke-dasharray="6,4"/>
+    <!-- midpoint -->
+    <circle cx="300" cy="120" r="4" fill="#b03171"/>
+    <text x="305" y="115" font-family="Space Grotesk" font-size="16" font-weight="600" fill="#b03171">M</text>
+    <!-- vertices -->
+    <text x="60" y="40" font-family="Space Grotesk" font-size="18" font-weight="600" fill="#2d1830">C</text>
+    <text x="60" y="210" font-family="Space Grotesk" font-size="18" font-weight="600" fill="#2d1830">B</text>
+    <text x="510" y="210" font-family="Space Grotesk" font-size="18" font-weight="600" fill="#2d1830">A</text>
+    <!-- caption -->
+    <text x="180" y="170" font-family="Caveat" font-size="22" fill="#b03171">BM = AC / 2</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">m<sub>c</sub> = c/2</div>
+    <div class="where">m<sub>c</sub> — медіана з прямого кута до гіпотенузи</div>
+  </div>
+
+  <div class="box">
+    <span class="label">Чому це працює — і чому це важливо</span>
+    <p>Середина гіпотенузи — точка, рівновіддалена від усіх трьох вершин прямокутного трикутника. Тобто це <b>центр описаного кола</b>, а гіпотенуза — його <b>діаметр</b>. Тому радіус (від центру до будь-якої вершини) дорівнює c/2 — і медіана з прямого кута теж.</p>
+    <p><small style="color:var(--ink-soft)">Чому середина гіпотенузи є центром описаного кола — розбирається в розділі IV (серединні перпендикуляри). Поки просто запам'ятай цей зв'язок.</small></p>
+  </div>
+
+  <p>Цю властивість використовують, щоб довести багато інших — наприклад, теорему про катет проти 30°. Або щоб знайти невідому сторону, маючи лише медіану.</p>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: спецвластивості прямокутного</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>У прямокутному трикутнику один з гострих кутів = 30°, гіпотенуза = 14 см. Чому дорівнює катет, що лежить проти 30°?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це сама гіпотенуза, а не катет.">14 см</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Катет проти 30° = c/2 = 14/2 = 7 см.">7 см</button>
+        <button type="button" class="quiz-option" data-explain="2 см — занадто мало. Поділи саме на 2.">2 см</button>
+        <button type="button" class="quiz-option" data-explain="30 — це градуси кута, не довжина.">30 см</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>У прямокутному трикутнику катет = 6, гіпотенуза = 12. Чому дорівнює кут, що лежить проти цього катета?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Тоді б катет дорівнював гіпотенузі — а він менший.">90°</button>
+        <button type="button" class="quiz-option" data-explain="60° лежить проти більшого катета, не половини гіпотенузи.">60°</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Катет = c/2 → кут проти нього = 30° (обернена властивість).">30°</button>
+        <button type="button" class="quiz-option" data-explain="45° — це у рівнобедреному прямокутному, тут трикутник не такий.">45°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>У прямокутному трикутнику медіана до гіпотенузи дорівнює 8 см. Чому дорівнює гіпотенуза?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це сама медіана.">8 см</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Медіана = c/2, тож c = 2 · 8 = 16 см.">16 см</button>
+        <button type="button" class="quiz-option" data-explain="Поділив, а треба було помножити на 2.">4 см</button>
+        <button type="button" class="quiz-option" data-explain="Перебір. Помнож на 2, не на 3.">24 см</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Точка M — середина гіпотенузи AC прямокутного трикутника ABC. Що з цим списком ПРАВДА?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="MA, MB, MC — усі три рівні (це наслідок).">тільки MA = MC</button>
+        <button type="button" class="quiz-option" data-correct data-explain="M рівновіддалена від усіх трьох вершин — це центр описаного кола, а MA = MB = MC = c/2.">MA = MB = MC</button>
+        <button type="button" class="quiz-option" data-explain="MB = AB лише в окремому випадку, не в загальному.">MB = AB завжди</button>
+        <button type="button" class="quiz-option" data-explain="Тоді б трикутник був рівнобедрений за катетами — це не дано.">MA = AB</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 4</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 4 ═══════════════════ -->
+<div class="c4">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ IV</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Чудові точки <em>трикутника</em></h2>
+  <div class="sub">три точки — три кола</div>
+
+  <h3>Геометричне місце точок (ГМТ)</h3>
+  <p>«Геометричне місце точок» — це просто <b>множина всіх точок, які мають певну властивість</b>. У 7 класі тобі знадобляться лише два ГМТ:</p>
+
+  <div class="box">
+    <span class="label">Перше ГМТ — серединний перпендикуляр</span>
+    <p>Серединний перпендикуляр до відрізка AB — це <b>множина всіх точок, рівновіддалених від A і B</b>.</p>
+    <ul>
+      <li><b>Пряма:</b> якщо точка на серединному перпендикулярі — то PA = PB.</li>
+      <li><b>Обернена:</b> якщо PA = PB — точка лежить на серединному перпендикулярі.</li>
+    </ul>
+
+    <svg class="illu" viewBox="0 0 600 235" width="100%" style="max-width:500px">
+      <!-- segment AB -->
+      <line x1="130" y1="185" x2="470" y2="185" stroke="#2d1830" stroke-width="2"/>
+      <!-- equal tick marks on AM -->
+      <line x1="221" y1="177" x2="221" y2="193" stroke="#2d1830" stroke-width="2"/>
+      <line x1="228" y1="177" x2="228" y2="193" stroke="#2d1830" stroke-width="2"/>
+      <!-- equal tick marks on MB -->
+      <line x1="372" y1="177" x2="372" y2="193" stroke="#2d1830" stroke-width="2"/>
+      <line x1="379" y1="177" x2="379" y2="193" stroke="#2d1830" stroke-width="2"/>
+
+      <!-- perpendicular bisector -->
+      <line x1="300" y1="25" x2="300" y2="215" stroke="#0d6f87" stroke-width="2" stroke-dasharray="7,4"/>
+
+      <!-- right angle mark at M -->
+      <polyline points="300,165 320,165 320,185" fill="none" stroke="#0d6f87" stroke-width="2"/>
+
+      <!-- dashed lines PA and PB -->
+      <line x1="300" y1="75" x2="130" y2="185" stroke="#b03171" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <line x1="300" y1="75" x2="470" y2="185" stroke="#b03171" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+      <!-- equal tick marks on PA -->
+      <line x1="222" y1="126" x2="229" y2="138" stroke="#b03171" stroke-width="2"/>
+      <line x1="215" y1="130" x2="222" y2="142" stroke="#b03171" stroke-width="2"/>
+      <!-- equal tick marks on PB -->
+      <line x1="371" y1="126" x2="378" y2="138" stroke="#b03171" stroke-width="2"/>
+      <line x1="378" y1="130" x2="385" y2="142" stroke="#b03171" stroke-width="2"/>
+
+      <!-- point P -->
+      <circle cx="300" cy="75" r="4" fill="#b03171"/>
+      <!-- point M -->
+      <circle cx="300" cy="185" r="4" fill="#0d6f87"/>
+      <!-- points A, B -->
+      <circle cx="130" cy="185" r="4" fill="#2d1830"/>
+      <circle cx="470" cy="185" r="4" fill="#2d1830"/>
+
+      <!-- labels -->
+      <text x="112" y="202" font-family="Caveat" font-size="23" fill="#2d1830">A</text>
+      <text x="474" y="202" font-family="Caveat" font-size="23" fill="#2d1830">B</text>
+      <text x="287" y="204" font-family="Caveat" font-size="23" fill="#0d6f87">M</text>
+      <text x="309" y="72" font-family="Caveat" font-size="23" fill="#b03171">P</text>
+      <text x="194" y="110" font-family="Caveat" font-size="20" fill="#b03171">PA</text>
+      <text x="368" y="110" font-family="Caveat" font-size="20" fill="#b03171">PB</text>
+
+      <!-- caption -->
+      <text x="300" y="230" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-style="italic" fill="#6b4d68">M — середина AB; P на перпендикулярі → PA = PB</text>
+    </svg>
+  </div>
+
+  <div class="box">
+    <span class="label">Друге ГМТ — бісектриса</span>
+    <p>Бісектриса кута — це <b>множина всіх точок усередині кута, рівновіддалених від його сторін</b>.</p>
+    <ul>
+      <li><b>Пряма:</b> точка на бісектрисі → відстані до сторін однакові.</li>
+      <li><b>Обернена:</b> рівновіддалена від сторін → точка на бісектрисі.</li>
+    </ul>
+
+    <svg class="illu" viewBox="0 0 600 230" width="100%" style="max-width:500px">
+      <!-- two rays of the angle from O -->
+      <line x1="300" y1="200" x2="120" y2="55" stroke="#2d1830" stroke-width="2"/>
+      <line x1="300" y1="200" x2="480" y2="55" stroke="#2d1830" stroke-width="2"/>
+
+      <!-- bisector (dashed pink) -->
+      <line x1="300" y1="200" x2="300" y2="30" stroke="#b03171" stroke-width="2" stroke-dasharray="7,4"/>
+
+      <!-- equal arc marks at O showing bisector halves the angle -->
+      <path d="M 300 160 A 40 40 0 0 0 269 175" fill="none" stroke="#b03171" stroke-width="1.5"/>
+      <path d="M 331 175 A 40 40 0 0 0 300 160" fill="none" stroke="#b03171" stroke-width="1.5"/>
+
+      <!-- perpendiculars from P to each side (teal dashed) -->
+      <line x1="300" y1="100" x2="251" y2="161" stroke="#0d6f87" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <line x1="300" y1="100" x2="349" y2="161" stroke="#0d6f87" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+      <!-- right angle marks at feet -->
+      <polyline points="243,155 250,147 257,153" fill="none" stroke="#0d6f87" stroke-width="1.5"/>
+      <polyline points="357,155 351,147 343,153" fill="none" stroke="#0d6f87" stroke-width="1.5"/>
+
+      <!-- equal tick marks on the two perpendiculars -->
+      <line x1="271" y1="127" x2="281" y2="135" stroke="#0d6f87" stroke-width="2"/>
+      <line x1="320" y1="127" x2="330" y2="135" stroke="#0d6f87" stroke-width="2"/>
+
+      <!-- foot points -->
+      <circle cx="251" cy="161" r="3" fill="#0d6f87"/>
+      <circle cx="349" cy="161" r="3" fill="#0d6f87"/>
+
+      <!-- point P -->
+      <circle cx="300" cy="100" r="4" fill="#b03171"/>
+
+      <!-- vertex O -->
+      <circle cx="300" cy="200" r="4" fill="#2d1830"/>
+
+      <!-- labels -->
+      <text x="289" y="220" font-family="Caveat" font-size="22" fill="#2d1830">O</text>
+      <text x="310" y="98" font-family="Caveat" font-size="22" fill="#b03171">P</text>
+      <text x="96" y="55"  font-family="Caveat" font-size="20" fill="#2d1830">d₁</text>
+      <text x="487" y="55" font-family="Caveat" font-size="20" fill="#2d1830">d₂</text>
+      <text x="240" y="140" font-family="Caveat" font-size="19" fill="#0d6f87">d</text>
+      <text x="350" y="140" font-family="Caveat" font-size="19" fill="#0d6f87">d</text>
+
+      <!-- caption -->
+      <text x="300" y="224" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-style="italic" fill="#6b4d68">P на бісектрисі → відстані до обох сторін рівні (d = d)</text>
+    </svg>
+  </div>
+
+  <h3>Серединні перпендикуляри і центр описаного кола</h3>
+  <p>У будь-якому трикутнику <b>три серединні перпендикуляри</b> до сторін перетинаються в одній точці. Чому? Кожен з них — це ГМТ точок, рівновіддалених від двох вершин:</p>
+  <ul>
+    <li>серединний ⊥ до AB → точки, рівновіддалені від A і B;</li>
+    <li>серединний ⊥ до BC → точки, рівновіддалені від B і C;</li>
+    <li>серединний ⊥ до AC → точки, рівновіддалені від A і C.</li>
+  </ul>
+  <p>Якщо точка O лежить на двох з них — вона рівновіддалена відразу від A, B і C. А отже, лежить і на третьому. І ця точка — <b>центр описаного навколо трикутника кола</b>.</p>
+
+  <svg class="illu" viewBox="0 0 600 360" width="100%" style="max-width:520px">
+    <!-- Triangle A(300,75) B(180,225) C(420,225). BC horizontal. Circumcenter O(300,198) R=123 -->
+    <polygon points="300,75 180,225 420,225" fill="none" stroke="#2d1830" stroke-width="2"/>
+
+    <!-- perp bisector of BC: vertical x=300, M_BC(300,225) -->
+    <line x1="300" y1="68" x2="300" y2="326" stroke="#0d6f87" stroke-width="1.5" stroke-dasharray="6,4"/>
+    <polyline points="308,225 308,217 300,217" fill="none" stroke="#0d6f87" stroke-width="1.5"/>
+    <circle cx="300" cy="225" r="3" fill="#0d6f87"/>
+
+    <!-- perp bisector of AB: slope=4/5, M_AB(240,150), from (150,78) to (380,262) -->
+    <line x1="150" y1="78" x2="380" y2="262" stroke="#0d6f87" stroke-width="1.5" stroke-dasharray="6,4"/>
+    <!-- right angle mark: AB unit≈(-0.625,0.781), perp unit≈(0.781,0.625) -->
+    <polyline points="235,156 241,161 246,155" fill="none" stroke="#0d6f87" stroke-width="1.5"/>
+    <circle cx="240" cy="150" r="3" fill="#0d6f87"/>
+
+    <!-- perp bisector of AC: slope=-4/5, M_AC(360,150), from (220,262) to (460,70) -->
+    <line x1="220" y1="262" x2="460" y2="70" stroke="#0d6f87" stroke-width="1.5" stroke-dasharray="6,4"/>
+    <!-- right angle mark: AC unit≈(0.625,0.781), perp unit≈(-0.781,0.625) -->
+    <polyline points="365,156 359,161 354,155" fill="none" stroke="#0d6f87" stroke-width="1.5"/>
+    <circle cx="360" cy="150" r="3" fill="#0d6f87"/>
+
+    <!-- circumscribed circle -->
+    <circle cx="300" cy="198" r="123" fill="none" stroke="#92400e" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+    <!-- circumcenter O -->
+    <circle cx="300" cy="198" r="4" fill="#92400e"/>
+    <text x="310" y="196" font-family="Caveat" font-size="20" fill="#92400e">O</text>
+
+    <!-- vertex labels -->
+    <text x="294" y="68" font-family="Caveat" font-size="22" fill="#2d1830">A</text>
+    <text x="158" y="240" font-family="Caveat" font-size="22" fill="#2d1830">B</text>
+    <text x="424" y="240" font-family="Caveat" font-size="22" fill="#2d1830">C</text>
+
+    <!-- caption -->
+    <text x="300" y="354" text-anchor="middle" font-family="Space Grotesk" font-size="17" font-style="italic" fill="#6b4d68">три серединні перпендикуляри перетинаються в O — центрі описаного кола</text>
+  </svg>
+
+  <h3>Бісектриси і центр вписаного кола</h3>
+  <p>Так само з бісектрисами. Три бісектриси внутрішніх кутів трикутника <b>перетинаються в одній точці</b> — і ця точка <b>рівновіддалена від усіх трьох сторін</b>. Тому з неї можна провести коло, яке доторкнеться до всіх трьох сторін зсередини. Це і є <b>вписане коло</b>.</p>
+
+  <!-- Triangle A(300,60) B(170,220) C(430,220). BC horizontal. Incenter I(300,158) r=62 -->
+  <svg class="illu" viewBox="0 0 600 270" width="100%" style="max-width:520px">
+    <polygon points="300,60 170,220 430,220" fill="none" stroke="#2d1830" stroke-width="2"/>
+
+    <!-- bisector from A(300,60) → foot on BC (300,220): vertical -->
+    <line x1="300" y1="60" x2="300" y2="220" stroke="#b03171" stroke-width="1.5" stroke-dasharray="6,4"/>
+    <!-- bisector from B(170,220) → foot on AC (357,131) -->
+    <line x1="170" y1="220" x2="357" y2="131" stroke="#b03171" stroke-width="1.5" stroke-dasharray="6,4"/>
+    <!-- bisector from C(430,220) → foot on AB (243,131) -->
+    <line x1="430" y1="220" x2="243" y2="131" stroke="#b03171" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+    <!-- inscribed circle, center I(300,158) r=62 -->
+    <circle cx="300" cy="158" r="62" fill="none" stroke="#92400e" stroke-width="2"/>
+
+    <!-- radius to touch point on BC (300,220) -->
+    <line x1="300" y1="158" x2="300" y2="220" stroke="#92400e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="310" y="197" font-family="Caveat" font-size="19" fill="#92400e">r</text>
+
+    <!-- incenter -->
+    <circle cx="300" cy="158" r="4" fill="#92400e"/>
+    <text x="308" y="154" font-family="Caveat" font-size="21" fill="#92400e">I</text>
+
+    <!-- vertex labels -->
+    <text x="294" y="50" font-family="Caveat" font-size="23" fill="#2d1830">A</text>
+    <text x="148" y="240" font-family="Caveat" font-size="23" fill="#2d1830">B</text>
+    <text x="435" y="240" font-family="Caveat" font-size="23" fill="#2d1830">C</text>
+
+    <!-- caption -->
+    <text x="300" y="262" text-anchor="middle" font-family="Space Grotesk" font-size="17" font-style="italic" fill="#6b4d68">три бісектриси перетинаються в I — центрі вписаного кола</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">∠BIC = 90° + ∠A/2</div>
+    <div class="where">кут між бісектрисами B і C через кут при вершині A</div>
+  </div>
+
+  <p>Звідки формула? Розберемо крок за кроком:</p>
+  <ol>
+    <li>BI та CI — бісектриси, тому ∠IBC = ∠B/2, ∠ICB = ∠C/2. У трикутнику BIC:<br>
+    <b>∠BIC = 180° − ∠B/2 − ∠C/2</b></li>
+    <li>З суми кутів трикутника ABC: ∠A + ∠B + ∠C = 180°, тому<br>
+    <b>∠B + ∠C = 180° − ∠A</b></li>
+    <li>Підставляємо у крок 1:<br>
+    ∠BIC = 180° − (∠B + ∠C)/2 = 180° − (180° − ∠A)/2 = 180° − 90° + ∠A/2 = <b>90° + ∠A/2</b></li>
+  </ol>
+
+  <h3>Бісектриси зовнішніх кутів і зовнівписане коло</h3>
+  <p>Спочатку — що таке <b>зовнішній кут</b> трикутника при вершині B: це кут між стороною BA і <em>продовженням</em> сторони BC за вершину B. Його бісектриса ділить цей зовнішній кут навпіл — і іде поза трикутником.</p>
+  <p>Тепер цікаве. Якщо взяти <b>бісектрису внутрішнього кута A</b> і <b>бісектриси зовнішніх кутів при B і C</b> — вони теж перетнуться в одній точці. Її позначають <b>I<sub>a</sub></b> — це <b>центр зовнівписаного кола</b> (того, що дотикається до сторони BC і до продовжень двох інших).</p>
+
+  <svg class="illu" viewBox="0 0 600 445" width="100%" style="max-width:520px">
+    <!-- Triangle A(300,60) B(240,230) C(360,230). BC horiz. a=120, b=c≈180. Ia(300,315) ra=85 -->
+    <!-- Touch points: BC→P(300,230), ext.AB→Q(220,287), ext.AC→R(380,287) -->
+
+    <!-- extended BC line -->
+    <line x1="100" y1="230" x2="500" y2="230" stroke="#6b4d68" stroke-width="1.2" stroke-dasharray="5,4"/>
+    <!-- extension of AB beyond B: dir(-0.333,0.943), Q at (220,287) -->
+    <line x1="240" y1="230" x2="210" y2="302" stroke="#6b4d68" stroke-width="1.2" stroke-dasharray="5,4"/>
+    <!-- extension of AC beyond C: dir(0.333,0.943), R at (380,287) -->
+    <line x1="360" y1="230" x2="390" y2="302" stroke="#6b4d68" stroke-width="1.2" stroke-dasharray="5,4"/>
+
+    <!-- triangle -->
+    <polygon points="300,60 240,230 360,230" fill="none" stroke="#2d1830" stroke-width="2"/>
+
+    <!-- internal bisector from A: vertical x=300 (pink) -->
+    <line x1="300" y1="60" x2="300" y2="328" stroke="#b03171" stroke-width="1.5" stroke-dasharray="6,4"/>
+    <!-- external bisector from B: (205,181)→(314,335), passes through B(240,230) and Ia(300,315) -->
+    <line x1="205" y1="181" x2="314" y2="335" stroke="#0d6f87" stroke-width="1.5" stroke-dasharray="6,4"/>
+    <!-- external bisector from C: (395,181)→(286,335), passes through C(360,230) and Ia(300,315) -->
+    <line x1="395" y1="181" x2="286" y2="335" stroke="#0d6f87" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+    <!-- excircle -->
+    <circle cx="300" cy="315" r="85" fill="none" stroke="#92400e" stroke-width="2"/>
+
+    <!-- touch points -->
+    <circle cx="300" cy="230" r="3" fill="#92400e"/>
+    <circle cx="220" cy="287" r="3" fill="#92400e"/>
+    <circle cx="380" cy="287" r="3" fill="#92400e"/>
+
+    <!-- radius Ia → touch point on BC -->
+    <line x1="300" y1="315" x2="300" y2="230" stroke="#92400e" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <text x="308" y="280" font-family="Caveat" font-size="19" fill="#92400e">r<tspan font-size="13" dy="3">a</tspan></text>
+
+    <!-- excircle center Ia -->
+    <circle cx="300" cy="315" r="4" fill="#92400e"/>
+    <text x="308" y="314" font-family="Caveat" font-size="22" fill="#92400e">I<tspan font-size="15" dy="4">a</tspan></text>
+
+    <!-- vertex labels -->
+    <text x="294" y="50" font-family="Caveat" font-size="22" fill="#2d1830">A</text>
+    <text x="217" y="248" font-family="Caveat" font-size="22" fill="#2d1830">B</text>
+    <text x="367" y="248" font-family="Caveat" font-size="22" fill="#2d1830">C</text>
+
+    <!-- bisector type labels -->
+    <text x="312" y="130" font-family="Space Grotesk" font-size="12" fill="#b03171">внутр. ∠A</text>
+    <text x="110" y="183" font-family="Space Grotesk" font-size="12" fill="#0d6f87">зовн. ∠B</text>
+    <text x="415" y="183" font-family="Space Grotesk" font-size="12" fill="#0d6f87">зовн. ∠C</text>
+
+    <!-- caption -->
+    <text x="300" y="438" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-style="italic" fill="#6b4d68">1 внутр. (∠A) + 2 зовн. (∠B, ∠C) бісектриси перетинаються в Ia — центрі зовнівписаного кола</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">∠BI<sub>a</sub>C = 90° − ∠A/2</div>
+    <div class="where">кут між бісектрисами зовнішніх кутів B і C</div>
+  </div>
+
+  <div class="box">
+    <span class="label">Дві формули поряд</span>
+    <ul>
+      <li><b>Інцентр</b> (внутрішнє вписане коло): ∠BIC = <b>90° + ∠A/2</b>.</li>
+      <li><b>Ексцентр</b> (зовнівписане з боку A): ∠BI<sub>a</sub>C = <b>90° − ∠A/2</b>.</li>
+      <li><b>Сума:</b> ∠BIC + ∠BI<sub>a</sub>C = 180° (тобто це суміжні кути).</li>
+    </ul>
+    <p class="tip">обидві формули мають ∠A/2 — лише знак між ними різний</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: чудові точки трикутника</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Точка M рівновіддалена від кінців відрізка AB. Що з цього випливає?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Не обов'язково — на серединному ⊥ є безліч точок, не лише середина.">M — середина AB</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Це обернена властивість серединного перпендикуляра.">M лежить на серединному ⊥ до AB</button>
+        <button type="button" class="quiz-option" data-explain="Бісектриса — це властивість для кутів, не відрізків.">M на бісектрисі</button>
+        <button type="button" class="quiz-option" data-explain="Прямокутність тут не випливає з рівних відстаней.">∠AMB = 90°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>У трикутнику ABC ∠A = 70°. Чому дорівнює ∠BIC, де I — точка перетину бісектрис?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це сам ∠A.">70°</button>
+        <button type="button" class="quiz-option" data-correct data-explain="∠BIC = 90° + ∠A/2 = 90° + 35° = 125°.">125°</button>
+        <button type="button" class="quiz-option" data-explain="55° = 90° − 35° — це для ексцентра, не для I.">55°</button>
+        <button type="button" class="quiz-option" data-explain="35° — це лише ∠A/2.">35°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>У трикутнику ABC ∠A = 80°. Чому дорівнює ∠BI<sub>a</sub>C, де I<sub>a</sub> — центр зовнівписаного кола з боку A?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це формула інцентра, не ексцентра.">130°</button>
+        <button type="button" class="quiz-option" data-correct data-explain="∠BI<sub>a</sub>C = 90° − ∠A/2 = 90° − 40° = 50°.">50°</button>
+        <button type="button" class="quiz-option" data-explain="80° — це сам ∠A.">80°</button>
+        <button type="button" class="quiz-option" data-explain="40° — це лише ∠A/2 без 90°.">40°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Центром описаного навколо трикутника кола є точка перетину...</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Бісектриси перетинаються в інцентрі — центрі ВПИСАНОГО кола.">бісектрис</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Так. Центр описаного — точка, рівновіддалена від усіх вершин, тобто на серединних перпендикулярах.">серединних перпендикулярів</button>
+        <button type="button" class="quiz-option" data-explain="Висоти перетинаються в ортоцентрі — це інша точка.">висот</button>
+        <button type="button" class="quiz-option" data-explain="Медіани перетинаються в центроїді — це теж інша точка.">медіан</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>У трикутнику ABC точка I — інцентр. Якщо ∠BIC = 110°, чому дорівнює ∠A?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="∠BIC = 90° + ∠A/2 → 110° = 90° + ∠A/2 → ∠A = 40°.">40°</button>
+        <button type="button" class="quiz-option" data-explain="Це сама величина ∠BIC, не ∠A.">110°</button>
+        <button type="button" class="quiz-option" data-explain="20° — це ∠A/2/2, перевір алгебру.">20°</button>
+        <button type="button" class="quiz-option" data-explain="55° = 110°/2, але ділити треба не сам ∠BIC.">55°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">6.</span><span>У трикутнику ABC точка I<sub>a</sub> — центр зовнівписаного кола з боку A. Якщо ∠BI<sub>a</sub>C = 40°, чому дорівнює ∠A?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="∠BI_aC = 90° − ∠A/2 → 40° = 90° − ∠A/2 → ∠A/2 = 50° → ∠A = 100°.">100°</button>
+        <button type="button" class="quiz-option" data-explain="50° — це ∠A/2, ще треба помножити на 2.">50°</button>
+        <button type="button" class="quiz-option" data-explain="40° — це сам ∠BI_aC, а не ∠A.">40°</button>
+        <button type="button" class="quiz-option" data-explain="Перевір формулу: 90° − ∠A/2 = 40° → ∠A/2 = 50° → ∠A = 100°, не 80°.">80°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 5 ═══════════════════ -->
+<div class="c5">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ V</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Коло: <em>дотичні, хорди, вписане</em></h2>
+  <div class="sub">остання тема — і найестетичніша</div>
+
+  <h3>Дотична і радіус у точку дотику</h3>
+  <p>Дотична — це пряма, яка має з колом рівно <b>одну спільну точку</b>. І ось ключова властивість: радіус, проведений у точку дотику, <b>перпендикулярний</b> до дотичної.</p>
+
+  <svg class="illu" viewBox="0 0 600 240" width="100%" style="max-width:520px">
+    <!-- circle -->
+    <circle cx="280" cy="140" r="80" fill="none" stroke="#a21caf" stroke-width="2"/>
+    <!-- center -->
+    <circle cx="280" cy="140" r="3" fill="#a21caf"/>
+    <text x="270" y="155" font-family="Space Grotesk" font-size="16" font-weight="600" fill="#a21caf">O</text>
+    <!-- tangent line -->
+    <line x1="100" y1="60" x2="500" y2="60" stroke="#2d1830" stroke-width="2"/>
+    <!-- point of tangency -->
+    <circle cx="280" cy="60" r="4" fill="#2d1830"/>
+    <text x="285" y="50" font-family="Space Grotesk" font-size="16" font-weight="600" fill="#2d1830">T</text>
+    <!-- radius -->
+    <line x1="280" y1="140" x2="280" y2="60" stroke="#a21caf" stroke-width="1.8"/>
+    <!-- right angle marker -->
+    <polyline points="270,70 270,60 280,60" fill="none" stroke="#a21caf" stroke-width="2"/>
+    <text x="290" y="105" font-family="Caveat" font-size="22" fill="#a21caf">r</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">OT ⊥ дотичній</div>
+    <div class="where">радіус у точку дотику завжди перпендикулярний до дотичної</div>
+  </div>
+
+  <p>Це означає: у будь-якій задачі з дотичною шукай <b>прямий кут</b> у точці дотику. Це часто перетворює задачу на роботу з прямокутним трикутником — а тут ми вже багато чого знаємо.</p>
+
+  <h3>Теорема про «ковпак»</h3>
+  <p>З однієї точки A, що лежить поза колом, можна провести <b>дві дотичні</b>. Дві відстані від A до точок дотику будуть <b>рівні</b>:</p>
+
+  <svg class="illu" viewBox="0 0 600 260" width="100%" style="max-width:520px">
+    <!-- circle -->
+    <circle cx="380" cy="130" r="70" fill="none" stroke="#a21caf" stroke-width="2"/>
+    <!-- center -->
+    <circle cx="380" cy="130" r="3" fill="#a21caf"/>
+    <text x="385" y="135" font-family="Space Grotesk" font-size="14" font-weight="600" fill="#a21caf">O</text>
+    <!-- external point A -->
+    <circle cx="120" cy="130" r="4" fill="#2d1830"/>
+    <text x="100" y="135" font-family="Space Grotesk" font-size="18" font-weight="600" fill="#2d1830">A</text>
+    <!-- tangent points (computed approx) -->
+    <line x1="120" y1="130" x2="365" y2="61" stroke="#2d1830" stroke-width="2"/>
+    <line x1="120" y1="130" x2="365" y2="199" stroke="#2d1830" stroke-width="2"/>
+    <circle cx="365" cy="61" r="4" fill="#2d1830"/>
+    <circle cx="365" cy="199" r="4" fill="#2d1830"/>
+    <text x="370" y="55" font-family="Space Grotesk" font-size="14" font-weight="600" fill="#2d1830">T₁</text>
+    <text x="370" y="215" font-family="Space Grotesk" font-size="14" font-weight="600" fill="#2d1830">T₂</text>
+    <!-- equal tick marks -->
+    <line x1="240" y1="90" x2="248" y2="98" stroke="#a21caf" stroke-width="2"/>
+    <line x1="240" y1="170" x2="248" y2="162" stroke="#a21caf" stroke-width="2"/>
+    <!-- chord T₁T₂ -->
+    <line x1="365" y1="61" x2="365" y2="199" stroke="#0d6f87" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <!-- AO bisector — перпендикулярна бісектриса T₁T₂ -->
+    <line x1="120" y1="130" x2="385" y2="130" stroke="#b03171" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <!-- right angle mark at intersection M(365,130) -->
+    <polyline points="375,130 375,120 365,120" fill="none" stroke="#0d6f87" stroke-width="1.5"/>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">AT<sub>1</sub> = AT<sub>2</sub></div>
+    <div class="where">дві дотичні з однієї зовнішньої точки рівні</div>
+  </div>
+
+  <div class="box">
+    <span class="label">Бонус-властивості «ковпака»</span>
+    <ul>
+      <li>Пряма AO — це <b>бісектриса</b> кута T<sub>1</sub>AT<sub>2</sub>.</li>
+      <li>Пряма AO — це <b>серединний перпендикуляр</b> до відрізка T<sub>1</sub>T<sub>2</sub>.</li>
+      <li>Δ AT<sub>1</sub>O = Δ AT<sub>2</sub>O (за гіпотенузою і катетом — згадай прямокутні трикутники).</li>
+    </ul>
+  </div>
+
+  <h3>Вписане коло: «ковпак» дає три пари рівних відрізків</h3>
+  <p>Впиши коло в трикутник ABC зі сторонами a, b, c. Воно торкнеться кожної сторони в одній точці. З кожної вершини до цих точок виходять <b>дві дотичні</b> — і за теоремою про «ковпак» обидві рівні. Позначимо ці довжини:</p>
+  <ul>
+    <li><b>x</b> — обидва відрізки від вершини A (одна риска /)</li>
+    <li><b>y</b> — обидва від вершини B (дві риски //)</li>
+    <li><b>z</b> — обидва від вершини C (три риски ///)</li>
+  </ul>
+
+  <svg class="illu" viewBox="0 0 600 280" width="100%" style="max-width:580px">
+    <!-- Triangle A(300,60) B(160,220) C(440,220). I(300,157) r=63 -->
+    <!-- K₁(300,220) on BC; K₂(348,115) on AC; K₃(252,115) on AB -->
+    <polygon points="300,60 160,220 440,220" fill="none" stroke="#2d1830" stroke-width="2"/>
+
+    <!-- inscribed circle -->
+    <circle cx="300" cy="157" r="63" fill="none" stroke="#92400e" stroke-width="1.5"/>
+    <circle cx="300" cy="157" r="3" fill="#92400e"/>
+    <text x="308" y="154" font-family="Caveat" font-size="19" fill="#92400e">I</text>
+
+    <!-- tangent point dots -->
+    <circle cx="300" cy="220" r="3.5" fill="#2d1830"/>
+    <circle cx="348" cy="115" r="3.5" fill="#2d1830"/>
+    <circle cx="252" cy="115" r="3.5" fill="#2d1830"/>
+
+    <!-- vertex labels -->
+    <text x="293" y="48" font-family="Caveat" font-size="26" fill="#2d1830">A</text>
+    <text x="132" y="240" font-family="Caveat" font-size="26" fill="#2d1830">B</text>
+    <text x="448" y="240" font-family="Caveat" font-size="26" fill="#2d1830">C</text>
+
+    <!-- side labels a b c — centered on each side, offset 50-52px outward, font-size 25 -->
+    <!-- a: midpoint BC(300,220), outward=down ×52 → (300,272) -->
+    <text x="300" y="272" text-anchor="middle" font-family="Caveat" font-size="25" fill="#6b4d68">a</text>
+    <!-- c: midpoint AB(230,140), outward dir(-0.753,-0.659)×50 → (192,107) -->
+    <text x="192" y="107" text-anchor="middle" font-family="Caveat" font-size="25" fill="#6b4d68">c</text>
+    <!-- b: midpoint AC(370,140), outward dir(0.753,-0.659)×50 → (408,107) -->
+    <text x="408" y="107" text-anchor="middle" font-family="Caveat" font-size="25" fill="#6b4d68">b</text>
+
+    <!-- x labels (from A): AK₂ midpoint(324,88), AK₃ midpoint(276,88) -->
+    <text x="334" y="79" font-family="Caveat" font-size="24" fill="#2d1830">x</text>
+    <text x="252" y="79" font-family="Caveat" font-size="24" fill="#2d1830">x</text>
+    <!-- single tick on AK₂: perp to dir(0.658,0.753) → tick dir(0.753,-0.658) -->
+    <line x1="329" y1="83" x2="319" y2="92" stroke="#2d1830" stroke-width="1.8"/>
+    <!-- single tick on AK₃: perp to dir(-0.658,0.753) → tick dir(0.753,0.658) -->
+    <line x1="271" y1="83" x2="281" y2="92" stroke="#2d1830" stroke-width="1.8"/>
+
+    <!-- y labels (from B): BK₁ midpoint(230,220), BK₃ midpoint(206,168) -->
+    <text x="208" y="240" font-family="Caveat" font-size="24" fill="#2d1830">y</text>
+    <text x="183" y="170" font-family="Caveat" font-size="24" fill="#2d1830">y</text>
+    <!-- double tick on BK₁ (horizontal), perp=vertical -->
+    <line x1="226" y1="213" x2="226" y2="227" stroke="#2d1830" stroke-width="1.8"/>
+    <line x1="230" y1="213" x2="230" y2="227" stroke="#2d1830" stroke-width="1.8"/>
+    <!-- double tick on BK₃: dir(0.659,-0.752), perp(0.752,0.659) -->
+    <line x1="201" y1="163" x2="211" y2="172" stroke="#2d1830" stroke-width="1.8"/>
+    <line x1="204" y1="160" x2="214" y2="169" stroke="#2d1830" stroke-width="1.8"/>
+
+    <!-- z labels (from C): CK₁ midpoint(370,220), CK₂ midpoint(394,168) -->
+    <text x="355" y="240" font-family="Caveat" font-size="24" fill="#2d1830">z</text>
+    <text x="414" y="172" font-family="Caveat" font-size="24" fill="#2d1830">z</text>
+    <!-- triple tick on CK₁ (horizontal), perp=vertical -->
+    <line x1="366" y1="213" x2="366" y2="227" stroke="#2d1830" stroke-width="1.8"/>
+    <line x1="370" y1="213" x2="370" y2="227" stroke="#2d1830" stroke-width="1.8"/>
+    <line x1="374" y1="213" x2="374" y2="227" stroke="#2d1830" stroke-width="1.8"/>
+    <!-- triple tick on CK₂: dir(-0.659,-0.752), perp(0.752,-0.659) -->
+    <line x1="389" y1="172" x2="399" y2="163" stroke="#2d1830" stroke-width="1.8"/>
+    <line x1="386" y1="169" x2="396" y2="160" stroke="#2d1830" stroke-width="1.8"/>
+    <line x1="383" y1="166" x2="393" y2="157" stroke="#2d1830" stroke-width="1.8"/>
+  </svg>
+
+  <p><b>Крок 1.</b> Кожна сторона складається з двох шматків — по одному від кожної вершини на її кінцях. Наприклад, AB починається в A (там відрізок x) і закінчується в B (там відрізок y), тому AB = x + y = c. Та сама логіка для решти:</p>
+  <ul>
+    <li>AB: від A іде <b>x</b>, від B іде <b>y</b> &nbsp;→&nbsp; <b>x + y = c</b></li>
+    <li>BC: від B іде <b>y</b>, від C іде <b>z</b> &nbsp;→&nbsp; <b>y + z = a</b></li>
+    <li>AC: від A іде <b>x</b>, від C іде <b>z</b> &nbsp;→&nbsp; <b>x + z = b</b></li>
+  </ul>
+  <p><b>Крок 2.</b> Склади всі три рівності: (x+y) + (y+z) + (x+z) = a+b+c = 2p. Кожна змінна зустрічається двічі: 2x + 2y + 2z = 2p. Ділимо на 2 — отримуємо <b>x + y + z = p</b>.</p>
+  <p><b>Крок 3.</b> Щоб знайти x, відніми від p те, що займають y і z разом. А y + z — це сторона BC = a. Тому <b>x = p − a</b>. Та сама логіка: <b>y = p − b</b>, <b>z = p − c</b>.</p>
+
+  <div class="formula">
+    <div class="eq">AK = p − a&nbsp;&nbsp;·&nbsp;&nbsp;BK = p − b&nbsp;&nbsp;·&nbsp;&nbsp;CK = p − c</div>
+    <div class="where">довжина дотичного відрізка від вершини = півпериметр − протилежна сторона</div>
+  </div>
+
+  <p>Запам'ятай як правило: <span class="hl-p">«відрізок від вершини = півпериметр мінус протилежна сторона»</span>. Цією формулою розв'язується безліч задач.</p>
+
+  <h3>Радіус вписаного в прямокутний трикутник</h3>
+  <p>Окремий випадок — коли трикутник прямокутний. Тоді радіус вписаного кола має <b>дуже просту формулу</b>:</p>
+
+  <div class="formula">
+    <div class="eq">r = (a + b − c) / 2</div>
+    <div class="where">a, b — катети&nbsp;·&nbsp;c — гіпотенуза</div>
+  </div>
+
+  <svg class="illu" viewBox="0 0 600 440" width="100%" style="max-width:520px">
+    <!-- Right triangle A(219,44) B(462,368) C(219,368). a=BC=243, b=AC=324, c=AB=405. r=81, I(300,287) -->
+    <!-- All coords scaled ×1.8 from original 3-4-5 triangle -->
+    <polygon points="219,44 462,368 219,368" fill="none" stroke="#2d1830" stroke-width="2"/>
+
+    <!-- right angle mark at C(219,368): 22px right and up -->
+    <polyline points="241,368 241,346 219,346" fill="none" stroke="#2d1830" stroke-width="1.5"/>
+
+    <!-- inscribed circle -->
+    <circle cx="300" cy="287" r="81" fill="none" stroke="#92400e" stroke-width="1.5"/>
+
+    <!-- touch points -->
+    <circle cx="300" cy="368" r="4" fill="#6b4d68"/>
+    <circle cx="219" cy="287" r="4" fill="#6b4d68"/>
+
+    <!-- radius to BC: I(300,287)→(300,368), vertical -->
+    <line x1="300" y1="287" x2="300" y2="368" stroke="#92400e" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="308" y="332" font-family="Caveat" font-size="26" fill="#92400e">r</text>
+
+    <!-- radius to AC: I(300,287)→(219,287), horizontal -->
+    <line x1="300" y1="287" x2="219" y2="287" stroke="#92400e" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="248" y="277" font-family="Caveat" font-size="26" fill="#92400e">r</text>
+
+    <!-- incenter I -->
+    <circle cx="300" cy="287" r="4" fill="#92400e"/>
+    <text x="307" y="280" font-family="Caveat" font-size="22" fill="#92400e">I</text>
+
+    <!-- vertex labels -->
+    <text x="202" y="38" font-family="Caveat" font-size="26" fill="#2d1830">A</text>
+    <text x="468" y="383" font-family="Caveat" font-size="26" fill="#2d1830">B</text>
+    <text x="196" y="393" font-family="Caveat" font-size="26" fill="#2d1830">C</text>
+
+    <!-- side labels a b c -->
+    <text x="340" y="405" text-anchor="middle" font-family="Caveat" font-size="25" fill="#6b4d68">a</text>
+    <text x="180" y="211" font-family="Caveat" font-size="25" fill="#6b4d68">b</text>
+    <text x="378" y="188" font-family="Caveat" font-size="25" fill="#6b4d68">c</text>
+
+    <!-- caption -->
+    <text x="300" y="432" text-anchor="middle" font-family="Space Grotesk" font-size="15" font-style="italic" fill="#6b4d68">r = (a + b − c) / 2, тут: r = (243 + 324 − 405) / 2 = 81</text>
+  </svg>
+
+  <p>Це те саме, що r = p − c. У прямокутного трикутника радіус вписаного кола дорівнює дотичному відрізку з вершини прямого кута.</p>
+
+  <div class="example">
+    <p><b>Перевір на класичному 3–4–5.</b> Катети 3 і 4, гіпотенуза 5. r = (3 + 4 − 5)/2 = 2/2 = 1. Тобто у трикутник із гіпотенузою 5 вписане коло радіуса 1. Можеш накреслити — переконатися.</p>
+  </div>
+
+  <h3>Діаметр, перпендикулярний до хорди</h3>
+  <p>Остання, але важлива властивість. Якщо діаметр кола перпендикулярний до якоїсь хорди — він <b>ділить цю хорду навпіл</b>. І навпаки: якщо діаметр проходить через середину хорди (яка не є діаметром) — він до неї перпендикулярний.</p>
+
+  <svg class="illu" viewBox="0 0 600 240" width="100%" style="max-width:480px">
+    <!-- circle -->
+    <circle cx="300" cy="120" r="90" fill="none" stroke="#a21caf" stroke-width="2"/>
+    <!-- diameter (vertical) -->
+    <line x1="300" y1="30" x2="300" y2="210" stroke="#2d1830" stroke-width="2"/>
+    <!-- chord (horizontal) -->
+    <line x1="220" y1="160" x2="380" y2="160" stroke="#0d6f87" stroke-width="2"/>
+    <!-- intersection point -->
+    <circle cx="300" cy="160" r="3" fill="#2d1830"/>
+    <!-- right angle marker -->
+    <polyline points="290,170 290,160 300,160" fill="none" stroke="#a21caf" stroke-width="2"/>
+    <!-- equal tick marks on chord halves -->
+    <line x1="258" y1="156" x2="262" y2="164" stroke="#0d6f87" stroke-width="2"/>
+    <line x1="338" y1="156" x2="342" y2="164" stroke="#0d6f87" stroke-width="2"/>
+    <!-- center label -->
+    <circle cx="300" cy="120" r="3" fill="#a21caf"/>
+    <text x="307" y="118" font-family="Space Grotesk" font-size="14" font-weight="600" fill="#a21caf">O</text>
+    <text x="305" y="225" font-family="Caveat" font-size="20" fill="#0d6f87">діаметр ⊥ хорді</text>
+  </svg>
+
+  <div class="box">
+    <span class="label">Чому це працює</span>
+    <p>Сполучи центр кола з кінцями хорди — отримаєш два радіуси (рівні!). Разом з відрізками діаметра до точки перетину утворяться два прямокутні трикутники. Вони рівні (за гіпотенузою і катетом — за нашою улюбленою ознакою). А отже, рівні й їхні катети — половини хорди.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: коло, дотичні, хорди</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Радіус OT проведений у точку дотику T. Який кут між OT і дотичною?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це для діаметра і хорди не в дотичну точку.">залежить від кола</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Завжди прямий: радіус у точку дотику ⊥ дотичній.">90°</button>
+        <button type="button" class="quiz-option" data-explain="45° буває в окремих випадках, не як властивість.">45°</button>
+        <button type="button" class="quiz-option" data-explain="180° означало б, що OT — це сама дотична.">180°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>З точки A проведено дві дотичні до кола, їхні точки дотику — T<sub>1</sub> і T<sub>2</sub>, AT<sub>1</sub> = 12 см. Чому дорівнює AT<sub>2</sub>?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Теорема про «ковпак»: дотичні з однієї точки рівні, тож AT<sub>2</sub> = 12 см.">12 см</button>
+        <button type="button" class="quiz-option" data-explain="6 — це половина, властивість стосується інших ситуацій.">6 см</button>
+        <button type="button" class="quiz-option" data-explain="24 — це 2·12, але дві дотичні не сумуються.">24 см</button>
+        <button type="button" class="quiz-option" data-explain="Не залежить — теорема про «ковпак» дає однозначну відповідь.">залежить від радіуса</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>У трикутник зі сторонами a = 5, b = 6, c = 7 вписано коло. Знайди довжину відрізка від вершини B до точки дотику.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це сторона b, а не відрізок від вершини B.">6</button>
+        <button type="button" class="quiz-option" data-correct data-explain="p = (5+6+7)/2 = 9. BK = p − b = 9 − 6 = 3.">3</button>
+        <button type="button" class="quiz-option" data-explain="4 = p − a — це відрізок від вершини A, не B. Правило: від вершини B беремо p − b.">4</button>
+        <button type="button" class="quiz-option" data-explain="9 — це сам півпериметр, ще не відрізок.">9</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Прямокутний трикутник має катети 6 і 8, гіпотенузу 10. Чому дорівнює радіус вписаного кола?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це лінійна формула, не з ділення на 5.">1</button>
+        <button type="button" class="quiz-option" data-correct data-explain="r = (a + b − c)/2 = (6 + 8 − 10)/2 = 4/2 = 2.">2</button>
+        <button type="button" class="quiz-option" data-explain="3 — це третина чогось, не та формула.">3</button>
+        <button type="button" class="quiz-option" data-explain="4 — це чисельник, треба ще поділити на 2.">4</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Хорда має довжину 16 см. Діаметр, перпендикулярний до неї, проходить через середину. На якій відстані від центра кола лежить хорда, якщо радіус 10 см?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це довжина радіуса, не відстань.">10 см</button>
+        <button type="button" class="quiz-option" data-explain="Це половина хорди (16/2 = 8), а не відстань.">8 см</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Половина хорди = 8. У прямокутному Δ: гіпотенуза 10, катет 8 → другий катет = √(100−64) = √36 = 6.">6 см</button>
+        <button type="button" class="quiz-option" data-explain="2 см — занадто мало для цього кола.">2 см</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<div class="outro">
+  <h3>Усе. Тепер ти готовий до заліку.</h3>
+  <p>Якщо все це здається багато — нічого. Поверни сторінку завтра, прочитай ще раз, переглянь картки. Спробуй довести кожну теорему сам, не підглядаючи. Помиляйся — у геометрії помилка завжди вказує, чого ще бракує.</p>
+  <p>Геометрія — це не набір формул. Це вміння бачити, як одна властивість «витягує» іншу.</p>
+  <div class="sig">~ удачі на заліку ~</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var current = document.documentElement.getAttribute('data-theme') || 'light';
+  function setTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem('geometria-theme', t); } catch(e) {}
+    document.querySelectorAll('.theme-toggle button').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-theme-set') === t);
+    });
+    current = t;
+  }
+  setTheme(current);
+  document.querySelectorAll('.theme-toggle button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      setTheme(btn.getAttribute('data-theme-set'));
+    });
+  });
+
+  document.querySelectorAll('.cards-section').forEach(function(section){
+    var cards = section.querySelectorAll('.flip-card');
+    var prev = section.querySelector('.cards-prev');
+    var next = section.querySelector('.cards-next');
+    var nowEl = section.querySelector('.cards-counter .now');
+    var totalEl = section.querySelector('.cards-counter .total');
+    var dotsWrap = section.querySelector('.cards-dots');
+    var total = cards.length;
+    var idx = 0;
+    if (totalEl) totalEl.textContent = total;
+
+    var dots = [];
+    for (var i = 0; i < total; i++){
+      (function(j){
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'cards-dot';
+        dot.setAttribute('aria-label', 'Картка ' + (j + 1));
+        dot.addEventListener('click', function(){ go(j); });
+        dotsWrap.appendChild(dot);
+        dots.push(dot);
+      })(i);
+    }
+
+    function go(i){
+      cards[idx].classList.remove('active', 'flipped');
+      dots[idx].classList.remove('active');
+      idx = (i + total) % total;
+      cards[idx].classList.add('active');
+      dots[idx].classList.add('active');
+      if (nowEl) nowEl.textContent = idx + 1;
+    }
+
+    cards.forEach(function(card){
+      card.addEventListener('click', function(){
+        if (card.classList.contains('active')) card.classList.toggle('flipped');
+      });
+    });
+
+    prev.addEventListener('click', function(){ go(idx - 1); });
+    next.addEventListener('click', function(){ go(idx + 1); });
+
+    document.addEventListener('keydown', function(e){
+      var rect = section.getBoundingClientRect();
+      var inView = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
+      if (!inView) return;
+      var tag = document.activeElement && document.activeElement.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft'){ e.preventDefault(); go(idx - 1); }
+      else if (e.key === 'ArrowRight'){ e.preventDefault(); go(idx + 1); }
+    });
+
+    go(0);
+  });
+
+  document.querySelectorAll('.quiz').forEach(function(quiz){
+    var questions = quiz.querySelectorAll('.quiz-q');
+    var total = questions.length;
+    var result = quiz.querySelector('.quiz-result');
+    var scoreEl = result.querySelector('.quiz-score');
+    var percentEl = result.querySelector('.quiz-percent');
+    var barFill = result.querySelector('.quiz-bar-fill');
+    var verdictEl = result.querySelector('.quiz-verdict');
+    var restartBtn = result.querySelector('.quiz-restart');
+
+    var answered = 0;
+    var correctCount = 0;
+
+    function verdictFor(p){
+      if (p === 100) return '✦ Бездоганно. Готовий до іспиту.';
+      if (p >= 80)  return 'Дуже добре. Перечитай ті, де помилився.';
+      if (p >= 60)  return 'Непогано. Повтори тему й спробуй ще раз.';
+      if (p >= 40)  return 'Ще трохи практики — і вийде.';
+      return 'Не страшно. Перечитай теорію і повертайся.';
+    }
+
+    function setFeedback(fb, prefix, explain, kind){
+      while (fb.firstChild) fb.removeChild(fb.firstChild);
+      var b = document.createElement('b');
+      b.textContent = prefix;
+      fb.appendChild(b);
+      fb.appendChild(document.createTextNode(' ' + explain));
+      fb.classList.add('show', kind);
+    }
+
+    function showResult(){
+      var p = Math.round(correctCount / total * 100);
+      scoreEl.textContent = correctCount + ' / ' + total;
+      percentEl.textContent = p + '%';
+      verdictEl.textContent = verdictFor(p);
+      result.classList.add('show');
+      requestAnimationFrame(function(){ barFill.style.width = p + '%'; });
+    }
+
+    function reset(){
+      answered = 0;
+      correctCount = 0;
+      questions.forEach(function(q){
+        q.querySelectorAll('.quiz-option').forEach(function(o){
+          o.disabled = false;
+          o.classList.remove('correct', 'wrong', 'reveal');
+        });
+        var fb = q.querySelector('.quiz-feedback');
+        fb.classList.remove('show', 'ok', 'no');
+        fb.textContent = '';
+      });
+      result.classList.remove('show');
+      barFill.style.width = '0%';
+      quiz.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+
+    questions.forEach(function(q){
+      var options = q.querySelectorAll('.quiz-option');
+      var fb = q.querySelector('.quiz-feedback');
+
+      options.forEach(function(opt){
+        opt.addEventListener('click', function(){
+          if (opt.disabled) return;
+          options.forEach(function(o){ o.disabled = true; });
+
+          var isCorrect = opt.hasAttribute('data-correct');
+          var explain = opt.getAttribute('data-explain') || '';
+
+          if (isCorrect){
+            opt.classList.add('correct');
+            setFeedback(fb, 'Правильно.', explain, 'ok');
+            correctCount++;
+          } else {
+            opt.classList.add('wrong');
+            options.forEach(function(o){
+              if (o.hasAttribute('data-correct')) o.classList.add('reveal');
+            });
+            setFeedback(fb, 'Не зовсім.', explain, 'no');
+          }
+
+          answered++;
+          if (answered === total) showResult();
+        });
+      });
+    });
+
+    restartBtn.addEventListener('click', reset);
+  });
+})();
+</script>
+</body>
+</html>
