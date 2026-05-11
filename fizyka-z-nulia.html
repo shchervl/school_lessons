@@ -1,0 +1,2323 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Фізика з нуля · Готуємось до вступних</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Cotton Candy — light theme (calm cream) */
+  --bg: #faf7f4;
+  --paper: #ffffff;
+  --paper-2: #fdfbf9;
+  --ink: #2d1830;
+  --ink-soft: #6b4d68;
+  --line: #ebe0e4;
+  --rule: #d9c8d0;
+  --orange: #b03171;       /* muted rose — chapter 1 */
+  --orange-soft: #fbe6ee;
+  --teal: #0d6f87;         /* deep cyan — chapter 2 */
+  --teal-soft: #d6effa;
+  --blue: #5b21b6;         /* deep violet — chapter 3 */
+  --blue-soft: #ece5f8;
+  --gold: #92400e;         /* warm amber — chapter 4 */
+  --gold-soft: #fbedd9;
+  --plum: #a21caf;         /* deep magenta — chapter 5 */
+  --plum-soft: #f6e1f5;
+  --shadow: 0 1px 0 rgba(76,29,79,.06), 0 18px 40px -22px rgba(76,29,79,.18);
+  --bg-glow-1: rgba(176,49,113,.025);
+  --bg-glow-2: rgba(91,33,182,.025);
+  --quiz-ok-bg: #d8efd2;
+  --quiz-ok-border: #4a8a3a;
+  --quiz-ok-text: #2a5520;
+  --quiz-no-bg: #fde2e4;
+  --quiz-no-border: #b04a4a;
+  --quiz-no-text: #762020;
+  --quiz-reveal-bg: #ecf6e8;
+  --bar-track: rgba(255,255,255,.18);
+}
+
+[data-theme="dark"]{
+  /* Plum Glow — dark theme */
+  --bg: #1a0e2a;
+  --paper: #261438;
+  --paper-2: #2e1a44;
+  --ink: #fce7f3;
+  --ink-soft: #d8b8e8;
+  --line: #3d1f5e;
+  --rule: #4d2f6e;
+  --orange: #f9a8d4;       /* light pink */
+  --orange-soft: rgba(249,168,212,.18);
+  --teal: #67e8f9;         /* light cyan */
+  --teal-soft: rgba(103,232,249,.16);
+  --blue: #c084fc;         /* light violet */
+  --blue-soft: rgba(192,132,252,.16);
+  --gold: #fcd34d;         /* peach */
+  --gold-soft: rgba(252,211,77,.16);
+  --plum: #f472b6;         /* hot pink */
+  --plum-soft: rgba(244,114,182,.16);
+  --shadow: 0 1px 0 rgba(0,0,0,.4), 0 18px 40px -22px rgba(0,0,0,.6);
+  --bg-glow-1: rgba(249,168,212,.06);
+  --bg-glow-2: rgba(192,132,252,.06);
+  --quiz-ok-bg: rgba(74,138,58,.18);
+  --quiz-ok-border: #6abb55;
+  --quiz-ok-text: #b8e9aa;
+  --quiz-no-bg: rgba(176,74,74,.18);
+  --quiz-no-border: #d96a6a;
+  --quiz-no-text: #fbb8b8;
+  --quiz-reveal-bg: rgba(74,138,58,.10);
+  --bar-track: rgba(252,231,243,.18);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(circle at 20% 10%, var(--bg-glow-1), transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--bg-glow-2), transparent 40%);
+  min-height: 100vh;
+  transition: background-color .35s ease, color .35s ease;
+}
+
+/* subtle paper texture */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+}
+
+.wrap{
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 28px 100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ───────── HEADER ───────── */
+.tag{
+  font-family: 'Caveat', cursive;
+  color: var(--orange);
+  font-size: 1.6rem;
+  letter-spacing: .02em;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+h1.title{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 14px 0 18px;
+  color: var(--ink);
+}
+h1.title em{
+  font-style: italic;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.lede{
+  font-size: 1.18rem;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin-bottom: 28px;
+}
+
+.meta{
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--ink-soft);
+}
+.meta span strong{ color: var(--ink); }
+
+/* ───────── PLAN ───────── */
+.plan{
+  margin: 56px 0 64px;
+  padding: 32px 28px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.plan::before{
+  content:"⌂";
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  background: var(--bg);
+  padding: 0 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  color: var(--orange);
+}
+.plan h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 1.6rem;
+  margin-bottom: 22px;
+  color: var(--ink);
+}
+.days{ display: grid; gap: 10px; }
+.day{
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 18px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--rule);
+}
+.day:last-child{ border-bottom: none; }
+.day .num{
+  font-family: 'Caveat', cursive;
+  font-size: 1.7rem;
+  color: var(--orange);
+  font-weight: 700;
+}
+.day .what{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.day .what small{
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin-top: 3px;
+}
+.day .pill{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--orange-soft);
+  color: var(--orange);
+}
+.day.t1 .pill{ background: var(--orange-soft); color: var(--orange); }
+.day.t2 .pill{ background: var(--teal-soft); color: var(--teal); }
+.day.t3 .pill{ background: var(--blue-soft); color: var(--blue); }
+.day.t4 .pill{ background: var(--gold-soft); color: var(--gold); }
+.day.t5 .pill{ background: var(--plum-soft); color: var(--plum); }
+
+/* ───────── CHAPTERS ───────── */
+.chapter{
+  margin: 80px 0;
+  position: relative;
+}
+.chapter-head{
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+.chapter-num{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  letter-spacing: .05em;
+}
+.chapter-line{
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.chapter h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.chapter .sub{
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  margin-bottom: 32px;
+}
+
+.c1 .chapter h2 em, .c1 .sub{ color: var(--orange); }
+.c2 .chapter h2 em, .c2 .sub{ color: var(--teal); }
+.c3 .chapter h2 em, .c3 .sub{ color: var(--blue); }
+.c4 .chapter h2 em, .c4 .sub{ color: var(--gold); }
+.c5 .chapter h2 em, .c5 .sub{ color: var(--plum); }
+.chapter h2 em{ font-style: italic; font-weight: 600; }
+
+/* paragraphs */
+p{ margin-bottom: 16px; }
+p + p{ margin-top: 0; }
+
+h3{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 36px 0 14px;
+  letter-spacing: -0.005em;
+}
+h3::before{
+  content: "§ ";
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* call-out boxes */
+.box{
+  margin: 24px 0;
+  padding: 22px 24px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+  position: relative;
+}
+.c2 .box{ border-left-color: var(--teal); }
+.c3 .box{ border-left-color: var(--blue); }
+.c4 .box{ border-left-color: var(--gold); }
+.c5 .box{ border-left-color: var(--plum); }
+
+.box .label{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  margin-bottom: 8px;
+  display: block;
+}
+.c2 .box .label{ color: var(--teal); }
+.c3 .box .label{ color: var(--blue); }
+.c4 .box .label{ color: var(--gold); }
+.c5 .box .label{ color: var(--plum); }
+
+/* formula card */
+.formula{
+  margin: 28px 0;
+  padding: 28px 24px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 14px 30px -14px rgba(31,29,26,.4);
+}
+.formula::before, .formula::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--bg);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.formula::before{ left: -4px; }
+.formula::after{ right: -4px; }
+
+.formula .eq{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+  margin-bottom: 10px;
+}
+.formula .where{
+  font-size: .92rem;
+  opacity: .85;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* example block */
+.example{
+  margin: 24px 0;
+  padding: 24px;
+  background: var(--orange-soft);
+  border-radius: 4px;
+  position: relative;
+}
+.c2 .example{ background: var(--teal-soft); }
+.c3 .example{ background: var(--blue-soft); }
+.c4 .example{ background: var(--gold-soft); }
+.c5 .example{ background: var(--plum-soft); }
+
+.example::before{
+  content: "З життя";
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  background: var(--bg);
+  padding: 0 10px;
+  color: var(--orange);
+  transform: rotate(-1.5deg);
+}
+.c2 .example::before{ color: var(--teal); }
+.c3 .example::before{ color: var(--blue); }
+.c4 .example::before{ color: var(--gold); }
+.c5 .example::before{ color: var(--plum); }
+
+.example p:last-child{ margin-bottom: 0; }
+
+/* important inline */
+b, strong{ font-weight: 600; color: var(--ink); }
+.hl-o{ background: linear-gradient(transparent 60%, var(--orange-soft) 60%); padding: 0 2px; }
+.hl-t{ background: linear-gradient(transparent 60%, var(--teal-soft) 60%); padding: 0 2px; }
+.hl-b{ background: linear-gradient(transparent 60%, var(--blue-soft) 60%); padding: 0 2px; }
+.hl-g{ background: linear-gradient(transparent 60%, var(--gold-soft) 60%); padding: 0 2px; }
+
+ul{ padding-left: 24px; margin: 14px 0 18px; }
+li{ margin-bottom: 8px; }
+li::marker{ color: var(--orange); }
+.c2 li::marker{ color: var(--teal); }
+.c3 li::marker{ color: var(--blue); }
+.c4 li::marker{ color: var(--gold); }
+.c5 li::marker{ color: var(--plum); }
+
+/* illustrations */
+.illu{
+  margin: 24px auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* small note */
+.note{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  padding: 12px 0 8px;
+  transform: rotate(-.5deg);
+}
+
+/* density table */
+.dtable{
+  border-collapse: collapse;
+  width: 100%;
+  margin: 18px 0;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+.dtable th, .dtable td{
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: .96rem;
+}
+.dtable th{
+  background: var(--bg);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: .88rem;
+  letter-spacing: .04em;
+}
+.dtable tr:last-child td{ border-bottom: none; }
+.dtable .num{ font-family: 'Space Grotesk', sans-serif; font-feature-settings: "tnum"; color: var(--teal); font-weight: 600; }
+
+/* solution problem */
+.problem{
+  margin: 32px 0;
+  padding: 28px 28px 24px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+.problem .num{
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  color: var(--plum);
+  font-weight: 700;
+  line-height: 1;
+}
+.problem .stmt{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  margin: 8px 0 20px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--plum);
+  background: var(--bg);
+}
+.steps{
+  counter-reset: step;
+}
+.step{
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+  align-items: start;
+}
+.step::before{
+  content: counter(step);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--plum);
+  background: var(--plum-soft);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.step .body p{ margin-bottom: 6px; }
+.answer{
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/* footer */
+.outro{
+  margin-top: 90px;
+  padding: 40px 28px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  text-align: center;
+}
+.outro h3{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: var(--paper);
+}
+.outro h3::before{ content: ""; }
+.outro p{ opacity: .85; max-width: 540px; margin: 0 auto 12px; }
+.outro .sig{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--orange);
+  margin-top: 18px;
+}
+
+/* small SVG decorations */
+.deco-line{ display: block; margin: 24px auto; opacity: .5; }
+
+.tip{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  display: inline-block;
+  background: var(--gold-soft);
+  padding: 4px 14px;
+  border-radius: 20px;
+  transform: rotate(-1deg);
+  color: var(--gold);
+  margin: 8px 0;
+}
+
+/* ───────── FLIP CARDS / CAROUSEL ───────── */
+.cards-section{ margin: 56px 0 64px; }
+.cards-head{
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+.cards-section h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.8rem;
+  color: var(--ink);
+}
+.cards-section .sub{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  margin-bottom: 22px;
+}
+
+.cards-counter{
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  letter-spacing: .08em;
+  margin-bottom: 14px;
+}
+.cards-counter .now{ color: var(--orange); font-weight: 600; }
+
+.cards-carousel{
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  gap: 18px;
+  align-items: center;
+}
+.cards-arrow{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background .15s, color .15s, transform .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+.cards-arrow:hover{
+  background: var(--ink);
+  color: var(--paper);
+  transform: scale(1.06);
+}
+.cards-arrow:active{ transform: scale(.96); }
+
+.cards-stage{
+  position: relative;
+  height: 360px;
+  perspective: 1400px;
+}
+.flip-card{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+.flip-card.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+.flip-card-inner{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .7s cubic-bezier(.4,.2,.2,1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-card-inner{ transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back{
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.flip-card-front{
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+}
+.flip-card-back{
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotateY(180deg);
+  border-color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  padding: 22px 24px;
+  text-align: left;
+}
+.flip-card-q{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 3rem;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.flip-card-hint{
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  color: var(--ink-soft);
+  margin-top: 16px;
+}
+.flip-card-a{
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  line-height: 1.15;
+  text-align: center;
+  margin: 4px 0 0;
+}
+.flip-card-a small{
+  display: inline;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem;
+  opacity: .75;
+  margin-left: 6px;
+  font-weight: 400;
+}
+.flip-card-purpose{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  text-align: center;
+  opacity: .92;
+  margin: 6px 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(255,255,255,.18);
+}
+.flip-card-vars{
+  display: grid;
+  grid-template-columns: minmax(48px, auto) 1fr;
+  column-gap: 18px;
+  row-gap: 8px;
+  align-content: start;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+.flip-card-vars dt{
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--orange);
+  text-align: right;
+  font-size: 1rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+.flip-card-vars dd{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .85rem;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  padding-top: 1px;
+  color: inherit;
+  opacity: .92;
+}
+.flip-card.c-o .flip-card-vars dt{ color: var(--orange); }
+.flip-card.c-t .flip-card-vars dt{ color: var(--teal); }
+.flip-card.c-b .flip-card-vars dt{ color: var(--blue); }
+.flip-card.c-g .flip-card-vars dt{ color: var(--gold); }
+.flip-card.c-p .flip-card-vars dt{ color: var(--plum); }
+
+/* override the global b{color: var(--ink)} inside dark cards */
+.flip-card-back b, .flip-card-back strong{ color: inherit; font-weight: 700; }
+
+.flip-card-note{
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255,255,255,.15);
+  opacity: .88;
+  line-height: 1.25;
+}
+.flip-card-tag{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  margin-top: 18px;
+  opacity: .85;
+}
+.flip-card.c-o .flip-card-tag{ color: var(--orange-soft); }
+.flip-card.c-t .flip-card-tag{ color: var(--teal-soft); }
+.flip-card.c-b .flip-card-tag{ color: var(--blue-soft); }
+.flip-card.c-g .flip-card-tag{ color: var(--gold-soft); }
+.flip-card.c-p .flip-card-tag{ color: var(--plum-soft); }
+.flip-card.c-o .flip-card-front{ border-top: 4px solid var(--orange); }
+.flip-card.c-t .flip-card-front{ border-top: 4px solid var(--teal); }
+.flip-card.c-b .flip-card-front{ border-top: 4px solid var(--blue); }
+.flip-card.c-g .flip-card-front{ border-top: 4px solid var(--gold); }
+.flip-card.c-p .flip-card-front{ border-top: 4px solid var(--plum); }
+
+.cards-dots{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.cards-dot{
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--rule);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+}
+.cards-dot:hover{ transform: scale(1.4); background: var(--ink-soft); }
+.cards-dot.active{ background: var(--orange); transform: scale(1.4); }
+
+.cards-tip{
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 18px;
+}
+
+/* ───────── QUIZ ───────── */
+.quiz{
+  margin: 40px 0 8px;
+  padding: 30px 28px 22px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.quiz::before{
+  content: "?";
+  position: absolute;
+  top: -20px;
+  left: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+.c2 .quiz::before{ background: var(--teal); }
+.c3 .quiz::before{ background: var(--blue); }
+.c4 .quiz::before{ background: var(--gold); }
+.c5 .quiz::before{ background: var(--plum); }
+
+.quiz-title{
+  font-family: 'Caveat', cursive;
+  font-size: 1.7rem;
+  color: var(--orange);
+  display: block;
+  line-height: 1.1;
+}
+.c2 .quiz-title{ color: var(--teal); }
+.c3 .quiz-title{ color: var(--blue); }
+.c4 .quiz-title{ color: var(--gold); }
+.c5 .quiz-title{ color: var(--plum); }
+
+.quiz-sub{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin-bottom: 22px;
+}
+
+.quiz-q{
+  margin: 22px 0;
+  padding-top: 22px;
+  border-top: 1px dashed var(--rule);
+}
+.quiz-q:first-of-type{ border-top: none; padding-top: 6px; }
+
+.quiz-q-text{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 10px;
+}
+.quiz-q-text .qn{
+  color: var(--ink-soft);
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+.quiz-options{ display: grid; gap: 8px; }
+.quiz-option{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  color: var(--ink);
+  transition: background .15s, border-color .15s, transform .15s;
+}
+.quiz-option:hover:not(:disabled){
+  background: var(--bg);
+  border-color: var(--rule);
+  transform: translateX(2px);
+}
+.quiz-option:disabled{ cursor: default; }
+.quiz-option.correct{
+  background: var(--quiz-ok-bg);
+  border-color: var(--quiz-ok-border);
+  color: var(--quiz-ok-text);
+}
+.quiz-option.wrong{
+  background: var(--quiz-no-bg);
+  border-color: var(--quiz-no-border);
+  color: var(--quiz-no-text);
+}
+.quiz-option.reveal{
+  border-color: var(--quiz-ok-border);
+  background: var(--quiz-reveal-bg);
+  color: var(--quiz-ok-text);
+}
+
+.quiz-feedback{
+  margin-top: 12px;
+  padding: 10px 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .96rem;
+  border-left: 3px solid var(--ink-soft);
+  background: var(--bg);
+  border-radius: 0 3px 3px 0;
+  display: none;
+}
+.quiz-feedback.show{ display: block; }
+.quiz-feedback.ok{ border-left-color: var(--quiz-ok-border); color: var(--quiz-ok-text); }
+.quiz-feedback.no{ border-left-color: var(--quiz-no-border); color: var(--quiz-no-text); }
+
+.quiz-result{
+  margin-top: 26px;
+  padding: 20px 22px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  display: none;
+}
+.quiz-result.show{ display: block; }
+.quiz-result-line{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.quiz-score{ font-size: 1.3rem; font-style: italic; font-weight: 600; }
+.quiz-percent{ font-family: 'Caveat', cursive; font-size: 1.4rem; color: var(--orange); }
+.c2 .quiz-percent{ color: var(--teal-soft); }
+.c3 .quiz-percent{ color: var(--blue-soft); }
+.c4 .quiz-percent{ color: var(--gold-soft); }
+.c5 .quiz-percent{ color: var(--plum-soft); }
+.quiz-bar{
+  height: 8px;
+  background: var(--bar-track);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.quiz-bar-fill{
+  height: 100%;
+  background: var(--orange);
+  width: 0;
+  transition: width .8s cubic-bezier(.4,.2,.2,1);
+}
+.c2 .quiz-bar-fill{ background: var(--teal-soft); }
+.c3 .quiz-bar-fill{ background: var(--blue-soft); }
+.c4 .quiz-bar-fill{ background: var(--gold-soft); }
+.c5 .quiz-bar-fill{ background: var(--plum-soft); }
+.quiz-verdict{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--paper);
+  opacity: .92;
+  display: block;
+  margin-top: 8px;
+}
+.quiz-restart{
+  margin-top: 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .92rem;
+  background: transparent;
+  border: 1px solid var(--paper);
+  color: var(--paper);
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: .85;
+  transition: opacity .15s, background .15s;
+}
+.quiz-restart:hover{ opacity: 1; background: rgba(251,246,234,.1); }
+
+/* ───────── DARK-THEME OVERRIDES (inverted cards stay readable) ───────── */
+[data-theme="dark"] .formula,
+[data-theme="dark"] .answer,
+[data-theme="dark"] .outro,
+[data-theme="dark"] .quiz-result,
+[data-theme="dark"] .flip-card-back{
+  background: linear-gradient(135deg, #2e1a44, #3d1f5e);
+  color: #fce7f3;
+  border: 1px solid #4d2f6e;
+}
+[data-theme="dark"] .formula .where{ color: #d8b8e8; opacity: .9; }
+[data-theme="dark"] .outro h3{ color: #fce7f3; }
+[data-theme="dark"] .outro p{ color: #d8b8e8; }
+[data-theme="dark"] .outro .sig{ color: var(--orange); }
+[data-theme="dark"] .quiz-verdict{ color: #fce7f3; }
+[data-theme="dark"] .quiz-restart{ border-color: #d8b8e8; color: #fce7f3; }
+[data-theme="dark"] .quiz-percent{ color: var(--orange); }
+[data-theme="dark"] .flip-card-back{ border-radius: 6px; }
+[data-theme="dark"] .flip-card-tag{ opacity: 1; }
+
+/* dark — softer contrast for body radial glows is already done via --bg-glow-* */
+
+/* ───────── THEME TOGGLE ───────── */
+.theme-toggle{
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  font-family: 'JetBrains Mono', monospace;
+  backdrop-filter: blur(8px);
+}
+.theme-toggle button{
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: .72rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background .2s, color .2s;
+}
+.theme-toggle button:hover{ color: var(--ink); }
+.theme-toggle button.on{
+  background: var(--orange);
+  color: var(--paper);
+}
+[data-theme="dark"] .theme-toggle button.on{ color: var(--bg); }
+
+/* All elements smoothly transition colors */
+.wrap, .plan, .day, .chapter, .box, .formula, .example, .problem, .answer,
+.outro, .quiz, .quiz-option, .quiz-feedback, .quiz-result, .flip-card-front,
+.flip-card-back, .cards-arrow, .cards-dot, .dtable, .dtable th, .dtable td{
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+
+@media (max-width: 600px){
+  .theme-toggle{ top: 12px; right: 12px; padding: 3px; }
+  .theme-toggle button{ padding: 5px 9px; font-size: .68rem; }
+  body{ font-size: 17px; }
+  .wrap{ padding: 32px 18px 80px; }
+  .formula .eq{ font-size: 1.6rem; }
+  .day{ grid-template-columns: 60px 1fr; }
+  .day .pill{ grid-column: 1 / -1; justify-self: start; margin-top: 4px; }
+  .cards-carousel{ grid-template-columns: 44px 1fr 44px; gap: 10px; }
+  .cards-arrow{ width: 44px; height: 44px; font-size: 1.3rem; }
+  .cards-stage{ height: 340px; }
+  .flip-card-front{ padding: 20px; }
+  .flip-card-back{ padding: 18px 18px; }
+  .flip-card-q{ font-size: 2.1rem; }
+  .flip-card-a{ font-size: 1.45rem; }
+  .flip-card-hint{ font-size: 1.3rem; }
+  .flip-card-purpose{ font-size: 1.15rem; margin: 4px 0 10px; padding-bottom: 8px; }
+  .flip-card-vars{ column-gap: 12px; row-gap: 6px; }
+  .flip-card-vars dt{ font-size: .92rem; }
+  .flip-card-vars dd{ font-size: .78rem; line-height: 1.35; }
+  .flip-card-note{ font-size: 1.1rem; padding-top: 8px; margin-top: 10px; }
+  .flip-card-tag{ font-size: 1.15rem; }
+}
+</style>
+<script>
+(function(){
+  try {
+    var saved = localStorage.getItem('fizyka-theme');
+    var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch(e) {}
+})();
+</script>
+</head>
+<body>
+<div class="theme-toggle" role="group" aria-label="Тема оформлення">
+  <button type="button" class="tt-light on" data-theme-set="light" aria-label="Світла тема">☀ light</button>
+  <button type="button" class="tt-dark" data-theme-set="dark" aria-label="Темна тема">☾ dark</button>
+</div>
+<div class="wrap">
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header>
+  <div class="tag">~ для тих, хто з нуля ~</div>
+  <h1 class="title">Фізика, яку справді<br/><em>можна зрозуміти</em></h1>
+  <p class="lede">Цей короткий курс готує до конкурсних задач 7 класу. Без формул-страшилок і складних слів — лише прості пояснення, приклади з життя та покрокове розв'язання вступних задач.</p>
+  <div class="meta">
+    <span><strong>4</strong> теми</span>
+    <span><strong>7</strong> днів</span>
+    <span><strong>5</strong> тестів</span>
+    <span><strong>12</strong> карток</span>
+    <span>≈ <strong>30</strong> хв на день</span>
+  </div>
+</header>
+
+<!-- ═══════════════════ PLAN ═══════════════════ -->
+<section class="plan">
+  <h2>Як вчитися: маленький план</h2>
+  <div class="days">
+    <div class="day t1">
+      <span class="num">День 1–2</span>
+      <span class="what">Сили й закон Гука <small>чому пружина розтягується, що таке Ньютон, як працює динамометр</small></span>
+      <span class="pill">тема 1</span>
+    </div>
+    <div class="day t2">
+      <span class="num">День 3</span>
+      <span class="what">Густина <small>чому залізо тоне, а дерево плаває; як знайти об'єм через масу</small></span>
+      <span class="pill">тема 2</span>
+    </div>
+    <div class="day t3">
+      <span class="num">День 4–5</span>
+      <span class="what">Закон Архімеда <small>виштовхувальна сила, чому кораблі не тонуть, як рідина "піднімається"</small></span>
+      <span class="pill">тема 3</span>
+    </div>
+    <div class="day t4">
+      <span class="num">День 6</span>
+      <span class="what">Потенціальна енергія <small>чому з гірки страшно з'їжджати, формула mgh</small></span>
+      <span class="pill">тема 4</span>
+    </div>
+    <div class="day t5">
+      <span class="num">День 7</span>
+      <span class="what">Розв'язуємо вступні задачі <small>усі три задачі з 2022 року, крок за кроком</small></span>
+      <span class="pill">фінал</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FLASHCARDS ═══════════════════ -->
+<section class="cards-section" id="kartki">
+  <div class="cards-head">
+    <h2>Картки-нагадувалки</h2>
+  </div>
+  <div class="sub">клікни на картку, щоб побачити; ← / → — перелистати</div>
+
+  <div class="cards-counter"><span class="now">1</span> / <span class="total">12</span></div>
+
+  <div class="cards-carousel">
+    <button type="button" class="cards-arrow cards-prev" aria-label="Попередня картка">◂</button>
+    <div class="cards-stage">
+    <button type="button" class="flip-card c-o" aria-label="Картка: закон Гука">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">F = ?</div>
+          <div class="flip-card-hint">пружина</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">F = k · x</div>
+          <div class="flip-card-purpose">сила пружності — закон Гука</div>
+          <dl class="flip-card-vars">
+            <dt>F</dt><dd>сила, яку прикладаєш <small>(Н)</small></dd>
+            <dt>k</dt><dd>жорсткість пружини <small>(Н/м)</small></dd>
+            <dt>x</dt><dd>видовження пружини <small>(м)</small></dd>
+          </dl>
+          <p class="flip-card-note">подвоїв силу → подвоїлось видовження</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: сила тяжіння">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">F<sub>тяж</sub> = ?</div>
+          <div class="flip-card-hint">тіло і Земля</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">F = m · g</div>
+          <div class="flip-card-purpose">сила тяжіння — як Земля тягне тіло</div>
+          <dl class="flip-card-vars">
+            <dt>F</dt><dd>сила тяжіння <small>(Н)</small></dd>
+            <dt>m</dt><dd>маса тіла <small>(кг)</small></dd>
+            <dt>g</dt><dd>прискорення вільного падіння <small>(≈ 10 Н/кг)</small></dd>
+          </dl>
+          <p class="flip-card-note">1 кг → 10 Н, 5 кг → 50 Н</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: g">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">g = ?</div>
+          <div class="flip-card-hint">прискорення</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">g ≈ 10 Н/кг</div>
+          <div class="flip-card-purpose">скільки сили тяжіння на 1 кг маси</div>
+          <dl class="flip-card-vars">
+            <dt>Земля</dt><dd>≈ 10 Н/кг <small>(точно 9,81)</small></dd>
+            <dt>Місяць</dt><dd>≈ 1,6 Н/кг <small>(легше у 6 разів)</small></dd>
+            <dt>Юпітер</dt><dd>≈ 25 Н/кг <small>(найважчий)</small></dd>
+          </dl>
+          <p class="flip-card-note">без g нічого б не падало</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: 1 Ньютон">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">1 Н ≈ ?</div>
+          <div class="flip-card-hint">на долоні</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">1 Н ≈ 100 г</div>
+          <div class="flip-card-purpose">як відчути ньютон рукою</div>
+          <dl class="flip-card-vars">
+            <dt>1 Н</dt><dd>яблуко, ~100 г</dd>
+            <dt>5 Н</dt><dd>підручник, ~500 г</dd>
+            <dt>10 Н</dt><dd>пакет цукру, 1 кг</dd>
+          </dl>
+          <p class="flip-card-note">знаєш Н — поділи на 10, отримаєш кг</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: густина">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">ρ = ?</div>
+          <div class="flip-card-hint">густина</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">ρ = m / V</div>
+          <div class="flip-card-purpose">густина — скільки маси в одному об'ємі</div>
+          <dl class="flip-card-vars">
+            <dt>ρ</dt><dd>густина <small>(кг/м³, читається «ро»)</small></dd>
+            <dt>m</dt><dd>маса <small>(кг)</small></dd>
+            <dt>V</dt><dd>об'єм <small>(м³)</small></dd>
+          </dl>
+          <p class="flip-card-note">щільніша речовина → важча за той самий об'єм</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: маса з густини">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">m = ?</div>
+          <div class="flip-card-hint">з густини</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">m = ρ · V</div>
+          <div class="flip-card-purpose">маса через густину — найкорисніша підформула</div>
+          <dl class="flip-card-vars">
+            <dt>m</dt><dd>маса <small>(кг)</small></dd>
+            <dt>ρ</dt><dd>густина речовини <small>(кг/м³)</small></dd>
+            <dt>V</dt><dd>об'єм тіла <small>(м³)</small></dd>
+          </dl>
+          <p class="flip-card-note">звідси теж: V = m / ρ</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: густина води">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">ρ<sub>води</sub> = ?</div>
+          <div class="flip-card-hint">еталон</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">1000 кг/м³</div>
+          <div class="flip-card-purpose">еталон — усе порівнюють із водою</div>
+          <dl class="flip-card-vars">
+            <dt>1 л</dt><dd>1 кг води</dd>
+            <dt>1 м³</dt><dd>1000 л = 1 тонна</dd>
+            <dt>г/см³</dt><dd>дорівнює просто 1</dd>
+          </dl>
+          <p class="flip-card-note">легше → плаває; важче → тоне</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: густина міді">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">ρ<sub>міді</sub> = ?</div>
+          <div class="flip-card-hint">вступна задача!</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">8900 кг/м³</div>
+          <div class="flip-card-purpose">метал, який часто трапляється у задачах</div>
+          <dl class="flip-card-vars">
+            <dt>мідь</dt><dd>8900 — у 8,9 раза важча за воду</dd>
+            <dt>залізо</dt><dd>7800</dd>
+            <dt>свинець</dt><dd>11 300</dd>
+            <dt>золото</dt><dd>19 300 — найважче</dd>
+          </dl>
+          <p class="flip-card-note">усі тонуть миттєво</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: сила Архімеда">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">F<sub>арх</sub> = ?</div>
+          <div class="flip-card-hint">штовхає вгору</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">F = ρ · g · V</div>
+          <div class="flip-card-purpose">виштовхувальна сила — закон Архімеда</div>
+          <dl class="flip-card-vars">
+            <dt>ρ</dt><dd>густина <b>рідини</b> (не тіла!) <small>(кг/м³)</small></dd>
+            <dt>g</dt><dd>≈ 10 Н/кг</dd>
+            <dt>V</dt><dd>об'єм <b>зануреної</b> частини <small>(м³)</small></dd>
+          </dl>
+          <p class="flip-card-note">маса тіла у формулі НЕ бере участь</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: об'єм циліндра">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">V = ?</div>
+          <div class="flip-card-hint">витіснена вода</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">V = S · Δh</div>
+          <div class="flip-card-purpose">об'єм каменя через підйом води</div>
+          <dl class="flip-card-vars">
+            <dt>V</dt><dd>об'єм тіла <small>(м³ або см³)</small></dd>
+            <dt>S</dt><dd>площа дна посудини <small>(м² або см²)</small></dd>
+            <dt>Δh</dt><dd>на скільки піднялась вода</dd>
+          </dl>
+          <p class="flip-card-note">це проста формула об'єму циліндра</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: потенціальна енергія">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">E<sub>p</sub> = ?</div>
+          <div class="flip-card-hint">висота</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">E<sub>p</sub> = m · g · h</div>
+          <div class="flip-card-purpose">потенціальна енергія — запас на висоті</div>
+          <dl class="flip-card-vars">
+            <dt>E<sub>p</sub></dt><dd>потенціальна енергія <small>(Дж)</small></dd>
+            <dt>m</dt><dd>маса тіла <small>(кг)</small></dd>
+            <dt>g</dt><dd>≈ 10 Н/кг</dd>
+            <dt>h</dt><dd>висота над землею <small>(м)</small></dd>
+          </dl>
+          <p class="flip-card-note">зміна: ΔE = m · g · Δh</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: 1 кДж">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">1 кДж = ?</div>
+          <div class="flip-card-hint">переведи!</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">1 кДж = 1000 Дж</div>
+          <div class="flip-card-purpose">завжди переводь у Дж перед формулою</div>
+          <dl class="flip-card-vars">
+            <dt>1 кДж</dt><dd>1000 Дж</dd>
+            <dt>2 кДж</dt><dd>2000 Дж</dd>
+            <dt>600 кДж</dt><dd>600 000 Дж</dd>
+          </dl>
+          <p class="flip-card-note">забув перевести → відповідь у 1000 разів не та</p>
+        </div>
+      </div>
+    </button>
+    </div>
+    <button type="button" class="cards-arrow cards-next" aria-label="Наступна картка">▸</button>
+  </div>
+
+  <div class="cards-dots" aria-label="Список карток"></div>
+
+  <p class="cards-tip">~ перебери всі перед іспитом, як колоду ~</p>
+</section>
+
+<!-- ═══════════════════ CHAPTER 1 ═══════════════════ -->
+<div class="c1">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ I</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Сили й закон <em>Гука</em></h2>
+  <div class="sub">пружина, яка ніколи не бреше</div>
+
+  <h3>Що таке сила?</h3>
+  <p>Сила — це коли щось <b>штовхає або тягне</b>. Коли ти штовхаєш двері — ти прикладаєш силу. Коли тягнеш собаку на повідку — це теж сила. Коли яблуко падає на голову — Земля тягне його силою тяжіння.</p>
+
+  <p>Силу вимірюють у <b>Ньютонах (Н)</b>. Щоб відчути, скільки це — 1&nbsp;Н, поклади на долоню маленьке яблуко (≈100 г). Сила, з якою воно тисне на руку, — приблизно один ньютон.</p>
+
+  <svg class="illu" viewBox="0 0 600 130" width="100%" style="max-width:520px">
+    <!-- spring with weight -->
+    <line x1="40" y1="20" x2="200" y2="20" stroke="#1f1d1a" stroke-width="2"/>
+    <line x1="120" y1="20" x2="120" y2="40" stroke="#1f1d1a" stroke-width="1.5"/>
+    <path d="M 110 40 L 130 50 L 110 60 L 130 70 L 110 80 L 130 90" fill="none" stroke="#c2410c" stroke-width="2"/>
+    <rect x="100" y="92" width="40" height="22" fill="#1f1d1a"/>
+    <text x="170" y="65" font-family="Caveat" font-size="22" fill="#4a463f">сила = 1 Н</text>
+    <line x1="155" y1="60" x2="138" y2="78" stroke="#4a463f" stroke-width="1" stroke-dasharray="2,2"/>
+    <!-- bigger weight -->
+    <line x1="340" y1="20" x2="500" y2="20" stroke="#1f1d1a" stroke-width="2"/>
+    <line x1="420" y1="20" x2="420" y2="40" stroke="#1f1d1a" stroke-width="1.5"/>
+    <path d="M 410 40 L 430 50 L 410 60 L 430 70 L 410 80 L 430 90 L 410 100 L 430 110" fill="none" stroke="#c2410c" stroke-width="2"/>
+    <rect x="395" y="112" width="50" height="28" fill="#1f1d1a"/>
+    <text x="470" y="80" font-family="Caveat" font-size="22" fill="#4a463f">сила = 2 Н</text>
+    <text x="100" y="20" font-family="Space Grotesk" font-size="11" fill="#4a463f" font-style="italic">розтягнення x</text>
+    <text x="380" y="20" font-family="Space Grotesk" font-size="11" fill="#4a463f" font-style="italic">розтягнення 2x</text>
+  </svg>
+
+  <h3>Сила пружності</h3>
+  <p>Розтягни гумку — вона тягне назад. Стисни пружину — вона штовхає тебе. Це і є <b>сила пружності</b>: пружина (чи гумка) намагається повернутися у початкову форму.</p>
+  <p>Чим сильніше тягнеш — тим сильніше пружина опирається. <span class="hl-o">Розтягнення пропорційне силі.</span> Це і є <b>закон Гука</b>.</p>
+
+  <div class="formula">
+    <div class="eq">F = k · x</div>
+    <div class="where">F — сила (Н)&nbsp;&nbsp;·&nbsp;&nbsp;k — жорсткість пружини (Н/м)&nbsp;&nbsp;·&nbsp;&nbsp;x — видовження (м)</div>
+  </div>
+
+  <p class="note">Простими словами: подвоїв силу → подвоїлось видовження.</p>
+
+  <div class="example">
+    <p><b>Динамометр у магазині.</b> Звичайні старі ваги — це насправді динамометр. Усередині є пружина. Кладеш яблука — пружина розтягується. Чим важчі яблука, тим більше розтягнення, тим далі повертається стрілка.</p>
+  </div>
+
+  <div class="box">
+    <span class="label">Корисно знати</span>
+    <p>Усе, що потрібно з закону Гука для вступних задач: <b>якщо знаєш, на скільки розтягнулася пружина від однієї відомої сили — можеш порахувати будь-яку іншу силу через пропорцію.</b></p>
+    <p>1 Н → 2 мм. Тоді 3 Н → 6 мм. А якщо розтягнення 5 мм — то сила 2,5 Н.</p>
+  </div>
+
+  <h3>Сила тяжіння і вага</h3>
+  <p>Земля тягне до себе все. Силу, з якою вона тягне тіло, називають <b>силою тяжіння</b>. Вона прямо залежить від маси:</p>
+
+  <div class="formula">
+    <div class="eq">F<sub>тяж</sub> = m · g</div>
+    <div class="where">m — маса (кг)&nbsp;&nbsp;·&nbsp;&nbsp;g ≈ 10 Н/кг</div>
+  </div>
+
+  <p>Тобто тіло масою 1&nbsp;кг тягне до Землі сила приблизно <b>10&nbsp;Н</b>. Тіло масою 2&nbsp;кг — 20&nbsp;Н. Це і є те, що показує динамометр, коли ти на ньому щось вішаєш.</p>
+
+  <div class="example">
+    <p><b>Приклад.</b> Якщо до пружини підвісити вантаж 0,5&nbsp;кг — пружина "відчує" силу 5&nbsp;Н (бо 0,5 × 10 = 5).</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест на сили й закон Гука</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Сила 2&nbsp;Н розтягує пружину на 4&nbsp;мм. Якою буде сила, що розтягне її на 10&nbsp;мм?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option">4 Н</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Пропорція: 2/4 = x/10, отже x = 5 Н.">5 Н</button>
+        <button type="button" class="quiz-option" data-explain="Здається логічним подвоїти, але треба було розв'язати пропорцію 2/4 = x/10.">8 Н</button>
+        <button type="button" class="quiz-option" data-explain="Це у 4 рази більше, ніж треба. Перевір пропорцію.">20 Н</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Яка сила тяжіння діє на тіло масою 3&nbsp;кг?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це маса в кг, а не сила. Помнож на g.">3 Н</button>
+        <button type="button" class="quiz-option" data-explain="Поділив на g замість того, щоб помножити.">0,3 Н</button>
+        <button type="button" class="quiz-option" data-correct data-explain="F = m · g = 3 · 10 = 30 Н.">30 Н</button>
+        <button type="button" class="quiz-option" data-explain="Помножив на 100, а g ≈ 10 Н/кг.">300 Н</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Сила в 1&nbsp;Н — це приблизно вага чого?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="≈ 100 г, бо 0,1 кг · 10 = 1 Н. Поклади на долоню — і відчуєш ньютон.">маленького яблука (~100 г)</button>
+        <button type="button" class="quiz-option" data-explain="Кілограм — це вже 10 Н.">пакета цукру (1 кг)</button>
+        <button type="button" class="quiz-option" data-explain="Ноутбук ~2 кг ≈ 20 Н.">ноутбука</button>
+        <button type="button" class="quiz-option" data-explain="Олівець значно легший за 100 г.">олівця</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Що насправді ховається всередині динамометра?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Динамометр механічний — без електрики.">батарейка й мікросхема</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Так! Пружина розтягується за законом Гука — і шкала показує силу.">пружина</button>
+        <button type="button" class="quiz-option" data-explain="Магніт використовують в інших приладах, не тут.">магніт</button>
+        <button type="button" class="quiz-option" data-explain="Терези порівнюють маси — це інший принцип.">чашкові терези</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 4</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 2 ═══════════════════ -->
+<div class="c2">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ II</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Густина <em>речовини</em></h2>
+  <div class="sub">чому однаковий розмір — а різна вага</div>
+
+  <h3>Уяви дві коробки</h3>
+  <p>В одній — пір'я, в іншій — залізо. Розмір однаковий, а вага зовсім різна. Чому? Бо в залізі <b>більше речовини в тому самому об'ємі</b>. Це і є <b>густина</b>.</p>
+
+  <svg class="illu" viewBox="0 0 600 160" width="100%" style="max-width:520px">
+    <!-- box 1 feathers -->
+    <rect x="60" y="40" width="120" height="100" fill="#fbf6ea" stroke="#1f1d1a" stroke-width="2"/>
+    <text x="120" y="100" text-anchor="middle" font-family="Caveat" font-size="40" fill="#0f5d56">пір'я</text>
+    <text x="120" y="160" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-style="italic" fill="#4a463f">маса 0,1 кг</text>
+    <!-- box 2 metal -->
+    <rect x="240" y="40" width="120" height="100" fill="#0f5d56" stroke="#1f1d1a" stroke-width="2"/>
+    <text x="300" y="100" text-anchor="middle" font-family="Caveat" font-size="40" fill="#fbf6ea">залізо</text>
+    <text x="300" y="160" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-style="italic" fill="#4a463f">маса 800 кг</text>
+    <!-- arrow -->
+    <text x="450" y="80" font-family="Space Grotesk" font-size="16" font-style="italic" fill="#0f5d56">той самий</text>
+    <text x="450" y="100" font-family="Space Grotesk" font-size="16" font-style="italic" fill="#0f5d56">об'єм,</text>
+    <text x="450" y="120" font-family="Caveat" font-size="22" fill="#c2410c">різна маса</text>
+  </svg>
+
+  <h3>Формула</h3>
+  <p>Густина показує, скільки кілограмів речовини "вміщується" в одному кубічному метрі.</p>
+
+  <div class="formula">
+    <div class="eq">ρ = m / V</div>
+    <div class="where">ρ — густина (кг/м³)&nbsp;&nbsp;·&nbsp;&nbsp;m — маса (кг)&nbsp;&nbsp;·&nbsp;&nbsp;V — об'єм (м³)</div>
+  </div>
+
+  <p>З цієї формули можна виразити <b>будь-яку</b> з трьох величин — тобі це знадобиться ВЕСЬ ЧАС:</p>
+
+  <div class="box">
+    <span class="label">Три формули в одній</span>
+    <ul>
+      <li><b>Густина:</b> ρ = m / V</li>
+      <li><b>Маса:</b> m = ρ · V</li>
+      <li><b>Об'єм:</b> V = m / ρ</li>
+    </ul>
+    <p class="tip">Запам'ятай: маса = густина × об'єм. Усе інше — звідси.</p>
+  </div>
+
+  <h3>Густини, які варто знати</h3>
+  <table class="dtable">
+    <thead>
+      <tr><th>Речовина</th><th>Густина</th><th>Цікавий факт</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Повітря</td><td class="num">1,3 кг/м³</td><td>дуже легке</td></tr>
+      <tr><td>Дерево (сосна)</td><td class="num">500 кг/м³</td><td>плаває у воді</td></tr>
+      <tr><td>Лід</td><td class="num">920 кг/м³</td><td>трохи легший за воду — тому плаває</td></tr>
+      <tr><td><b>Вода</b></td><td class="num"><b>1000 кг/м³</b></td><td>еталон. 1 л води = 1 кг</td></tr>
+      <tr><td>Залізо</td><td class="num">7800 кг/м³</td><td>тоне</td></tr>
+      <tr><td><b>Мідь</b></td><td class="num"><b>8900 кг/м³</b></td><td>з нашої вступної задачі!</td></tr>
+      <tr><td>Свинець</td><td class="num">11&nbsp;300 кг/м³</td><td>важкий</td></tr>
+      <tr><td>Золото</td><td class="num">19&nbsp;300 кг/м³</td><td>один з найважчих металів</td></tr>
+    </tbody>
+  </table>
+
+  <div class="example">
+    <p><b>Чому залізна голка тоне, а величезний корабель — ні?</b> Бо корабель усередині <i>порожній</i>. Загальна густина (метал + повітря всередині) виходить меншою за густину води. Якщо корабель пробити — він наповниться водою і потоне.</p>
+  </div>
+
+  <div class="box">
+    <span class="label">Лайфхак для одиниць</span>
+    <p>1 г/см³ = 1000 кг/м³. Тому густина води = 1 г/см³ або 1000 кг/м³ — це те саме. Якщо в задачі сантиметри, можна рахувати в г/см³, в кінці перевести.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест на густину</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Чому дорівнює густина води?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це густина повітря, не води.">1,3 кг/м³</button>
+        <button type="button" class="quiz-option" data-explain="Це густина льоду — він трохи легший за воду.">920 кг/м³</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Так! 1000 кг/м³ — еталон. Або 1 г/см³.">1000 кг/м³</button>
+        <button type="button" class="quiz-option" data-explain="Це густина заліза.">7800 кг/м³</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Маса алюмінію (ρ = 2700&nbsp;кг/м³) об'ємом 0,5&nbsp;м³ дорівнює?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це об'єм у м³. Помнож на густину.">0,5 кг</button>
+        <button type="button" class="quiz-option" data-explain="Поділив, а треба було помножити: m = ρ · V.">5400 кг</button>
+        <button type="button" class="quiz-option" data-correct data-explain="m = ρ · V = 2700 · 0,5 = 1350 кг.">1350 кг</button>
+        <button type="button" class="quiz-option" data-explain="Це сама густина, без множення на об'єм.">2700 кг</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Чому залізний корабель не тоне, хоча залізна голка тоне?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Розмір сам по собі не рятує — справа в середній густині.">бо корабель великий</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Усередині корабля повітря — середня густина (метал + повітря) виходить меншою за воду.">всередині повітря, тож середня густина менша за воду</button>
+        <button type="button" class="quiz-option" data-explain="Корабель з тих самих сплавів заліза, як і голка.">метал у кораблі легший</button>
+        <button type="button" class="quiz-option" data-explain="Морська вода щільніша, але це не головна причина.">морська вода щільніша</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Скільки 1&nbsp;г/см³ у кг/м³?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Заниження у 100 разів.">10 кг/м³</button>
+        <button type="button" class="quiz-option" data-explain="Заниження у 10 разів.">100 кг/м³</button>
+        <button type="button" class="quiz-option" data-correct data-explain="1 г/см³ = 1000 кг/м³ — це і є густина води.">1000 кг/м³</button>
+        <button type="button" class="quiz-option" data-explain="Це майже мідь (8900). Перебір.">10 000 кг/м³</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 4</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 3 ═══════════════════ -->
+<div class="c3">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ III</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Закон <em>Архімеда</em></h2>
+  <div class="sub">чому у воді ти стаєш легшим</div>
+
+  <h3>Історія, з якої все почалося</h3>
+  <p>2200 років тому цар Сиракуз замовив золоту корону. Він засумнівався: чи майстер не додав туди срібла? Як це перевірити, не псуючи корону? Завдання передали Архімеду.</p>
+  <p>Розв'язок прийшов у ванні. Архімед помітив: <b>занурюючись, він витісняє стільки води, скільки його тіло у воді</b>. І зрозумів — так можна виміряти об'єм будь-чого! "<i>Еврика!</i>" (знайшов!) — закричав він і побіг по місту.</p>
+
+  <p>А далі — проста арифметика. <b>Корону зважив</b> (маса <i>m</i>). <b>Опустив у воду — побачив, скільки витекло</b> (об'єм <i>V</i>). Тепер є все для густини:</p>
+
+  <div class="formula">
+    <div class="eq">ρ = m / V</div>
+    <div class="where">густина = маса ÷ об'єм</div>
+  </div>
+
+  <p>Якщо вийшло <b>≈ 19&nbsp;300&nbsp;кг/м³</b> — це чисте золото. Якщо менше — майстер додав легшого металу (срібла чи міді), і це шахрайство. <span class="hl-b">Корону не довелося псувати.</span></p>
+
+  <h3>Що таке сила Архімеда?</h3>
+  <p>Коли ти заходиш у воду — здається, що стаєш легшим. Це не омана. Вода справді <b>штовхає тебе вгору</b>. Ця сила називається <b>виштовхувальною</b>, або <b>силою Архімеда</b>.</p>
+
+  <svg class="illu" viewBox="0 0 600 200" width="100%" style="max-width:520px">
+    <!-- water -->
+    <rect x="100" y="80" width="400" height="100" fill="#d2dcf0"/>
+    <line x1="100" y1="80" x2="500" y2="80" stroke="#1e3a8a" stroke-width="1.5"/>
+    <!-- glass walls -->
+    <line x1="100" y1="40" x2="100" y2="180" stroke="#1f1d1a" stroke-width="2"/>
+    <line x1="500" y1="40" x2="500" y2="180" stroke="#1f1d1a" stroke-width="2"/>
+    <line x1="100" y1="180" x2="500" y2="180" stroke="#1f1d1a" stroke-width="2"/>
+    <!-- ball -->
+    <circle cx="300" cy="130" r="30" fill="#c2410c" stroke="#1f1d1a" stroke-width="2"/>
+    <!-- arrow up -->
+    <line x1="300" y1="130" x2="300" y2="50" stroke="#1e3a8a" stroke-width="3"/>
+    <polygon points="294,55 306,55 300,42" fill="#1e3a8a"/>
+    <text x="320" y="80" font-family="Caveat" font-size="22" fill="#1e3a8a">F<tspan font-size="14">арх</tspan> — штовхає вгору</text>
+    <!-- arrow down -->
+    <line x1="300" y1="130" x2="300" y2="190" stroke="#c2410c" stroke-width="3"/>
+    <polygon points="294,185 306,185 300,196" fill="#c2410c"/>
+    <text x="320" y="180" font-family="Caveat" font-size="20" fill="#c2410c">сила тяжіння</text>
+  </svg>
+
+  <h3>Формула Архімеда</h3>
+  <div class="formula">
+    <div class="eq">F<sub>арх</sub> = ρ<sub>рід</sub> · g · V</div>
+    <div class="where">ρ<sub>рід</sub> — густина рідини&nbsp;·&nbsp;g ≈ 10 Н/кг&nbsp;·&nbsp;V — об'єм зануреної частини тіла</div>
+  </div>
+
+  <p>Ключове слово: <span class="hl-b">об'єм зануреної частини</span>. Якщо тіло повністю у воді — береш весь його об'єм. Якщо плаває і занурене наполовину — береш тільки половину.</p>
+
+  <div class="example">
+    <p><b>Чому в Чорному морі плавати легше, ніж у річці?</b> Морська вода солона, її густина більша (≈ 1030 кг/м³ проти 1000). Тому виштовхувальна сила у морі трохи більша. А в Мертвому морі сіль така концентрована, що людина просто не може потонути.</p>
+  </div>
+
+  <h3>Найважливіший трюк для задач</h3>
+  <p>Коли ти кидаєш камінь у склянку води — рівень води піднімається. <b>Об'єм, на який вода піднялась, — точно дорівнює об'єму каменя.</b></p>
+
+  <p>Якщо склянка має дно площею <b>S</b>, і вода піднялась на висоту <b>Δh</b>, то витіснений об'єм дорівнює:</p>
+
+  <div class="formula">
+    <div class="eq">V = S · Δh</div>
+    <div class="where">проста геометрія: об'єм циліндра = площа дна × висота</div>
+  </div>
+
+  <div class="box">
+    <span class="label">Що ще треба запам'ятати</span>
+    <ul>
+      <li>У воді тіло "втрачає" вагу, яка дорівнює силі Архімеда. Динамометр показує менше, ніж у повітрі.</li>
+      <li><b>Зменшення показів динамометра = сила Архімеда</b>, яка діє на тіло.</li>
+      <li>Якщо тіло тоне — сила тяжіння більша за силу Архімеда.</li>
+      <li>Якщо плаває — сили рівні (рівновага).</li>
+    </ul>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест на закон Архімеда</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Від чого <b>не</b> залежить сила Архімеда?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Залежить — це ρ у формулі.">від густини рідини</button>
+        <button type="button" class="quiz-option" data-explain="Залежить — це V зануреної частини.">від об'єму зануреної частини</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Не залежить! У формулі F = ρ · g · V маси немає. Дві кулі однакового об'єму отримають однакову F<sub>арх</sub>, навіть якщо одна важча.">від маси тіла</button>
+        <button type="button" class="quiz-option" data-explain="Так, бо F = ρ · g · V. На Місяці g інше — і F<sub>арх</sub> була б іншою.">від g</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Тіло занурили у воду. Динамометр у повітрі показував 4&nbsp;Н, у воді — 3&nbsp;Н. Чому дорівнює сила Архімеда?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це показ у воді, а не сила Архімеда.">3 Н</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Сила Архімеда = різниця показів = 4 − 3 = 1 Н.">1 Н</button>
+        <button type="button" class="quiz-option" data-explain="Це показ у повітрі.">4 Н</button>
+        <button type="button" class="quiz-option" data-explain="Це сума, а треба різниця.">7 Н</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>У воду опустили камінь, і вода піднялася на 2&nbsp;см. Площа дна — 20&nbsp;см². Чому дорівнює об'єм каменя?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це сума, а треба добуток V = S · Δh.">22 см³</button>
+        <button type="button" class="quiz-option" data-explain="Це площа дна, а треба помножити на висоту підйому.">20 см³</button>
+        <button type="button" class="quiz-option" data-correct data-explain="V = S · Δh = 20 · 2 = 40 см³. Об'єм витісненої води = об'єм каменя.">40 см³</button>
+        <button type="button" class="quiz-option" data-explain="Це поділ замість множення.">10 см³</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Чому в Мертвому морі легше плавати, ніж у звичайному басейні?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Сіль не змінює g — він залежить від планети.">сіль збільшує g</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Так! Густина солоної води ≈ 1240 кг/м³ проти 1000 у прісній. Більша ρ → більша F<sub>арх</sub>.">густина солоної води більша, тож виштовхує сильніше</button>
+        <button type="button" class="quiz-option" data-explain="Тіло однакове — об'єм не змінюється від води.">об'єм тіла стає більшим у солоній воді</button>
+        <button type="button" class="quiz-option" data-explain="Це лише суб'єктивно. Фізика тут ні до чого.">сіль робить воду теплішою</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 4</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 4 ═══════════════════ -->
+<div class="c4">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ IV</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Потенціальна <em>енергія</em></h2>
+  <div class="sub">енергія, яка просто чекає</div>
+
+  <h3>Що таке енергія?</h3>
+  <p>Енергія — це здатність виконати <b>роботу</b>: щось зрушити, нагріти, зламати, прискорити. Енергія буває різна. Зараз нам цікава <b>потенціальна енергія</b> — та, що залежить від <i>висоти</i>.</p>
+
+  <h3>Уяви книжку на полиці</h3>
+  <p>Книга лежить на полиці й нічого не робить. Але якщо вона впаде — вдариться об підлогу, можливо, щось пом'яне. Звідки ця сила удару? З <b>потенціальної енергії</b> — тієї, що "запаслася" в книзі, поки вона була на висоті.</p>
+
+  <p>Чим <b>вища</b> полиця — тим більше потенціальної енергії. Чим <b>важча</b> книжка — теж більше. Усе просто.</p>
+
+  <div class="formula">
+    <div class="eq">E<sub>p</sub> = m · g · h</div>
+    <div class="where">m — маса (кг)&nbsp;·&nbsp;g ≈ 10 Н/кг&nbsp;·&nbsp;h — висота над землею (м)</div>
+  </div>
+
+  <p>Енергія вимірюється у <b>Джоулях (Дж)</b>. Великі кількості — у <b>кілоджоулях (кДж)</b>: 1 кДж = 1000 Дж.</p>
+
+  <div class="example">
+    <p><b>Гірка з гори.</b> На вершині гори у тебе купа потенціальної енергії. Коли спускаєшся — вона перетворюється на швидкість. Чим вища гірка — тим швидше з'їдеш. Це той самий закон.</p>
+    <p><b>Гідроелектростанція.</b> Воду тримають високо в водосховищі. Вона має величезну потенціальну енергію. Падаючи, крутить турбіни — і електрика йде в твій будинок.</p>
+  </div>
+
+  <h3>Зміна потенціальної енергії</h3>
+  <p>У задачах часто запитують не "скільки енергії", а <b>"на скільки змінилась"</b>. Якщо тіло було на висоті h₁, а потім піднялося на h₂, то приріст енергії:</p>
+
+  <div class="formula">
+    <div class="eq">ΔE = m · g · (h₂ − h₁)</div>
+    <div class="where">або просто: ΔE = m · g · Δh, де Δh — на скільки піднялось</div>
+  </div>
+
+  <p class="note">Грецька буква Δ (дельта) означає "зміна, різниця".</p>
+
+  <div class="box">
+    <span class="label">Порада на іспит</span>
+    <p>Якщо в задачі дана зміна енергії в <b>кДж</b> — переведи у Дж (помнож на 1000), а вже потім підставляй у формулу. Інакше отримаєш дивну відповідь.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест на потенціальну енергію</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Книга масою 2&nbsp;кг лежить на полиці на висоті 1,5&nbsp;м. Яка її потенціальна енергія?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Забув помножити на g.">3 Дж</button>
+        <button type="button" class="quiz-option" data-correct data-explain="E = m · g · h = 2 · 10 · 1,5 = 30 Дж.">30 Дж</button>
+        <button type="button" class="quiz-option" data-explain="Це у 10 разів більше, ніж треба. Перевір розрахунок.">300 Дж</button>
+        <button type="button" class="quiz-option" data-explain="Ділив замість того, щоб помножити.">1,5 Дж</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>2&nbsp;кДж — це скільки джоулів?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це 0,02 кДж, у 100 разів менше.">20 Дж</button>
+        <button type="button" class="quiz-option" data-explain="Тут лише 0,2 кДж.">200 Дж</button>
+        <button type="button" class="quiz-option" data-correct data-explain="2 кДж = 2 · 1000 = 2000 Дж.">2000 Дж</button>
+        <button type="button" class="quiz-option" data-explain="Це вже 20 кДж.">20 000 Дж</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Що означає грецька буква <b>Δ</b> (дельта) у формулі ΔE?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Сума має інший знак — Σ.">сума</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Δ — це зміна, різниця між кінцевим і початковим. ΔE = E₂ − E₁.">зміна, різниця</button>
+        <button type="button" class="quiz-option" data-explain="Це число π ≈ 3,14.">число π</button>
+        <button type="button" class="quiz-option" data-explain="Множення позначається · або ×.">добуток</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Що <b>не</b> впливає на потенціальну енергію тіла над землею?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Впливає — це m у формулі.">маса</button>
+        <button type="button" class="quiz-option" data-explain="Впливає — це h у формулі.">висота</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Колір (форма, матеріал) не входить у формулу E = m · g · h.">колір</button>
+        <button type="button" class="quiz-option" data-explain="Впливає — на іншій планеті g інше, тому й енергія інша.">прискорення g</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 4</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 5 — SOLUTIONS ═══════════════════ -->
+<div class="c5">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ V</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Розв'язуємо <em>вступні задачі</em></h2>
+  <div class="sub">2022 рік, 7 клас — крок за кроком</div>
+
+  <p>Тепер у тебе є всі знання. Розберемо ті самі три задачі, які трапилися на конкурсних випробуваннях. Не поспішай — спробуй спершу сам, потім підглянь.</p>
+
+  <!-- PROBLEM 1 -->
+  <div class="problem">
+    <span class="num">№1</span>
+    <p class="stmt">Пружина динамометра під дією сили 1&nbsp;Н видовжилася на 2&nbsp;мм. Якщо до цього динамометра підвісити мідну (8900&nbsp;кг/м³) кулю, то пружина видовжиться на 5&nbsp;мм. Чому дорівнює об'єм кулі?</p>
+
+    <div class="steps">
+      <div class="step"><div class="body">
+        <p><b>Що відомо:</b> Пружина — наша знайома з закону Гука. 1 Н розтягує її на 2 мм. Це інформація про <i>жорсткість</i> пружини.</p>
+      </div></div>
+      <div class="step"><div class="body">
+        <p><b>Знайдемо силу, яка розтягує пружину на 5 мм.</b> За пропорцією: 1 Н → 2 мм, значить 5 мм → ? Н. Х = 5 ÷ 2 = <b>2,5 Н</b>. Це сила тяжіння, яка діє на мідну кулю.</p>
+      </div></div>
+      <div class="step"><div class="body">
+        <p><b>З сили тяжіння знаходимо масу.</b> F = m · g, тому m = F / g = 2,5 / 10 = <b>0,25 кг</b>.</p>
+      </div></div>
+      <div class="step"><div class="body">
+        <p><b>З маси і густини знаходимо об'єм.</b> Згадуємо: V = m / ρ = 0,25 / 8900 ≈ <b>0,000028 м³</b>.</p>
+        <p>У звичніших одиницях: 0,000028 м³ = 28 см³ (бо 1 м³ = 1&nbsp;000&nbsp;000 см³).</p>
+      </div></div>
+    </div>
+
+    <div class="answer">Відповідь: V ≈ 28 см³ (≈ 2,8 · 10⁻⁵ м³)</div>
+  </div>
+
+  <!-- PROBLEM 2 -->
+  <div class="problem">
+    <span class="num">№2</span>
+    <p class="stmt">Тягар, підвішений до динамометра, занурюють у воду (1000&nbsp;кг/м³), доки рівень води у посудині з вертикальними стінками не підніметься на 5&nbsp;см. Покази динамометра при цьому змінилися на 0,5&nbsp;Н. Визначити площу дна посудини.</p>
+
+    <div class="steps">
+      <div class="step"><div class="body">
+        <p><b>Що означає "покази динамометра змінилися"?</b> Це і є сила Архімеда. Коли тіло занурили — динамометр почав показувати <i>менше</i> на 0,5 Н, бо вода штовхає тіло вгору з силою 0,5 Н.</p>
+        <p>Отже, <b>F<sub>арх</sub> = 0,5 Н</b>.</p>
+      </div></div>
+      <div class="step"><div class="body">
+        <p><b>З формули Архімеда знаходимо об'єм зануреного тіла.</b></p>
+        <p>F<sub>арх</sub> = ρ · g · V&nbsp;&nbsp;⇒&nbsp;&nbsp;V = F<sub>арх</sub> / (ρ · g) = 0,5 / (1000 · 10) = <b>0,00005 м³</b> (тобто 50 см³).</p>
+      </div></div>
+      <div class="step"><div class="body">
+        <p><b>Об'єм витісненої води = об'єм зануреного тіла.</b> Значить, у посудину додалося 50 см³ води.</p>
+        <p>Ця "додаткова вода" розтеклася по всьому дну і піднялася на висоту 5 см.</p>
+      </div></div>
+      <div class="step"><div class="body">
+        <p><b>Знаходимо площу дна.</b> Об'єм циліндра: V = S · Δh, тому S = V / Δh.</p>
+        <p>Переведемо все в одні одиниці: 50 см³ і 5 см.</p>
+        <p>S = 50 / 5 = <b>10 см²</b>.</p>
+      </div></div>
+    </div>
+
+    <div class="answer">Відповідь: S = 10 см² (= 0,001 м²)</div>
+  </div>
+
+  <!-- PROBLEM 3 -->
+  <div class="problem">
+    <span class="num">№3</span>
+    <p class="stmt">Гвинтокрил масою 2000&nbsp;кг перебуває на висоті 20&nbsp;м. На якій висоті його потенціальна енергія зросте на 600&nbsp;кДж?</p>
+
+    <div class="steps">
+      <div class="step"><div class="body">
+        <p><b>Переведемо одиниці.</b> 600 кДж = 600&nbsp;000 Дж. Усе інше вже в СІ: маса в кг, висота в м.</p>
+      </div></div>
+      <div class="step"><div class="body">
+        <p><b>Запишемо зміну енергії.</b> ΔE = m · g · Δh, де Δh — на скільки піднявся гвинтокрил.</p>
+        <p>З цього виражаємо: Δh = ΔE / (m · g) = 600&nbsp;000 / (2000 · 10) = <b>30 м</b>.</p>
+      </div></div>
+      <div class="step"><div class="body">
+        <p><b>Це підйом на 30 метрів.</b> Але запитують не "на скільки", а "на якій висоті він буде". Початкова висота 20 м + підйом 30 м = <b>50 м</b>.</p>
+      </div></div>
+    </div>
+
+    <div class="answer">Відповідь: h = 50 м</div>
+  </div>
+
+  <div class="box" style="margin-top: 40px;">
+    <span class="label">Загальний алгоритм для будь-якої задачі</span>
+    <ul>
+      <li><b>Прочитай уважно</b> і випиши, що дано (з одиницями).</li>
+      <li><b>Переведи всі одиниці у СІ</b> (метри, кілограми, ньютони, Джоулі).</li>
+      <li><b>Зрозумій, що запитують.</b> Часто хитрість в тому, що шукають не Δh, а h<sub>2</sub>.</li>
+      <li><b>Знайди формулу</b>, яка пов'язує дане з невідомим.</li>
+      <li><b>Підстав числа.</b> Запиши відповідь з одиницями.</li>
+      <li><b>Перевір здоровим глуздом.</b> Якщо вийшло, що куля важить 50 тонн — десь помилка.</li>
+    </ul>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ FINAL QUIZ ═══════════════════ -->
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">фінал</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Великий <em>тест</em></h2>
+  <div class="sub" style="color: var(--orange);">10 питань зі всього курсу — змішано</div>
+
+  <div class="quiz">
+    <span class="quiz-title">Фінальна перевірка</span>
+    <p class="quiz-sub">не підглядай — зроби чесно й подивись на бал</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Пружина від сили 1&nbsp;Н розтягується на 5&nbsp;мм. На скільки розтягнеться, якщо підвісити вантаж масою 0,3&nbsp;кг?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Помилка з пропорцією. F = 0,3·10 = 3 Н, тож розтягнення 3·5 = 15 мм.">1,5 мм</button>
+        <button type="button" class="quiz-option" data-explain="Не врахував, що сила тяжіння = m·g.">5 мм</button>
+        <button type="button" class="quiz-option" data-correct data-explain="F = m·g = 0,3·10 = 3 Н. Пропорція 1 Н → 5 мм, отже 3 Н → 15 мм.">15 мм</button>
+        <button type="button" class="quiz-option" data-explain="Перебір у 2 рази.">30 мм</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Алюмінієва кулька має масу 540&nbsp;г і об'єм 200&nbsp;см³. Чому дорівнює густина алюмінію?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це у 1000 разів менше реального значення.">2,7 кг/м³</button>
+        <button type="button" class="quiz-option" data-correct data-explain="ρ = m/V = 540/200 = 2,7 г/см³ = 2700 кг/м³.">2700 кг/м³</button>
+        <button type="button" class="quiz-option" data-explain="Перебір у 10 разів. Перевір ділення.">27 000 кг/м³</button>
+        <button type="button" class="quiz-option" data-explain="Це число для густини срібла.">10 500 кг/м³</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Камінь у повітрі важить 50&nbsp;Н, а у воді — 30&nbsp;Н. Чому дорівнює його об'єм?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Завищено у 1000 разів. Перевір одиниці.">2 м³</button>
+        <button type="button" class="quiz-option" data-correct data-explain="F<sub>арх</sub> = 50 − 30 = 20 Н. V = F/(ρ·g) = 20/(1000·10) = 0,002 м³ (= 2 л).">0,002 м³</button>
+        <button type="button" class="quiz-option" data-explain="Це різниця ваг у Н, а не об'єм.">20 м³</button>
+        <button type="button" class="quiz-option" data-explain="Не сходиться з формулою Архімеда.">0,5 м³</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Тіло масою 5&nbsp;кг має потенціальну енергію 200&nbsp;Дж. На якій висоті воно знаходиться?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="У 10 разів менше, ніж треба.">0,4 м</button>
+        <button type="button" class="quiz-option" data-correct data-explain="h = E / (m·g) = 200 / (5·10) = 4 м.">4 м</button>
+        <button type="button" class="quiz-option" data-explain="Перебір у 10 разів.">40 м</button>
+        <button type="button" class="quiz-option" data-explain="Помножив, замість того щоб ділити.">10 000 м</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>У склянку з водою опустили тіло, і рівень піднявся з 10 до 14&nbsp;см. Площа дна — 25&nbsp;см². Об'єм тіла дорівнює?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це сума, а треба добуток V = S·Δh, де Δh = 4 см.">29 см³</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Δh = 14 − 10 = 4 см. V = S·Δh = 25·4 = 100 см³.">100 см³</button>
+        <button type="button" class="quiz-option" data-explain="Помножив на повну висоту 14 см, а треба на приріст 4 см.">350 см³</button>
+        <button type="button" class="quiz-option" data-explain="Це Δh у см. До нього треба додати площу.">4 см³</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">6.</span><span>Тіло об'ємом 200&nbsp;см³ повністю занурили у воду. У повітрі динамометр показував 8&nbsp;Н. Що покаже у воді?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це сила Архімеда, а не нові покази.">2 Н</button>
+        <button type="button" class="quiz-option" data-correct data-explain="F<sub>арх</sub> = 1000·10·0,0002 = 2 Н. Покази у воді: 8 − 2 = 6 Н.">6 Н</button>
+        <button type="button" class="quiz-option" data-explain="Це показ у повітрі — без зміни.">8 Н</button>
+        <button type="button" class="quiz-option" data-explain="У воді динамометр показує менше, не більше.">10 Н</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">7.</span><span>Тіло масою 4&nbsp;кг підняли з висоти 2&nbsp;м на висоту 7&nbsp;м. На скільки збільшилась його потенціальна енергія?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Помножив 4·2·10. Треба на Δh, а не на h₁.">80 Дж</button>
+        <button type="button" class="quiz-option" data-correct data-explain="ΔE = m·g·Δh = 4·10·(7−2) = 4·10·5 = 200 Дж.">200 Дж</button>
+        <button type="button" class="quiz-option" data-explain="Помножив на h₂ замість Δh.">280 Дж</button>
+        <button type="button" class="quiz-option" data-explain="Поділив одиниці.">28 Дж</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">8.</span><span>Залізна і дерев'яна кульки мають однаковий об'єм. Обидві повністю занурили у воду. На яку діятиме більша сила Архімеда?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Маса не входить у формулу F = ρ·g·V.">на залізну, бо вона важча</button>
+        <button type="button" class="quiz-option" data-explain="І легкість тіла теж не входить у формулу.">на дерев'яну, бо вона легша</button>
+        <button type="button" class="quiz-option" data-correct data-explain="F<sub>арх</sub> = ρ·g·V — залежить тільки від густини рідини й об'єму. Об'єми однакові — сили однакові.">сили однакові</button>
+        <button type="button" class="quiz-option" data-explain="Густина матеріалу тіла не впливає на силу Архімеда.">на залізну, бо її густина більша</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">9.</span><span>Скільки кілограмів важить 1&nbsp;літр води?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це 1 г.">0,001 кг</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Густина води 1000 кг/м³. 1 л = 0,001 м³, тож m = 1000 · 0,001 = 1 кг.">1 кг</button>
+        <button type="button" class="quiz-option" data-explain="100 г, тобто 0,1 кг — це менше, ніж літр.">0,1 кг</button>
+        <button type="button" class="quiz-option" data-explain="Тонна — це 1000 кг, тобто куб 1×1×1 м.">1000 кг</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">10.</span><span>Мідну (8900&nbsp;кг/м³) кульку об'ємом 50&nbsp;см³ підвісили до динамометра в повітрі. Що він покаже?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це маса в кілограмах, а не сила.">0,445 Н</button>
+        <button type="button" class="quiz-option" data-correct data-explain="m = ρ·V = 8900·0,00005 = 0,445 кг. F = m·g = 0,445·10 ≈ 4,45 Н.">4,45 Н</button>
+        <button type="button" class="quiz-option" data-explain="Перебір у 10 разів. Перевір переведення см³ в м³.">44,5 Н</button>
+        <button type="button" class="quiz-option" data-explain="Це сама густина, а не вага.">8,9 Н</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 10</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<div class="outro">
+  <h3>Усе. Тепер ти готовий.</h3>
+  <p>Якщо все це здається багато — нічого. Поверни сторінку завтра, прочитай ще раз. Спробуй розв'язати задачі сам, не підглядаючи. Помиляйся — це нормальна частина навчання.</p>
+  <p>Фізика — це не магія. Це лише уважне дивлення на світ.</p>
+  <div class="sig">~ удачі на іспиті ~</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var current = document.documentElement.getAttribute('data-theme') || 'light';
+  function setTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem('fizyka-theme', t); } catch(e) {}
+    document.querySelectorAll('.theme-toggle button').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-theme-set') === t);
+    });
+    current = t;
+  }
+  setTheme(current);
+  document.querySelectorAll('.theme-toggle button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      setTheme(btn.getAttribute('data-theme-set'));
+    });
+  });
+
+  document.querySelectorAll('.cards-section').forEach(function(section){
+    var cards = section.querySelectorAll('.flip-card');
+    var prev = section.querySelector('.cards-prev');
+    var next = section.querySelector('.cards-next');
+    var nowEl = section.querySelector('.cards-counter .now');
+    var totalEl = section.querySelector('.cards-counter .total');
+    var dotsWrap = section.querySelector('.cards-dots');
+    var total = cards.length;
+    var idx = 0;
+    if (totalEl) totalEl.textContent = total;
+
+    var dots = [];
+    for (var i = 0; i < total; i++){
+      (function(j){
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'cards-dot';
+        dot.setAttribute('aria-label', 'Картка ' + (j + 1));
+        dot.addEventListener('click', function(){ go(j); });
+        dotsWrap.appendChild(dot);
+        dots.push(dot);
+      })(i);
+    }
+
+    function go(i){
+      cards[idx].classList.remove('active', 'flipped');
+      dots[idx].classList.remove('active');
+      idx = (i + total) % total;
+      cards[idx].classList.add('active');
+      dots[idx].classList.add('active');
+      if (nowEl) nowEl.textContent = idx + 1;
+    }
+
+    cards.forEach(function(card){
+      card.addEventListener('click', function(){
+        if (card.classList.contains('active')) card.classList.toggle('flipped');
+      });
+    });
+
+    prev.addEventListener('click', function(){ go(idx - 1); });
+    next.addEventListener('click', function(){ go(idx + 1); });
+
+    document.addEventListener('keydown', function(e){
+      var rect = section.getBoundingClientRect();
+      var inView = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
+      if (!inView) return;
+      var tag = document.activeElement && document.activeElement.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft'){ e.preventDefault(); go(idx - 1); }
+      else if (e.key === 'ArrowRight'){ e.preventDefault(); go(idx + 1); }
+    });
+
+    go(0);
+  });
+
+  document.querySelectorAll('.quiz').forEach(function(quiz){
+    var questions = quiz.querySelectorAll('.quiz-q');
+    var total = questions.length;
+    var result = quiz.querySelector('.quiz-result');
+    var scoreEl = result.querySelector('.quiz-score');
+    var percentEl = result.querySelector('.quiz-percent');
+    var barFill = result.querySelector('.quiz-bar-fill');
+    var verdictEl = result.querySelector('.quiz-verdict');
+    var restartBtn = result.querySelector('.quiz-restart');
+
+    var answered = 0;
+    var correctCount = 0;
+
+    function verdictFor(p){
+      if (p === 100) return '✦ Бездоганно. Готовий до іспиту.';
+      if (p >= 80)  return 'Дуже добре. Перечитай ті, де помилився.';
+      if (p >= 60)  return 'Непогано. Повтори тему й спробуй ще раз.';
+      if (p >= 40)  return 'Ще трохи практики — і вийде.';
+      return 'Не страшно. Перечитай теорію і повертайся.';
+    }
+
+    function setFeedback(fb, prefix, explain, kind){
+      while (fb.firstChild) fb.removeChild(fb.firstChild);
+      var b = document.createElement('b');
+      b.textContent = prefix;
+      fb.appendChild(b);
+      fb.appendChild(document.createTextNode(' ' + explain));
+      fb.classList.add('show', kind);
+    }
+
+    function showResult(){
+      var p = Math.round(correctCount / total * 100);
+      scoreEl.textContent = correctCount + ' / ' + total;
+      percentEl.textContent = p + '%';
+      verdictEl.textContent = verdictFor(p);
+      result.classList.add('show');
+      requestAnimationFrame(function(){ barFill.style.width = p + '%'; });
+    }
+
+    function reset(){
+      answered = 0;
+      correctCount = 0;
+      questions.forEach(function(q){
+        q.querySelectorAll('.quiz-option').forEach(function(o){
+          o.disabled = false;
+          o.classList.remove('correct', 'wrong', 'reveal');
+        });
+        var fb = q.querySelector('.quiz-feedback');
+        fb.classList.remove('show', 'ok', 'no');
+        fb.textContent = '';
+      });
+      result.classList.remove('show');
+      barFill.style.width = '0%';
+      quiz.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+
+    questions.forEach(function(q){
+      var options = q.querySelectorAll('.quiz-option');
+      var fb = q.querySelector('.quiz-feedback');
+
+      options.forEach(function(opt){
+        opt.addEventListener('click', function(){
+          if (opt.disabled) return;
+          options.forEach(function(o){ o.disabled = true; });
+
+          var isCorrect = opt.hasAttribute('data-correct');
+          var explain = opt.getAttribute('data-explain') || '';
+
+          if (isCorrect){
+            opt.classList.add('correct');
+            setFeedback(fb, 'Правильно.', explain, 'ok');
+            correctCount++;
+          } else {
+            opt.classList.add('wrong');
+            options.forEach(function(o){
+              if (o.hasAttribute('data-correct')) o.classList.add('reveal');
+            });
+            setFeedback(fb, 'Не зовсім.', explain, 'no');
+          }
+
+          answered++;
+          if (answered === total) showResult();
+        });
+      });
+    });
+
+    restartBtn.addEventListener('click', reset);
+  });
+})();
+</script>
+</body>
+</html>
