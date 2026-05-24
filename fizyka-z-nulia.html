@@ -195,6 +195,8 @@ h1.title em{
   border-bottom: 1px dashed var(--rule);
 }
 .day:last-child{ border-bottom: none; }
+a.day{ text-decoration: none; color: inherit; cursor: pointer; border-radius: 4px; transition: background .15s; }
+a.day:hover{ background: var(--paper-2); }
 .day .num{
   font-family: 'Caveat', cursive;
   font-size: 1.7rem;
@@ -1125,31 +1127,36 @@ li::marker{ color: var(--orange); }
 <section class="plan">
   <h2>Як вчитися: маленький план</h2>
   <div class="days">
-    <div class="day t1">
+    <a href="#tema1" class="day t1">
       <span class="num">День 1–2</span>
       <span class="what">Сили й закон Гука <small>чому пружина розтягується, що таке Ньютон, як працює динамометр</small></span>
       <span class="pill">тема 1</span>
-    </div>
-    <div class="day t2">
+    </a>
+    <a href="#tema2" class="day t2">
       <span class="num">День 3</span>
       <span class="what">Густина <small>чому залізо тоне, а дерево плаває; як знайти об'єм через масу</small></span>
       <span class="pill">тема 2</span>
-    </div>
-    <div class="day t3">
+    </a>
+    <a href="#tema3" class="day t3">
       <span class="num">День 4–5</span>
       <span class="what">Закон Архімеда <small>виштовхувальна сила, чому кораблі не тонуть, як рідина "піднімається"</small></span>
       <span class="pill">тема 3</span>
-    </div>
-    <div class="day t4">
+    </a>
+    <a href="#tema4" class="day t4">
       <span class="num">День 6</span>
       <span class="what">Потенціальна енергія <small>чому з гірки страшно з'їжджати, формула mgh</small></span>
       <span class="pill">тема 4</span>
-    </div>
-    <div class="day t5">
-      <span class="num">День 7</span>
+    </a>
+    <a href="#tema5" class="day t5">
+      <span class="num">День 7–8</span>
+      <span class="what">Гідродинаміка <small>тиск рідин, закон Паскаля, гідравлічний прес, сполучені посудини</small></span>
+      <span class="pill">тема 5</span>
+    </a>
+    <a href="#final" class="day t5">
+      <span class="num">День 9</span>
       <span class="what">Розв'язуємо вступні задачі <small>усі три задачі з 2022 року, крок за кроком</small></span>
       <span class="pill">фінал</span>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -1404,7 +1411,7 @@ li::marker{ color: var(--orange); }
 </section>
 
 <!-- ═══════════════════ CHAPTER 1 ═══════════════════ -->
-<div class="c1">
+<div class="c1" id="tema1">
 <section class="chapter">
   <div class="chapter-head">
     <span class="chapter-num">розділ I</span>
@@ -1533,7 +1540,7 @@ li::marker{ color: var(--orange); }
 </div>
 
 <!-- ═══════════════════ CHAPTER 2 ═══════════════════ -->
-<div class="c2">
+<div class="c2" id="tema2">
 <section class="chapter">
   <div class="chapter-head">
     <span class="chapter-num">розділ II</span>
@@ -1668,7 +1675,7 @@ li::marker{ color: var(--orange); }
 </div>
 
 <!-- ═══════════════════ CHAPTER 3 ═══════════════════ -->
-<div class="c3">
+<div class="c3" id="tema3">
 <section class="chapter">
   <div class="chapter-head">
     <span class="chapter-num">розділ III</span>
@@ -1807,7 +1814,7 @@ li::marker{ color: var(--orange); }
 </div>
 
 <!-- ═══════════════════ CHAPTER 4 ═══════════════════ -->
-<div class="c4">
+<div class="c4" id="tema4">
 <section class="chapter">
   <div class="chapter-head">
     <span class="chapter-num">розділ IV</span>
@@ -1912,11 +1919,416 @@ li::marker{ color: var(--orange); }
 </section>
 </div>
 
-<!-- ═══════════════════ CHAPTER 5 — SOLUTIONS ═══════════════════ -->
-<div class="c5">
+<!-- ═══════════════════ CHAPTER 5 — HYDRODYNAMICS ═══════════════════ -->
+<div class="c5" id="tema5">
 <section class="chapter">
   <div class="chapter-head">
     <span class="chapter-num">розділ V</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Гідро<em>динаміка</em></h2>
+  <div class="sub">як рідини тиснуть і передають силу</div>
+
+  <h3>Що таке тиск?</h3>
+  <p>Ти стоїш на снігу в черевиках — і провалюєшся. Надягнув лижі — і стоїш на поверхні. Вага та сама, але <b>площа опори</b> стала значно більшою. Тиск зменшився.</p>
+  <p><b>Тиск</b> — це сила, розділена на площу, до якої вона прикладена. Чим менша площа — тим більший тиск. Саме тому голка проколює тканину, хоча ти натискаєш ледь-ледь.</p>
+
+  <div class="formula">
+    <div class="eq">P = F / S</div>
+    <div class="where">P — тиск (Па, паскаль)&nbsp;&nbsp;·&nbsp;&nbsp;F — сила (Н)&nbsp;&nbsp;·&nbsp;&nbsp;S — площа (м²)</div>
+  </div>
+
+  <p>Одиниця тиску — <b>паскаль (Па)</b>. 1 Па = 1 Н/м². Це дуже мало — тому часто використовують <b>кПа</b> (1 кПа = 1000 Па) або <b>атмосфери</b> (1 атм ≈ 101&nbsp;325 Па).</p>
+
+  <div class="example">
+    <p><b>Голка і палець.</b> Ти натискаєш на голку з силою 5&nbsp;Н. Площа вістря — крихітна. Тиск виходить величезний — сотні мегапаскалів. Ось чому голка легко проколює тканину, а палець тієї ж силою — ні.</p>
+  </div>
+
+  <div class="box">
+    <span class="label">Корисно знати</span>
+    <p>Щоб <b>збільшити</b> тиск — зменшуй площу (ніж, голка, шпильки). Щоб <b>зменшити</b> тиск — збільшуй площу (лижі, широкі шини, фундамент будинку).</p>
+  </div>
+
+  <h3>Тиск рідини на глибині</h3>
+  <p>Чим глибше ти ниряєш — тим сильніше тисне вода. Це тому, що над тобою стає все більший <b>стовп рідини</b>, і його вага тисне на тебе.</p>
+
+  <div class="formula">
+    <div class="eq">P = ρ · g · h</div>
+    <div class="where">ρ — густина рідини (кг/м³)&nbsp;&nbsp;·&nbsp;&nbsp;g ≈ 10 Н/кг&nbsp;&nbsp;·&nbsp;&nbsp;h — глибина (м)</div>
+  </div>
+
+  <p>Зверни увагу: тиск <b>не залежить від форми посудини</b> і від площі дна. Тільки від глибини і густини рідини. Це називають <b>гідростатичним парадоксом</b>.</p>
+
+  <div class="box">
+    <span class="label">Приклад розв'язку</span>
+    <p><b>Задача.</b> Який тиск на глибині 5&nbsp;м у воді?</p>
+    <p>Дано: ρ = 1000 кг/м³, g = 10 Н/кг, h = 5 м.</p>
+    <p>P = ρ · g · h = 1000 · 10 · 5 = <b>50&nbsp;000 Па</b> (= 50 кПа).</p>
+    <p>Для порівняння: на глибині 10 м — вже 100&nbsp;000 Па, тобто приблизно 1 атмосфера.</p>
+  </div>
+
+  <svg class="illu" viewBox="0 0 600 180" width="100%" style="max-width:520px">
+    <!-- three vessels of different shapes, same water level -->
+    <path d="M 40 40 L 40 160 L 140 160 L 140 40" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+    <rect x="40" y="80" width="100" height="80" fill="#f6e1f5" opacity="0.5"/>
+    <path d="M 220 40 L 200 160 L 340 160 L 320 40" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+    <rect x="205" y="80" width="130" height="80" fill="#f6e1f5" opacity="0.5"/>
+    <path d="M 430 40 L 410 100 L 410 160 L 490 160 L 490 100 L 470 40" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+    <rect x="410" y="80" width="80" height="80" fill="#f6e1f5" opacity="0.5"/>
+    <line x1="40" y1="80" x2="140" y2="80" stroke="#a21caf" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <line x1="200" y1="80" x2="340" y2="80" stroke="#a21caf" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <line x1="410" y1="80" x2="490" y2="80" stroke="#a21caf" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="300" y="30" text-anchor="middle" font-family="Caveat" font-size="22" fill="#a21caf">однакова глибина → однаковий тиск</text>
+  </svg>
+
+  <h3>Закон Паскаля</h3>
+  <p>Уяви повітряну кульку, заповнену водою. Стисни її з одного боку — вода вибухне з усіх дірочок одночасно, не тільки з тієї сторони, де тиснеш. Це і є <b>закон Паскаля</b>:</p>
+
+  <div class="box">
+    <span class="label">Закон Паскаля</span>
+    <p><b>Тиск, що передається замкненій рідині або газу, передається в усіх напрямках однаково.</b></p>
+    <p>Тобто якщо ти натиснув на поршень — тиск зросте <i>скрізь</i> у рідині на однакову величину.</p>
+
+    <svg class="illu" viewBox="0 0 600 300" width="100%" style="max-width:520px">
+      <!-- sphere of water -->
+      <circle cx="300" cy="170" r="100" fill="#f6e1f5" stroke="#a21caf" stroke-width="2" opacity="0.4"/>
+      <circle cx="300" cy="170" r="100" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- piston on top -->
+      <rect x="275" y="40" width="50" height="30" fill="#a21caf" rx="3"/>
+      <text x="300" y="60" text-anchor="middle" font-family="Space Grotesk" font-size="12" fill="#fff" font-weight="600">F</text>
+      <!-- arrow down into sphere -->
+      <line x1="300" y1="30" x2="300" y2="44" stroke="#c2410c" stroke-width="3"/>
+      <polygon points="294,42 306,42 300,50" fill="#c2410c" transform="rotate(180,300,42)"/>
+      <text x="300" y="22" text-anchor="middle" font-family="Caveat" font-size="18" fill="#c2410c">натискаєш тут</text>
+      <!-- arrows radiating from center in all directions -->
+      <!-- right -->
+      <line x1="330" y1="170" x2="390" y2="170" stroke="#a21caf" stroke-width="2.5"/>
+      <polygon points="386,165 386,175 396,170" fill="#a21caf"/>
+      <!-- left -->
+      <line x1="270" y1="170" x2="210" y2="170" stroke="#a21caf" stroke-width="2.5"/>
+      <polygon points="214,165 214,175 204,170" fill="#a21caf"/>
+      <!-- down -->
+      <line x1="300" y1="200" x2="300" y2="260" stroke="#a21caf" stroke-width="2.5"/>
+      <polygon points="295,256 305,256 300,266" fill="#a21caf"/>
+      <!-- up-left -->
+      <line x1="270" y1="140" x2="230" y2="100" stroke="#a21caf" stroke-width="2.5"/>
+      <polygon points="226,106 236,100 232,96" fill="#a21caf"/>
+      <!-- up-right -->
+      <line x1="330" y1="140" x2="370" y2="100" stroke="#a21caf" stroke-width="2.5"/>
+      <polygon points="374,106 364,100 368,96" fill="#a21caf"/>
+      <!-- down-left -->
+      <line x1="270" y1="200" x2="230" y2="240" stroke="#a21caf" stroke-width="2.5"/>
+      <polygon points="226,234 236,240 232,244" fill="#a21caf"/>
+      <!-- down-right -->
+      <line x1="330" y1="200" x2="370" y2="240" stroke="#a21caf" stroke-width="2.5"/>
+      <polygon points="374,234 364,240 368,244" fill="#a21caf"/>
+      <!-- center label -->
+      <text x="300" y="174" text-anchor="middle" font-family="Caveat" font-size="20" fill="#1f1d1a">P</text>
+      <!-- bottom label -->
+      <text x="300" y="292" text-anchor="middle" font-family="Caveat" font-size="20" fill="#a21caf">тиск скрізь однаковий</text>
+    </svg>
+  </div>
+
+  <div class="example">
+    <p><b>Гальма автомобіля.</b> Коли водій натискає педаль — поршень тисне на гальмівну рідину. За законом Паскаля тиск передається по трубках до всіх чотирьох коліс одночасно. Одне натискання — і всі колеса гальмують.</p>
+  </div>
+
+  <h3>Гідравлічний прес</h3>
+  <p>Це найкрутіший винахід, що базується на законі Паскаля. Уяви дві трубки з поршнями, з'єднані рідиною. Один поршень маленький, інший — великий.</p>
+  <p>Коли тиснеш на маленький поршень — тиск передається на великий. Але великий поршень має більшу площу, тому <b>сила на ньому більша</b>!</p>
+
+  <div class="formula">
+    <div class="eq">F₁ / S₁ = F₂ / S₂</div>
+    <div class="where">F₁, S₁ — сила і площа малого поршня&nbsp;&nbsp;·&nbsp;&nbsp;F₂, S₂ — сила і площа великого</div>
+  </div>
+
+  <p>Звідси: <b>F₂ = F₁ · S₂ / S₁</b>. Якщо великий поршень у 10 разів більший за малий — сила зростає у 10 разів!</p>
+
+  <div class="box">
+    <span class="label">Приклад розв'язку</span>
+    <p><b>Задача.</b> Площа малого поршня — 2&nbsp;см², великого — 20&nbsp;см². На малий тиснуть з силою 50&nbsp;Н. Яка сила на великому?</p>
+    <p>За формулою: F₂ = F₁ · S₂ / S₁ = 50 · 20 / 2 = <b>500&nbsp;Н</b>.</p>
+    <p>Виграш у силі: 20 / 2 = 10 разів. Натиснув 50&nbsp;Н — отримав 500&nbsp;Н.</p>
+  </div>
+
+  <svg class="illu" viewBox="0 0 600 220" width="100%" style="max-width:520px">
+    <!-- U-tube hydraulic press -->
+    <!-- left narrow cylinder (walls) -->
+    <rect x="90" y="40" width="50" height="130" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+    <!-- right wide cylinder (walls) -->
+    <rect x="360" y="40" width="130" height="130" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+    <!-- connecting tube at bottom -->
+    <rect x="90" y="150" width="400" height="20" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+    <!-- fluid fill -->
+    <rect x="92" y="80" width="46" height="88" fill="#f6e1f5" opacity="0.6"/>
+    <rect x="92" y="152" width="396" height="16" fill="#f6e1f5" opacity="0.6"/>
+    <rect x="362" y="90" width="126" height="78" fill="#f6e1f5" opacity="0.6"/>
+    <!-- left piston -->
+    <rect x="92" y="70" width="46" height="16" fill="#a21caf" rx="2"/>
+    <text x="115" y="82" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#fff" font-weight="600">S₁</text>
+    <!-- right piston -->
+    <rect x="362" y="80" width="126" height="16" fill="#a21caf" rx="2"/>
+    <text x="425" y="92" text-anchor="middle" font-family="Space Grotesk" font-size="11" fill="#fff" font-weight="600">S₂</text>
+    <!-- F₁ arrow pushing DOWN on left piston -->
+    <line x1="115" y1="30" x2="115" y2="66" stroke="#c2410c" stroke-width="3"/>
+    <polygon points="109,62 121,62 115,70" fill="#c2410c"/>
+    <text x="115" y="22" text-anchor="middle" font-family="Caveat" font-size="20" fill="#c2410c">F₁</text>
+    <!-- F₂ arrow pushing UP from right piston -->
+    <line x1="425" y1="76" x2="425" y2="40" stroke="#c2410c" stroke-width="3"/>
+    <polygon points="419,44 431,44 425,36" fill="#c2410c"/>
+    <text x="425" y="30" text-anchor="middle" font-family="Caveat" font-size="20" fill="#c2410c">F₂</text>
+    <!-- labels -->
+    <text x="50" y="82" text-anchor="middle" font-family="Caveat" font-size="16" fill="#a21caf">мала</text>
+    <text x="50" y="98" text-anchor="middle" font-family="Caveat" font-size="16" fill="#a21caf">площа</text>
+    <text x="530" y="90" font-family="Caveat" font-size="16" fill="#a21caf">велика</text>
+    <text x="530" y="106" font-family="Caveat" font-size="16" fill="#a21caf">площа</text>
+    <!-- bottom label -->
+    <text x="300" y="205" text-anchor="middle" font-family="Caveat" font-size="20" fill="#a21caf">тиснеш мало — отримуєш багато</text>
+  </svg>
+
+  <div class="example">
+    <p><b>Домкрат.</b> Коли потрібно підняти автомобіль, щоб поміняти колесо — використовують гідравлічний домкрат. Людина натискає на важіль з невеликою силою, а рідина передає цей тиск на великий поршень, який піднімає машину масою понад тонну.</p>
+  </div>
+
+  <h3>Сполучені посудини</h3>
+  <p><b>Сполучені посудини</b> — це два або більше відкритих посудин, з'єднаних трубкою знизу. Головне правило:</p>
+
+  <div class="box">
+    <span class="label">Правило</span>
+    <p>В сполучених посудинах <b>однорідна рідина встановлюється на одному рівні</b>, незалежно від форми і розміру посудин.</p>
+    <p>Якщо рідини різні — та, що легша (менша ρ), стоїть <b>вище</b>.</p>
+
+    <svg class="illu" viewBox="0 0 600 240" width="100%" style="max-width:520px">
+      <!-- LEFT: однорідна рідина — однаковий рівень -->
+      <!-- narrow tube -->
+      <rect x="40" y="60" width="30" height="130" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- wide tube -->
+      <rect x="130" y="40" width="80" height="150" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- connecting pipe -->
+      <rect x="40" y="170" width="170" height="20" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- water fill — same level at y=100 -->
+      <rect x="42" y="100" width="26" height="88" fill="#f6e1f5" opacity="0.6"/>
+      <rect x="42" y="172" width="166" height="16" fill="#f6e1f5" opacity="0.6"/>
+      <rect x="132" y="100" width="76" height="88" fill="#f6e1f5" opacity="0.6"/>
+      <!-- level line -->
+      <line x1="30" y1="100" x2="220" y2="100" stroke="#a21caf" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <!-- label -->
+      <text x="125" y="30" text-anchor="middle" font-family="Caveat" font-size="18" fill="#a21caf">одна рідина</text>
+      <text x="125" y="215" text-anchor="middle" font-family="Caveat" font-size="16" fill="#a21caf">рівень однаковий</text>
+
+      <!-- RIGHT: різні рідини — легша вище -->
+      <!-- narrow tube -->
+      <rect x="340" y="40" width="30" height="150" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- wide tube -->
+      <rect x="440" y="40" width="80" height="150" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- connecting pipe -->
+      <rect x="340" y="170" width="180" height="20" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- heavy fluid (water) in right tube — lower level -->
+      <rect x="442" y="120" width="76" height="68" fill="#c4b5fd" opacity="0.5"/>
+      <rect x="342" y="172" width="176" height="16" fill="#c4b5fd" opacity="0.5"/>
+      <rect x="342" y="140" width="26" height="48" fill="#c4b5fd" opacity="0.5"/>
+      <!-- light fluid (oil) in left tube — higher level -->
+      <rect x="342" y="70" width="26" height="70" fill="#fde68a" opacity="0.6"/>
+      <!-- level lines -->
+      <line x1="330" y1="120" x2="530" y2="120" stroke="#a21caf" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+      <!-- labels for fluids -->
+      <text x="310" y="75" text-anchor="middle" font-family="Caveat" font-size="14" fill="#92400e">олія</text>
+      <text x="310" y="91" text-anchor="middle" font-family="Caveat" font-size="13" fill="#92400e">(легша)</text>
+      <text x="555" y="135" font-family="Caveat" font-size="14" fill="#5b21b6">вода</text>
+      <text x="555" y="151" font-family="Caveat" font-size="13" fill="#5b21b6">(важча)</text>
+      <!-- arrows showing levels -->
+      <line x1="355" y1="68" x2="355" y2="55" stroke="#92400e" stroke-width="2"/>
+      <polygon points="350,58 360,58 355,50" fill="#92400e"/>
+      <line x1="480" y1="118" x2="480" y2="130" stroke="#5b21b6" stroke-width="2"/>
+      <polygon points="475,127 485,127 480,135" fill="#5b21b6"/>
+      <!-- label -->
+      <text x="430" y="30" text-anchor="middle" font-family="Caveat" font-size="18" fill="#a21caf">різні рідини</text>
+      <text x="430" y="215" text-anchor="middle" font-family="Caveat" font-size="16" fill="#a21caf">легша стоїть вище</text>
+    </svg>
+  </div>
+
+  <div class="example">
+    <p><b>Чайник і носик.</b> Рівень води в чайнику і в його носику завжди однаковий. Це класичний приклад сполучених посудин. Так само працює водопровід: водонапірна вежа створює тиск, і вода піднімається у кранах на тому ж рівні.</p>
+
+    <svg class="illu" viewBox="0 0 600 230" width="100%" style="max-width:520px">
+      <!-- LEFT: чайник -->
+      <!-- body -->
+      <ellipse cx="100" cy="150" rx="60" ry="40" fill="#f6e1f5" stroke="#1f1d1a" stroke-width="2" opacity="0.6"/>
+      <rect x="40" y="80" width="120" height="70" fill="#fff" stroke="none"/>
+      <path d="M 40 150 L 40 90 Q 40 70 60 70 L 140 70 Q 160 70 160 90 L 160 150" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- water inside -->
+      <rect x="42" y="100" width="116" height="50" fill="#f6e1f5" opacity="0.5"/>
+      <ellipse cx="100" cy="150" rx="58" ry="38" fill="#f6e1f5" opacity="0.4"/>
+      <!-- handle -->
+      <path d="M 140 80 Q 180 80 180 110 Q 180 140 140 140" fill="none" stroke="#1f1d1a" stroke-width="2.5"/>
+      <!-- spout -->
+      <path d="M 40 110 L 10 80 L 10 70 L 20 70" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- water in spout -->
+      <line x1="12" y1="100" x2="38" y2="100" stroke="#a21caf" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <!-- water level line across both -->
+      <line x1="8" y1="100" x2="162" y2="100" stroke="#a21caf" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <!-- lid -->
+      <ellipse cx="100" cy="70" rx="30" ry="6" fill="none" stroke="#1f1d1a" stroke-width="1.5"/>
+      <line x1="100" y1="64" x2="100" y2="56" stroke="#1f1d1a" stroke-width="1.5"/>
+      <circle cx="100" cy="54" r="4" fill="#1f1d1a"/>
+      <!-- label -->
+      <text x="100" y="200" text-anchor="middle" font-family="Caveat" font-size="18" fill="#a21caf">рівень однаковий</text>
+
+      <!-- divider -->
+      <line x1="280" y1="50" x2="280" y2="200" stroke="#1f1d1a" stroke-width="0.5" stroke-dasharray="2,4" opacity="0.3"/>
+
+      <!-- RIGHT: водонапірна вежа + будинок -->
+      <!-- tower -->
+      <rect x="340" y="30" width="40" height="20" fill="#f6e1f5" stroke="#1f1d1a" stroke-width="2" opacity="0.6"/>
+      <rect x="340" y="50" width="40" height="10" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- tank on top -->
+      <rect x="330" y="10" width="60" height="25" fill="#f6e1f5" stroke="#1f1d1a" stroke-width="2" opacity="0.6"/>
+      <!-- water in tank -->
+      <rect x="332" y="18" width="56" height="15" fill="#f6e1f5" opacity="0.5"/>
+      <!-- tower legs -->
+      <line x1="345" y1="60" x2="335" y2="170" stroke="#1f1d1a" stroke-width="2"/>
+      <line x1="375" y1="60" x2="385" y2="170" stroke="#1f1d1a" stroke-width="2"/>
+      <line x1="340" y1="100" x2="380" y2="100" stroke="#1f1d1a" stroke-width="1.5"/>
+      <line x1="338" y1="135" x2="382" y2="135" stroke="#1f1d1a" stroke-width="1.5"/>
+      <!-- ground -->
+      <line x1="310" y1="170" x2="570" y2="170" stroke="#1f1d1a" stroke-width="1.5"/>
+      <!-- pipe from tower to house -->
+      <path d="M 360 35 L 390 35 L 390 160 L 470 160 L 470 120" fill="none" stroke="#a21caf" stroke-width="2" stroke-dasharray="5,3"/>
+      <!-- house -->
+      <rect x="450" y="120" width="70" height="50" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- roof -->
+      <path d="M 445 120 L 485 90 L 525 120" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+      <!-- window -->
+      <rect x="462" y="132" width="16" height="16" fill="none" stroke="#1f1d1a" stroke-width="1.5"/>
+      <!-- door -->
+      <rect x="495" y="145" width="14" height="25" fill="none" stroke="#1f1d1a" stroke-width="1.5"/>
+      <!-- tap with water -->
+      <path d="M 470 120 L 470 132 L 478 132" fill="none" stroke="#a21caf" stroke-width="2"/>
+      <!-- water level line -->
+      <line x1="328" y1="18" x2="480" y2="18" stroke="#a21caf" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+      <!-- labels -->
+      <text x="360" y="5" text-anchor="middle" font-family="Caveat" font-size="14" fill="#a21caf">вежа</text>
+      <text x="485" y="85" text-anchor="middle" font-family="Caveat" font-size="14" fill="#a21caf">кран</text>
+      <text x="440" y="200" text-anchor="middle" font-family="Caveat" font-size="18" fill="#a21caf">вода тече до рівня вежі</text>
+    </svg>
+  </div>
+
+  <h3>Атмосферний тиск</h3>
+  <p>Ми живемо на дні «океану повітря». Стовп атмосфери висотою ~100 км тисне на нас. Цей тиск називають <b>атмосферним</b>.</p>
+  <p>Нормальний атмосферний тиск: <b>≈ 101&nbsp;325 Па ≈ 760 мм рт. ст.</b></p>
+
+  <svg class="illu" viewBox="0 0 600 300" width="100%" style="max-width:520px">
+    <!-- ground -->
+    <rect x="0" y="250" width="600" height="50" fill="#e8e0d8" opacity="0.5"/>
+    <line x1="0" y1="250" x2="600" y2="250" stroke="#1f1d1a" stroke-width="1.5"/>
+    <!-- atmosphere layers (gradient from dense to thin) -->
+    <rect x="0" y="200" width="600" height="50" fill="#f6e1f5" opacity="0.35"/>
+    <rect x="0" y="150" width="600" height="50" fill="#f6e1f5" opacity="0.25"/>
+    <rect x="0" y="100" width="600" height="50" fill="#f6e1f5" opacity="0.15"/>
+    <rect x="0" y="50" width="600" height="50" fill="#f6e1f5" opacity="0.08"/>
+    <rect x="0" y="0" width="600" height="50" fill="#f6e1f5" opacity="0.03"/>
+    <!-- person -->
+    <circle cx="160" cy="222" r="10" fill="none" stroke="#1f1d1a" stroke-width="2"/>
+    <line x1="160" y1="232" x2="160" y2="248" stroke="#1f1d1a" stroke-width="2"/>
+    <line x1="160" y1="238" x2="148" y2="244" stroke="#1f1d1a" stroke-width="2"/>
+    <line x1="160" y1="238" x2="172" y2="244" stroke="#1f1d1a" stroke-width="2"/>
+    <line x1="160" y1="248" x2="150" y2="258" stroke="#1f1d1a" stroke-width="2"/>
+    <line x1="160" y1="248" x2="170" y2="258" stroke="#1f1d1a" stroke-width="2"/>
+    <!-- arrows pressing down on person from all sides -->
+    <line x1="160" y1="50" x2="160" y2="208" stroke="#a21caf" stroke-width="2.5"/>
+    <polygon points="155,204 165,204 160,212" fill="#a21caf"/>
+    <line x1="120" y1="180" x2="145" y2="225" stroke="#a21caf" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="141,222 148,228 148,220" fill="#a21caf" opacity="0.6"/>
+    <line x1="200" y1="180" x2="175" y2="225" stroke="#a21caf" stroke-width="1.5" opacity="0.6"/>
+    <polygon points="172,220 172,228 179,222" fill="#a21caf" opacity="0.6"/>
+    <!-- height arrow on the right -->
+    <line x1="520" y1="250" x2="520" y2="20" stroke="#1f1d1a" stroke-width="1.5"/>
+    <polygon points="515,24 525,24 520,14" fill="#1f1d1a"/>
+    <text x="540" y="140" font-family="Caveat" font-size="18" fill="#1f1d1a" transform="rotate(90,540,140)">~100 км</text>
+    <!-- atmosphere label -->
+    <text x="80" y="50" font-family="Caveat" font-size="16" fill="#a21caf" opacity="0.5">майже порожнеча</text>
+    <text x="80" y="130" font-family="Caveat" font-size="16" fill="#a21caf" opacity="0.7">розріджене повітря</text>
+    <text x="80" y="210" font-family="Caveat" font-size="16" fill="#a21caf">густе повітря</text>
+    <!-- barometer on the right side -->
+    <rect x="350" y="170" width="8" height="80" fill="none" stroke="#1f1d1a" stroke-width="1.5" rx="4"/>
+    <rect x="352" y="190" width="4" height="58" fill="#a21caf" opacity="0.7" rx="2"/>
+    <circle cx="354" cy="254" r="10" fill="#a21caf" opacity="0.7" stroke="#1f1d1a" stroke-width="1.5"/>
+    <text x="375" y="195" font-family="Space Grotesk" font-size="12" font-style="italic" fill="#a21caf">760 мм</text>
+    <text x="375" y="210" font-family="Space Grotesk" font-size="12" font-style="italic" fill="#a21caf">рт. ст.</text>
+    <!-- ground labels -->
+    <text x="300" y="285" text-anchor="middle" font-family="Caveat" font-size="20" fill="#a21caf">стовп повітря тисне на все навколо</text>
+  </svg>
+
+  <div class="example">
+    <p><b>Присоска.</b> Коли притискаєш присоску до стіни — витісняєш з-під неї повітря. Зовнішній атмосферний тиск притискає присоску до поверхні. Не присоска «тримається» — а повітря «тисне» її до стіни.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест на гідродинаміку</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Чому ніж ріже, а тупий край лінійки — ні, хоча сила однакова?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Ніж зроблений зі сталі, як і лінійка. Справа не в матеріалі.">ніж зроблений з міцнішого металу</button>
+        <button type="button" class="quiz-option" data-correct data-explain="P = F/S. Площа леза ножа дуже мала — тому тиск величезний.">площа леза ножа набагато менша — тиск більший</button>
+        <button type="button" class="quiz-option" data-explain="Ніж прикладає ту саму силу, що й ти.">ніж прикладає більшу силу</button>
+        <button type="button" class="quiz-option" data-explain="Маса ножа не має значення — справа у площі контакту.">ніж важчий</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Який тиск на глибині 5&nbsp;м у воді (ρ = 1000&nbsp;кг/м³)?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це тиск на глибині 0,5 м.">5000 Па</button>
+        <button type="button" class="quiz-option" data-correct data-explain="P = ρ·g·h = 1000·10·5 = 50 000 Па = 50 кПа.">50 000 Па</button>
+        <button type="button" class="quiz-option" data-explain="Це у 10 разів більше. Перевір розрахунок.">500 000 Па</button>
+        <button type="button" class="quiz-option" data-explain="Забув помножити на g = 10.">1000 Па</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>У гідравлічному пресі площа малого поршня 2&nbsp;см², великого — 20&nbsp;см². На малий тиснуть з силою 50&nbsp;Н. Яка сила на великому?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Поділив замість того, щоб помножити. F₂ = F₁ · S₂/S₁.">5 Н</button>
+        <button type="button" class="quiz-option" data-explain="Це та сама сила. Прес повинен її збільшити.">50 Н</button>
+        <button type="button" class="quiz-option" data-correct data-explain="F₂ = F₁ · S₂/S₁ = 50 · 20/2 = 500 Н. Виграш у силі — 10 разів!">500 Н</button>
+        <button type="button" class="quiz-option" data-explain="Помножив і на площу, і ще раз. Перевір формулу.">1000 Н</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Що стверджує закон Паскаля?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це закон Архімеда, не Паскаля.">рідина виштовхує тіло вгору</button>
+        <button type="button" class="quiz-option" data-explain="Тиск на глибині залежить від висоти стовпа, не від форми.">тиск залежить від форми посудини</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Саме так! Тиск у замкненій рідині передається в усіх напрямках однаково.">тиск у замкненій рідині передається в усіх напрямках однаково</button>
+        <button type="button" class="quiz-option" data-explain="Це правило сполучених посудин.">рідина встановлюється на одному рівні</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 4</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 6 — SOLUTIONS ═══════════════════ -->
+<div class="c5" id="final">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ VI</span>
     <span class="chapter-line"></span>
   </div>
   <h2>Розв'язуємо <em>вступні задачі</em></h2>
@@ -2134,9 +2546,42 @@ li::marker{ color: var(--orange); }
       <div class="quiz-feedback"></div>
     </div>
 
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">11.</span><span>Людина масою 60&nbsp;кг стоїть на підлозі. Площа обох підошов — 0,03&nbsp;м². Який тиск вона чинить на підлогу?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це маса в кг. Спочатку знайди силу: F = m·g = 60·10 = 600 Н.">60 Па</button>
+        <button type="button" class="quiz-option" data-explain="Забув помножити масу на g = 10.">2000 Па</button>
+        <button type="button" class="quiz-option" data-correct data-explain="F = m·g = 60·10 = 600 Н. P = F/S = 600/0,03 = 20 000 Па.">20 000 Па</button>
+        <button type="button" class="quiz-option" data-explain="Перебір у 10 разів. Перевір ділення.">200 000 Па</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">12.</span><span>На якій глибині тиск води дорівнює 200&nbsp;кПа? (ρ = 1000&nbsp;кг/м³)</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Забув перевести кПа в Па. 200 кПа = 200 000 Па.">2 м</button>
+        <button type="button" class="quiz-option" data-correct data-explain="200 кПа = 200 000 Па. h = P/(ρ·g) = 200 000/(1000·10) = 20 м.">20 м</button>
+        <button type="button" class="quiz-option" data-explain="Перебір у 10 разів. Перевір формулу h = P/(ρ·g).">200 м</button>
+        <button type="button" class="quiz-option" data-explain="Це просто число з тиску. Підстав у формулу.">2000 м</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">13.</span><span>У гідравлічному пресі площа малого поршня 5&nbsp;см², великого — 100&nbsp;см². На малий діє сила 20&nbsp;Н. Яка сила на великому поршні?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це та сама сила без підсилення.">20 Н</button>
+        <button type="button" class="quiz-option" data-explain="Помножив площі замість того, щоб знайти їх відношення.">500 Н</button>
+        <button type="button" class="quiz-option" data-correct data-explain="F₂ = F₁ · S₂/S₁ = 20 · 100/5 = 400 Н. Виграш у силі — 20 разів!">400 Н</button>
+        <button type="button" class="quiz-option" data-explain="Поділив силу замість того, щоб помножити.">1 Н</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
     <div class="quiz-result">
       <div class="quiz-result-line">
-        <span class="quiz-score">0 / 10</span>
+        <span class="quiz-score">0 / 13</span>
         <span class="quiz-percent">0%</span>
       </div>
       <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
