@@ -2889,46 +2889,66 @@ li::marker{ color: var(--orange); }
     </ul>
   </div>
 
-  <h3>Тертя на похилій площині</h3>
-  <p>Чи зрушить брусок із похилого схилу — це змагання двох сил уздовж площини: <b>скочувальної</b> (складова сили тяжіння, тягне вниз) і <b>сили тертя спокою</b> (тримає на місці).</p>
+  <h3>Тертя на похилій площині (повна діаграма сил)</h3>
+  <p>На брусок на схилі діють <b>три реальні сили</b>: <b>тяжіння</b> (вниз), <b>реакція опори N</b> (перпендикулярно від поверхні) і <b>сила тертя</b> (вздовж схилу, проти зісковзування). Брусок стоїть, поки тертя здатне втримати його; коли тертя замало — він зісковзує.</p>
 
   <p><b>1. Тертя вистачає — брусок стоїть.</b></p>
-  <svg class="illu" viewBox="0 0 600 225" width="100%" style="max-width:520px">
+  <svg class="illu" viewBox="0 0 600 240" width="100%" style="max-width:540px">
     <defs>
-      <marker id="incA-o" markerWidth="13" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6 L1,11 Z" fill="#c2410c"/></marker>
-      <marker id="incA-t" markerWidth="13" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6 L1,11 Z" fill="#0d6f87"/></marker>
+      <marker id="fbdA-g" markerWidth="13" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6 L1,11 Z" fill="#1f1d1a"/></marker>
+      <marker id="fbdA-n" markerWidth="13" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6 L1,11 Z" fill="#5b21b6"/></marker>
+      <marker id="fbdA-f" markerWidth="13" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6 L1,11 Z" fill="#0d6f87"/></marker>
     </defs>
-    <polygon points="90,190 520,190 520,40" fill="#f6e1f5" stroke="#a21caf" stroke-width="2"/>
-    <path d="M105 190 l-12 13 M150 190 l-12 13 M195 190 l-12 13 M240 190 l-12 13 M285 190 l-12 13 M330 190 l-12 13 M375 190 l-12 13 M420 190 l-12 13 M465 190 l-12 13 M510 190 l-12 13" stroke="#b8b2a6" stroke-width="1.2"/>
-    <g transform="rotate(-19.2 305 115)"><rect x="273" y="95" width="64" height="22" rx="3" fill="#a21caf"/></g>
-    <line x1="305" y1="115" x2="239" y2="138" stroke="#c2410c" stroke-width="5" marker-end="url(#incA-o)"/>
-    <text x="232" y="155" text-anchor="end" font-family="Caveat" font-size="21" fill="#c2410c">F∥ скочувальна</text>
-    <line x1="305" y1="115" x2="371" y2="92" stroke="#0d6f87" stroke-width="5" marker-end="url(#incA-t)"/>
-    <text x="380" y="86" font-family="Caveat" font-size="21" fill="#0d6f87">F тертя</text>
-    <text x="305" y="216" text-anchor="middle" font-family="Space Grotesk" font-size="12" font-style="italic" fill="#4a463f">сили рівні → брусок лишається на місці</text>
+    <polygon points="120,200 420,200 420,40" fill="#f6e1f5" stroke="#a21caf" stroke-width="2"/>
+    <path d="M135 200 l-12 13 M170 200 l-12 13 M205 200 l-12 13 M240 200 l-12 13 M275 200 l-12 13 M310 200 l-12 13 M345 200 l-12 13 M380 200 l-12 13 M415 200 l-12 13" stroke="#b8b2a6" stroke-width="1.2"/>
+    <g transform="rotate(-28 270 120)"><rect x="240" y="99" width="60" height="22" rx="3" fill="#a21caf"/></g>
+    <!-- gravity -->
+    <line x1="270" y1="120" x2="270" y2="200" stroke="#1f1d1a" stroke-width="4" marker-end="url(#fbdA-g)"/>
+    <text x="278" y="216" font-family="Caveat" font-size="21" fill="#1f1d1a">F тяж</text>
+    <!-- normal reaction -->
+    <line x1="270" y1="120" x2="237" y2="58" stroke="#5b21b6" stroke-width="4" marker-end="url(#fbdA-n)"/>
+    <text x="232" y="52" text-anchor="end" font-family="Caveat" font-size="21" fill="#5b21b6">N — реакція опори</text>
+    <!-- friction (up the slope) -->
+    <line x1="270" y1="120" x2="306" y2="101" stroke="#0d6f87" stroke-width="4" marker-end="url(#fbdA-f)"/>
+    <text x="314" y="96" font-family="Caveat" font-size="21" fill="#0d6f87">F тертя</text>
+    <text x="300" y="234" text-anchor="middle" font-family="Space Grotesk" font-size="12" font-style="italic" fill="#4a463f">N і тертя разом зрівноважують тяжіння → брусок стоїть</text>
   </svg>
 
   <p><b>2. Тертя замало — брусок зісковзує.</b></p>
-  <svg class="illu" viewBox="0 0 600 225" width="100%" style="max-width:520px">
+  <svg class="illu" viewBox="0 0 600 240" width="100%" style="max-width:540px">
     <defs>
-      <marker id="incB-o" markerWidth="13" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6 L1,11 Z" fill="#c2410c"/></marker>
-      <marker id="incB-t" markerWidth="13" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6 L1,11 Z" fill="#0d6f87"/></marker>
-      <marker id="incB-v" markerWidth="13" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6 L1,11 Z" fill="#1f1d1a"/></marker>
+      <marker id="fbdB-g" markerWidth="13" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6 L1,11 Z" fill="#1f1d1a"/></marker>
+      <marker id="fbdB-n" markerWidth="13" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6 L1,11 Z" fill="#5b21b6"/></marker>
+      <marker id="fbdB-f" markerWidth="13" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,1 L12,6 L1,11 Z" fill="#0d6f87"/></marker>
     </defs>
-    <polygon points="90,190 520,190 520,40" fill="#f6e1f5" stroke="#a21caf" stroke-width="2"/>
-    <path d="M105 190 l-12 13 M150 190 l-12 13 M195 190 l-12 13 M240 190 l-12 13 M285 190 l-12 13 M330 190 l-12 13 M375 190 l-12 13 M420 190 l-12 13 M465 190 l-12 13 M510 190 l-12 13" stroke="#b8b2a6" stroke-width="1.2"/>
-    <g transform="rotate(-19.2 305 115)"><rect x="273" y="95" width="64" height="22" rx="3" fill="#a21caf"/></g>
-    <!-- long downhill force -->
-    <line x1="305" y1="115" x2="229" y2="141" stroke="#c2410c" stroke-width="5" marker-end="url(#incB-o)"/>
-    <text x="222" y="158" text-anchor="end" font-family="Caveat" font-size="21" fill="#c2410c">F∥ скочувальна</text>
-    <!-- short friction -->
-    <line x1="305" y1="115" x2="341" y2="102" stroke="#0d6f87" stroke-width="5" marker-end="url(#incB-t)"/>
-    <text x="350" y="98" font-family="Caveat" font-size="20" fill="#0d6f87">F тертя (мала)</text>
+    <polygon points="120,200 420,200 420,40" fill="#f6e1f5" stroke="#a21caf" stroke-width="2"/>
+    <path d="M135 200 l-12 13 M170 200 l-12 13 M205 200 l-12 13 M240 200 l-12 13 M275 200 l-12 13 M310 200 l-12 13 M345 200 l-12 13 M380 200 l-12 13 M415 200 l-12 13" stroke="#b8b2a6" stroke-width="1.2"/>
+    <g transform="rotate(-28 270 120)"><rect x="240" y="99" width="60" height="22" rx="3" fill="#a21caf"/></g>
+    <!-- gravity -->
+    <line x1="270" y1="120" x2="270" y2="200" stroke="#1f1d1a" stroke-width="4" marker-end="url(#fbdB-g)"/>
+    <text x="278" y="216" font-family="Caveat" font-size="21" fill="#1f1d1a">F тяж</text>
+    <!-- normal reaction -->
+    <line x1="270" y1="120" x2="237" y2="58" stroke="#5b21b6" stroke-width="4" marker-end="url(#fbdB-n)"/>
+    <text x="232" y="52" text-anchor="end" font-family="Caveat" font-size="21" fill="#5b21b6">N — реакція опори</text>
+    <!-- friction (small, up the slope) -->
+    <line x1="270" y1="120" x2="288" y2="110" stroke="#0d6f87" stroke-width="4" marker-end="url(#fbdB-f)"/>
+    <text x="296" y="106" font-family="Caveat" font-size="20" fill="#0d6f87">F тертя (мала)</text>
     <!-- sliding velocity, floats above slope -->
-    <line x1="294" y1="85" x2="247" y2="102" stroke="#1f1d1a" stroke-width="4" marker-end="url(#incB-v)"/>
-    <text x="240" y="96" text-anchor="end" font-family="Caveat" font-size="21" fill="#1f1d1a">ковзає вниз</text>
-    <text x="305" y="216" text-anchor="middle" font-family="Space Grotesk" font-size="12" font-style="italic" fill="#4a463f">скочувальна сила більша за тертя → брусок зісковзує</text>
+    <line x1="259" y1="99" x2="220" y2="120" stroke="#92400e" stroke-width="3" stroke-dasharray="6,4"/>
+    <text x="214" y="114" text-anchor="end" font-family="Caveat" font-size="20" fill="#92400e">ковзає вниз</text>
+    <text x="300" y="234" text-anchor="middle" font-family="Space Grotesk" font-size="12" font-style="italic" fill="#4a463f">тертя не врівноважує тяжіння → брусок зісковзує</text>
   </svg>
+
+  <div class="box">
+    <span class="label">Рецепт: як намалювати діаграму сил</span>
+    <ul>
+      <li><b>Крок 1.</b> Намалюй саме тіло (брусок або точку) — і більше нічого зайвого.</li>
+      <li><b>Крок 2.</b> Познач усі <b>реальні</b> сили стрілками від тіла: <b>тяжіння</b> (завжди вниз), <b>реакція опори N</b> (перпендикулярно до поверхні), <b>натяг</b> (вздовж нитки), <b>тертя</b> (вздовж поверхні, проти руху).</li>
+      <li><b>Крок 3.</b> Якщо поверхня похила — <b>розклади тяжіння</b> на складові: вздовж схилу й перпендикулярно до нього.</li>
+      <li><b>Крок 4.</b> Порівняй сили: якщо вони <b>врівноважені</b> — тіло у спокої; якщо ні — тіло рухається в бік більшої сили.</li>
+    </ul>
+    <p class="tip">Не плутай: складові тяжіння — це частини однієї сили (пунктир), а N і тертя — окремі реальні сили.</p>
+  </div>
 
   <div class="quiz">
     <span class="quiz-title">Перевір себе</span>
@@ -3908,6 +3928,29 @@ li::marker{ color: var(--orange); }
     <div class="answer">Відповідь: h = 50 м</div>
   </div>
 
+  <!-- PROBLEM 4 -->
+  <div class="problem">
+    <span class="num">№4</span>
+    <p class="stmt">Брусок стоїть на похилій площині. Силу тяжіння розклали на складові: <b>вздовж схилу — 15&nbsp;Н</b>, <b>перпендикулярно до схилу — 25&nbsp;Н</b>. Максимальна сила тертя спокою — 18&nbsp;Н. 1) Чому дорівнює сила реакції опори N? 2) Чи зісковзне брусок?</p>
+
+    <div class="steps">
+      <div class="step"><div class="body">
+        <p><b>Намалюємо діаграму сил.</b> На брусок діють три реальні сили: тяжіння (вниз), реакція опори <b>N</b> (перпендикулярно від поверхні) і сила <b>тертя</b> (вздовж схилу). Силу тяжіння зручно розкласти на дві складові — вздовж схилу й перпендикулярно до нього.</p>
+      </div></div>
+      <div class="step"><div class="body">
+        <p><b>Знайдемо N.</b> Поперек схилу брусок не рухається — отже, реакція опори зрівноважує перпендикулярну складову тяжіння. Тому <b>N = 25&nbsp;Н</b>.</p>
+      </div></div>
+      <div class="step"><div class="body">
+        <p><b>Порівняємо сили вздовж схилу.</b> Скочувальна складова тягне брусок униз із силою 15&nbsp;Н. Тертя спокою може дати щонайбільше 18&nbsp;Н. Оскільки <b>15&nbsp;Н &lt; 18&nbsp;Н</b>, тертя здатне втримати брусок.</p>
+      </div></div>
+      <div class="step"><div class="body">
+        <p><b>Висновок.</b> Тертя спокою «підлаштовується» й дає рівно стільки, скільки треба (15&nbsp;Н), щоб зрівноважити скочувальну складову. Брусок лишається на місці. Якби схил був крутіший і складова перевищила 18&nbsp;Н — брусок зісковзнув би.</p>
+      </div></div>
+    </div>
+
+    <div class="answer">Відповідь: N = 25 Н; брусок не зісковзує (бо 15 Н &lt; 18 Н)</div>
+  </div>
+
   <div class="box" style="margin-top: 40px;">
     <span class="label">Загальний алгоритм для будь-якої задачі</span>
     <ul>
@@ -3928,7 +3971,7 @@ li::marker{ color: var(--orange); }
     <span class="chapter-line"></span>
   </div>
   <h2>Великий <em>тест</em></h2>
-  <div class="sub" style="color: var(--orange);">22 питання з усього курсу — змішано</div>
+  <div class="sub" style="color: var(--orange);">24 питання з усього курсу — змішано</div>
 
   <div class="quiz">
     <span class="quiz-title">Фінальна перевірка</span>
@@ -4176,9 +4219,31 @@ li::marker{ color: var(--orange); }
       <div class="quiz-feedback"></div>
     </div>
 
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">23.</span><span>Брусок нерухомо лежить на похилій площині. Яка сила зрівноважує перпендикулярну складову сили тяжіння?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Поперек схилу тіло не рухається, бо реакція опори N зрівноважує перпендикулярну складову тяжіння.">сила реакції опори N</button>
+        <button type="button" class="quiz-option" data-explain="Тертя діє вздовж схилу й протидіє скочувальній складовій, а не перпендикулярній.">сила тертя</button>
+        <button type="button" class="quiz-option" data-explain="Нитки в задачі немає — брусок просто лежить на поверхні.">сила натягу нитки</button>
+        <button type="button" class="quiz-option" data-explain="Така сила є — це реакція опори.">жодна, такої сили немає</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">24.</span><span>На брусок на схилі скочувальна складова тяжіння дорівнює 20&nbsp;Н, а максимальна сила тертя спокою — 14&nbsp;Н. Що станеться з бруском?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Скочувальна складова (20 Н) більша за максимальне тертя (14 Н) → рівноваги немає, брусок зісковзує вниз.">зісковзне вниз</button>
+        <button type="button" class="quiz-option" data-explain="Для спокою тертя мало б бути ≥ 20 Н, а воно лише 14 Н.">лишиться нерухомим</button>
+        <button type="button" class="quiz-option" data-explain="Жодна сила не штовхає брусок угору схилом.">сам поїде вгору</button>
+        <button type="button" class="quiz-option" data-explain="Реакція опори тримає брусок на поверхні — він не відривається.">відірветься від поверхні</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
     <div class="quiz-result">
       <div class="quiz-result-line">
-        <span class="quiz-score">0 / 22</span>
+        <span class="quiz-score">0 / 24</span>
         <span class="quiz-percent">0%</span>
       </div>
       <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
