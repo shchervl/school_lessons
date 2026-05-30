@@ -1,0 +1,2466 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Алгебра · Готуємось до річного заліку · 7 клас</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Cotton Candy — light theme (calm cream) */
+  --bg: #faf7f4;
+  --paper: #ffffff;
+  --paper-2: #fdfbf9;
+  --ink: #2d1830;
+  --ink-soft: #6b4d68;
+  --line: #ebe0e4;
+  --rule: #d9c8d0;
+  --orange: #b03171;       /* muted rose — chapter 1 */
+  --orange-soft: #fbe6ee;
+  --teal: #0d6f87;         /* deep cyan — chapter 2 */
+  --teal-soft: #d6effa;
+  --blue: #5b21b6;         /* deep violet — chapter 3 */
+  --blue-soft: #ece5f8;
+  --gold: #92400e;         /* warm amber — chapter 4 */
+  --gold-soft: #fbedd9;
+  --plum: #a21caf;         /* deep magenta — chapter 5 */
+  --plum-soft: #f6e1f5;
+  --shadow: 0 1px 0 rgba(76,29,79,.06), 0 18px 40px -22px rgba(76,29,79,.18);
+  --bg-glow-1: rgba(176,49,113,.025);
+  --bg-glow-2: rgba(91,33,182,.025);
+  --quiz-ok-bg: #d8efd2;
+  --quiz-ok-border: #4a8a3a;
+  --quiz-ok-text: #2a5520;
+  --quiz-no-bg: #fde2e4;
+  --quiz-no-border: #b04a4a;
+  --quiz-no-text: #762020;
+  --quiz-reveal-bg: #ecf6e8;
+  --bar-track: rgba(255,255,255,.18);
+}
+
+[data-theme="dark"]{
+  /* Plum Glow — dark theme */
+  --bg: #1a0e2a;
+  --paper: #261438;
+  --paper-2: #2e1a44;
+  --ink: #fce7f3;
+  --ink-soft: #d8b8e8;
+  --line: #3d1f5e;
+  --rule: #4d2f6e;
+  --orange: #f9a8d4;       /* light pink */
+  --orange-soft: rgba(249,168,212,.18);
+  --teal: #67e8f9;         /* light cyan */
+  --teal-soft: rgba(103,232,249,.16);
+  --blue: #c084fc;         /* light violet */
+  --blue-soft: rgba(192,132,252,.16);
+  --gold: #fcd34d;         /* peach */
+  --gold-soft: rgba(252,211,77,.16);
+  --plum: #f472b6;         /* hot pink */
+  --plum-soft: rgba(244,114,182,.16);
+  --shadow: 0 1px 0 rgba(0,0,0,.4), 0 18px 40px -22px rgba(0,0,0,.6);
+  --bg-glow-1: rgba(249,168,212,.06);
+  --bg-glow-2: rgba(192,132,252,.06);
+  --quiz-ok-bg: rgba(74,138,58,.18);
+  --quiz-ok-border: #6abb55;
+  --quiz-ok-text: #b8e9aa;
+  --quiz-no-bg: rgba(176,74,74,.18);
+  --quiz-no-border: #d96a6a;
+  --quiz-no-text: #fbb8b8;
+  --quiz-reveal-bg: rgba(74,138,58,.10);
+  --bar-track: rgba(252,231,243,.18);
+}
+
+/* ── SVG illustration colours — dark-theme overrides ── */
+[data-theme="dark"] svg.illu [fill="#2d1830"]   { fill:   #e8d4f5; }
+[data-theme="dark"] svg.illu [stroke="#2d1830"] { stroke: #e8d4f5; }
+[data-theme="dark"] svg.illu [fill="#b03171"]   { fill:   #f9a8d4; }
+[data-theme="dark"] svg.illu [stroke="#b03171"] { stroke: #f9a8d4; }
+[data-theme="dark"] svg.illu [fill="#0d6f87"]   { fill:   #67e8f9; }
+[data-theme="dark"] svg.illu [stroke="#0d6f87"] { stroke: #67e8f9; }
+[data-theme="dark"] svg.illu [fill="#6b4d68"]   { fill:   #c4a8d8; }
+[data-theme="dark"] svg.illu [stroke="#6b4d68"] { stroke: #c4a8d8; }
+[data-theme="dark"] svg.illu [fill="#5b21b6"]   { fill:   #c084fc; }
+[data-theme="dark"] svg.illu [stroke="#5b21b6"] { stroke: #c084fc; }
+[data-theme="dark"] svg.illu [fill="#92400e"]   { fill:   #fcd34d; }
+[data-theme="dark"] svg.illu [stroke="#92400e"] { stroke: #fcd34d; }
+[data-theme="dark"] svg.illu [fill="#a21caf"]   { fill:   #f472b6; }
+[data-theme="dark"] svg.illu [stroke="#a21caf"] { stroke: #f472b6; }
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(circle at 20% 10%, var(--bg-glow-1), transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--bg-glow-2), transparent 40%);
+  min-height: 100vh;
+  transition: background-color .35s ease, color .35s ease;
+}
+
+/* subtle paper texture */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+}
+
+.wrap{
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 28px 100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ───────── HEADER ───────── */
+.tag{
+  font-family: 'Caveat', cursive;
+  color: var(--orange);
+  font-size: 1.6rem;
+  letter-spacing: .02em;
+  display: inline-block;
+}
+
+h1.title{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 14px 0 18px;
+  color: var(--ink);
+}
+h1.title em{
+  font-style: italic;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.lede{
+  font-size: 1.18rem;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin-bottom: 28px;
+}
+
+.meta{
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--ink-soft);
+}
+.meta span strong{ color: var(--ink); }
+
+/* ───────── PLAN ───────── */
+.plan{
+  margin: 56px 0 64px;
+  padding: 32px 28px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.plan::before{
+  content:"⌂";
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  background: var(--bg);
+  padding: 0 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  color: var(--orange);
+}
+.plan h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 1.6rem;
+  margin-bottom: 22px;
+  color: var(--ink);
+}
+.days{ display: grid; gap: 10px; }
+.day{
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 18px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--rule);
+}
+.day:last-child{ border-bottom: none; }
+a.day{ text-decoration: none; color: inherit; cursor: pointer; border-radius: 4px; transition: background .15s; }
+a.day:hover{ background: var(--paper-2); }
+section.chapter[id], div[id^="rozdil"]{ scroll-margin-top: 22px; }
+.day .num{
+  font-family: 'Caveat', cursive;
+  font-size: 1.7rem;
+  color: var(--orange);
+  font-weight: 700;
+}
+.day .what{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.day .what small{
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin-top: 3px;
+}
+.day .pill{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--orange-soft);
+  color: var(--orange);
+}
+.day.t1 .pill{ background: var(--orange-soft); color: var(--orange); }
+.day.t2 .pill{ background: var(--teal-soft); color: var(--teal); }
+.day.t3 .pill{ background: var(--blue-soft); color: var(--blue); }
+.day.t4 .pill{ background: var(--gold-soft); color: var(--gold); }
+.day.t5 .pill{ background: var(--plum-soft); color: var(--plum); }
+
+/* ───────── CHAPTERS ───────── */
+.chapter{
+  margin: 80px 0;
+  position: relative;
+}
+.chapter-head{
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+.chapter-num{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  letter-spacing: .05em;
+}
+.chapter-line{
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.chapter h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.chapter .sub{
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  margin-bottom: 32px;
+}
+
+.c1 .chapter h2 em, .c1 .sub{ color: var(--orange); }
+.c2 .chapter h2 em, .c2 .sub{ color: var(--teal); }
+.c3 .chapter h2 em, .c3 .sub{ color: var(--blue); }
+.c4 .chapter h2 em, .c4 .sub{ color: var(--gold); }
+.c5 .chapter h2 em, .c5 .sub{ color: var(--plum); }
+.chapter h2 em{ font-style: italic; font-weight: 600; }
+
+/* paragraphs */
+p{ margin-bottom: 16px; }
+p + p{ margin-top: 0; }
+
+h3{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 36px 0 14px;
+  letter-spacing: -0.005em;
+}
+h3::before{
+  content: "§ ";
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* call-out boxes */
+.box{
+  margin: 24px 0;
+  padding: 22px 24px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+  position: relative;
+}
+.c2 .box{ border-left-color: var(--teal); }
+.c3 .box{ border-left-color: var(--blue); }
+.c4 .box{ border-left-color: var(--gold); }
+.c5 .box{ border-left-color: var(--plum); }
+
+.box .label{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  margin-bottom: 8px;
+  display: block;
+}
+.c2 .box .label{ color: var(--teal); }
+.c3 .box .label{ color: var(--blue); }
+.c4 .box .label{ color: var(--gold); }
+.c5 .box .label{ color: var(--plum); }
+
+/* collapsible proof box */
+details.proof{
+  margin: 24px 0;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+}
+details.proof > summary{
+  padding: 14px 24px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  user-select: none;
+}
+details.proof > summary::-webkit-details-marker{ display: none; }
+details.proof > summary::before{
+  content: '▶';
+  font-size: .65rem;
+  transition: transform .2s;
+  display: inline-block;
+}
+details.proof[open] > summary::before{ transform: rotate(90deg); }
+details.proof > .proof-body{
+  padding: 0 24px 22px;
+}
+
+/* formula card */
+.formula{
+  margin: 28px 0;
+  padding: 28px 24px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 14px 30px -14px rgba(31,29,26,.4);
+}
+.formula::before, .formula::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--bg);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.formula::before{ left: -4px; }
+.formula::after{ right: -4px; }
+
+.formula .eq{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+  margin-bottom: 10px;
+}
+.formula .where{
+  font-size: .92rem;
+  opacity: .85;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* example block */
+.example{
+  margin: 24px 0;
+  padding: 24px;
+  background: var(--orange-soft);
+  border-radius: 4px;
+  position: relative;
+}
+.c2 .example{ background: var(--teal-soft); }
+.c3 .example{ background: var(--blue-soft); }
+.c4 .example{ background: var(--gold-soft); }
+.c5 .example{ background: var(--plum-soft); }
+
+.example::before{
+  content: "З життя";
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  background: var(--bg);
+  padding: 0 10px;
+  color: var(--orange);
+  transform: rotate(-1.5deg);
+}
+.c2 .example::before{ color: var(--teal); }
+.c3 .example::before{ color: var(--blue); }
+.c4 .example::before{ color: var(--gold); }
+.c5 .example::before{ color: var(--plum); }
+
+.example p:last-child{ margin-bottom: 0; }
+
+/* important inline */
+b, strong{ font-weight: 600; color: var(--ink); }
+.hl-o{ background: linear-gradient(transparent 60%, var(--orange-soft) 60%); padding: 0 2px; }
+.hl-t{ background: linear-gradient(transparent 60%, var(--teal-soft) 60%); padding: 0 2px; }
+.hl-b{ background: linear-gradient(transparent 60%, var(--blue-soft) 60%); padding: 0 2px; }
+.hl-g{ background: linear-gradient(transparent 60%, var(--gold-soft) 60%); padding: 0 2px; }
+
+ul, ol{ padding-left: 24px; margin: 14px 0 18px; }
+li{ margin-bottom: 8px; }
+li::marker{ color: var(--orange); }
+.c2 li::marker{ color: var(--teal); }
+.c3 li::marker{ color: var(--blue); }
+.c4 li::marker{ color: var(--gold); }
+.c5 li::marker{ color: var(--plum); }
+
+/* illustrations */
+.illu{
+  margin: 24px auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* small note */
+.note{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  padding: 12px 0 8px;
+  transform: rotate(-.5deg);
+}
+
+/* density table */
+.dtable{
+  border-collapse: collapse;
+  width: 100%;
+  margin: 18px 0;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+.dtable th, .dtable td{
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: .96rem;
+}
+.dtable th{
+  background: var(--bg);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: .88rem;
+  letter-spacing: .04em;
+}
+.dtable tr:last-child td{ border-bottom: none; }
+.dtable .num{ font-family: 'Space Grotesk', sans-serif; font-feature-settings: "tnum"; color: var(--teal); font-weight: 600; }
+
+/* solution problem */
+.problem{
+  margin: 32px 0;
+  padding: 28px 28px 24px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+.problem .num{
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  color: var(--plum);
+  font-weight: 700;
+  line-height: 1;
+}
+.problem .stmt{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  margin: 8px 0 20px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--plum);
+  background: var(--bg);
+}
+.steps{
+  counter-reset: step;
+}
+.step{
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+  align-items: start;
+}
+.step::before{
+  content: counter(step);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--plum);
+  background: var(--plum-soft);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.step .body p{ margin-bottom: 6px; }
+.answer{
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/* footer */
+.outro{
+  margin-top: 90px;
+  padding: 40px 28px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  text-align: center;
+}
+.outro h3{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: var(--paper);
+}
+.outro h3::before{ content: ""; }
+.outro p{ opacity: .85; max-width: 540px; margin: 0 auto 12px; }
+.outro .sig{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--orange);
+  margin-top: 18px;
+}
+
+/* small SVG decorations */
+.deco-line{ display: block; margin: 24px auto; opacity: .5; }
+
+.tip{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  display: inline-block;
+  background: var(--gold-soft);
+  padding: 4px 14px;
+  border-radius: 20px;
+  color: var(--gold);
+  margin: 8px 0;
+}
+
+/* ───────── FLIP CARDS / CAROUSEL ───────── */
+.cards-section{ margin: 56px 0 64px; }
+.cards-head{
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+.cards-section h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.8rem;
+  color: var(--ink);
+}
+.cards-section .sub{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  margin-bottom: 22px;
+}
+
+.cards-counter{
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  letter-spacing: .08em;
+  margin-bottom: 14px;
+}
+.cards-counter .now{ color: var(--orange); font-weight: 600; }
+
+.cards-carousel{
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  gap: 18px;
+  align-items: center;
+}
+.cards-arrow{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background .15s, color .15s, transform .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+.cards-arrow:hover{
+  background: var(--ink);
+  color: var(--paper);
+  transform: scale(1.06);
+}
+.cards-arrow:active{ transform: scale(.96); }
+
+.cards-stage{
+  position: relative;
+  height: 360px;
+  perspective: 1400px;
+}
+.flip-card{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+.flip-card.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+.flip-card-inner{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .7s cubic-bezier(.4,.2,.2,1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-card-inner{ transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back{
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.flip-card-front{
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+}
+.flip-card-back{
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotateY(180deg);
+  border-color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  padding: 22px 24px;
+  text-align: left;
+}
+.flip-card-q{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 3rem;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.flip-card-hint{
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  color: var(--ink-soft);
+  margin-top: 16px;
+}
+.flip-card-a{
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  line-height: 1.15;
+  text-align: center;
+  margin: 4px 0 0;
+}
+.flip-card-a small{
+  display: inline;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem;
+  opacity: .75;
+  margin-left: 6px;
+  font-weight: 400;
+}
+.flip-card-purpose{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  text-align: center;
+  opacity: .92;
+  margin: 6px 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(255,255,255,.18);
+}
+.flip-card-vars{
+  display: grid;
+  grid-template-columns: minmax(48px, auto) 1fr;
+  column-gap: 18px;
+  row-gap: 8px;
+  align-content: start;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+.flip-card-vars dt{
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--orange);
+  text-align: right;
+  font-size: 1rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+.flip-card-vars dd{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .85rem;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  padding-top: 1px;
+  color: inherit;
+  opacity: .92;
+}
+.flip-card.c-o .flip-card-vars dt{ color: var(--orange); }
+.flip-card.c-t .flip-card-vars dt{ color: var(--teal); }
+.flip-card.c-b .flip-card-vars dt{ color: var(--blue); }
+.flip-card.c-g .flip-card-vars dt{ color: var(--gold); }
+.flip-card.c-p .flip-card-vars dt{ color: var(--plum); }
+
+/* override the global b{color: var(--ink)} inside dark cards */
+.flip-card-back b, .flip-card-back strong{ color: inherit; font-weight: 700; }
+
+.flip-card-note{
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255,255,255,.15);
+  opacity: .88;
+  line-height: 1.25;
+}
+.flip-card-tag{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  margin-top: 18px;
+  opacity: .85;
+}
+.flip-card.c-o .flip-card-tag{ color: var(--orange-soft); }
+.flip-card.c-t .flip-card-tag{ color: var(--teal-soft); }
+.flip-card.c-b .flip-card-tag{ color: var(--blue-soft); }
+.flip-card.c-g .flip-card-tag{ color: var(--gold-soft); }
+.flip-card.c-p .flip-card-tag{ color: var(--plum-soft); }
+.flip-card.c-o .flip-card-front{ border-top: 4px solid var(--orange); }
+.flip-card.c-t .flip-card-front{ border-top: 4px solid var(--teal); }
+.flip-card.c-b .flip-card-front{ border-top: 4px solid var(--blue); }
+.flip-card.c-g .flip-card-front{ border-top: 4px solid var(--gold); }
+.flip-card.c-p .flip-card-front{ border-top: 4px solid var(--plum); }
+
+.cards-dots{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.cards-dot{
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--rule);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+}
+.cards-dot:hover{ transform: scale(1.4); background: var(--ink-soft); }
+.cards-dot.active{ background: var(--orange); transform: scale(1.4); }
+
+.cards-tip{
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 18px;
+}
+
+/* ───────── QUIZ ───────── */
+.quiz{
+  margin: 40px 0 8px;
+  padding: 30px 28px 22px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.quiz::before{
+  content: "?";
+  position: absolute;
+  top: -20px;
+  left: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+.c2 .quiz::before{ background: var(--teal); }
+.c3 .quiz::before{ background: var(--blue); }
+.c4 .quiz::before{ background: var(--gold); }
+.c5 .quiz::before{ background: var(--plum); }
+
+.quiz-title{
+  font-family: 'Caveat', cursive;
+  font-size: 1.7rem;
+  color: var(--orange);
+  display: block;
+  line-height: 1.1;
+}
+.c2 .quiz-title{ color: var(--teal); }
+.c3 .quiz-title{ color: var(--blue); }
+.c4 .quiz-title{ color: var(--gold); }
+.c5 .quiz-title{ color: var(--plum); }
+
+.quiz-sub{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin-bottom: 22px;
+}
+
+.quiz-q{
+  margin: 22px 0;
+  padding-top: 22px;
+  border-top: 1px dashed var(--rule);
+}
+.quiz-q:first-of-type{ border-top: none; padding-top: 6px; }
+
+.quiz-q-text{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 10px;
+}
+.quiz-q-text .qn{
+  color: var(--ink-soft);
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+.quiz-options{ display: grid; gap: 8px; }
+.quiz-option{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  color: var(--ink);
+  transition: background .15s, border-color .15s, transform .15s;
+}
+.quiz-option:hover:not(:disabled){
+  background: var(--bg);
+  border-color: var(--rule);
+  transform: translateX(2px);
+}
+.quiz-option:disabled{ cursor: default; }
+.quiz-option.correct{
+  background: var(--quiz-ok-bg);
+  border-color: var(--quiz-ok-border);
+  color: var(--quiz-ok-text);
+}
+.quiz-option.wrong{
+  background: var(--quiz-no-bg);
+  border-color: var(--quiz-no-border);
+  color: var(--quiz-no-text);
+}
+.quiz-option.reveal{
+  border-color: var(--quiz-ok-border);
+  background: var(--quiz-reveal-bg);
+  color: var(--quiz-ok-text);
+}
+
+.quiz-feedback{
+  margin-top: 12px;
+  padding: 10px 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .96rem;
+  border-left: 3px solid var(--ink-soft);
+  background: var(--bg);
+  border-radius: 0 3px 3px 0;
+  display: none;
+}
+.quiz-feedback.show{ display: block; }
+.quiz-feedback.ok{ border-left-color: var(--quiz-ok-border); color: var(--quiz-ok-text); }
+.quiz-feedback.no{ border-left-color: var(--quiz-no-border); color: var(--quiz-no-text); }
+
+.quiz-result{
+  margin-top: 26px;
+  padding: 20px 22px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  display: none;
+}
+.quiz-result.show{ display: block; }
+.quiz-result-line{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.quiz-score{ font-size: 1.3rem; font-style: italic; font-weight: 600; }
+.quiz-percent{ font-family: 'Caveat', cursive; font-size: 1.4rem; color: var(--orange); }
+.c2 .quiz-percent{ color: var(--teal-soft); }
+.c3 .quiz-percent{ color: var(--blue-soft); }
+.c4 .quiz-percent{ color: var(--gold-soft); }
+.c5 .quiz-percent{ color: var(--plum-soft); }
+.quiz-bar{
+  height: 8px;
+  background: var(--bar-track);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.quiz-bar-fill{
+  height: 100%;
+  background: var(--orange);
+  width: 0;
+  transition: width .8s cubic-bezier(.4,.2,.2,1);
+}
+.c2 .quiz-bar-fill{ background: var(--teal-soft); }
+.c3 .quiz-bar-fill{ background: var(--blue-soft); }
+.c4 .quiz-bar-fill{ background: var(--gold-soft); }
+.c5 .quiz-bar-fill{ background: var(--plum-soft); }
+.quiz-verdict{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--paper);
+  opacity: .92;
+  display: block;
+  margin-top: 8px;
+}
+.quiz-restart{
+  margin-top: 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .92rem;
+  background: transparent;
+  border: 1px solid var(--paper);
+  color: var(--paper);
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: .85;
+  transition: opacity .15s, background .15s;
+}
+.quiz-restart:hover{ opacity: 1; background: rgba(251,246,234,.1); }
+
+/* ───────── DARK-THEME OVERRIDES (inverted cards stay readable) ───────── */
+[data-theme="dark"] .formula,
+[data-theme="dark"] .answer,
+[data-theme="dark"] .outro,
+[data-theme="dark"] .quiz-result,
+[data-theme="dark"] .flip-card-back{
+  background: linear-gradient(135deg, #2e1a44, #3d1f5e);
+  color: #fce7f3;
+  border: 1px solid #4d2f6e;
+}
+[data-theme="dark"] .formula .where{ color: #d8b8e8; opacity: .9; }
+[data-theme="dark"] .outro h3{ color: #fce7f3; }
+[data-theme="dark"] .outro p{ color: #d8b8e8; }
+[data-theme="dark"] .outro .sig{ color: var(--orange); }
+[data-theme="dark"] .quiz-verdict{ color: #fce7f3; }
+[data-theme="dark"] .quiz-restart{ border-color: #d8b8e8; color: #fce7f3; }
+[data-theme="dark"] .quiz-percent{ color: var(--orange); }
+[data-theme="dark"] .flip-card-back{ border-radius: 6px; }
+[data-theme="dark"] .flip-card-tag{ opacity: 1; }
+
+/* dark — softer contrast for body radial glows is already done via --bg-glow-* */
+
+/* ───────── THEME TOGGLE ───────── */
+.theme-toggle{
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  font-family: 'JetBrains Mono', monospace;
+  backdrop-filter: blur(8px);
+}
+.theme-toggle button{
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: .72rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background .2s, color .2s;
+}
+.theme-toggle button:hover{ color: var(--ink); }
+.theme-toggle button.on{
+  background: var(--orange);
+  color: var(--paper);
+}
+[data-theme="dark"] .theme-toggle button.on{ color: var(--bg); }
+
+/* All elements smoothly transition colors */
+.wrap, .plan, .day, .chapter, .box, .formula, .example, .problem, .answer,
+.outro, .quiz, .quiz-option, .quiz-feedback, .quiz-result, .flip-card-front,
+.flip-card-back, .cards-arrow, .cards-dot, .dtable, .dtable th, .dtable td{
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+
+@media (max-width: 600px){
+  .theme-toggle{ top: 12px; right: 12px; padding: 3px; }
+  .theme-toggle button{ padding: 5px 9px; font-size: .68rem; }
+  body{ font-size: 17px; }
+  .wrap{ padding: 32px 18px 80px; }
+  .formula .eq{ font-size: 1.6rem; }
+  .day{ grid-template-columns: 60px 1fr; }
+  .day .pill{ grid-column: 1 / -1; justify-self: start; margin-top: 4px; }
+  .cards-carousel{ grid-template-columns: 44px 1fr 44px; gap: 10px; }
+  .cards-arrow{ width: 44px; height: 44px; font-size: 1.3rem; }
+  .cards-stage{ height: 340px; }
+  .flip-card-front{ padding: 20px; }
+  .flip-card-back{ padding: 18px 18px; }
+  .flip-card-q{ font-size: 2.1rem; }
+  .flip-card-a{ font-size: 1.45rem; }
+  .flip-card-hint{ font-size: 1.3rem; }
+  .flip-card-purpose{ font-size: 1.15rem; margin: 4px 0 10px; padding-bottom: 8px; }
+  .flip-card-vars{ column-gap: 12px; row-gap: 6px; }
+  .flip-card-vars dt{ font-size: .92rem; }
+  .flip-card-vars dd{ font-size: .78rem; line-height: 1.35; }
+  .flip-card-note{ font-size: 1.1rem; padding-top: 8px; margin-top: 10px; }
+  .flip-card-tag{ font-size: 1.15rem; }
+}
+.home-link{display:inline-flex;align-items:center;gap:7px;font-family:'Space Grotesk',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);text-decoration:none;margin-bottom:28px;transition:color .15s,transform .15s}
+.home-link:hover{color:var(--orange);transform:translateX(-4px)}
+.to-plan{position:fixed;right:18px;bottom:18px;z-index:50;display:inline-flex;align-items:center;gap:7px;padding:11px 18px;background:var(--orange);color:#fff;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.03em;cursor:pointer;box-shadow:var(--shadow);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s,filter .2s}
+.to-plan.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.to-plan:hover{filter:brightness(.92)}
+[data-theme="dark"] .to-plan{color:var(--bg)}
+#plan{scroll-margin-top:22px}
+@media (max-width:600px){.to-plan{right:12px;bottom:12px;padding:9px 14px;font-size:.78rem}}
+</style>
+<script>
+(function(){
+  try {
+    var saved = localStorage.getItem('algebra-theme');
+    var theme = saved || 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch(e) {}
+})();
+</script>
+</head>
+<body>
+<div class="theme-toggle" role="group" aria-label="Тема оформлення">
+  <button type="button" class="tt-light on" data-theme-set="light" aria-label="Світла тема">☀ light</button>
+  <button type="button" class="tt-dark" data-theme-set="dark" aria-label="Темна тема">☾ dark</button>
+</div>
+<div class="wrap">
+<a class="home-link" href="index.html">← усі курси</a>
+
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header>
+  <div class="tag">~ для тих, хто хоче нарешті зрозуміти, а не зазубрити ~</div>
+  <h1 class="title">Алгебра, яку справді<br/><em>можна зрозуміти</em></h1>
+  <p class="lede">Курс готує до річного заліку з алгебри за 7 клас. Усі питання програми — теорія і практика — з прикладами, поясненнями «звідки це береться» і ключовою ідеєю кожної формули. Перевір себе тестами в кінці кожного розділу.</p>
+  <div class="meta">
+    <span><strong>5</strong> розділів</span>
+    <span><strong>7</strong> днів</span>
+    <span><strong>5</strong> тестів</span>
+    <span><strong>14</strong> карток</span>
+    <span>≈ <strong>30</strong> хв на день</span>
+  </div>
+</header>
+
+<!-- ═══════════════════ PLAN ═══════════════════ -->
+<section class="plan" id="plan">
+  <h2>Як вчитися: план на тиждень</h2>
+  <div class="days">
+    <a href="#rozdil1" class="day t1">
+      <span class="num">День 1</span>
+      <span class="what">Вирази, тотожності, степінь, многочлени <small>тотожно рівні вирази, властивості степеня, одночлени й многочлени та дії з ними</small></span>
+      <span class="pill">розділ 1</span>
+    </a>
+    <a href="#rozdil2" class="day t2">
+      <span class="num">День 2–3</span>
+      <span class="what">Розкладання на множники та формули скороченого множення <small>спільний множник, групування, різниця квадратів, квадрат суми/різниці, куби, повний квадрат</small></span>
+      <span class="pill">розділ 2</span>
+    </a>
+    <a href="#rozdil3" class="day t3">
+      <span class="num">День 4</span>
+      <span class="what">Лінійні рівняння <small>ax = b і три види розв'язків, рівняння-добуток = 0, рівняння з модулем</small></span>
+      <span class="pill">розділ 3</span>
+    </a>
+    <a href="#rozdil4" class="day t4">
+      <span class="num">День 5</span>
+      <span class="what">Лінійна функція та її графік <small>y = kx + b, нахил і зсув, точки перетину з осями та між графіками</small></span>
+      <span class="pill">розділ 4</span>
+    </a>
+    <a href="#rozdil5" class="day t5">
+      <span class="num">День 6–7</span>
+      <span class="what">Системи рівнянь і текстові задачі <small>три способи розв'язання, кількість розв'язків, задачі на складання рівнянь</small></span>
+      <span class="pill">розділ 5</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════ FLASHCARDS ═══════════════════ -->
+<section class="cards-section" id="kartki">
+  <div class="cards-head">
+    <h2>Картки-нагадувалки</h2>
+  </div>
+  <div class="sub">клікни на картку, щоб побачити; ← / → — перелистати</div>
+
+  <div class="cards-counter"><span class="now">1</span> / <span class="total">14</span></div>
+
+  <div class="cards-carousel">
+    <button type="button" class="cards-arrow cards-prev" aria-label="Попередня картка">◂</button>
+    <div class="cards-stage">
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: множення степенів">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">aˣ · aʸ = ?</div>
+          <div class="flip-card-hint">множення степенів</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= aˣ⁺ʸ</div>
+          <div class="flip-card-purpose">однакова основа — показники додаються</div>
+          <dl class="flip-card-vars">
+            <dt>основа</dt><dd>має бути однаковою (тут — a)</dd>
+            <dt>показники</dt><dd>додаємо</dd>
+          </dl>
+          <p class="flip-card-note">a³ · a⁵ = a⁸</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: ділення степенів">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">aˣ : aʸ = ?</div>
+          <div class="flip-card-hint">ділення степенів</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= aˣ⁻ʸ</div>
+          <div class="flip-card-purpose">однакова основа — показники віднімаються</div>
+          <dl class="flip-card-vars">
+            <dt>основа</dt><dd>однакова, a ≠ 0</dd>
+            <dt>показники</dt><dd>віднімаємо: верхній − нижній</dd>
+          </dl>
+          <p class="flip-card-note">a⁷ : a³ = a⁴</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: степінь степеня">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">(aˣ)ʸ = ?</div>
+          <div class="flip-card-hint">степінь степеня</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= aˣ·ʸ</div>
+          <div class="flip-card-purpose">показники перемножуються</div>
+          <dl class="flip-card-vars">
+            <dt>(ab)ˣ</dt><dd>= aˣ · bˣ</dd>
+            <dt>(a:b)ˣ</dt><dd>= aˣ : bˣ</dd>
+          </dl>
+          <p class="flip-card-note">(a²)³ = a⁶, &nbsp; (2a)³ = 8a³</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: різниця квадратів">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">a² − b² = ?</div>
+          <div class="flip-card-hint">різниця квадратів</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= (a − b)(a + b)</div>
+          <div class="flip-card-purpose">різниця квадратів = добуток різниці на суму</div>
+          <dl class="flip-card-vars">
+            <dt>працює</dt><dd>лише для різниці, не для суми</dd>
+            <dt>a² + b²</dt><dd>на множники не розкладається</dd>
+          </dl>
+          <p class="flip-card-note">x² − 9 = (x − 3)(x + 3)</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: квадрат суми">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">(a + b)² = ?</div>
+          <div class="flip-card-hint">квадрат суми</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= a² + 2ab + b²</div>
+          <div class="flip-card-purpose">квадрат першого + подвоєний добуток + квадрат другого</div>
+          <dl class="flip-card-vars">
+            <dt>середній</dt><dd>подвоєний добуток 2ab — не забувай!</dd>
+            <dt>(a − b)²</dt><dd>= a² − 2ab + b²</dd>
+          </dl>
+          <p class="flip-card-note">(x + 3)² = x² + 6x + 9</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: різниця кубів">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">a³ − b³ = ?</div>
+          <div class="flip-card-hint">різниця кубів</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= (a−b)(a²+ab+b²)</div>
+          <div class="flip-card-purpose">різниця кубів через неповний квадрат суми</div>
+          <dl class="flip-card-vars">
+            <dt>a³ + b³</dt><dd>= (a+b)(a²−ab+b²)</dd>
+            <dt>знак у дужках</dt><dd>середній член — протилежний першому</dd>
+          </dl>
+          <p class="flip-card-note">«неповний квадрат»: без двійки перед ab</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: куб суми">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">(a + b)³ = ?</div>
+          <div class="flip-card-hint">куб суми</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">a³+3a²b+3ab²+b³</div>
+          <div class="flip-card-purpose">куб першого, далі коефіцієнти 3, 3, потім куб другого</div>
+          <dl class="flip-card-vars">
+            <dt>(a − b)³</dt><dd>= a³ − 3a²b + 3ab² − b³</dd>
+            <dt>знаки</dt><dd>у різниці чергуються: + − + −</dd>
+          </dl>
+          <p class="flip-card-note">коефіцієнти 1 · 3 · 3 · 1</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: лінійне рівняння ax=b">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">ax = b</div>
+          <div class="flip-card-hint">скільки розв'язків?</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">x = b/a, &nbsp;якщо a≠0</div>
+          <div class="flip-card-purpose">три випадки залежно від a та b</div>
+          <dl class="flip-card-vars">
+            <dt>a ≠ 0</dt><dd>один корінь x = b/a</dd>
+            <dt>a=0, b≠0</dt><dd>коренів немає (0 = b — хибно)</dd>
+            <dt>a=0, b=0</dt><dd>безліч коренів (будь-яке x)</dd>
+          </dl>
+          <p class="flip-card-note">0·x = 5 — пусто; 0·x = 0 — будь-яке x</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: рівняння-добуток">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">A · B = 0</div>
+          <div class="flip-card-hint">добуток дорівнює нулю</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">A = 0 або B = 0</div>
+          <div class="flip-card-purpose">добуток = 0 ⇔ хоча б один множник = 0</div>
+          <dl class="flip-card-vars">
+            <dt>кожну дужку</dt><dd>прирівнюємо до нуля окремо</dd>
+            <dt>відповідь</dt><dd>усі знайдені корені разом</dd>
+          </dl>
+          <p class="flip-card-note">(x−2)(x+5)=0 → x=2 або x=−5</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: рівняння з модулем">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">|x| = a</div>
+          <div class="flip-card-hint">рівняння з модулем</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">x = a або x = −a</div>
+          <div class="flip-card-purpose">модуль — відстань від нуля, тож два варіанти</div>
+          <dl class="flip-card-vars">
+            <dt>a &gt; 0</dt><dd>два корені: a і −a</dd>
+            <dt>a = 0</dt><dd>один корінь: 0</dd>
+            <dt>a &lt; 0</dt><dd>коренів немає</dd>
+          </dl>
+          <p class="flip-card-note">|x| = 7 → x = 7 або x = −7</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: лінійна функція">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">y = kx + b</div>
+          <div class="flip-card-hint">лінійна функція</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">графік — пряма</div>
+          <div class="flip-card-purpose">k — нахил, b — точка перетину з віссю y</div>
+          <dl class="flip-card-vars">
+            <dt>k &gt; 0</dt><dd>пряма зростає (вгору)</dd>
+            <dt>k &lt; 0</dt><dd>пряма спадає (вниз)</dd>
+            <dt>b</dt><dd>де пряма перетинає вісь Oy</dd>
+          </dl>
+          <p class="flip-card-note">k = 0 → горизонтальна пряма y = b</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: перетин з осями">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">перетин з осями</div>
+          <div class="flip-card-hint">y = kx + b</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">Oy: x=0 → y=b</div>
+          <div class="flip-card-purpose">щоб знайти точку на осі — другу координату прирівняй до 0</div>
+          <dl class="flip-card-vars">
+            <dt>з віссю Oy</dt><dd>підстав x = 0, отримаєш (0; b)</dd>
+            <dt>з віссю Ox</dt><dd>підстав y = 0, знайди x = −b/k</dd>
+          </dl>
+          <p class="flip-card-note">дві точки — і пряма побудована</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: способи розв'язання систем">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">система рівнянь</div>
+          <div class="flip-card-hint">3 способи</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">графічний · підстановка · додавання</div>
+          <div class="flip-card-purpose">розв'язок системи — спільна точка (x; y)</div>
+          <dl class="flip-card-vars">
+            <dt>графічний</dt><dd>точка перетину прямих</dd>
+            <dt>підстановки</dt><dd>виразив одну змінну → підставив</dd>
+            <dt>додавання</dt><dd>склав рівняння, щоб зникла змінна</dd>
+          </dl>
+          <p class="flip-card-note">відповідь — пара чисел (x; y)</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: кількість розв'язків системи">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">скільки розв'язків?</div>
+          <div class="flip-card-hint">система двох прямих</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">1 · 0 · ∞</div>
+          <div class="flip-card-purpose">залежить від кутових коефіцієнтів прямих</div>
+          <dl class="flip-card-vars">
+            <dt>прямі перетинаються</dt><dd>один розв'язок (k₁ ≠ k₂)</dd>
+            <dt>паралельні</dt><dd>розв'язків немає (k₁ = k₂, b різні)</dd>
+            <dt>збігаються</dt><dd>безліч розв'язків</dd>
+          </dl>
+          <p class="flip-card-note">різний нахил → завжди один перетин</p>
+        </div>
+      </div>
+    </button>
+
+    </div>
+    <button type="button" class="cards-arrow cards-next" aria-label="Наступна картка">▸</button>
+  </div>
+  <div class="cards-dots"></div>
+  <div class="cards-tip">14 формул, які треба знати напам'ять до заліку</div>
+</section>
+
+<!-- ═══════════════════ CHAPTER 1 ═══════════════════ -->
+<div class="c1" id="rozdil1">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ I</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Вирази, степінь та <em>многочлени</em></h2>
+  <div class="sub">мова, якою записана вся алгебра</div>
+
+  <h3>Тотожно рівні вирази. Тотожності</h3>
+  <p>Два вирази називають <b>тотожно рівними</b>, якщо при <em>будь-яких</em> значеннях змінних вони набувають однакових значень. Наприклад, <b>2(x + 3)</b> і <b>2x + 6</b> — це той самий вираз, просто записаний по-різному. Підстав замість x хоч 0, хоч 100 — результати збігатимуться завжди.</p>
+  <p><b>Тотожність</b> — це рівність, правильна при всіх допустимих значеннях змінних. А <b>тотожне перетворення</b> — це заміна виразу на тотожно рівний йому (розкриття дужок, зведення подібних, винесення множника). Уся алгебра 7 класу — це вміння робити такі перетворення без помилок.</p>
+
+  <div class="box">
+    <span class="label">Чим тотожність відрізняється від рівняння</span>
+    <ul>
+      <li><b>Тотожність</b> правильна <em>завжди</em>: 2x + 6 = 2(x + 3). Тут немає що «розв'язувати».</li>
+      <li><b>Рівняння</b> правильне лише для <em>деяких</em> x: 2x + 6 = 10 — тільки коли x = 2.</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <p>Перевіримо, чи тотожно рівні <b>(x − 1)(x + 1)</b> і <b>x² − 1</b>. Розкриємо дужки: x·x + x·1 − 1·x − 1·1 = x² + x − x − 1 = x² − 1. Так, це одне й те саме — перед нами тотожність.</p>
+  </div>
+
+  <h3>Степінь з натуральним показником</h3>
+  <p>Степінь — це короткий запис повторюваного множення. <b>aⁿ</b> означає «a помножене саме на себе n разів». Тут <b>a</b> — основа, <b>n</b> — показник.</p>
+
+  <div class="formula">
+    <div class="eq">aⁿ = a · a · … · a &nbsp;(n множників)</div>
+    <div class="where">за означенням; a¹ = a, а a⁰ = 1 (при a ≠ 0)</div>
+  </div>
+
+  <p>З цього означення випливають п'ять властивостей, які треба знати напам'ять. Усі вони — просто наслідок «дописування множників».</p>
+
+  <div class="box">
+    <span class="label">П'ять властивостей степеня</span>
+    <ul>
+      <li><b>aˣ · aʸ = aˣ⁺ʸ</b> — при множенні показники <em>додаються</em> (a³·a² = a·a·a · a·a = a⁵).</li>
+      <li><b>aˣ : aʸ = aˣ⁻ʸ</b> — при діленні показники <em>віднімаються</em> (a≠0).</li>
+      <li><b>(aˣ)ʸ = aˣ·ʸ</b> — при піднесенні степеня до степеня показники <em>перемножуються</em>.</li>
+      <li><b>(a · b)ˣ = aˣ · bˣ</b> — степінь добутку = добутку степенів.</li>
+      <li><b>(a : b)ˣ = aˣ : bˣ</b> — степінь частки = частці степенів.</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <p>Спрости: <b>(2a³)² · a</b>. За властивостями: (2a³)² = 2²·(a³)² = 4a⁶. Тоді 4a⁶ · a = 4a⁷. Найчастіша помилка — забути піднести двійку до квадрата.</p>
+  </div>
+
+  <p class="tip">множення → додаємо показники; степінь степеня → множимо</p>
+
+  <h3>Одночлени</h3>
+  <p><b>Одночлен</b> — це добуток чисел і степенів змінних: наприклад, <b>5x²y</b>, <b>−3a</b>, <b>7</b>. Числовий множник називають <b>коефіцієнтом</b>, а суму показників усіх змінних — <b>степенем одночлена</b> (у 5x²y степінь дорівнює 2 + 1 = 3).</p>
+  <p><b>Подібні одночлени</b> відрізняються лише коефіцієнтом (3x²y і −8x²y подібні). Їх можна <em>додавати й віднімати</em>: 3x²y − 8x²y = −5x²y. А <em>множити</em> можна будь-які одночлени — окремо коефіцієнти, окремо степені.</p>
+
+  <h3>Многочлени та дії з ними</h3>
+  <p><b>Многочлен</b> — це сума кількох одночленів (їх називають <b>членами</b>). Наприклад, <b>x² − 3x + 2</b>. <b>Степінь многочлена</b> — найбільший зі степенів його членів.</p>
+
+  <div class="box">
+    <span class="label">Три дії з многочленами</span>
+    <ul>
+      <li><b>Додавання/віднімання</b> — розкрий дужки (перед «−» усі знаки змінюються!) і зведи подібні.</li>
+      <li><b>Множення на одночлен</b> — помнож кожен член многочлена на цей одночлен.</li>
+      <li><b>Множення многочлена на многочлен</b> — кожен член першого помнож на кожен член другого, потім зведи подібні.</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <p>Знайди добуток <b>(x + 2)(x − 5)</b>. Множимо «кожен з кожним»: x·x + x·(−5) + 2·x + 2·(−5) = x² − 5x + 2x − 10 = <b>x² − 3x − 10</b>.</p>
+  </div>
+
+  <div class="example">
+    <p>Віднімання з дужками: <b>(3x² − x) − (x² − 4x)</b>. Знак «−» перед другою дужкою змінює всі знаки в ній: 3x² − x − x² + 4x = <b>2x² + 3x</b>.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: вирази, степінь, многочлени</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Чому дорівнює a⁵ · a³?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="При множенні показники не множаться, а додаються.">a¹⁵</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Однакова основа — показники додаються: 5 + 3 = 8.">a⁸</button>
+        <button type="button" class="quiz-option" data-explain="Це було б при діленні: 5 − 3 = 2.">a²</button>
+        <button type="button" class="quiz-option" data-explain="Основа залишається одна, її подвоювати не можна.">2a⁸</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Спрости вираз (3x²)³.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Забули піднести 3 до куба: 3³ = 27, а не 3.">3x⁶</button>
+        <button type="button" class="quiz-option" data-explain="Показник степеня множиться: 2·3 = 6, а не додається.">27x⁵</button>
+        <button type="button" class="quiz-option" data-correct data-explain="(3x²)³ = 3³·(x²)³ = 27·x⁶ = 27x⁶.">27x⁶</button>
+        <button type="button" class="quiz-option" data-explain="9 = 3², але треба 3³ = 27.">9x⁶</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Виконай віднімання: (5a − 3) − (2a − 7).</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Знак «−» перед дужкою змінює ОБИДВА знаки в ній, у тому числі −7 на +7.">3a − 10</button>
+        <button type="button" class="quiz-option" data-correct data-explain="5a − 3 − 2a + 7 = 3a + 4.">3a + 4</button>
+        <button type="button" class="quiz-option" data-explain="Не змінили знак у другої дужки взагалі.">7a − 10</button>
+        <button type="button" class="quiz-option" data-explain="Змінили знак лише у 2a, але не у −7.">3a − 4</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Розкрий дужки: (x − 4)(x + 3).</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Забули про середні члени −4x і +3x: вони дають −x.">x² − 12</button>
+        <button type="button" class="quiz-option" data-correct data-explain="x² + 3x − 4x − 12 = x² − x − 12.">x² − x − 12</button>
+        <button type="button" class="quiz-option" data-explain="Перевір знак при x: 3x − 4x = −x, а не +x.">x² + x − 12</button>
+        <button type="button" class="quiz-option" data-explain="Останній член: (−4)·3 = −12, а не +12.">x² − x + 12</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Який із виразів тотожно рівний 4(a − 2) + 8?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="4a − 8 + 8 = 4a. Вільні члени скоротилися.">4a</button>
+        <button type="button" class="quiz-option" data-explain="Помножили на 4 лише a, забули про −2.">4a + 8</button>
+        <button type="button" class="quiz-option" data-explain="4·(−2) = −8, тоді −8 + 8 = 0, а не −16.">4a − 16</button>
+        <button type="button" class="quiz-option" data-explain="Перевір: 4·(−2) = −8, далі −8 + 8 = 0.">4a + 16</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 2 ═══════════════════ -->
+<div class="c2" id="rozdil2">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ II</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Множники та <em>формули скороченого множення</em></h2>
+  <div class="sub">як «згорнути» довгий вираз у короткий добуток</div>
+
+  <p>Розкласти многочлен <b>на множники</b> — означає записати його у вигляді <em>добутку</em>. Це обернена дія до розкриття дужок. Навіщо? Щоб скорочувати дроби, розв'язувати рівняння (добуток = 0) і спрощувати вирази. Є кілька способів.</p>
+
+  <h3>Винесення спільного множника за дужки</h3>
+  <p>Якщо в кожному члені є <em>спільна частина</em> — її виносять за дужки. Це розподільна властивість навпаки: ab + ac = a(b + c).</p>
+
+  <div class="formula">
+    <div class="eq">ab + ac = a(b + c)</div>
+    <div class="where">спільний множник a виносимо за дужки</div>
+  </div>
+
+  <div class="example">
+    <p><b>6x³ − 9x²</b>. Спільне: число 3 і змінна x² (найменший степінь). Виносимо 3x²: 6x³ − 9x² = <b>3x²(2x − 3)</b>. Перевір зворотним множенням — має вийти початковий вираз.</p>
+  </div>
+
+  <h3>Метод групування</h3>
+  <p>Коли спільного множника в усіх членах немає, але членів <b>чотири</b> — їх можна <em>згрупувати парами</em>, винести спільне з кожної пари, а тоді винести спільну дужку.</p>
+
+  <div class="example">
+    <p><b>ax + ay + bx + by</b>. Групуємо: (ax + ay) + (bx + by) = a(x + y) + b(x + y). Тепер спільна дужка (x + y): = <b>(x + y)(a + b)</b>.</p>
+  </div>
+
+  <h3>Формули скороченого множення</h3>
+  <p>Ці формули — «готові шаблони» для миттєвого розкриття або згортання дужок. Їх треба знати <b>в обидва боки</b>.</p>
+
+  <div class="formula">
+    <div class="eq">a² − b² = (a − b)(a + b)</div>
+    <div class="where">різниця квадратів</div>
+  </div>
+  <div class="formula">
+    <div class="eq">(a ± b)² = a² ± 2ab + b²</div>
+    <div class="where">квадрат суми та квадрат різниці</div>
+  </div>
+  <div class="formula">
+    <div class="eq">a³ ± b³ = (a ± b)(a² ∓ ab + b²)</div>
+    <div class="where">сума та різниця кубів (у дужці — «неповний квадрат»)</div>
+  </div>
+  <div class="formula">
+    <div class="eq">(a ± b)³ = a³ ± 3a²b + 3ab² ± b³</div>
+    <div class="where">куб суми та куб різниці</div>
+  </div>
+
+  <div class="box">
+    <span class="label">Як не плутати</span>
+    <ul>
+      <li><b>Сума квадратів</b> a² + b² на множники <em>не розкладається</em> (немає такої формули).</li>
+      <li>У кубах знак середнього члена в дужці <b>протилежний</b> знаку між a і b: a³ + b³ = (a + b)(a² <b>−</b> ab + b²).</li>
+      <li>Подвоєний добуток <b>2ab</b> у квадраті суми — найчастіше його забувають.</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <p>Розклади <b>x² − 16</b>. Це різниця квадратів: x² − 4² = <b>(x − 4)(x + 4)</b>.</p>
+  </div>
+  <div class="example">
+    <p>Обчисли усно <b>49²</b> через формулу: 49² = (50 − 1)² = 2500 − 2·50·1 + 1 = 2500 − 100 + 1 = <b>2401</b>.</p>
+  </div>
+
+  <h3>Виділення повного квадрата</h3>
+  <p>Це потужний прийом: до квадратного тричлена <b>ax² + bx + c</b> «добудовують» повний квадрат. Ідея: x² + 2bx — це початок формули (x + b)², якій бракує лише b². Додаємо й одразу віднімаємо його:</p>
+
+  <div class="formula">
+    <div class="eq">x² + 2bx + … = (x + b)² − b²</div>
+    <div class="where">виділення повного квадрата</div>
+  </div>
+
+  <p>Цей прийом потрібен одразу для трьох задач заліку:</p>
+
+  <div class="box">
+    <span class="label">Навіщо потрібен повний квадрат</span>
+    <ul>
+      <li><b>Розкласти тричлен на множники:</b> x² + 6x + 5 = (x + 3)² − 4 = (x + 3 − 2)(x + 3 + 2) = (x + 1)(x + 5).</li>
+      <li><b>Знайти найменше/найбільше значення:</b> квадрат завжди ≥ 0, тож (x + 3)² − 4 ≥ −4. Найменше значення −4 при x = −3.</li>
+      <li><b>Розв'язати квадратне рівняння:</b> x² + 6x + 5 = 0 → (x + 3)² = 4 → x + 3 = ±2 → x = −1 або x = −5.</li>
+    </ul>
+  </div>
+
+  <svg class="illu" viewBox="0 0 600 300" width="100%" style="max-width:520px">
+    <!-- axes -->
+    <line x1="60" y1="40" x2="60" y2="270" stroke="#6b4d68" stroke-width="1.5"/>
+    <line x1="40" y1="250" x2="560" y2="250" stroke="#6b4d68" stroke-width="1.5"/>
+    <text x="548" y="244" font-family="Space Grotesk" font-size="14" fill="#6b4d68">x</text>
+    <text x="44" y="50" font-family="Space Grotesk" font-size="14" fill="#6b4d68">y</text>
+    <!-- parabola y=(x+3)^2-4, vertex (-3,-4); map to svg -->
+    <path d="M 110 70 Q 200 250 300 250 Q 400 250 490 70" fill="none" stroke="#0d6f87" stroke-width="2.5"/>
+    <!-- vertex -->
+    <circle cx="300" cy="250" r="4" fill="#0d6f87"/>
+    <text x="300" y="278" text-anchor="middle" font-family="Caveat" font-size="22" fill="#0d6f87">найменше значення</text>
+    <text x="118" y="60" font-family="Space Grotesk" font-size="14" font-style="italic" fill="#6b4d68">y = (x + b)² + c</text>
+  </svg>
+  <p class="note">парабола «лягає» на своє найменше значення саме у вершині — звідси й метод</p>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: множники та формули</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Розклади на множники: 8a³ − 12a².</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Винесли тільки число, але a² теж спільне.">4(2a³ − 3a²)</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Спільне 4a²: 8a³ − 12a² = 4a²(2a − 3).">4a²(2a − 3)</button>
+        <button type="button" class="quiz-option" data-explain="Винесли a³, але в другому члені лише a². Беремо НАЙМЕНШИЙ степінь.">4a³(2 − 3a)</button>
+        <button type="button" class="quiz-option" data-explain="Спільний числовий множник тут 4, а не 2.">2a²(4a − 6)</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Розкрий: (x − 5)².</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Забули подвоєний добуток −2·x·5 = −10x.">x² − 25</button>
+        <button type="button" class="quiz-option" data-explain="У квадраті різниці середній член від'ємний: −10x.">x² + 10x + 25</button>
+        <button type="button" class="quiz-option" data-correct data-explain="(x − 5)² = x² − 2·x·5 + 25 = x² − 10x + 25.">x² − 10x + 25</button>
+        <button type="button" class="quiz-option" data-explain="Подвоєний добуток — це 10x, а не 5x.">x² − 5x + 25</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Розклади: 4x² − 9.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="4x² − 9 = (2x)² − 3² = (2x − 3)(2x + 3).">(2x − 3)(2x + 3)</button>
+        <button type="button" class="quiz-option" data-explain="(2x−3)² = 4x²−12x+9 — це інший вираз.">(2x − 3)²</button>
+        <button type="button" class="quiz-option" data-explain="Корінь з 4x² — це 2x, а не 4x.">(4x − 3)(4x + 3)</button>
+        <button type="button" class="quiz-option" data-explain="Сума квадратів не розкладається; тут різниця.">(2x − 3)(2x − 3)</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Яке найменше значення має вираз x² − 4x + 7?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="7 — це значення при x = 0, не найменше.">7</button>
+        <button type="button" class="quiz-option" data-correct data-explain="x² − 4x + 7 = (x − 2)² + 3. Квадрат ≥ 0, тож найменше = 3 при x = 2.">3</button>
+        <button type="button" class="quiz-option" data-explain="0 був би, якби весь вираз був повним квадратом, а тут є +3.">0</button>
+        <button type="button" class="quiz-option" data-explain="−4 — це коефіцієнт, а не значення виразу.">−4</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>За формулою суми кубів a³ + b³ = (a + b)(…). Що в дужці?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це повний квадрат суми. У формулі кубів — НЕПОВНИЙ, без двійки.">a² + 2ab + b²</button>
+        <button type="button" class="quiz-option" data-correct data-explain="a³ + b³ = (a + b)(a² − ab + b²). Середній знак протилежний знаку між a і b.">a² − ab + b²</button>
+        <button type="button" class="quiz-option" data-explain="Це дужка для РІЗНИЦІ кубів a³ − b³.">a² + ab + b²</button>
+        <button type="button" class="quiz-option" data-explain="Тут має бути неповний квадрат із трьох членів.">a² − b²</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 3 ═══════════════════ -->
+<div class="c3" id="rozdil3">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ III</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Лінійні <em>рівняння</em></h2>
+  <div class="sub">з однією змінною — і все, що до них зводиться</div>
+
+  <h3>Що таке лінійне рівняння</h3>
+  <p><b>Лінійне рівняння з однією змінною</b> — це рівняння виду <b>ax = b</b>, де a і b — числа, x — невідоме. Будь-яке рівняння першого степеня (без x², без x у знаменнику) тотожними перетвореннями зводиться до цього вигляду: переносимо всі x в один бік, числа — в інший.</p>
+
+  <div class="formula">
+    <div class="eq">ax = b</div>
+    <div class="where">стандартний вигляд лінійного рівняння</div>
+  </div>
+
+  <h3>Три види лінійних рівнянь</h3>
+  <p>Скільки коренів має ax = b? Усе залежить від a і b. Це улюблене теоретичне питання заліку.</p>
+
+  <div class="box">
+    <span class="label">ax = b — три випадки</span>
+    <ul>
+      <li><b>a ≠ 0</b> → <em>єдиний корінь</em> x = b/a. Наприклад, 3x = 12 → x = 4.</li>
+      <li><b>a = 0, b ≠ 0</b> → <em>коренів немає</em>. Рівняння 0·x = 5 хибне за будь-якого x.</li>
+      <li><b>a = 0, b = 0</b> → <em>безліч коренів</em>. Рівняння 0·x = 0 правильне за будь-якого x.</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <p>Розв'яжи <b>5(x − 2) = 5x + 1</b>. Розкриваємо: 5x − 10 = 5x + 1. Переносимо: 5x − 5x = 1 + 10 → 0·x = 11. Це випадок a = 0, b ≠ 0 — <b>коренів немає</b>.</p>
+  </div>
+
+  <div class="example">
+    <p>Розв'яжи <b>2(x + 3) = 2x + 6</b>. Маємо 2x + 6 = 2x + 6 → 0·x = 0. Випадок a = 0, b = 0 — <b>безліч коренів</b> (будь-яке x).</p>
+  </div>
+
+  <h3>Рівняння, які зводяться до лінійних</h3>
+  <p>Деякі рівняння на перший погляд не лінійні, але розпадаються на лінійні.</p>
+
+  <p><b>Рівняння-добуток</b> виду (…)·(…) = 0. Працює золоте правило: <span class="hl-b">добуток дорівнює нулю тоді й лише тоді, коли хоча б один множник дорівнює нулю</span>. Прирівнюємо кожну дужку до нуля окремо.</p>
+
+  <div class="formula">
+    <div class="eq">A · B = 0 &nbsp;⇔&nbsp; A = 0 або B = 0</div>
+    <div class="where">рівняння-добуток</div>
+  </div>
+
+  <div class="example">
+    <p><b>(x − 2)(x + 5) = 0</b>. Або x − 2 = 0 → x = 2; або x + 5 = 0 → x = −5. Відповідь: <b>x = 2 або x = −5</b>.</p>
+  </div>
+
+  <p><b>Рівняння з модулем</b> |x| = a. Модуль — це відстань від нуля, тож на однаковій відстані лежать два числа: a і −a.</p>
+
+  <div class="formula">
+    <div class="eq">|x| = a &nbsp;(a &gt; 0) &nbsp;⇔&nbsp; x = a або x = −a</div>
+    <div class="where">якщо a &lt; 0 — коренів немає; якщо a = 0 — один корінь x = 0</div>
+  </div>
+
+  <div class="example">
+    <p><b>|x − 3| = 4</b>. Розкриваємо: x − 3 = 4 → x = 7; або x − 3 = −4 → x = −1. Відповідь: <b>x = 7 або x = −1</b>.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: лінійні рівняння</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Розв'яжи: 4x − 7 = 2x + 5.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="4x − 2x = 5 + 7 → 2x = 12 → x = 6.">x = 6</button>
+        <button type="button" class="quiz-option" data-explain="Перевір перенесення: числа 5 і −7 дають 12, а не 6 праворуч.">x = 3</button>
+        <button type="button" class="quiz-option" data-explain="Знак при перенесенні −7 змінюється на +7.">x = −1</button>
+        <button type="button" class="quiz-option" data-explain="2x = 12, тож x = 6, а не 12.">x = 12</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Скільки коренів має рівняння 0·x = 0?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="0 = 0 правильно завжди, тож підходить не одне x.">один</button>
+        <button type="button" class="quiz-option" data-explain="Навпаки: рівність правильна для всіх x.">жодного</button>
+        <button type="button" class="quiz-option" data-correct data-explain="0 = 0 — істина за будь-якого x, тож коренів безліч.">безліч</button>
+        <button type="button" class="quiz-option" data-explain="Кількість коренів визначена однозначно — їх безліч.">не можна сказати</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>За яких a рівняння ax = 8 НЕ має коренів?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="При a = 0: 0·x = 8 — хибно завжди, коренів немає.">a = 0</button>
+        <button type="button" class="quiz-option" data-explain="При a = 8 корінь x = 1 існує.">a = 8</button>
+        <button type="button" class="quiz-option" data-explain="При a = 1 корінь x = 8 існує.">a = 1</button>
+        <button type="button" class="quiz-option" data-explain="За будь-якого a ≠ 0 корінь є; проблема лише при a = 0.">за будь-якого a</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Розв'яжи: (x + 1)(x − 6) = 0.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Знаки переплутані: x + 1 = 0 дає x = −1, а не +1.">x = 1 або x = −6</button>
+        <button type="button" class="quiz-option" data-correct data-explain="x + 1 = 0 → x = −1; x − 6 = 0 → x = 6.">x = −1 або x = 6</button>
+        <button type="button" class="quiz-option" data-explain="Не можна перемножувати корені; кожна дужка = 0 окремо.">x = −6</button>
+        <button type="button" class="quiz-option" data-explain="Добуток = 0 дає корені; рівняння їх має.">коренів немає</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Скільки коренів має рівняння |x + 2| = 5?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Модуль = додатне число дає рівно два корені.">один</button>
+        <button type="button" class="quiz-option" data-correct data-explain="x + 2 = 5 → x = 3; x + 2 = −5 → x = −7. Два корені.">два</button>
+        <button type="button" class="quiz-option" data-explain="Коренів немає лише коли праворуч від'ємне число.">жодного</button>
+        <button type="button" class="quiz-option" data-explain="Лінійний модуль дає не більше двох коренів.">три</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 4 ═══════════════════ -->
+<div class="c4" id="rozdil4">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ IV</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Лінійна <em>функція</em> та її графік</h2>
+  <div class="sub">коли кожному x відповідає один y</div>
+
+  <h3>Що таке лінійна функція</h3>
+  <p><b>Лінійна функція</b> — це залежність виду <b>y = kx + b</b>, де k і b — числа. Її графік — завжди <b>пряма</b>. Два числа повністю задають цю пряму:</p>
+
+  <div class="formula">
+    <div class="eq">y = kx + b</div>
+    <div class="where">k — кутовий коефіцієнт (нахил), b — зсув по осі Oy</div>
+  </div>
+
+  <div class="box">
+    <span class="label">Як k і b керують прямою</span>
+    <ul>
+      <li><b>k &gt; 0</b> — пряма <em>зростає</em> (йде вгору зліва направо).</li>
+      <li><b>k &lt; 0</b> — пряма <em>спадає</em> (йде вниз).</li>
+      <li><b>k = 0</b> — горизонтальна пряма y = b.</li>
+      <li><b>b</b> — це точка, де пряма перетинає вісь Oy (бо при x = 0 маємо y = b).</li>
+    </ul>
+  </div>
+
+  <svg class="illu" viewBox="0 0 600 320" width="100%" style="max-width:520px">
+    <!-- grid -->
+    <g stroke="#ebe0e4" stroke-width="1">
+      <line x1="100" y1="40" x2="100" y2="280"/><line x1="180" y1="40" x2="180" y2="280"/>
+      <line x1="340" y1="40" x2="340" y2="280"/><line x1="420" y1="40" x2="420" y2="280"/><line x1="500" y1="40" x2="500" y2="280"/>
+      <line x1="40" y1="80" x2="560" y2="80"/><line x1="40" y1="240" x2="560" y2="240"/>
+    </g>
+    <!-- axes -->
+    <line x1="260" y1="30" x2="260" y2="290" stroke="#2d1830" stroke-width="2"/>
+    <line x1="40" y1="160" x2="560" y2="160" stroke="#2d1830" stroke-width="2"/>
+    <text x="548" y="180" font-family="Space Grotesk" font-size="15" fill="#6b4d68">x</text>
+    <text x="240" y="44" font-family="Space Grotesk" font-size="15" fill="#6b4d68">y</text>
+    <!-- line y = 0.5x + 1  (k>0) -->
+    <line x1="80" y1="218" x2="500" y2="50" stroke="#92400e" stroke-width="2.5"/>
+    <!-- intercept with Oy at (0, b) -> here at y=160-40=120 px (b=1 -> 40px up) -->
+    <circle cx="260" cy="120" r="4" fill="#92400e"/>
+    <text x="270" y="114" font-family="Caveat" font-size="22" fill="#92400e">(0; b)</text>
+    <!-- x-intercept -->
+    <circle cx="160" cy="160" r="4" fill="#92400e"/>
+    <text x="120" y="184" font-family="Caveat" font-size="20" fill="#92400e">(−b/k; 0)</text>
+    <text x="470" y="46" font-family="Space Grotesk" font-size="15" font-style="italic" fill="#92400e">y = kx + b, k &gt; 0</text>
+  </svg>
+
+  <h3>Як побудувати графік</h3>
+  <p>Пряму однозначно задають <b>дві точки</b>. Найзручніше взяти точки перетину з осями:</p>
+
+  <div class="box">
+    <span class="label">Точки перетину з осями</span>
+    <ul>
+      <li><b>З віссю Oy:</b> підстав x = 0 → y = b. Точка (0; b).</li>
+      <li><b>З віссю Ox:</b> підстав y = 0 → kx + b = 0 → x = −b/k. Точка (−b/k; 0).</li>
+    </ul>
+    <p class="tip">постав дві точки, проведи через них пряму — графік готовий</p>
+  </div>
+
+  <div class="example">
+    <p>Побудуємо <b>y = 2x − 4</b>. При x = 0: y = −4 → точка (0; −4). При y = 0: 2x − 4 = 0 → x = 2 → точка (2; 0). Через ці дві точки проводимо пряму.</p>
+  </div>
+
+  <h3>Лінійне рівняння з двома змінними</h3>
+  <p>Рівняння виду <b>ax + by = c</b> — це <b>лінійне рівняння з двома змінними</b>. Його розв'язок — <em>пара</em> чисел (x; y). Таких пар безліч, і всі вони лежать на одній прямій — це і є <b>графік рівняння</b>. Якщо b ≠ 0, його легко переписати у звичну форму y = kx + b.</p>
+
+  <div class="example">
+    <p>Графік рівняння <b>x + y = 5</b> — пряма. Виразимо y = 5 − x. Точки: (0; 5) і (5; 0). Будь-яка точка прямої, наприклад (2; 3), задовольняє рівняння: 2 + 3 = 5. ✓</p>
+  </div>
+
+  <h3>Точка перетину двох графіків</h3>
+  <p>Щоб знайти, де перетинаються дві прямі, прирівнюють їхні праві частини (y = y) — це й дає рівняння на x. Знайшовши x, підставляють його, щоб знайти y. По суті, це вже розв'язання системи (наступний розділ).</p>
+
+  <div class="example">
+    <p>Де перетинаються <b>y = 2x − 1</b> і <b>y = x + 3</b>? Прирівнюємо: 2x − 1 = x + 3 → x = 4. Тоді y = 4 + 3 = 7. Точка перетину <b>(4; 7)</b>.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: лінійна функція та графік</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>У якій точці графік y = 3x − 6 перетинає вісь Oy?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="(2; 0) — це перетин з віссю Ox, де y = 0.">(2; 0)</button>
+        <button type="button" class="quiz-option" data-correct data-explain="З віссю Oy: x = 0 → y = −6. Точка (0; −6).">(0; −6)</button>
+        <button type="button" class="quiz-option" data-explain="b = −6, а не +6. Перевір знак.">(0; 6)</button>
+        <button type="button" class="quiz-option" data-explain="Перетин з Oy завжди має x = 0.">(−6; 0)</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Графік якої функції спадає (йде вниз)?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="k = 2 > 0 — пряма зростає.">y = 2x + 1</button>
+        <button type="button" class="quiz-option" data-correct data-explain="k = −3 < 0 — пряма спадає.">y = −3x + 4</button>
+        <button type="button" class="quiz-option" data-explain="k = 5 > 0 — пряма зростає.">y = 5x</button>
+        <button type="button" class="quiz-option" data-explain="k = 0 — пряма горизонтальна, не спадає.">y = 7</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>У якій точці y = 4x − 8 перетинає вісь Ox?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="На осі Ox y = 0: 4x − 8 = 0 → x = 2. Точка (2; 0).">(2; 0)</button>
+        <button type="button" class="quiz-option" data-explain="(0; −8) — це перетин з віссю Oy.">(0; −8)</button>
+        <button type="button" class="quiz-option" data-explain="На осі Ox координата y дорівнює 0, а не 8.">(0; 8)</button>
+        <button type="button" class="quiz-option" data-explain="4x = 8 дає x = 2, а не 4.">(4; 0)</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Чи належить точка (3; 5) графіку y = 2x − 1?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Підставимо x = 3: y = 2·3 − 1 = 5. Збігається — точка належить.">так</button>
+        <button type="button" class="quiz-option" data-explain="Підстав x = 3: 2·3 − 1 = 5 — це саме y точки. Належить.">ні</button>
+        <button type="button" class="quiz-option" data-explain="Перевірка однозначна: достатньо підставити координати.">не можна перевірити</button>
+        <button type="button" class="quiz-option" data-explain="Точка або належить, або ні — це визначається підстановкою.">лише якщо x &gt; 0</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Де перетинаються прямі y = x + 2 і y = 3x − 4?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Перевір: при x = 3, y = 3 + 2 = 5, а не 1.">(3; 1)</button>
+        <button type="button" class="quiz-option" data-correct data-explain="x + 2 = 3x − 4 → 6 = 2x → x = 3, y = 3 + 2 = 5. Точка (3; 5).">(3; 5)</button>
+        <button type="button" class="quiz-option" data-explain="2x = 6 дає x = 3, а не 2.">(2; 4)</button>
+        <button type="button" class="quiz-option" data-explain="Прирівняй праві частини й розв'яжи відносно x.">(1; 3)</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 5 ═══════════════════ -->
+<div class="c5" id="rozdil5">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ V</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Системи рівнянь та <em>текстові задачі</em></h2>
+  <div class="sub">коли два рівняння треба задовольнити одночасно</div>
+
+  <h3>Що таке система</h3>
+  <p><b>Система рівнянь</b> — це кілька рівнянь, які треба задовольнити <em>одночасно</em>. Її записують фігурною дужкою. Розв'язок системи з двома змінними — це <b>пара (x; y)</b>, яка перетворює <em>обидва</em> рівняння на правильні рівності. Геометрично — це <b>точка перетину</b> двох прямих.</p>
+
+  <h3>Три способи розв'язання</h3>
+
+  <div class="box">
+    <span class="label">Спосіб 1 — графічний</span>
+    <p>Будуємо обидві прямі на одній координатній площині. Координати точки їхнього перетину — і є розв'язком. Наочно, але неточно, якщо координати дробові.</p>
+  </div>
+
+  <div class="box">
+    <span class="label">Спосіб 2 — підстановки</span>
+    <p>З одного рівняння виражаємо одну змінну через іншу й <em>підставляємо</em> в друге рівняння. Отримуємо одне рівняння з однією змінною.</p>
+  </div>
+
+  <div class="box">
+    <span class="label">Спосіб 3 — додавання</span>
+    <p>Множимо рівняння на числа так, щоб коефіцієнти при одній зі змінних стали протилежними, і <em>додаємо</em> рівняння — одна змінна зникає.</p>
+  </div>
+
+  <div class="example">
+    <p>Розв'яжемо способом підстановки: <b>y = x + 1</b> і <b>2x + y = 7</b>. Підставимо перше в друге: 2x + (x + 1) = 7 → 3x = 6 → x = 2. Тоді y = 2 + 1 = 3. Розв'язок <b>(2; 3)</b>.</p>
+  </div>
+
+  <div class="example">
+    <p>Способом додавання: <b>x + y = 10</b> і <b>x − y = 4</b>. Додаємо рівняння: 2x = 14 → x = 7. Тоді 7 + y = 10 → y = 3. Розв'язок <b>(7; 3)</b>.</p>
+  </div>
+
+  <h3>Скільки розв'язків має система</h3>
+  <p>Дві прямі на площині можуть розташуватися лише трьома способами — звідси й три випадки. Якщо звести обидва рівняння до вигляду y = kx + b, усе вирішують <b>кутові коефіцієнти</b>.</p>
+
+  <svg class="illu" viewBox="0 0 600 220" width="100%" style="max-width:560px">
+    <!-- case 1: intersect -->
+    <g>
+      <line x1="20" y1="170" x2="170" y2="40" stroke="#a21caf" stroke-width="2.5"/>
+      <line x1="20" y1="60" x2="170" y2="170" stroke="#0d6f87" stroke-width="2.5"/>
+      <circle cx="95" cy="105" r="4" fill="#2d1830"/>
+      <text x="95" y="205" text-anchor="middle" font-family="Space Grotesk" font-size="14" fill="#6b4d68">перетинаються</text>
+      <text x="95" y="30" text-anchor="middle" font-family="Caveat" font-size="22" fill="#a21caf">1 розв'язок</text>
+    </g>
+    <!-- case 2: parallel -->
+    <g>
+      <line x1="220" y1="160" x2="380" y2="50" stroke="#a21caf" stroke-width="2.5"/>
+      <line x1="220" y1="190" x2="380" y2="80" stroke="#0d6f87" stroke-width="2.5"/>
+      <text x="300" y="205" text-anchor="middle" font-family="Space Grotesk" font-size="14" fill="#6b4d68">паралельні</text>
+      <text x="300" y="30" text-anchor="middle" font-family="Caveat" font-size="22" fill="#a21caf">0 розв'язків</text>
+    </g>
+    <!-- case 3: coincide -->
+    <g>
+      <line x1="430" y1="170" x2="580" y2="55" stroke="#a21caf" stroke-width="5" opacity="0.5"/>
+      <line x1="430" y1="170" x2="580" y2="55" stroke="#0d6f87" stroke-width="2"/>
+      <text x="505" y="205" text-anchor="middle" font-family="Space Grotesk" font-size="14" fill="#6b4d68">збігаються</text>
+      <text x="505" y="30" text-anchor="middle" font-family="Caveat" font-size="22" fill="#a21caf">∞ розв'язків</text>
+    </g>
+  </svg>
+
+  <div class="box">
+    <span class="label">Три випадки (через y = kx + b)</span>
+    <ul>
+      <li><b>k₁ ≠ k₂</b> — прямі <em>перетинаються</em> → <b>один</b> розв'язок.</li>
+      <li><b>k₁ = k₂, але b₁ ≠ b₂</b> — прямі <em>паралельні</em> → <b>розв'язків немає</b>.</li>
+      <li><b>k₁ = k₂ і b₁ = b₂</b> — прямі <em>збігаються</em> → <b>безліч</b> розв'язків.</li>
+    </ul>
+    <p class="tip">різний нахил → завжди рівно один перетин</p>
+  </div>
+
+  <h3>Текстові задачі</h3>
+  <p>Найважливіше вміння: <b>перекласти текст мовою рівнянь</b>. Схема завжди однакова:</p>
+
+  <div class="box">
+    <span class="label">Як розв'язувати задачу рівнянням</span>
+    <ul>
+      <li>1. Познач невідоме буквою (x, а якщо невідомих два — x і y).</li>
+      <li>2. Вирази умови задачі через цю букву.</li>
+      <li>3. Склади рівняння (чи систему) за ключовою фразою умови.</li>
+      <li>4. Розв'яжи і <b>перевір за змістом</b> (кількість не буває від'ємною!).</li>
+    </ul>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">У дворі гуси й кролі. Усього 10 голів і 28 ніг. Скільки гусей і скільки кролів?</p>
+    <div class="steps">
+      <div class="step"><div class="body"><p>Нехай <b>x</b> — гусей, <b>y</b> — кролів. Голів усього 10: <b>x + y = 10</b>.</p></div></div>
+      <div class="step"><div class="body"><p>У гуся 2 ноги, у кроля 4. Ніг усього 28: <b>2x + 4y = 28</b>.</p></div></div>
+      <div class="step"><div class="body"><p>З першого: x = 10 − y. Підставляємо: 2(10 − y) + 4y = 28 → 20 + 2y = 28 → 2y = 8 → <b>y = 4</b>.</p></div></div>
+      <div class="step"><div class="body"><p>Тоді x = 10 − 4 = <b>6</b>. Перевірка: 6 + 4 = 10 голів ✓, 12 + 16 = 28 ніг ✓.</p></div></div>
+    </div>
+    <div class="answer">6 гусей і 4 кролі</div>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: системи та текстові задачі</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Що є розв'язком системи рівнянь з двома змінними?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Одне число — це розв'язок рівняння з однією змінною.">одне число</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Розв'язок — пара (x; y), що задовольняє обидва рівняння одночасно.">пара чисел (x; y)</button>
+        <button type="button" class="quiz-option" data-explain="Графік — це ілюстрація, а не сам розв'язок.">пряма лінія</button>
+        <button type="button" class="quiz-option" data-explain="Кут тут ні до чого.">кут між прямими</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Розв'яжи додаванням: x + y = 8, x − y = 2.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Додаємо: 2x = 10 → x = 5; тоді 5 + y = 8 → y = 3.">(5; 3)</button>
+        <button type="button" class="quiz-option" data-explain="Перевір: 3 + 5 = 8 ✓, але 3 − 5 = −2, а треба +2.">(3; 5)</button>
+        <button type="button" class="quiz-option" data-explain="2x = 10 дає x = 5, а не 4.">(4; 4)</button>
+        <button type="button" class="quiz-option" data-explain="Додавання прибирає y: 2x = 10.">(8; 2)</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Скільки розв'язків має система прямих y = 2x + 1 і y = 2x − 3?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Один розв'язок буває, коли нахили різні. Тут k однакові.">один</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Нахили однакові (k = 2), а b різні (1 і −3) → прямі паралельні, розв'язків немає.">жодного</button>
+        <button type="button" class="quiz-option" data-explain="Безліч буває, коли прямі збігаються (і k, і b однакові).">безліч</button>
+        <button type="button" class="quiz-option" data-explain="Кількість визначена однозначно з коефіцієнтів.">не можна сказати</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Дві прямі мають однакові k і однакові b. Як вони розташовані?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Перетинаються прямі з РІЗНИМИ нахилами.">перетинаються в одній точці</button>
+        <button type="button" class="quiz-option" data-explain="Паралельні — це однакові k, але РІЗНІ b.">паралельні, не дотикаються</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Однакові k і b → це одна й та сама пряма, прямі збігаються (безліч спільних точок).">збігаються</button>
+        <button type="button" class="quiz-option" data-explain="Перпендикулярність визначається інакше і тут не задана.">перпендикулярні</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Сума двох чисел 15, їх різниця 3. Менше число дорівнює…</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="9 — це більше число. Питали менше.">9</button>
+        <button type="button" class="quiz-option" data-correct data-explain="x + y = 15, x − y = 3 → 2x = 18, x = 9 (більше), y = 6 (менше).">6</button>
+        <button type="button" class="quiz-option" data-explain="Перевір: 12 + 3 = 15, але 12 − 3 = 9 ≠ 3.">12</button>
+        <button type="button" class="quiz-option" data-explain="Склади систему: сума 15 і різниця 3.">3</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<div class="outro">
+  <h3>Усе. Тепер ти готовий до заліку.</h3>
+  <p>Якщо все це здається багато — нічого. Поверни сторінку завтра, прочитай ще раз, переглянь картки. Спробуй розв'язати кожен приклад сам, не підглядаючи у розв'язок. Помиляйся — у алгебрі помилка завжди показує, яку саме властивість ти ще не «відчув».</p>
+  <p>Алгебра — це не зазубрені формули. Це вміння бачити, як один вираз перетворюється на інший, і чому це завжди законно.</p>
+  <div class="sig">~ удачі на заліку ~</div>
+</div>
+</div>
+
+<script>
+(function(){
+  var current = document.documentElement.getAttribute('data-theme') || 'light';
+  function setTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem('algebra-theme', t); } catch(e) {}
+    document.querySelectorAll('.theme-toggle button').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-theme-set') === t);
+    });
+    current = t;
+  }
+  setTheme(current);
+  document.querySelectorAll('.theme-toggle button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      setTheme(btn.getAttribute('data-theme-set'));
+    });
+  });
+
+  document.querySelectorAll('.cards-section').forEach(function(section){
+    var cards = section.querySelectorAll('.flip-card');
+    var prev = section.querySelector('.cards-prev');
+    var next = section.querySelector('.cards-next');
+    var nowEl = section.querySelector('.cards-counter .now');
+    var totalEl = section.querySelector('.cards-counter .total');
+    var dotsWrap = section.querySelector('.cards-dots');
+    var total = cards.length;
+    var idx = 0;
+    if (totalEl) totalEl.textContent = total;
+
+    var dots = [];
+    for (var i = 0; i < total; i++){
+      (function(j){
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'cards-dot';
+        dot.setAttribute('aria-label', 'Картка ' + (j + 1));
+        dot.addEventListener('click', function(){ go(j); });
+        dotsWrap.appendChild(dot);
+        dots.push(dot);
+      })(i);
+    }
+
+    function go(i){
+      cards[idx].classList.remove('active', 'flipped');
+      dots[idx].classList.remove('active');
+      idx = (i + total) % total;
+      cards[idx].classList.add('active');
+      dots[idx].classList.add('active');
+      if (nowEl) nowEl.textContent = idx + 1;
+    }
+
+    cards.forEach(function(card){
+      card.addEventListener('click', function(){
+        if (card.classList.contains('active')) card.classList.toggle('flipped');
+      });
+    });
+
+    prev.addEventListener('click', function(){ go(idx - 1); });
+    next.addEventListener('click', function(){ go(idx + 1); });
+
+    document.addEventListener('keydown', function(e){
+      var rect = section.getBoundingClientRect();
+      var inView = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
+      if (!inView) return;
+      var tag = document.activeElement && document.activeElement.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft'){ e.preventDefault(); go(idx - 1); }
+      else if (e.key === 'ArrowRight'){ e.preventDefault(); go(idx + 1); }
+    });
+
+    go(0);
+  });
+
+  document.querySelectorAll('.quiz').forEach(function(quiz){
+    var questions = quiz.querySelectorAll('.quiz-q');
+    var total = questions.length;
+    var result = quiz.querySelector('.quiz-result');
+    var scoreEl = result.querySelector('.quiz-score');
+    var percentEl = result.querySelector('.quiz-percent');
+    var barFill = result.querySelector('.quiz-bar-fill');
+    var verdictEl = result.querySelector('.quiz-verdict');
+    var restartBtn = result.querySelector('.quiz-restart');
+
+    var answered = 0;
+    var correctCount = 0;
+
+    function verdictFor(p){
+      if (p === 100) return '✦ Бездоганно. Готовий до іспиту.';
+      if (p >= 80)  return 'Дуже добре. Перечитай ті, де помилився.';
+      if (p >= 60)  return 'Непогано. Повтори тему й спробуй ще раз.';
+      if (p >= 40)  return 'Ще трохи практики — і вийде.';
+      return 'Не страшно. Перечитай теорію і повертайся.';
+    }
+
+    function setFeedback(fb, prefix, explain, kind){
+      while (fb.firstChild) fb.removeChild(fb.firstChild);
+      var b = document.createElement('b');
+      b.textContent = prefix;
+      fb.appendChild(b);
+      fb.appendChild(document.createTextNode(' ' + explain));
+      fb.classList.add('show', kind);
+    }
+
+    function showResult(){
+      var p = Math.round(correctCount / total * 100);
+      scoreEl.textContent = correctCount + ' / ' + total;
+      percentEl.textContent = p + '%';
+      verdictEl.textContent = verdictFor(p);
+      result.classList.add('show');
+      requestAnimationFrame(function(){ barFill.style.width = p + '%'; });
+    }
+
+    function reset(){
+      answered = 0;
+      correctCount = 0;
+      questions.forEach(function(q){
+        q.querySelectorAll('.quiz-option').forEach(function(o){
+          o.disabled = false;
+          o.classList.remove('correct', 'wrong', 'reveal');
+        });
+        var fb = q.querySelector('.quiz-feedback');
+        fb.classList.remove('show', 'ok', 'no');
+        fb.textContent = '';
+      });
+      result.classList.remove('show');
+      barFill.style.width = '0%';
+      quiz.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+
+    questions.forEach(function(q){
+      var options = q.querySelectorAll('.quiz-option');
+      var fb = q.querySelector('.quiz-feedback');
+
+      options.forEach(function(opt){
+        opt.addEventListener('click', function(){
+          if (opt.disabled) return;
+          options.forEach(function(o){ o.disabled = true; });
+
+          var isCorrect = opt.hasAttribute('data-correct');
+          var explain = opt.getAttribute('data-explain') || '';
+
+          if (isCorrect){
+            opt.classList.add('correct');
+            setFeedback(fb, 'Правильно.', explain, 'ok');
+            correctCount++;
+          } else {
+            opt.classList.add('wrong');
+            options.forEach(function(o){
+              if (o.hasAttribute('data-correct')) o.classList.add('reveal');
+            });
+            setFeedback(fb, 'Не зовсім.', explain, 'no');
+          }
+
+          answered++;
+          if (answered === total) showResult();
+        });
+      });
+    });
+
+    restartBtn.addEventListener('click', reset);
+  });
+})();
+</script>
+<button type="button" class="to-plan" aria-label="До списку тем">↑ до тем</button>
+<script>
+(function(){
+  var plan=document.getElementById('plan');
+  var btn=document.querySelector('.to-plan');
+  if(!plan||!btn)return;
+  function onScroll(){
+    var planBottom=plan.offsetTop+plan.offsetHeight;
+    if(window.scrollY>planBottom-100)btn.classList.add('show');
+    else btn.classList.remove('show');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  btn.addEventListener('click',function(){plan.scrollIntoView({behavior:'smooth',block:'start'});});
+})();
+</script>
+</body>
+</html>

@@ -210,6 +210,9 @@ h1.title em{
   border-bottom: 1px dashed var(--rule);
 }
 .day:last-child{ border-bottom: none; }
+a.day{ text-decoration: none; color: inherit; cursor: pointer; border-radius: 4px; transition: background .15s; }
+a.day:hover{ background: var(--paper-2); }
+section.chapter[id], div[id^="rozdil"]{ scroll-margin-top: 22px; }
 .day .num{
   font-family: 'Caveat', cursive;
   font-size: 1.7rem;
@@ -1137,12 +1140,20 @@ li::marker{ color: var(--orange); }
   .flip-card-note{ font-size: 1.1rem; padding-top: 8px; margin-top: 10px; }
   .flip-card-tag{ font-size: 1.15rem; }
 }
+.home-link{display:inline-flex;align-items:center;gap:7px;font-family:'Space Grotesk',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);text-decoration:none;margin-bottom:28px;transition:color .15s,transform .15s}
+.home-link:hover{color:var(--orange);transform:translateX(-4px)}
+.to-plan{position:fixed;right:18px;bottom:18px;z-index:50;display:inline-flex;align-items:center;gap:7px;padding:11px 18px;background:var(--orange);color:#fff;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.03em;cursor:pointer;box-shadow:var(--shadow);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s,filter .2s}
+.to-plan.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.to-plan:hover{filter:brightness(.92)}
+[data-theme="dark"] .to-plan{color:var(--bg)}
+#plan{scroll-margin-top:22px}
+@media (max-width:600px){.to-plan{right:12px;bottom:12px;padding:9px 14px;font-size:.78rem}}
 </style>
 <script>
 (function(){
   try {
     var saved = localStorage.getItem('geometria-theme');
-    var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var theme = saved || 'light';
     document.documentElement.setAttribute('data-theme', theme);
   } catch(e) {}
 })();
@@ -1154,6 +1165,7 @@ li::marker{ color: var(--orange); }
   <button type="button" class="tt-dark" data-theme-set="dark" aria-label="Темна тема">☾ dark</button>
 </div>
 <div class="wrap">
+<a class="home-link" href="index.html">← усі курси</a>
 
 <!-- ═══════════════════ HEADER ═══════════════════ -->
 <header>
@@ -1170,34 +1182,34 @@ li::marker{ color: var(--orange); }
 </header>
 
 <!-- ═══════════════════ PLAN ═══════════════════ -->
-<section class="plan">
+<section class="plan" id="plan">
   <h2>Як вчитися: план на тиждень</h2>
   <div class="days">
-    <div class="day t1">
+    <a href="#rozdil1" class="day t1">
       <span class="num">День 1</span>
       <span class="what">Кути та паралельні прямі <small>суміжні, вертикальні, паралельні — і коли який кут якому дорівнює</small></span>
       <span class="pill">розділ 1</span>
-    </div>
-    <div class="day t2">
+    </a>
+    <a href="#rozdil2" class="day t2">
       <span class="num">День 2–3</span>
       <span class="what">Трикутник: рівність, кути, нерівність <small>сума кутів, зовнішній кут, рівнобедрений, ознаки рівності, нерівність трикутника</small></span>
       <span class="pill">розділ 2</span>
-    </div>
-    <div class="day t3">
+    </a>
+    <a href="#rozdil3" class="day t3">
       <span class="num">День 4</span>
       <span class="what">Особливі властивості прямокутного трикутника <small>катет навпроти 30°, медіана до гіпотенузи</small></span>
       <span class="pill">розділ 3</span>
-    </div>
-    <div class="day t4">
+    </a>
+    <a href="#rozdil4" class="day t4">
       <span class="num">День 5–6</span>
       <span class="what">Чудові точки трикутника <small>центри вписаного, описаного та зовнівписаного кіл, формули кутів</small></span>
       <span class="pill">розділ 4</span>
-    </div>
-    <div class="day t5">
+    </a>
+    <a href="#rozdil5" class="day t5">
       <span class="num">День 7</span>
       <span class="what">Коло: дотичні, хорди, вписане коло <small>теорема про «ковпак», p − a, p − b, p − c, радіус для прямокутного</small></span>
       <span class="pill">розділ 5</span>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -1539,7 +1551,7 @@ li::marker{ color: var(--orange); }
 </section>
 
 <!-- ═══════════════════ CHAPTER 1 ═══════════════════ -->
-<div class="c1">
+<div class="c1" id="rozdil1">
 <section class="chapter">
   <div class="chapter-head">
     <span class="chapter-num">розділ I</span>
@@ -1755,7 +1767,7 @@ li::marker{ color: var(--orange); }
 </div>
 
 <!-- ═══════════════════ CHAPTER 2 ═══════════════════ -->
-<div class="c2">
+<div class="c2" id="rozdil2">
 <section class="chapter">
   <div class="chapter-head">
     <span class="chapter-num">розділ II</span>
@@ -2073,7 +2085,7 @@ li::marker{ color: var(--orange); }
 </div>
 
 <!-- ═══════════════════ CHAPTER 3 ═══════════════════ -->
-<div class="c3">
+<div class="c3" id="rozdil3">
 <section class="chapter">
   <div class="chapter-head">
     <span class="chapter-num">розділ III</span>
@@ -2254,7 +2266,7 @@ li::marker{ color: var(--orange); }
 </div>
 
 <!-- ═══════════════════ CHAPTER 4 ═══════════════════ -->
-<div class="c4">
+<div class="c4" id="rozdil4">
 <section class="chapter">
   <div class="chapter-head">
     <span class="chapter-num">розділ IV</span>
@@ -2626,7 +2638,7 @@ li::marker{ color: var(--orange); }
 </div>
 
 <!-- ═══════════════════ CHAPTER 5 ═══════════════════ -->
-<div class="c5">
+<div class="c5" id="rozdil5">
 <section class="chapter">
   <div class="chapter-head">
     <span class="chapter-num">розділ V</span>
@@ -3116,6 +3128,22 @@ li::marker{ color: var(--orange); }
 
     restartBtn.addEventListener('click', reset);
   });
+})();
+</script>
+<button type="button" class="to-plan" aria-label="До списку тем">↑ до тем</button>
+<script>
+(function(){
+  var plan=document.getElementById('plan');
+  var btn=document.querySelector('.to-plan');
+  if(!plan||!btn)return;
+  function onScroll(){
+    var planBottom=plan.offsetTop+plan.offsetHeight;
+    if(window.scrollY>planBottom-100)btn.classList.add('show');
+    else btn.classList.remove('show');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  btn.addEventListener('click',function(){plan.scrollIntoView({behavior:'smooth',block:'start'});});
 })();
 </script>
 </body>
