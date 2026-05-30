@@ -182,7 +182,7 @@ h1.title em{
   position: relative;
 }
 .plan::before{
-  content:"⌂";
+  content:none;
   position: absolute;
   top: -14px;
   left: 24px;
@@ -192,6 +192,23 @@ h1.title em{
   font-size: 1.4rem;
   color: var(--orange);
 }
+.plan-home{
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  display: inline-block;
+  background: var(--bg);
+  padding: 0 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.55;
+  color: var(--orange);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .15s, transform .15s;
+}
+.plan-home:hover{ color: var(--ink); transform: scale(1.12); }
+
 .plan h2{
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
@@ -444,6 +461,50 @@ details.proof > .proof-body{
 .c5 .example::before{ color: var(--plum); }
 
 .example p:last-child{ margin-bottom: 0; }
+/* "цікавинка" — сучасне застосування теми та чому вона важлива */
+.fact{
+  margin: 26px 0;
+  padding: 20px 24px 20px 58px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 6px;
+  position: relative;
+  box-shadow: var(--shadow);
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+.c2 .fact{ border-left-color: var(--teal); }
+.c3 .fact{ border-left-color: var(--blue); }
+.c4 .fact{ border-left-color: var(--gold); }
+.c5 .fact{ border-left-color: var(--plum); }
+.fact::before{
+  content: "✦";
+  position: absolute;
+  left: 22px;
+  top: 18px;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--orange);
+}
+.c2 .fact::before{ color: var(--teal); }
+.c3 .fact::before{ color: var(--blue); }
+.c4 .fact::before{ color: var(--gold); }
+.c5 .fact::before{ color: var(--plum); }
+.fact .fact-label{
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  margin-bottom: 6px;
+}
+.c2 .fact .fact-label{ color: var(--teal); }
+.c3 .fact .fact-label{ color: var(--blue); }
+.c4 .fact .fact-label{ color: var(--gold); }
+.c5 .fact .fact-label{ color: var(--plum); }
+.fact p:last-child{ margin-bottom: 0; }
+
 
 /* important inline */
 b, strong{ font-weight: 600; color: var(--ink); }
@@ -1148,6 +1209,19 @@ li::marker{ color: var(--orange); }
 [data-theme="dark"] .to-plan{color:var(--bg)}
 #plan{scroll-margin-top:22px}
 @media (max-width:600px){.to-plan{right:12px;bottom:12px;padding:9px 14px;font-size:.78rem}}
+
+/* ── mobile: зручні тап-зони для навігації ── */
+@media (max-width: 600px){
+  .home-link{ padding: 10px 6px; margin-bottom: 16px; font-size: .94rem; }
+  .plan-home{ font-size: 1.65rem; padding: 8px 18px; top: -22px; }
+  .to-plan{
+    right: 14px; bottom: 14px;
+    padding: 15px 24px;
+    font-size: .98rem;
+    gap: 9px;
+    box-shadow: 0 10px 26px -6px rgba(0,0,0,.4);
+  }
+}
 </style>
 <script>
 (function(){
@@ -1184,6 +1258,7 @@ li::marker{ color: var(--orange); }
 
 <!-- ═══════════════════ PLAN ═══════════════════ -->
 <section class="plan" id="plan">
+  <a class="plan-home" href="index.html" title="На головну сторінку" aria-label="На головну сторінку">⌂</a>
   <h2>Як вчитися: план на тиждень</h2>
   <div class="days">
     <a href="#rozdil1" class="day t1">
@@ -1568,6 +1643,11 @@ li::marker{ color: var(--orange); }
     <p>Віднімання з дужками: <b>(3x² − x) − (x² − 4x)</b>. Знак «−» перед другою дужкою змінює всі знаки в ній: 3x² − x − x² + 4x = <b>2x² + 3x</b>.</p>
   </div>
 
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Степінь — це мова великих і малих чисел сучасного світу. Памʼять компʼютера рахується степенями двійки: 1 кілобайт = 2¹⁰ байтів, а гігабайт = 2³⁰. Відстані до зірок, розмір вірусу чи нанометри всередині процесора записують степенями десятки — інакше довелося б виводити десятки нулів. А многочлени — серцевина компʼютерної графіки: криві, якими малюють шрифти й 3D-моделі (криві Безьє), задаються саме многочленами. Тож кожна літера на цьому екрані — насправді многочлен.</p>
+  </div>
+
   <div class="quiz">
     <span class="quiz-title">Перевір себе</span>
     <p class="quiz-sub">міні-тест: вирази, степінь, многочлени</p>
@@ -1741,6 +1821,11 @@ li::marker{ color: var(--orange); }
   </svg>
   <p class="note">парабола «лягає» на своє найменше значення саме у вершині — звідси й метод</p>
 
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Розкладання чисел на множники щодня захищає твої гроші. Інтернет-банкінг, паролі й месенджери шифрують методом RSA: компʼютеру легко перемножити два величезні прості числа, але розкласти результат назад на множники — майже неможливо навіть за тисячі років роботи. На цій «асиметрії» тримається безпека всіх онлайн-платежів. А виділення повного квадрата дає вершину параболи — так знаходять мінімум витрат чи максимум прибутку в економіці, і так само описують траєкторію мʼяча, струменя води чи стрибка.</p>
+  </div>
+
   <div class="quiz">
     <span class="quiz-title">Перевір себе</span>
     <p class="quiz-sub">міні-тест: множники та формули</p>
@@ -1874,6 +1959,11 @@ li::marker{ color: var(--orange); }
 
   <div class="example">
     <p><b>|x − 3| = 4</b>. Розкриваємо: x − 3 = 4 → x = 7; або x − 3 = −4 → x = −1. Відповідь: <b>x = 7 або x = −1</b>.</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Лінійні рівняння — це щоденне «знайти невідоме». Скільки гривень вийде при обміні валют, яку дозу ліків розрахувати на вагу пацієнта, як збалансувати бюджет чи перерахувати рецепт на іншу кількість порцій — усе це рівняння виду ax = b. А рівняння з модулем — це про допустиму похибку: на заводі деталь приймають, якщо її розмір відрізняється від еталона не більше ніж на задану величину, тобто |x − x₀| ≤ допуск. Те саме — у контролі якості, метрології та навіть у налаштуванні термостата.</p>
   </div>
 
   <div class="quiz">
@@ -2027,6 +2117,11 @@ li::marker{ color: var(--orange); }
 
   <div class="example">
     <p>Де перетинаються <b>y = 2x − 1</b> і <b>y = x + 3</b>? Прирівнюємо: 2x − 1 = x + 3 → x = 4. Тоді y = 4 + 3 = 7. Точка перетину <b>(4; 7)</b>.</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Лінійна функція y = kx + b — улюблениця тарифів. Таксі: b — плата за посадку, k — ціна за кілометр. Мобільний тариф, оплата за електрику, зарплата «ставка + відсоток» — усе це прямі лінії. Коефіцієнт k показує швидкість зростання: що він більший, то крутіша лінія й то швидше росте рахунок. Уміння «читати» нахил графіка — базова навичка в економіці, статистиці та аналітиці даних: саме так на графіках бачать, що дешевшає, а що дорожчає.</p>
   </div>
 
   <div class="quiz">
@@ -2200,6 +2295,11 @@ li::marker{ color: var(--orange); }
       <div class="step"><div class="body"><p>Тоді x = 10 − 4 = <b>6</b>. Перевірка: 6 + 4 = 10 голів ✓, 12 + 16 = 28 ніг ✓.</p></div></div>
     </div>
     <div class="answer">6 гусей і 4 кролі</div>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Коли твій телефон показує місце на карті — він розвʼязує систему рівнянь. GPS ловить сигнали кількох супутників і знаходить єдину точку (твої координати), яка підходить усім рівнянням одночасно. Так само системи допомагають змішати розчин потрібної концентрації, скласти збалансований раціон чи оптимізувати маршрути доставки. А штучний інтелект під капотом постійно розвʼязує величезні системи рівнянь — саме так нейромережі «навчаються».</p>
   </div>
 
   <div class="quiz">
