@@ -19,7 +19,9 @@
     transition:transform .15s, box-shadow .15s;
   }
   a.course:hover { transform:translateX(4px); box-shadow:0 8px 24px -8px rgba(45,24,48,.15); }
-  a.course:nth-child(2) { border-left-color:#0d6f87; }
+  a.course.teal { border-left-color:#0d6f87; }
+  .grade { font-size:.8rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft); margin:8px 0 -4px; }
+  .grade:not(:first-child) { margin-top:24px; }
   .course-title { font-weight:700; font-size:1.15rem; margin-bottom:4px; }
   .course-meta { font-size:.88rem; color:var(--ink-soft); }
   footer { margin-top:48px; font-size:.82rem; color:var(--ink-soft); }
@@ -30,11 +32,25 @@
   <h1>Шкільні курси</h1>
   <p class="sub">Інтерактивні матеріали для підготовки</p>
   <div class="courses">
+    <div class="grade">8 клас</div>
+    <a class="course" href="algebra-8.html">
+      <div class="course-title">Алгебра · 8 клас</div>
+      <div class="course-meta">Уся програма року · 5 розділів · 16 карток · 5 тестів</div>
+    </a>
+    <a class="course teal" href="heometriya-8.html">
+      <div class="course-title">Геометрія · 8 клас</div>
+      <div class="course-meta">Уся програма року · 5 розділів · 18 карток · 5 тестів</div>
+    </a>
+    <a class="course" href="fizyka-8.html">
+      <div class="course-title">Фізика · 8 клас</div>
+      <div class="course-meta">Уся програма року · 11 тем · 19 карток · 12 тестів</div>
+    </a>
+    <div class="grade">7 клас</div>
     <a class="course" href="algebra-7-zalik.html">
       <div class="course-title">Алгебра · 7 клас</div>
       <div class="course-meta">Готуємось до річного заліку · 5 розділів · 14 карток · 5 тестів</div>
     </a>
-    <a class="course" href="heometriya-7-zalik.html">
+    <a class="course teal" href="heometriya-7-zalik.html">
       <div class="course-title">Геометрія · 7 клас</div>
       <div class="course-meta">Готуємось до річного заліку · 5 розділів · 17 карток · 5 тестів</div>
     </a>

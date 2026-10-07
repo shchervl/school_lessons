@@ -1,0 +1,2665 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Геометрія · 8 клас · вся програма року</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Cotton Candy — light theme (calm cream) */
+  --bg: #faf7f4;
+  --paper: #ffffff;
+  --paper-2: #fdfbf9;
+  --ink: #2d1830;
+  --ink-soft: #6b4d68;
+  --line: #ebe0e4;
+  --rule: #d9c8d0;
+  --orange: #b03171;       /* muted rose — chapter 1 */
+  --orange-soft: #fbe6ee;
+  --teal: #0d6f87;         /* deep cyan — chapter 2 */
+  --teal-soft: #d6effa;
+  --blue: #5b21b6;         /* deep violet — chapter 3 */
+  --blue-soft: #ece5f8;
+  --gold: #92400e;         /* warm amber — chapter 4 */
+  --gold-soft: #fbedd9;
+  --plum: #a21caf;         /* deep magenta — chapter 5 */
+  --plum-soft: #f6e1f5;
+  --shadow: 0 1px 0 rgba(76,29,79,.06), 0 18px 40px -22px rgba(76,29,79,.18);
+  --bg-glow-1: rgba(176,49,113,.025);
+  --bg-glow-2: rgba(91,33,182,.025);
+  --quiz-ok-bg: #d8efd2;
+  --quiz-ok-border: #4a8a3a;
+  --quiz-ok-text: #2a5520;
+  --quiz-no-bg: #fde2e4;
+  --quiz-no-border: #b04a4a;
+  --quiz-no-text: #762020;
+  --quiz-reveal-bg: #ecf6e8;
+  --bar-track: rgba(255,255,255,.18);
+}
+
+[data-theme="dark"]{
+  /* Plum Glow — dark theme */
+  --bg: #1a0e2a;
+  --paper: #261438;
+  --paper-2: #2e1a44;
+  --ink: #fce7f3;
+  --ink-soft: #d8b8e8;
+  --line: #3d1f5e;
+  --rule: #4d2f6e;
+  --orange: #f9a8d4;       /* light pink */
+  --orange-soft: rgba(249,168,212,.18);
+  --teal: #67e8f9;         /* light cyan */
+  --teal-soft: rgba(103,232,249,.16);
+  --blue: #c084fc;         /* light violet */
+  --blue-soft: rgba(192,132,252,.16);
+  --gold: #fcd34d;         /* peach */
+  --gold-soft: rgba(252,211,77,.16);
+  --plum: #f472b6;         /* hot pink */
+  --plum-soft: rgba(244,114,182,.16);
+  --shadow: 0 1px 0 rgba(0,0,0,.4), 0 18px 40px -22px rgba(0,0,0,.6);
+  --bg-glow-1: rgba(249,168,212,.06);
+  --bg-glow-2: rgba(192,132,252,.06);
+  --quiz-ok-bg: rgba(74,138,58,.18);
+  --quiz-ok-border: #6abb55;
+  --quiz-ok-text: #b8e9aa;
+  --quiz-no-bg: rgba(176,74,74,.18);
+  --quiz-no-border: #d96a6a;
+  --quiz-no-text: #fbb8b8;
+  --quiz-reveal-bg: rgba(74,138,58,.10);
+  --bar-track: rgba(252,231,243,.18);
+}
+
+/* ── SVG illustration colours — dark-theme overrides ── */
+[data-theme="dark"] svg.illu [fill="#2d1830"]   { fill:   #e8d4f5; }
+[data-theme="dark"] svg.illu [stroke="#2d1830"] { stroke: #e8d4f5; }
+[data-theme="dark"] svg.illu [fill="#b03171"]   { fill:   #f9a8d4; }
+[data-theme="dark"] svg.illu [stroke="#b03171"] { stroke: #f9a8d4; }
+[data-theme="dark"] svg.illu [fill="#0d6f87"]   { fill:   #67e8f9; }
+[data-theme="dark"] svg.illu [stroke="#0d6f87"] { stroke: #67e8f9; }
+[data-theme="dark"] svg.illu [fill="#6b4d68"]   { fill:   #c4a8d8; }
+[data-theme="dark"] svg.illu [stroke="#6b4d68"] { stroke: #c4a8d8; }
+[data-theme="dark"] svg.illu [fill="#5b21b6"]   { fill:   #c084fc; }
+[data-theme="dark"] svg.illu [stroke="#5b21b6"] { stroke: #c084fc; }
+[data-theme="dark"] svg.illu [fill="#92400e"]   { fill:   #fcd34d; }
+[data-theme="dark"] svg.illu [stroke="#92400e"] { stroke: #fcd34d; }
+[data-theme="dark"] svg.illu [fill="#a21caf"]   { fill:   #f472b6; }
+[data-theme="dark"] svg.illu [stroke="#a21caf"] { stroke: #f472b6; }
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(circle at 20% 10%, var(--bg-glow-1), transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--bg-glow-2), transparent 40%);
+  min-height: 100vh;
+  transition: background-color .35s ease, color .35s ease;
+}
+
+/* subtle paper texture */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+}
+
+.wrap{
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 28px 100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ───────── HEADER ───────── */
+.tag{
+  font-family: 'Caveat', cursive;
+  color: var(--orange);
+  font-size: 1.6rem;
+  letter-spacing: .02em;
+  display: inline-block;
+}
+
+h1.title{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 14px 0 18px;
+  color: var(--ink);
+}
+h1.title em{
+  font-style: italic;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.lede{
+  font-size: 1.18rem;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin-bottom: 28px;
+}
+
+.meta{
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--ink-soft);
+}
+.meta span strong{ color: var(--ink); }
+
+/* ───────── PLAN ───────── */
+.plan{
+  margin: 56px 0 64px;
+  padding: 32px 28px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.plan::before{
+  content:none;
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  background: var(--bg);
+  padding: 0 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  color: var(--orange);
+}
+.plan-home{
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  display: inline-block;
+  background: var(--bg);
+  padding: 0 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.55;
+  color: var(--orange);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .15s, transform .15s;
+}
+.plan-home:hover{ color: var(--ink); transform: scale(1.12); }
+
+.plan h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 1.6rem;
+  margin-bottom: 22px;
+  color: var(--ink);
+}
+.days{ display: grid; gap: 10px; }
+.day{
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 18px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--rule);
+}
+.day:last-child{ border-bottom: none; }
+a.day{ text-decoration: none; color: inherit; cursor: pointer; border-radius: 4px; transition: background .15s; }
+a.day:hover{ background: var(--paper-2); }
+section.chapter[id], div[id^="rozdil"]{ scroll-margin-top: 22px; }
+.day .num{
+  font-family: 'Caveat', cursive;
+  font-size: 1.7rem;
+  color: var(--orange);
+  font-weight: 700;
+}
+.day .what{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.day .what small{
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin-top: 3px;
+}
+.day .pill{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--orange-soft);
+  color: var(--orange);
+}
+.day.t1 .pill{ background: var(--orange-soft); color: var(--orange); }
+.day.t2 .pill{ background: var(--teal-soft); color: var(--teal); }
+.day.t3 .pill{ background: var(--blue-soft); color: var(--blue); }
+.day.t4 .pill{ background: var(--gold-soft); color: var(--gold); }
+.day.t5 .pill{ background: var(--plum-soft); color: var(--plum); }
+
+/* ───────── CHAPTERS ───────── */
+.chapter{
+  margin: 80px 0;
+  position: relative;
+}
+.chapter-head{
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+.chapter-num{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  letter-spacing: .05em;
+}
+.chapter-line{
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.chapter h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.chapter .sub{
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  margin-bottom: 32px;
+}
+
+.c1 .chapter h2 em, .c1 .sub{ color: var(--orange); }
+.c2 .chapter h2 em, .c2 .sub{ color: var(--teal); }
+.c3 .chapter h2 em, .c3 .sub{ color: var(--blue); }
+.c4 .chapter h2 em, .c4 .sub{ color: var(--gold); }
+.c5 .chapter h2 em, .c5 .sub{ color: var(--plum); }
+.chapter h2 em{ font-style: italic; font-weight: 600; }
+
+/* paragraphs */
+p{ margin-bottom: 16px; }
+p + p{ margin-top: 0; }
+
+h3{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 36px 0 14px;
+  letter-spacing: -0.005em;
+}
+h3::before{
+  content: "§ ";
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* call-out boxes */
+.box{
+  margin: 24px 0;
+  padding: 22px 24px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+  position: relative;
+}
+.c2 .box{ border-left-color: var(--teal); }
+.c3 .box{ border-left-color: var(--blue); }
+.c4 .box{ border-left-color: var(--gold); }
+.c5 .box{ border-left-color: var(--plum); }
+
+.box .label{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  margin-bottom: 8px;
+  display: block;
+}
+.c2 .box .label{ color: var(--teal); }
+.c3 .box .label{ color: var(--blue); }
+.c4 .box .label{ color: var(--gold); }
+.c5 .box .label{ color: var(--plum); }
+
+/* collapsible proof box */
+details.proof{
+  margin: 24px 0;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+}
+details.proof > summary{
+  padding: 14px 24px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  user-select: none;
+}
+details.proof > summary::-webkit-details-marker{ display: none; }
+details.proof > summary::before{
+  content: '▶';
+  font-size: .65rem;
+  transition: transform .2s;
+  display: inline-block;
+}
+details.proof[open] > summary::before{ transform: rotate(90deg); }
+details.proof > .proof-body{
+  padding: 0 24px 22px;
+}
+
+/* formula card */
+.formula{
+  margin: 28px 0;
+  padding: 28px 24px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 14px 30px -14px rgba(31,29,26,.4);
+}
+.formula::before, .formula::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--bg);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.formula::before{ left: -4px; }
+.formula::after{ right: -4px; }
+
+.formula .eq{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+  margin-bottom: 10px;
+}
+.formula .where{
+  font-size: .92rem;
+  opacity: .85;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* example block */
+.example{
+  margin: 24px 0;
+  padding: 24px;
+  background: var(--orange-soft);
+  border-radius: 4px;
+  position: relative;
+}
+.c2 .example{ background: var(--teal-soft); }
+.c3 .example{ background: var(--blue-soft); }
+.c4 .example{ background: var(--gold-soft); }
+.c5 .example{ background: var(--plum-soft); }
+
+.example::before{
+  content: "З життя";
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  background: var(--bg);
+  padding: 0 10px;
+  color: var(--orange);
+  transform: rotate(-1.5deg);
+}
+.c2 .example::before{ color: var(--teal); }
+.c3 .example::before{ color: var(--blue); }
+.c4 .example::before{ color: var(--gold); }
+.c5 .example::before{ color: var(--plum); }
+
+.example p:last-child{ margin-bottom: 0; }
+/* "цікавинка" — сучасне застосування теми та чому вона важлива */
+.fact{
+  margin: 26px 0;
+  padding: 20px 24px 20px 58px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 6px;
+  position: relative;
+  box-shadow: var(--shadow);
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+.c2 .fact{ border-left-color: var(--teal); }
+.c3 .fact{ border-left-color: var(--blue); }
+.c4 .fact{ border-left-color: var(--gold); }
+.c5 .fact{ border-left-color: var(--plum); }
+.fact::before{
+  content: "✦";
+  position: absolute;
+  left: 22px;
+  top: 18px;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--orange);
+}
+.c2 .fact::before{ color: var(--teal); }
+.c3 .fact::before{ color: var(--blue); }
+.c4 .fact::before{ color: var(--gold); }
+.c5 .fact::before{ color: var(--plum); }
+.fact .fact-label{
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  margin-bottom: 6px;
+}
+.c2 .fact .fact-label{ color: var(--teal); }
+.c3 .fact .fact-label{ color: var(--blue); }
+.c4 .fact .fact-label{ color: var(--gold); }
+.c5 .fact .fact-label{ color: var(--plum); }
+.fact p:last-child{ margin-bottom: 0; }
+
+
+/* important inline */
+b, strong{ font-weight: 600; color: var(--ink); }
+.hl-o{ background: linear-gradient(transparent 60%, var(--orange-soft) 60%); padding: 0 2px; }
+.hl-t{ background: linear-gradient(transparent 60%, var(--teal-soft) 60%); padding: 0 2px; }
+.hl-b{ background: linear-gradient(transparent 60%, var(--blue-soft) 60%); padding: 0 2px; }
+.hl-g{ background: linear-gradient(transparent 60%, var(--gold-soft) 60%); padding: 0 2px; }
+
+ul, ol{ padding-left: 24px; margin: 14px 0 18px; }
+li{ margin-bottom: 8px; }
+li::marker{ color: var(--orange); }
+.c2 li::marker{ color: var(--teal); }
+.c3 li::marker{ color: var(--blue); }
+.c4 li::marker{ color: var(--gold); }
+.c5 li::marker{ color: var(--plum); }
+
+/* illustrations */
+.illu{
+  margin: 24px auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* small note */
+.note{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  padding: 12px 0 8px;
+  transform: rotate(-.5deg);
+}
+
+/* density table */
+.dtable{
+  border-collapse: collapse;
+  width: 100%;
+  margin: 18px 0;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+.dtable th, .dtable td{
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: .96rem;
+}
+.dtable th{
+  background: var(--bg);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: .88rem;
+  letter-spacing: .04em;
+}
+.dtable tr:last-child td{ border-bottom: none; }
+.dtable .num{ font-family: 'Space Grotesk', sans-serif; font-feature-settings: "tnum"; color: var(--teal); font-weight: 600; }
+
+/* solution problem */
+.problem{
+  margin: 32px 0;
+  padding: 28px 28px 24px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+.problem .num{
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  color: var(--plum);
+  font-weight: 700;
+  line-height: 1;
+}
+.problem .stmt{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  margin: 8px 0 20px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--plum);
+  background: var(--bg);
+}
+.steps{
+  counter-reset: step;
+}
+.step{
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+  align-items: start;
+}
+.step::before{
+  content: counter(step);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--plum);
+  background: var(--plum-soft);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.step .body p{ margin-bottom: 6px; }
+.answer{
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/* footer */
+.outro{
+  margin-top: 90px;
+  padding: 40px 28px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  text-align: center;
+}
+.outro h3{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: var(--paper);
+}
+.outro h3::before{ content: ""; }
+.outro p{ opacity: .85; max-width: 540px; margin: 0 auto 12px; }
+.outro .sig{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--orange);
+  margin-top: 18px;
+}
+
+/* small SVG decorations */
+.deco-line{ display: block; margin: 24px auto; opacity: .5; }
+
+.tip{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  display: inline-block;
+  background: var(--gold-soft);
+  padding: 4px 14px;
+  border-radius: 20px;
+  color: var(--gold);
+  margin: 8px 0;
+}
+
+/* ───────── FLIP CARDS / CAROUSEL ───────── */
+.cards-section{ margin: 56px 0 64px; }
+.cards-head{
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+.cards-section h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.8rem;
+  color: var(--ink);
+}
+.cards-section .sub{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  margin-bottom: 22px;
+}
+
+.cards-counter{
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  letter-spacing: .08em;
+  margin-bottom: 14px;
+}
+.cards-counter .now{ color: var(--orange); font-weight: 600; }
+
+.cards-carousel{
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  gap: 18px;
+  align-items: center;
+}
+.cards-arrow{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background .15s, color .15s, transform .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+.cards-arrow:hover{
+  background: var(--ink);
+  color: var(--paper);
+  transform: scale(1.06);
+}
+.cards-arrow:active{ transform: scale(.96); }
+
+.cards-stage{
+  position: relative;
+  height: 360px;
+  perspective: 1400px;
+}
+.flip-card{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+.flip-card.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+.flip-card-inner{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .7s cubic-bezier(.4,.2,.2,1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-card-inner{ transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back{
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.flip-card-front{
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+}
+.flip-card-back{
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotateY(180deg);
+  border-color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  padding: 22px 24px;
+  text-align: left;
+}
+.flip-card-q{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 3rem;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.flip-card-hint{
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  color: var(--ink-soft);
+  margin-top: 16px;
+}
+.flip-card-a{
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  line-height: 1.15;
+  text-align: center;
+  margin: 4px 0 0;
+}
+.flip-card-a small{
+  display: inline;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem;
+  opacity: .75;
+  margin-left: 6px;
+  font-weight: 400;
+}
+.flip-card-purpose{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  text-align: center;
+  opacity: .92;
+  margin: 6px 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(255,255,255,.18);
+}
+.flip-card-vars{
+  display: grid;
+  grid-template-columns: minmax(48px, auto) 1fr;
+  column-gap: 18px;
+  row-gap: 8px;
+  align-content: start;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+.flip-card-vars dt{
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--orange);
+  text-align: right;
+  font-size: 1rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+.flip-card-vars dd{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .85rem;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  padding-top: 1px;
+  color: inherit;
+  opacity: .92;
+}
+.flip-card.c-o .flip-card-vars dt{ color: var(--orange); }
+.flip-card.c-t .flip-card-vars dt{ color: var(--teal); }
+.flip-card.c-b .flip-card-vars dt{ color: var(--blue); }
+.flip-card.c-g .flip-card-vars dt{ color: var(--gold); }
+.flip-card.c-p .flip-card-vars dt{ color: var(--plum); }
+
+/* override the global b{color: var(--ink)} inside dark cards */
+.flip-card-back b, .flip-card-back strong{ color: inherit; font-weight: 700; }
+
+.flip-card-note{
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255,255,255,.15);
+  opacity: .88;
+  line-height: 1.25;
+}
+.flip-card-tag{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  margin-top: 18px;
+  opacity: .85;
+}
+.flip-card.c-o .flip-card-tag{ color: var(--orange-soft); }
+.flip-card.c-t .flip-card-tag{ color: var(--teal-soft); }
+.flip-card.c-b .flip-card-tag{ color: var(--blue-soft); }
+.flip-card.c-g .flip-card-tag{ color: var(--gold-soft); }
+.flip-card.c-p .flip-card-tag{ color: var(--plum-soft); }
+.flip-card.c-o .flip-card-front{ border-top: 4px solid var(--orange); }
+.flip-card.c-t .flip-card-front{ border-top: 4px solid var(--teal); }
+.flip-card.c-b .flip-card-front{ border-top: 4px solid var(--blue); }
+.flip-card.c-g .flip-card-front{ border-top: 4px solid var(--gold); }
+.flip-card.c-p .flip-card-front{ border-top: 4px solid var(--plum); }
+
+.cards-dots{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.cards-dot{
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--rule);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+}
+.cards-dot:hover{ transform: scale(1.4); background: var(--ink-soft); }
+.cards-dot.active{ background: var(--orange); transform: scale(1.4); }
+
+.cards-tip{
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 18px;
+}
+
+/* ───────── QUIZ ───────── */
+.quiz{
+  margin: 40px 0 8px;
+  padding: 30px 28px 22px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.quiz::before{
+  content: "?";
+  position: absolute;
+  top: -20px;
+  left: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+.c2 .quiz::before{ background: var(--teal); }
+.c3 .quiz::before{ background: var(--blue); }
+.c4 .quiz::before{ background: var(--gold); }
+.c5 .quiz::before{ background: var(--plum); }
+
+.quiz-title{
+  font-family: 'Caveat', cursive;
+  font-size: 1.7rem;
+  color: var(--orange);
+  display: block;
+  line-height: 1.1;
+}
+.c2 .quiz-title{ color: var(--teal); }
+.c3 .quiz-title{ color: var(--blue); }
+.c4 .quiz-title{ color: var(--gold); }
+.c5 .quiz-title{ color: var(--plum); }
+
+.quiz-sub{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin-bottom: 22px;
+}
+
+.quiz-q{
+  margin: 22px 0;
+  padding-top: 22px;
+  border-top: 1px dashed var(--rule);
+}
+.quiz-q:first-of-type{ border-top: none; padding-top: 6px; }
+
+.quiz-q-text{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 10px;
+}
+.quiz-q-text .qn{
+  color: var(--ink-soft);
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+.quiz-options{ display: grid; gap: 8px; }
+.quiz-option{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  color: var(--ink);
+  transition: background .15s, border-color .15s, transform .15s;
+}
+.quiz-option:hover:not(:disabled){
+  background: var(--bg);
+  border-color: var(--rule);
+  transform: translateX(2px);
+}
+.quiz-option:disabled{ cursor: default; }
+.quiz-option.correct{
+  background: var(--quiz-ok-bg);
+  border-color: var(--quiz-ok-border);
+  color: var(--quiz-ok-text);
+}
+.quiz-option.wrong{
+  background: var(--quiz-no-bg);
+  border-color: var(--quiz-no-border);
+  color: var(--quiz-no-text);
+}
+.quiz-option.reveal{
+  border-color: var(--quiz-ok-border);
+  background: var(--quiz-reveal-bg);
+  color: var(--quiz-ok-text);
+}
+
+.quiz-feedback{
+  margin-top: 12px;
+  padding: 10px 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .96rem;
+  border-left: 3px solid var(--ink-soft);
+  background: var(--bg);
+  border-radius: 0 3px 3px 0;
+  display: none;
+}
+.quiz-feedback.show{ display: block; }
+.quiz-feedback.ok{ border-left-color: var(--quiz-ok-border); color: var(--quiz-ok-text); }
+.quiz-feedback.no{ border-left-color: var(--quiz-no-border); color: var(--quiz-no-text); }
+
+.quiz-result{
+  margin-top: 26px;
+  padding: 20px 22px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  display: none;
+}
+.quiz-result.show{ display: block; }
+.quiz-result-line{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.quiz-score{ font-size: 1.3rem; font-style: italic; font-weight: 600; }
+.quiz-percent{ font-family: 'Caveat', cursive; font-size: 1.4rem; color: var(--orange); }
+.c2 .quiz-percent{ color: var(--teal-soft); }
+.c3 .quiz-percent{ color: var(--blue-soft); }
+.c4 .quiz-percent{ color: var(--gold-soft); }
+.c5 .quiz-percent{ color: var(--plum-soft); }
+.quiz-bar{
+  height: 8px;
+  background: var(--bar-track);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.quiz-bar-fill{
+  height: 100%;
+  background: var(--orange);
+  width: 0;
+  transition: width .8s cubic-bezier(.4,.2,.2,1);
+}
+.c2 .quiz-bar-fill{ background: var(--teal-soft); }
+.c3 .quiz-bar-fill{ background: var(--blue-soft); }
+.c4 .quiz-bar-fill{ background: var(--gold-soft); }
+.c5 .quiz-bar-fill{ background: var(--plum-soft); }
+.quiz-verdict{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--paper);
+  opacity: .92;
+  display: block;
+  margin-top: 8px;
+}
+.quiz-restart{
+  margin-top: 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .92rem;
+  background: transparent;
+  border: 1px solid var(--paper);
+  color: var(--paper);
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: .85;
+  transition: opacity .15s, background .15s;
+}
+.quiz-restart:hover{ opacity: 1; background: rgba(251,246,234,.1); }
+
+/* ───────── DARK-THEME OVERRIDES (inverted cards stay readable) ───────── */
+[data-theme="dark"] .formula,
+[data-theme="dark"] .answer,
+[data-theme="dark"] .outro,
+[data-theme="dark"] .quiz-result,
+[data-theme="dark"] .flip-card-back{
+  background: linear-gradient(135deg, #2e1a44, #3d1f5e);
+  color: #fce7f3;
+  border: 1px solid #4d2f6e;
+}
+[data-theme="dark"] .formula .where{ color: #d8b8e8; opacity: .9; }
+[data-theme="dark"] .outro h3{ color: #fce7f3; }
+[data-theme="dark"] .outro p{ color: #d8b8e8; }
+[data-theme="dark"] .outro .sig{ color: var(--orange); }
+[data-theme="dark"] .quiz-verdict{ color: #fce7f3; }
+[data-theme="dark"] .quiz-restart{ border-color: #d8b8e8; color: #fce7f3; }
+[data-theme="dark"] .quiz-percent{ color: var(--orange); }
+[data-theme="dark"] .flip-card-back{ border-radius: 6px; }
+[data-theme="dark"] .flip-card-tag{ opacity: 1; }
+
+/* dark — softer contrast for body radial glows is already done via --bg-glow-* */
+
+/* ───────── THEME TOGGLE ───────── */
+.theme-toggle{
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  font-family: 'JetBrains Mono', monospace;
+  backdrop-filter: blur(8px);
+}
+.theme-toggle button{
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: .72rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background .2s, color .2s;
+}
+.theme-toggle button:hover{ color: var(--ink); }
+.theme-toggle button.on{
+  background: var(--orange);
+  color: var(--paper);
+}
+[data-theme="dark"] .theme-toggle button.on{ color: var(--bg); }
+
+/* All elements smoothly transition colors */
+.wrap, .plan, .day, .chapter, .box, .formula, .example, .problem, .answer,
+.outro, .quiz, .quiz-option, .quiz-feedback, .quiz-result, .flip-card-front,
+.flip-card-back, .cards-arrow, .cards-dot, .dtable, .dtable th, .dtable td{
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+
+@media (max-width: 600px){
+  .theme-toggle{ top: 12px; right: 12px; padding: 3px; }
+  .theme-toggle button{ padding: 5px 9px; font-size: .68rem; }
+  body{ font-size: 17px; }
+  .wrap{ padding: 32px 18px 80px; }
+  .formula .eq{ font-size: 1.6rem; }
+  .day{ grid-template-columns: 60px 1fr; }
+  .day .pill{ grid-column: 1 / -1; justify-self: start; margin-top: 4px; }
+  .cards-carousel{ grid-template-columns: 44px 1fr 44px; gap: 10px; }
+  .cards-arrow{ width: 44px; height: 44px; font-size: 1.3rem; }
+  .cards-stage{ height: 340px; }
+  .flip-card-front{ padding: 20px; }
+  .flip-card-back{ padding: 18px 18px; }
+  .flip-card-q{ font-size: 2.1rem; }
+  .flip-card-a{ font-size: 1.45rem; }
+  .flip-card-hint{ font-size: 1.3rem; }
+  .flip-card-purpose{ font-size: 1.15rem; margin: 4px 0 10px; padding-bottom: 8px; }
+  .flip-card-vars{ column-gap: 12px; row-gap: 6px; }
+  .flip-card-vars dt{ font-size: .92rem; }
+  .flip-card-vars dd{ font-size: .78rem; line-height: 1.35; }
+  .flip-card-note{ font-size: 1.1rem; padding-top: 8px; margin-top: 10px; }
+  .flip-card-tag{ font-size: 1.15rem; }
+}
+.home-link{display:inline-flex;align-items:center;gap:7px;font-family:'Space Grotesk',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);text-decoration:none;margin-bottom:28px;transition:color .15s,transform .15s}
+.home-link:hover{color:var(--orange);transform:translateX(-4px)}
+.to-plan{position:fixed;right:18px;bottom:18px;z-index:50;display:inline-flex;align-items:center;gap:7px;padding:11px 18px;background:var(--orange);color:#fff;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.03em;cursor:pointer;box-shadow:var(--shadow);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s,filter .2s}
+.to-plan.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.to-plan:hover{filter:brightness(.92)}
+[data-theme="dark"] .to-plan{color:var(--bg)}
+#plan{scroll-margin-top:22px}
+@media (max-width:600px){.to-plan{right:12px;bottom:12px;padding:9px 14px;font-size:.78rem}}
+
+/* ── mobile: зручні тап-зони для навігації ── */
+@media (max-width: 600px){
+  .home-link{ padding: 10px 6px; margin-bottom: 16px; font-size: .94rem; }
+  .plan-home{ font-size: 1.65rem; padding: 8px 18px; top: -22px; }
+  .to-plan{
+    right: 14px; bottom: 14px;
+    padding: 15px 24px;
+    font-size: .98rem;
+    gap: 9px;
+    box-shadow: 0 10px 26px -6px rgba(0,0,0,.4);
+  }
+}
+</style>
+<script>
+(function(){
+  try {
+    var saved = localStorage.getItem('geometria-theme');
+    var theme = saved || 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch(e) {}
+})();
+</script>
+</head>
+<body>
+<div class="theme-toggle" role="group" aria-label="Тема оформлення">
+  <button type="button" class="tt-light on" data-theme-set="light" aria-label="Світла тема">☀ light</button>
+  <button type="button" class="tt-dark" data-theme-set="dark" aria-label="Темна тема">☾ dark</button>
+</div>
+<div class="wrap">
+<a class="home-link" href="index.html">← усі курси</a>
+
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header>
+  <div class="tag">~ для тих, хто хоче нарешті розібратися ~</div>
+  <h1 class="title">Геометрія 8 класу,<br/><em>яку справді можна зрозуміти</em></h1>
+  <p class="lede">Курс охоплює всю програму геометрії за 8 клас: чотирикутники, теорему Фалеса, подібність, теорему Піфагора, синус і косинус, площі. Відкривай тему, яку саме проходите в класі, — або пройди все підряд перед заліком. Кожна теорема з малюнком, а головні ще й з доведенням. У кінці розділу — тест.</p>
+  <div class="meta">
+    <span><strong>5</strong> розділів</span>
+    <span><strong>5</strong> тестів</span>
+    <span><strong>18</strong> карток</span>
+    <span>≈ <strong>30</strong> хв на тему</span>
+  </div>
+</header>
+
+<!-- ═══════════════════ PLAN ═══════════════════ -->
+<section class="plan" id="plan">
+  <a class="plan-home" href="index.html" title="На головну сторінку" aria-label="На головну сторінку">⌂</a>
+  <h2>Теми курсу</h2>
+  <div class="days">
+    <a href="#rozdil1" class="day t1">
+      <span class="num">1</span>
+      <span class="what">Паралелограм і його види <small>чотирикутник, сума кутів 360°, паралелограм — властивості й ознаки, прямокутник, ромб, квадрат</small></span>
+      <span class="pill">чотирикутники</span>
+    </a>
+    <a href="#rozdil2" class="day t2">
+      <span class="num">2</span>
+      <span class="what">Трапеція, середні лінії, вписані кути <small>теорема Фалеса, середня лінія трикутника й трапеції, центральні й вписані кути, вписані та описані чотирикутники</small></span>
+      <span class="pill">коло</span>
+    </a>
+    <a href="#rozdil3" class="day t3">
+      <span class="num">3</span>
+      <span class="what">Подібність трикутників <small>узагальнена теорема Фалеса, три ознаки подібності, властивість бісектриси, пропорційні відрізки в прямокутному трикутнику</small></span>
+      <span class="pill">подібність</span>
+    </a>
+    <a href="#rozdil4" class="day t4">
+      <span class="num">4</span>
+      <span class="what">Прямокутний трикутник: Піфагор і тригонометрія <small>теорема Піфагора, перпендикуляр і похила, sin, cos, tg, значення для 30°, 45°, 60°</small></span>
+      <span class="pill">Піфагор</span>
+    </a>
+    <a href="#rozdil5" class="day t5">
+      <span class="num">5</span>
+      <span class="what">Многокутники та площі <small>сума кутів n-кутника, площі прямокутника, паралелограма, трикутника, ромба, трапеції</small></span>
+      <span class="pill">площі</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════ FLASHCARDS ═══════════════════ -->
+<section class="cards-section" id="kartki">
+  <div class="cards-head">
+    <h2>Картки-нагадувалки</h2>
+  </div>
+  <div class="sub">клікни на картку, щоб побачити; ← / → — перелистати</div>
+
+  <div class="cards-counter"><span class="now">1</span> / <span class="total">18</span></div>
+
+  <div class="cards-carousel">
+    <button type="button" class="cards-arrow cards-prev" aria-label="Попередня картка">◂</button>
+    <div class="cards-stage">
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: сума кутів чотирикутника">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">∠A + ∠B + ∠C + ∠D = ?</div>
+          <div class="flip-card-hint">будь-який опуклий чотирикутник</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= 360°</div>
+          <div class="flip-card-purpose">діагональ ділить чотирикутник на два трикутники: 2 · 180°</div>
+          <dl class="flip-card-vars">
+            <dt>знаєш три кути</dt><dd>четвертий = 360° − їх сума</dd>
+          </dl>
+          <p class="flip-card-note">80° + 90° + 100° → четвертий 90°</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: властивості паралелограма">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">паралелограм</div>
+          <div class="flip-card-hint">три властивості</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">AB = CD, ∠A = ∠C</div>
+          <div class="flip-card-purpose">протилежні сторони й кути рівні, діагоналі діляться навпіл</div>
+          <dl class="flip-card-vars">
+            <dt>сусідні кути</dt><dd>у сумі 180°</dd>
+            <dt>діагоналі</dt><dd>точкою перетину діляться навпіл</dd>
+          </dl>
+          <p class="flip-card-note">P = 2(a + b)</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: ознаки паралелограма">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">це паралелограм, якщо…</div>
+          <div class="flip-card-hint">ознаки паралелограма</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">досить однієї з трьох</div>
+          <div class="flip-card-purpose">ознака — те, що дозволяє стверджувати: «це паралелограм»</div>
+          <dl class="flip-card-vars">
+            <dt>1</dt><dd>дві сторони паралельні й рівні</dd>
+            <dt>2</dt><dd>протилежні сторони попарно рівні</dd>
+            <dt>3</dt><dd>діагоналі діляться навпіл</dd>
+          </dl>
+          <p class="flip-card-note">властивість ≠ ознака: напрям «стрілки» різний</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: діагоналі прямокутника, ромба, квадрата">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">діагоналі</div>
+          <div class="flip-card-hint">прямокутник · ромб · квадрат</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">особливі властивості</div>
+          <div class="flip-card-purpose">кожен — паралелограм «з бонусом»</div>
+          <dl class="flip-card-vars">
+            <dt>прямокутник</dt><dd>діагоналі рівні</dd>
+            <dt>ромб</dt><dd>діагоналі ⊥ і бісектриси кутів</dd>
+            <dt>квадрат</dt><dd>усе разом</dd>
+          </dl>
+          <p class="flip-card-note">квадрат — і прямокутник, і ромб</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: середня лінія трикутника">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">середня лінія △</div>
+          <div class="flip-card-hint">сполучає середини двох сторін</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">MN ∥ AC, &nbsp;MN = AC/2</div>
+          <div class="flip-card-purpose">паралельна третій стороні й дорівнює її половині</div>
+          <dl class="flip-card-vars">
+            <dt>у трикутнику</dt><dd>три середні лінії</dd>
+          </dl>
+          <p class="flip-card-note">AC = 18 → MN = 9</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: середня лінія трапеції">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">середня лінія трапеції</div>
+          <div class="flip-card-hint">сполучає середини бічних сторін</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">m = (a + b) / 2</div>
+          <div class="flip-card-purpose">паралельна основам і дорівнює їх півсумі</div>
+          <dl class="flip-card-vars">
+            <dt>a, b</dt><dd>основи трапеції</dd>
+          </dl>
+          <p class="flip-card-note">основи 6 і 14 → m = 10</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: вписаний кут">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">вписаний кут</div>
+          <div class="flip-card-hint">вершина на колі</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= ½ дуги</div>
+          <div class="flip-card-purpose">вписаний кут — половина центрального, що спирається на ту саму дугу</div>
+          <dl class="flip-card-vars">
+            <dt>на діаметр</dt><dd>прямий, 90°</dd>
+            <dt>на одну дугу</dt><dd>усі вписані кути рівні</dd>
+          </dl>
+          <p class="flip-card-note">центральний 120° → вписаний 60°</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: вписаний і описаний чотирикутник">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">чотирикутник і коло</div>
+          <div class="flip-card-hint">вписаний · описаний</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">∠A + ∠C = 180° &nbsp;·&nbsp; a + c = b + d</div>
+          <div class="flip-card-purpose">умови, коли коло можна описати або вписати</div>
+          <dl class="flip-card-vars">
+            <dt>вписаний у коло</dt><dd>суми протилежних кутів = 180°</dd>
+            <dt>описаний навколо кола</dt><dd>суми протилежних сторін рівні</dd>
+          </dl>
+          <p class="flip-card-note">прямокутник завжди можна вписати в коло</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: подібні трикутники">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">△ABC ∼ △A₁B₁C₁</div>
+          <div class="flip-card-hint">що означає подібність</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">A₁B₁/AB = B₁C₁/BC = A₁C₁/AC = k</div>
+          <div class="flip-card-purpose">кути рівні, сторони пропорційні</div>
+          <dl class="flip-card-vars">
+            <dt>k</dt><dd>коефіцієнт подібності</dd>
+            <dt>периметри</dt><dd>відносяться як k</dd>
+            <dt>площі</dt><dd>відносяться як k²</dd>
+          </dl>
+          <p class="flip-card-note">та сама форма, інший розмір</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: ознаки подібності">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">ознаки подібності</div>
+          <div class="flip-card-hint">три способи довести ∼</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">КК · СКС · ССС</div>
+          <div class="flip-card-purpose">досить перевірити одну з умов</div>
+          <dl class="flip-card-vars">
+            <dt>за двома кутами</dt><dd>два кути відповідно рівні</dd>
+            <dt>за двома сторонами й кутом</dt><dd>сторони пропорційні, кут між ними рівний</dd>
+            <dt>за трьома сторонами</dt><dd>усі три пропорційні</dd>
+          </dl>
+          <p class="flip-card-note">найчастіше спрацьовує ознака за двома кутами</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: властивість бісектриси">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">бісектриса BD</div>
+          <div class="flip-card-hint">як вона ділить сторону AC?</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">AD / DC = AB / BC</div>
+          <div class="flip-card-purpose">на відрізки, пропорційні прилеглим сторонам</div>
+          <dl class="flip-card-vars">
+            <dt>AD</dt><dd>прилягає до сторони AB</dd>
+            <dt>DC</dt><dd>прилягає до сторони BC</dd>
+          </dl>
+          <p class="flip-card-note">AB = 6, BC = 9, AC = 10 → AD = 4</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: пропорційні відрізки в прямокутному трикутнику">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">h² = ?</div>
+          <div class="flip-card-hint">висота до гіпотенузи</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">h² = a<sub>c</sub> · b<sub>c</sub></div>
+          <div class="flip-card-purpose">висота — середнє пропорційне проекцій катетів</div>
+          <dl class="flip-card-vars">
+            <dt>катет</dt><dd>a² = c · a<sub>c</sub></dd>
+            <dt>a<sub>c</sub>, b<sub>c</sub></dt><dd>проекції катетів на гіпотенузу</dd>
+          </dl>
+          <p class="flip-card-note">проекції 4 і 9 → h = 6</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: теорема Піфагора">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">c² = ?</div>
+          <div class="flip-card-hint">теорема Піфагора</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">c² = a² + b²</div>
+          <div class="flip-card-purpose">квадрат гіпотенузи = сума квадратів катетів</div>
+          <dl class="flip-card-vars">
+            <dt>катет</dt><dd>a = √(c² − b²)</dd>
+            <dt>обернена</dt><dd>якщо c² = a² + b², то кут прямий</dd>
+          </dl>
+          <p class="flip-card-note">трійки: 3-4-5, 5-12-13, 8-15-17</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: синус, косинус, тангенс">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">sin · cos · tg</div>
+          <div class="flip-card-hint">гострого кута прямокутного △</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">протилежний / гіпотенуза …</div>
+          <div class="flip-card-purpose">відношення сторін, що залежить лише від кута</div>
+          <dl class="flip-card-vars">
+            <dt>sin α</dt><dd>протилежний катет / гіпотенуза</dd>
+            <dt>cos α</dt><dd>прилеглий катет / гіпотенуза</dd>
+            <dt>tg α</dt><dd>протилежний / прилеглий</dd>
+          </dl>
+          <p class="flip-card-note">sin²α + cos²α = 1</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: значення для 30, 45, 60 градусів">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">30° · 45° · 60°</div>
+          <div class="flip-card-hint">таблиця значень</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">sin: ½ · √2/2 · √3/2</div>
+          <div class="flip-card-purpose">косинус — ті самі числа у зворотному порядку</div>
+          <dl class="flip-card-vars">
+            <dt>cos</dt><dd>√3/2 · √2/2 · ½</dd>
+            <dt>tg</dt><dd>√3/3 · 1 · √3</dd>
+          </dl>
+          <p class="flip-card-note">sin 30° = cos 60° = ½</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: площа паралелограма і трикутника">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">S▱ · S△</div>
+          <div class="flip-card-hint">площа паралелограма й трикутника</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">S▱ = a·h, &nbsp;S△ = ½ a·h</div>
+          <div class="flip-card-purpose">трикутник — половина паралелограма</div>
+          <dl class="flip-card-vars">
+            <dt>h</dt><dd>висота, проведена саме до сторони a</dd>
+            <dt>прямокутний △</dt><dd>S = ½ · катет · катет</dd>
+          </dl>
+          <p class="flip-card-note">основа 12, висота 5 → S△ = 30</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: площа трапеції">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">S трапеції = ?</div>
+          <div class="flip-card-hint">основи a, b, висота h</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">S = (a + b)/2 · h</div>
+          <div class="flip-card-purpose">півсума основ (середня лінія) на висоту</div>
+          <dl class="flip-card-vars">
+            <dt>(a + b)/2</dt><dd>це середня лінія m</dd>
+            <dt>тож</dt><dd>S = m · h</dd>
+          </dl>
+          <p class="flip-card-note">основи 4 і 10, h = 6 → S = 42</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: площа ромба">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">S ромба = ?</div>
+          <div class="flip-card-hint">через діагоналі</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">S = ½ d₁ · d₂</div>
+          <div class="flip-card-purpose">половина добутку діагоналей</div>
+          <dl class="flip-card-vars">
+            <dt>або</dt><dd>S = a · h, як у паралелограма</dd>
+            <dt>квадрат</dt><dd>S = a² = ½ d²</dd>
+          </dl>
+          <p class="flip-card-note">діагоналі 6 і 8 → S = 24</p>
+        </div>
+      </div>
+    </button>
+
+    </div>
+    <button type="button" class="cards-arrow cards-next" aria-label="Наступна картка">▸</button>
+  </div>
+  <div class="cards-dots"></div>
+  <div class="cards-tip">18 теорем і формул, які треба знати напам'ять</div>
+</section>
+
+<!-- ═══════════════════ CHAPTER 1 ═══════════════════ -->
+<div class="c1" id="rozdil1">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ I</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Паралелограм і <em>його види</em></h2>
+  <div class="sub">коли в чотирикутника все попарно</div>
+
+  <h3>Чотирикутник і сума його кутів</h3>
+  <p><b>Чотирикутник</b> ABCD — фігура з чотирьох вершин і чотирьох сторін, жодні три вершини якої не лежать на одній прямій. Вершини, що не є сусідніми (A і C, B і D), називають <b>протилежними</b>, а відрізки між ними — <b>діагоналями</b>. Ми працюватимемо з <b>опуклими</b> чотирикутниками — такими, що лежать по один бік від кожної прямої, яка містить їхню сторону.</p>
+
+  <div class="formula">
+    <div class="eq">∠A + ∠B + ∠C + ∠D = 360°</div>
+    <div class="where">сума кутів опуклого чотирикутника</div>
+  </div>
+
+  <details class="proof">
+    <summary>Теорема та доведення</summary>
+    <div class="proof-body">
+    <p><b>Теорема.</b> Сума кутів опуклого чотирикутника дорівнює 360°.</p>
+    <p><b>Доведення.</b> Проведемо діагональ AC. Вона ділить чотирикутник на два трикутники: ABC і ACD. Кути при вершинах A і C діагональ розбиває на частини, а кожна частина потрапляє в один із трикутників. Отже, сума всіх кутів чотирикутника дорівнює сумі кутів двох трикутників: 180° + 180° = <b>360°</b>.</p>
+    </div>
+  </details>
+
+  <h3>Паралелограм та його властивості</h3>
+  <p><b>Паралелограм</b> — чотирикутник, у якого протилежні сторони <b>попарно паралельні</b>: AB ∥ CD і BC ∥ AD. З цього одного означення випливає цілий набір властивостей.</p>
+
+  <svg class="illu" viewBox="0 0 600 260" width="100%" style="max-width:500px">
+    <polygon points="100,220 200,60 500,60 400,220" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <line x1="100" y1="220" x2="300" y2="140" stroke="#0d6f87" stroke-width="2.5"/>
+    <line x1="300" y1="140" x2="500" y2="60" stroke="#0d6f87" stroke-width="2.5"/>
+    <line x1="200" y1="60" x2="300" y2="140" stroke="#a21caf" stroke-width="2.5"/>
+    <line x1="300" y1="140" x2="400" y2="220" stroke="#a21caf" stroke-width="2.5"/>
+    <circle cx="300" cy="140" r="4" fill="#2d1830"/>
+    <text x="306" y="164" font-family="Caveat" font-size="22" fill="#2d1830">O</text>
+    <text x="80" y="242" font-family="Caveat" font-size="24" fill="#2d1830">A</text>
+    <text x="188" y="50" font-family="Caveat" font-size="24" fill="#2d1830">B</text>
+    <text x="506" y="50" font-family="Caveat" font-size="24" fill="#2d1830">C</text>
+    <text x="404" y="242" font-family="Caveat" font-size="24" fill="#2d1830">D</text>
+    <text x="300" y="256" text-anchor="middle" font-family="Space Grotesk" font-size="15" font-style="italic" fill="#6b4d68">AO = OC, &nbsp;BO = OD</text>
+  </svg>
+
+  <div class="box">
+    <span class="label">Властивості паралелограма</span>
+    <ul>
+      <li><b>Протилежні сторони рівні:</b> AB = CD, BC = AD.</li>
+      <li><b>Протилежні кути рівні:</b> ∠A = ∠C, ∠B = ∠D.</li>
+      <li><b>Сума сусідніх кутів — 180°</b> (вони односторонні при паралельних прямих).</li>
+      <li><b>Діагоналі точкою перетину діляться навпіл:</b> AO = OC, BO = OD.</li>
+    </ul>
+    <p class="tip">діагональ ділить паралелограм на два рівні трикутники — звідси всі властивості</p>
+  </div>
+
+  <div class="example">
+    <p>У паралелограмі ABCD кут A на 40° менший за кут B. Сусідні кути разом дають 180°: x + (x + 40°) = 180° → x = 70°. Отже, <b>∠A = ∠C = 70°</b>, <b>∠B = ∠D = 110°</b>.</p>
+  </div>
+
+  <h3>Ознаки паралелограма</h3>
+  <p><b>Властивість</b> каже: «якщо це паралелограм, то…». <b>Ознака</b> — навпаки: «якщо виконується умова, то це паралелограм». Ознаки потрібні, щоб <em>довести</em>, що фігура — паралелограм.</p>
+
+  <div class="box">
+    <span class="label">Чотирикутник — паралелограм, якщо</span>
+    <ul>
+      <li>1. дві його протилежні сторони <b>паралельні й рівні</b>;</li>
+      <li>2. протилежні сторони <b>попарно рівні</b>;</li>
+      <li>3. діагоналі точкою перетину <b>діляться навпіл</b>.</li>
+    </ul>
+  </div>
+
+  <h3>Прямокутник, ромб, квадрат</h3>
+  <p>Це паралелограми з додатковими умовами — тому в них є <em>усі</em> властивості паралелограма плюс свої власні.</p>
+
+  <div class="box">
+    <span class="label">Три особливі паралелограми</span>
+    <ul>
+      <li><b>Прямокутник</b> — паралелограм, у якого всі кути прямі. Бонус: <b>діагоналі рівні</b>. Ознака: паралелограм з рівними діагоналями — прямокутник.</li>
+      <li><b>Ромб</b> — паралелограм, у якого всі сторони рівні. Бонус: <b>діагоналі перпендикулярні</b> і є <b>бісектрисами</b> його кутів.</li>
+      <li><b>Квадрат</b> — прямокутник з рівними сторонами (або ромб з прямими кутами). У нього всі властивості одразу.</li>
+    </ul>
+    <p class="tip">кожен квадрат — ромб і прямокутник, але не навпаки</p>
+  </div>
+
+  <div class="example">
+    <p>Діагоналі прямокутника ABCD перетинаються в точці O, ∠AOB = 60°. Оскільки діагоналі рівні й діляться навпіл, AO = BO, тож трикутник AOB рівнобедрений з кутом 60° — тобто <b>рівносторонній</b>. Якщо AC = 12 см, то AB = AO = <b>6 см</b>.</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Подивись на настільну лампу на шарнірах, ножичний підйомник чи розсувні двері ліфта: усередині — паралелограми. Їхні протилежні сторони завжди лишаються паралельними, хоч як ти згинаєш конструкцію, тому плафон лампи не перекидається, а платформа підйомника тримається рівно. На тому самому принципі працюють двірники великих автобусів, стабілізатори камер і роботизовані руки на заводах. А ромби — улюблена форма сіток і огорож: така сітка розтягується, не рвучись, бо ромб легко змінює кути при тих самих сторонах.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: чотирикутники та паралелограм</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Один із кутів паралелограма 50°. Чому дорівнюють інші три?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Кути паралелограма не обов'язково рівні — рівні лише протилежні.">50°, 50°, 50°</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Протилежний кут теж 50°, а сусідні — 180° − 50° = 130°.">130°, 50°, 130°</button>
+        <button type="button" class="quiz-option" data-explain="Сусідні кути разом дають 180°, а не 90°.">40°, 50°, 40°</button>
+        <button type="button" class="quiz-option" data-explain="Сума тут справді 360°, але в паралелограма протилежні кути рівні, а сусідні разом дають 180°.">90°, 50°, 170°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Діагоналі паралелограма 10 см і 16 см. На які відрізки ділить їх точка перетину?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Діагоналі паралелограма діляться навпіл: 10 → 5 і 5, 16 → 8 і 8.">5 і 5; 8 і 8</button>
+        <button type="button" class="quiz-option" data-explain="Кожна діагональ ділиться навпіл окремо, а не обидві на однакові частини.">по 6,5 кожна</button>
+        <button type="button" class="quiz-option" data-explain="Точка перетину ділить діагоналі навпіл, а не у відношенні 2 : 3.">4 і 6; 6,4 і 9,6</button>
+        <button type="button" class="quiz-option" data-explain="Можна: діагоналі будь-якого паралелограма діляться точкою перетину навпіл.">не можна визначити</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Яка властивість є в ромба, але є не в кожного прямокутника?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Рівні діагоналі — властивість прямокутника, а не ромба.">діагоналі рівні</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Діагоналі ромба перпендикулярні. У прямокутника це буває, лише коли він квадрат.">діагоналі перпендикулярні</button>
+        <button type="button" class="quiz-option" data-explain="Це властивість будь-якого паралелограма, зокрема прямокутника.">протилежні сторони рівні</button>
+        <button type="button" class="quiz-option" data-explain="Діагоналі діляться навпіл у будь-якому паралелограмі.">діагоналі діляться навпіл</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Периметр паралелограма 40 см, одна сторона 12 см. Знайди сусідню сторону.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="40 − 12 = 28 — це три сторони разом, а сторін чотири.">28 см</button>
+        <button type="button" class="quiz-option" data-explain="40 − 2·12 = 16 — це дві інші сторони разом, треба ще поділити на 2.">16 см</button>
+        <button type="button" class="quiz-option" data-correct data-explain="P = 2(a + b): 2(12 + b) = 40 → 12 + b = 20 → b = 8 см.">8 см</button>
+        <button type="button" class="quiz-option" data-explain="Перевір: 2(12 + 14) = 52 ≠ 40.">14 см</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Три кути чотирикутника — 80°, 90° і 100°. Знайди четвертий.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Сума кутів чотирикутника 360°, а не 180°.">не існує</button>
+        <button type="button" class="quiz-option" data-correct data-explain="360° − (80° + 90° + 100°) = 360° − 270° = 90°.">90°</button>
+        <button type="button" class="quiz-option" data-explain="Перевір суму: 80 + 90 + 100 = 270, а 360 − 270 = 90.">80°</button>
+        <button type="button" class="quiz-option" data-explain="Перевір суму: 80 + 90 + 100 + 100 = 370°, а має бути 360°.">100°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 2 ═══════════════════ -->
+<div class="c2" id="rozdil2">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ II</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Трапеція, середні лінії, <em>вписані кути</em></h2>
+  <div class="sub">чотирикутники, відрізки й кола</div>
+
+  <h3>Трапеція</h3>
+  <p><b>Трапеція</b> — чотирикутник, у якого дві сторони паралельні, а дві інші — ні. Паралельні сторони — <b>основи</b>, непаралельні — <b>бічні сторони</b>. Відрізок, перпендикулярний до основ, — <b>висота</b> трапеції.</p>
+
+  <div class="box">
+    <span class="label">Особливі трапеції</span>
+    <ul>
+      <li><b>Рівнобічна</b> — бічні сторони рівні. У неї <b>кути при кожній основі рівні</b> і <b>діагоналі рівні</b>.</li>
+      <li><b>Прямокутна</b> — одна бічна сторона перпендикулярна до основ.</li>
+      <li>У будь-якій трапеції кути, прилеглі до бічної сторони, у сумі дають <b>180°</b>.</li>
+    </ul>
+  </div>
+
+  <h3>Теорема Фалеса</h3>
+  <p>Давньогрецький мудрець Фалес помітив: паралельні прямі «переносять» рівність відрізків з однієї сторони кута на іншу.</p>
+
+  <div class="formula">
+    <div class="eq">рівні відрізки на одній стороні → рівні на іншій</div>
+    <div class="where">якщо паралельні прямі, що перетинають сторони кута, відтинають на одній стороні рівні відрізки, то й на іншій стороні вони відтинають рівні відрізки</div>
+  </div>
+
+  <p>Саме так ділять відрізок на будь-яку кількість рівних частин за допомогою лінійки й циркуля: відкладають на допоміжному промені n рівних відрізків і проводять паралельні прямі.</p>
+
+  <h3>Середня лінія трикутника</h3>
+  <p><b>Середня лінія трикутника</b> — відрізок, що сполучає середини двох його сторін.</p>
+
+  <div class="formula">
+    <div class="eq">MN ∥ AC, &nbsp; MN = ½ AC</div>
+    <div class="where">середня лінія паралельна третій стороні й дорівнює її половині</div>
+  </div>
+
+  <div class="example">
+    <p>Сторони трикутника 8, 10 і 14 см. Його середні лінії — половини сторін: 4, 5 і 7 см. Вони утворюють трикутник з периметром <b>16 см</b> — рівно половина периметра початкового (32 см).</p>
+  </div>
+
+  <h3>Середня лінія трапеції</h3>
+  <p><b>Середня лінія трапеції</b> сполучає середини бічних сторін.</p>
+
+  <svg class="illu" viewBox="0 0 600 250" width="100%" style="max-width:500px">
+    <polygon points="80,220 200,60 400,60 520,220" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <line x1="140" y1="140" x2="460" y2="140" stroke="#0d6f87" stroke-width="2.5"/>
+    <circle cx="140" cy="140" r="4" fill="#0d6f87"/><circle cx="460" cy="140" r="4" fill="#0d6f87"/>
+    <text x="114" y="138" font-family="Caveat" font-size="22" fill="#0d6f87">M</text>
+    <text x="470" y="138" font-family="Caveat" font-size="22" fill="#0d6f87">N</text>
+    <text x="300" y="50" text-anchor="middle" font-family="Caveat" font-size="22" fill="#6b4d68">a</text>
+    <text x="300" y="132" text-anchor="middle" font-family="Caveat" font-size="22" fill="#0d6f87">m = (a + b)/2</text>
+    <text x="300" y="244" text-anchor="middle" font-family="Caveat" font-size="22" fill="#6b4d68">b</text>
+    <text x="60" y="240" font-family="Caveat" font-size="24" fill="#2d1830">A</text>
+    <text x="186" y="52" font-family="Caveat" font-size="24" fill="#2d1830">B</text>
+    <text x="404" y="52" font-family="Caveat" font-size="24" fill="#2d1830">C</text>
+    <text x="526" y="240" font-family="Caveat" font-size="24" fill="#2d1830">D</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">m = (a + b) / 2</div>
+    <div class="where">середня лінія паралельна основам і дорівнює їх півсумі</div>
+  </div>
+
+  <h3>Центральні та вписані кути</h3>
+  <p><b>Центральний кут</b> — кут з вершиною в центрі кола; його градусна міра дорівнює мірі дуги, на яку він спирається. <b>Вписаний кут</b> — кут, вершина якого лежить на колі, а сторони перетинають коло.</p>
+
+  <svg class="illu" viewBox="0 0 600 280" width="100%" style="max-width:440px">
+    <circle cx="300" cy="150" r="110" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <line x1="300" y1="40" x2="204.7" y2="205" stroke="#0d6f87" stroke-width="2.5"/>
+    <line x1="300" y1="40" x2="395.3" y2="205" stroke="#0d6f87" stroke-width="2.5"/>
+    <line x1="300" y1="150" x2="204.7" y2="205" stroke="#a21caf" stroke-width="2.5"/>
+    <line x1="300" y1="150" x2="395.3" y2="205" stroke="#a21caf" stroke-width="2.5"/>
+    <path d="M 278.3 162.5 A 25 25 0 0 0 321.7 162.5" fill="none" stroke="#a21caf" stroke-width="2"/>
+    <path d="M 285 66 A 30 30 0 0 0 315 66" fill="none" stroke="#0d6f87" stroke-width="2"/>
+    <circle cx="300" cy="150" r="4" fill="#2d1830"/>
+    <text x="306" y="146" font-family="Caveat" font-size="22" fill="#2d1830">O</text>
+    <text x="292" y="32" font-family="Caveat" font-size="24" fill="#2d1830">C</text>
+    <text x="184" y="222" font-family="Caveat" font-size="24" fill="#2d1830">A</text>
+    <text x="402" y="222" font-family="Caveat" font-size="24" fill="#2d1830">B</text>
+    <text x="300" y="196" text-anchor="middle" font-family="Caveat" font-size="22" fill="#a21caf">120°</text>
+    <text x="300" y="96" text-anchor="middle" font-family="Caveat" font-size="22" fill="#0d6f87">60°</text>
+    <text x="300" y="276" text-anchor="middle" font-family="Space Grotesk" font-size="15" font-style="italic" fill="#6b4d68">∠ACB = ½ ∠AOB</text>
+  </svg>
+
+  <div class="box">
+    <span class="label">Головне про вписані кути</span>
+    <ul>
+      <li>Вписаний кут дорівнює <b>половині</b> дуги, на яку він спирається (тобто половині центрального кута).</li>
+      <li>Вписані кути, що спираються на <b>одну дугу</b>, рівні.</li>
+      <li>Вписаний кут, що спирається на <b>діаметр</b>, — <b>прямий</b>.</li>
+    </ul>
+    <p class="tip">центральний — повна дуга; вписаний — половина</p>
+  </div>
+
+  <h3>Вписані та описані чотирикутники</h3>
+  <p>Чотирикутник <b>вписаний у коло</b>, якщо всі його вершини лежать на колі. <b>Описаний навколо кола</b> — якщо всі його сторони дотикаються до кола.</p>
+
+  <div class="box">
+    <span class="label">Дві умови</span>
+    <ul>
+      <li><b>Вписаний:</b> чотирикутник можна вписати в коло тоді й лише тоді, коли сума його протилежних кутів дорівнює <b>180°</b>: ∠A + ∠C = ∠B + ∠D = 180°.</li>
+      <li><b>Описаний:</b> навколо кола можна описати чотирикутник тоді й лише тоді, коли суми його протилежних сторін рівні: <b>AB + CD = BC + AD</b>.</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <p>Прямокутник завжди можна вписати в коло: 90° + 90° = 180°. Центр кола — точка перетину діагоналей. А паралелограм з кутами 70° і 110° — не можна: 70° + 70° ≠ 180°. Описати навколо кола можна будь-який ромб: усі сторони рівні, тож суми протилежних теж.</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Чому сцени античних театрів і сучасних концертних залів роблять дугою? Через вписані кути: з усіх місць на одній дузі кола сцена видно під однаковим кутом — ніхто не бачить «вужчу» картинку. Фотографи користуються тим самим: щоб будівля вмістилась у кадр з тим самим кутом огляду, можна ходити по дузі, а не лише відступати назад. А вписаний кут на діаметр (90°) — простий спосіб знайти центр круглої деталі: столяри прикладають кутник прямим кутом до краю, і його сторони відтинають діаметр.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: трапеція, середні лінії, вписані кути</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Основи трапеції 6 см і 14 см. Знайди її середню лінію.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це сума основ, а треба півсума.">20 см</button>
+        <button type="button" class="quiz-option" data-explain="Це різниця основ — вона не дорівнює середній лінії.">8 см</button>
+        <button type="button" class="quiz-option" data-correct data-explain="m = (6 + 14)/2 = 10 см.">10 см</button>
+        <button type="button" class="quiz-option" data-explain="Половина більшої основи — не те. Беремо півсуму обох.">7 см</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Сторона трикутника 18 см. Чому дорівнює середня лінія, паралельна їй?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Середня лінія трикутника дорівнює половині паралельної їй сторони: 18 : 2 = 9 см.">9 см</button>
+        <button type="button" class="quiz-option" data-explain="Середня лінія — половина сторони, а не третина.">6 см</button>
+        <button type="button" class="quiz-option" data-explain="Середня лінія коротша за сторону, якій вона паралельна.">36 см</button>
+        <button type="button" class="quiz-option" data-explain="Для паралельної сторони відповідь однозначна: її половина.">не можна визначити</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Центральний кут 120°. Чому дорівнює вписаний кут, що спирається на ту саму дугу?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Вписаний кут — половина центрального, а не такий самий.">120°</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Вписаний кут = ½ центрального: 120° : 2 = 60°.">60°</button>
+        <button type="button" class="quiz-option" data-explain="Це вдвічі більше, а треба вдвічі менше.">240°</button>
+        <button type="button" class="quiz-option" data-explain="30° — це чверть центрального кута. Вписаний — рівно половина: 60°.">30°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Вписаний кут спирається на діаметр. Чому він дорівнює?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="180° — це дуга (півколо), а вписаний кут — її половина.">180°</button>
+        <button type="button" class="quiz-option" data-explain="Кут на діаметр не залежить від положення вершини — завжди прямий.">залежить від точки</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Діаметр стягує дугу 180°, вписаний кут — половина: 90°.">90°</button>
+        <button type="button" class="quiz-option" data-explain="Половина від 180° — це 90°, а не 45°.">45°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Чотирикутник ABCD вписаний у коло, ∠A = 70°. Знайди ∠C.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Протилежні кути рівні в паралелограмі. Тут чотирикутник вписаний — діє інше правило.">70°</button>
+        <button type="button" class="quiz-option" data-correct data-explain="У вписаному чотирикутнику ∠A + ∠C = 180°, тож ∠C = 110°.">110°</button>
+        <button type="button" class="quiz-option" data-explain="360° − 70° — це сума трьох інших кутів, а не один кут.">290°</button>
+        <button type="button" class="quiz-option" data-explain="Сума протилежних кутів 180°, а не 90°.">20°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 3 ═══════════════════ -->
+<div class="c3" id="rozdil3">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ III</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Подібність <em>трикутників</em></h2>
+  <div class="sub">та сама форма — інший розмір</div>
+
+  <h3>Узагальнена теорема Фалеса</h3>
+  <p>Теорему Фалеса можна посилити: паралельні прямі, що перетинають сторони кута, відтинають на сторонах <b>пропорційні</b> відрізки. Якщо на одній стороні відрізки відносяться як 2 : 3, то й на другій — як 2 : 3. На цьому тримається вся подібність.</p>
+
+  <h3>Подібні трикутники</h3>
+  <p>Два трикутники <b>подібні</b> (△ABC ∼ △A₁B₁C₁), якщо їхні кути відповідно рівні, а сторони — <b>пропорційні</b>. Число k, яке показує, у скільки разів сторони одного трикутника більші за відповідні сторони іншого, — <b>коефіцієнт подібності</b>.</p>
+
+  <svg class="illu" viewBox="0 0 600 250" width="100%" style="max-width:500px">
+    <polygon points="60,220 180,220 100,140" fill="none" stroke="#5b21b6" stroke-width="2.5"/>
+    <polygon points="260,220 452,220 324,92" fill="none" stroke="#5b21b6" stroke-width="2.5"/>
+    <text x="42" y="240" font-family="Caveat" font-size="22" fill="#2d1830">A</text>
+    <text x="184" y="240" font-family="Caveat" font-size="22" fill="#2d1830">C</text>
+    <text x="92" y="132" font-family="Caveat" font-size="22" fill="#2d1830">B</text>
+    <text x="240" y="240" font-family="Caveat" font-size="22" fill="#2d1830">A₁</text>
+    <text x="456" y="240" font-family="Caveat" font-size="22" fill="#2d1830">C₁</text>
+    <text x="316" y="84" font-family="Caveat" font-size="22" fill="#2d1830">B₁</text>
+    <text x="120" y="244" text-anchor="middle" font-family="Caveat" font-size="20" fill="#6b4d68">5</text>
+    <text x="356" y="244" text-anchor="middle" font-family="Caveat" font-size="20" fill="#6b4d68">8</text>
+    <text x="520" y="150" text-anchor="middle" font-family="Space Grotesk" font-size="16" font-style="italic" fill="#5b21b6">k = 8/5 = 1,6</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">A₁B₁/AB = B₁C₁/BC = A₁C₁/AC = k</div>
+    <div class="where">периметри відносяться як k, а площі — як k²</div>
+  </div>
+
+  <h3>Три ознаки подібності</h3>
+  <p>Перевіряти всі кути й усі сторони не потрібно — досить однієї з ознак.</p>
+
+  <div class="box">
+    <span class="label">Трикутники подібні, якщо</span>
+    <ul>
+      <li><b>1. За двома кутами:</b> два кути одного трикутника відповідно дорівнюють двом кутам іншого. (Третій тоді рівний автоматично — сума 180°.)</li>
+      <li><b>2. За двома сторонами й кутом між ними:</b> дві сторони пропорційні, а кути між ними рівні.</li>
+      <li><b>3. За трьома сторонами:</b> три сторони одного трикутника пропорційні трьом сторонам іншого.</li>
+    </ul>
+    <p class="tip">найчастіше в задачах — ознака за двома кутами: шукай спільний кут і паралельні прямі</p>
+  </div>
+
+  <div class="example">
+    <p>У трикутнику ABC провели DE ∥ AC (D на AB, E на BC). Тоді △DBE ∼ △ABC за двома кутами: ∠B спільний, ∠BDE = ∠BAC (відповідні при паралельних). Якщо BD = 4, AB = 10, AC = 15, то k = 4/10 = 0,4, і <b>DE = 0,4 · 15 = 6</b>.</p>
+  </div>
+
+  <h3>Властивість бісектриси трикутника</h3>
+
+  <div class="formula">
+    <div class="eq">AD / DC = AB / BC</div>
+    <div class="where">бісектриса BD ділить сторону AC на відрізки, пропорційні прилеглим сторонам</div>
+  </div>
+
+  <div class="example">
+    <p>AB = 6, BC = 9, AC = 10, BD — бісектриса. AD : DC = 6 : 9 = 2 : 3. Ділимо 10 у відношенні 2 : 3: одна частина — 10 : 5 = 2, тож <b>AD = 4</b>, <b>DC = 6</b>.</p>
+  </div>
+
+  <h3>Пропорційні відрізки в прямокутному трикутнику</h3>
+  <p>Проведемо в прямокутному трикутнику ABC (∠C = 90°) висоту CH до гіпотенузи. Вона ділить трикутник на два менші, і <b>всі три трикутники подібні</b> між собою (за двома кутами). Звідси — три рівності. Тут a<sub>c</sub> і b<sub>c</sub> — проекції катетів a і b на гіпотенузу c.</p>
+
+  <div class="box">
+    <span class="label">Середні пропорційні</span>
+    <ul>
+      <li><b>h² = a<sub>c</sub> · b<sub>c</sub></b> — висота до гіпотенузи.</li>
+      <li><b>a² = c · a<sub>c</sub></b> — катет a і його проекція.</li>
+      <li><b>b² = c · b<sub>c</sub></b> — катет b і його проекція.</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <p>Висота прямокутного трикутника ділить гіпотенузу на відрізки 4 і 9. Тоді h² = 4 · 9 = 36, <b>h = 6</b>. Гіпотенуза c = 13, а катет a² = 13 · 4 = 52 → a = √52 = <b>2√13</b>.</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Фалес, за легендою, виміряв висоту єгипетської піраміди, не підіймаючись на неї: дочекався моменту, коли довжина його тіні дорівнювала його зросту, і поміряв тінь піраміди — трикутники «предмет–тінь» подібні. Сьогодні подібність — у кожній карті (масштаб 1 : 100 000 — це коефіцієнт подібності), у зумі на фото та в 3D-графіці: камера в грі «проєктує» світ на екран так, щоб далекі предмети були подібними, але меншими — саме так виникає перспектива. А те, що площі відносяться як k², пояснює, чому піца діаметром 40 см — це не «трохи більше» за 30-сантиметрову, а майже вдвічі більше їжі: (40/30)² ≈ 1,78.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: подібність</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Трикутники подібні з коефіцієнтом 3. Сторона меншого 5 см. Знайди відповідну сторону більшого.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Коефіцієнт множить сторону, а не додається до неї.">8 см</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Сторони більшого в k разів більші: 5 · 3 = 15 см.">15 см</button>
+        <button type="button" class="quiz-option" data-explain="k² стосується площ, а не сторін.">45 см</button>
+        <button type="button" class="quiz-option" data-explain="Поділили, а треба помножити — шукаємо сторону більшого трикутника.">5/3 см</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>∠A = ∠A₁ і ∠B = ∠B₁. За якою ознакою △ABC ∼ △A₁B₁C₁?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Два кути відповідно рівні — перша ознака подібності.">за двома кутами</button>
+        <button type="button" class="quiz-option" data-explain="Про сторони в умові нічого не сказано.">за трьома сторонами</button>
+        <button type="button" class="quiz-option" data-explain="Для цієї ознаки потрібні пропорційні сторони.">за двома сторонами й кутом</button>
+        <button type="button" class="quiz-option" data-explain="Двох рівних кутів цілком достатньо.">вони не обов'язково подібні</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>BD — бісектриса △ABC, AB = 6, BC = 9, AC = 10. Знайди AD.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Бісектриса ділить сторону навпіл лише коли AB = BC.">5</button>
+        <button type="button" class="quiz-option" data-explain="6 — це DC, відрізок біля більшої сторони BC.">6</button>
+        <button type="button" class="quiz-option" data-correct data-explain="AD : DC = 6 : 9 = 2 : 3. 10 ділимо на 5 частин по 2: AD = 4, DC = 6.">4</button>
+        <button type="button" class="quiz-option" data-explain="Відношення 2 : 3, разом 5 частин по 2. AD = 2 · 2 = 4.">3</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Висота прямокутного трикутника ділить гіпотенузу на відрізки 4 і 9. Знайди висоту.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="36 — це h², ще треба добути корінь.">36</button>
+        <button type="button" class="quiz-option" data-explain="Це середнє арифметичне, а потрібне середнє пропорційне.">6,5</button>
+        <button type="button" class="quiz-option" data-explain="13 — це гіпотенуза.">13</button>
+        <button type="button" class="quiz-option" data-correct data-explain="h² = 4 · 9 = 36 → h = 6.">6</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Периметри подібних трикутників 12 см і 18 см. Сторона першого 4 см. Яка відповідна сторона другого?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="k = 18/12 = 1,5 (периметри відносяться як k). 4 · 1,5 = 6 см.">6 см</button>
+        <button type="button" class="quiz-option" data-explain="Різниця периметрів не додається до сторони — треба множити на k.">10 см</button>
+        <button type="button" class="quiz-option" data-explain="Це 4 · k² — так змінюються площі, а не сторони.">9 см</button>
+        <button type="button" class="quiz-option" data-explain="Другий трикутник більший, тож сторона має збільшитись.">8/3 см</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 4 ═══════════════════ -->
+<div class="c4" id="rozdil4">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ IV</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Піфагор і <em>тригонометрія</em></h2>
+  <div class="sub">прямокутний трикутник розв'язано повністю</div>
+
+  <h3>Теорема Піфагора</h3>
+  <p>Найвідоміша теорема геометрії. У прямокутному трикутнику сторони, що утворюють прямий кут, — <b>катети</b> (a, b), а сторона навпроти прямого кута — <b>гіпотенуза</b> (c), найдовша сторона.</p>
+
+  <svg class="illu" viewBox="0 0 600 260" width="100%" style="max-width:500px">
+    <polygon points="120,230 480,230 120,60" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <polyline points="120,210 140,210 140,230" fill="none" stroke="#2d1830" stroke-width="1.5"/>
+    <path d="M 435 230 A 45 45 0 0 1 439.3 210.8" fill="none" stroke="#92400e" stroke-width="2"/>
+    <text x="410" y="222" font-family="Caveat" font-size="22" fill="#92400e">α</text>
+    <text x="300" y="252" text-anchor="middle" font-family="Caveat" font-size="22" fill="#6b4d68">a — прилеглий до α</text>
+    <text x="128" y="160" font-family="Caveat" font-size="22" fill="#6b4d68">b — протилежний</text>
+    <text x="318" y="132" font-family="Caveat" font-size="22" fill="#92400e">c — гіпотенуза</text>
+    <text x="100" y="248" font-family="Caveat" font-size="22" fill="#2d1830">C</text>
+    <text x="486" y="248" font-family="Caveat" font-size="22" fill="#2d1830">B</text>
+    <text x="112" y="50" font-family="Caveat" font-size="22" fill="#2d1830">A</text>
+  </svg>
+
+  <div class="formula">
+    <div class="eq">c² = a² + b²</div>
+    <div class="where">квадрат гіпотенузи дорівнює сумі квадратів катетів</div>
+  </div>
+
+  <details class="proof">
+    <summary>Теорема та доведення</summary>
+    <div class="proof-body">
+    <p><b>Теорема Піфагора.</b> У прямокутному трикутнику квадрат гіпотенузи дорівнює сумі квадратів катетів.</p>
+    <p><b>Доведення</b> (через подібність з розділу III). Проведемо висоту до гіпотенузи c. Вона ділить гіпотенузу на проекції катетів a<sub>c</sub> і b<sub>c</sub>, причому a<sub>c</sub> + b<sub>c</sub> = c. За пропорційними відрізками в прямокутному трикутнику:</p>
+    <ul>
+      <li>a² = c · a<sub>c</sub>,</li>
+      <li>b² = c · b<sub>c</sub>.</li>
+    </ul>
+    <p>Додамо ці рівності: a² + b² = c · a<sub>c</sub> + c · b<sub>c</sub> = c(a<sub>c</sub> + b<sub>c</sub>) = c · c = <b>c²</b>.</p>
+    <div class="formula">
+      <div class="eq">a² + b² = c²</div>
+      <div class="where">що й треба було довести</div>
+    </div>
+    </div>
+  </details>
+
+  <div class="box">
+    <span class="label">Як користуватися</span>
+    <ul>
+      <li>Знаєш два катети → <b>c = √(a² + b²)</b>.</li>
+      <li>Знаєш гіпотенузу й катет → <b>a = √(c² − b²)</b>.</li>
+      <li><b>Обернена теорема:</b> якщо c² = a² + b², то трикутник прямокутний (кут навпроти c — прямий).</li>
+    </ul>
+    <p class="tip">«піфагорові трійки»: 3-4-5, 6-8-10, 5-12-13, 8-15-17, 7-24-25</p>
+  </div>
+
+  <div class="example">
+    <p>Діагональ квадрата зі стороною a: d² = a² + a² = 2a² → <b>d = a√2</b>. Висота рівностороннього трикутника зі стороною a: h² = a² − (a/2)² = 3a²/4 → <b>h = a√3/2</b>. Ці дві формули варто запам'ятати.</p>
+  </div>
+
+  <h3>Перпендикуляр і похила</h3>
+  <p>Якщо з точки A до прямої провести перпендикуляр AH і будь-який інший відрізок AB (<b>похилу</b>), то HB — <b>проекція</b> похилої. За Піфагором AB² = AH² + HB², тому:</p>
+
+  <div class="box">
+    <span class="label">Три висновки</span>
+    <ul>
+      <li>Перпендикуляр <b>коротший</b> за будь-яку похилу з тієї самої точки.</li>
+      <li>Рівні похилі мають рівні проекції (і навпаки).</li>
+      <li>Більша похила має більшу проекцію (і навпаки).</li>
+    </ul>
+  </div>
+
+  <h3>Синус, косинус, тангенс</h3>
+  <p>У подібних прямокутних трикутниках з тим самим гострим кутом α відношення сторін однакові — вони залежать <em>лише від кута</em>. Ці відношення отримали назви:</p>
+
+  <div class="formula">
+    <div class="eq">sin α = b/c, &nbsp; cos α = a/c, &nbsp; tg α = b/a</div>
+    <div class="where">b — протилежний катет, a — прилеглий, c — гіпотенуза</div>
+  </div>
+
+  <div class="box">
+    <span class="label">Корисні тотожності</span>
+    <ul>
+      <li><b>sin²α + cos²α = 1</b> — це просто теорема Піфагора, поділена на c².</li>
+      <li><b>tg α = sin α / cos α</b>.</li>
+      <li><b>sin α = cos(90° − α)</b> — синус одного гострого кута дорівнює косинусу іншого.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <span class="label">Значення для особливих кутів</span>
+    <ul>
+      <li><b>30°:</b> sin = ½, cos = √3/2, tg = √3/3.</li>
+      <li><b>45°:</b> sin = cos = √2/2, tg = 1.</li>
+      <li><b>60°:</b> sin = √3/2, cos = ½, tg = √3.</li>
+    </ul>
+    <p class="tip">sin 30° = ½ — це той самий «катет навпроти 30° дорівнює половині гіпотенузи» з 7 класу</p>
+  </div>
+
+  <h3>Розв'язування прямокутних трикутників</h3>
+  <p>«Розв'язати трикутник» — знайти всі його сторони й кути. Для прямокутного трикутника досить знати дві сторони або сторону й гострий кут.</p>
+
+  <div class="example">
+    <p>Гіпотенуза 10 см, гострий кут 30°. Протилежний катет = c · sin 30° = 10 · ½ = <b>5 см</b>. Прилеглий = c · cos 30° = 10 · √3/2 = <b>5√3 см</b>. Другий гострий кут = 90° − 30° = <b>60°</b>.</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Будівельники досі розмічають прямі кути «правилом 3-4-5»: відміряють 3 і 4 метри вздовж стін — і якщо між кінцями рівно 5 м, кут прямий (обернена теорема Піфагора). Діагональ екрана в дюймах теж рахують за Піфагором. Дорожній знак «уклон 10%» — це тангенс кута нахилу дороги: 10 м підйому на 100 м по горизонталі. А синус і косинус — основа всього, що обертається чи коливається: від анімацій у твоєму телефоні й розрахунку кута для сонячних панелей до GPS і звуку в навушниках.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: Піфагор і тригонометрія</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Катети прямокутного трикутника 6 см і 8 см. Знайди гіпотенузу.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Сторони не додаються — додаються їхні квадрати.">14 см</button>
+        <button type="button" class="quiz-option" data-correct data-explain="c² = 36 + 64 = 100 → c = 10 см.">10 см</button>
+        <button type="button" class="quiz-option" data-explain="100 — це c², ще треба добути корінь.">100 см</button>
+        <button type="button" class="quiz-option" data-explain="Квадрати додаються: 36 + 64 = 100, √100 = 10.">√28 см</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Гіпотенуза 13 см, один катет 5 см. Знайди другий катет.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Віднімати треба квадрати: 169 − 25.">8 см</button>
+        <button type="button" class="quiz-option" data-explain="Для катета квадрати віднімаються, а не додаються.">√194 см</button>
+        <button type="button" class="quiz-option" data-correct data-explain="b² = 13² − 5² = 169 − 25 = 144 → b = 12 см.">12 см</button>
+        <button type="button" class="quiz-option" data-explain="Катет завжди коротший за гіпотенузу.">18 см</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>У прямокутному трикутнику катети 3 і 4, гіпотенуза 5. Кут α лежить навпроти катета 3. Знайди sin α.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="sin α = протилежний / гіпотенуза = 3/5.">3/5</button>
+        <button type="button" class="quiz-option" data-explain="4/5 — це cos α: прилеглий катет / гіпотенуза.">4/5</button>
+        <button type="button" class="quiz-option" data-explain="3/4 — це tg α: протилежний / прилеглий.">3/4</button>
+        <button type="button" class="quiz-option" data-explain="Синус гострого кута завжди менший за 1 — гіпотенуза в знаменнику.">5/3</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Чому дорівнює cos 60°?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="√3/2 — це cos 30° (або sin 60°).">√3/2</button>
+        <button type="button" class="quiz-option" data-correct data-explain="cos 60° = sin 30° = ½.">½</button>
+        <button type="button" class="quiz-option" data-explain="√3 — це tg 60°.">√3</button>
+        <button type="button" class="quiz-option" data-explain="√2/2 — значення для 45°.">√2/2</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Чи є трикутник зі сторонами 7, 24 і 25 прямокутним?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="7² + 24² = 49 + 576 = 625 = 25². За оберненою теоремою Піфагора — так.">так</button>
+        <button type="button" class="quiz-option" data-explain="Перевір: 49 + 576 = 625 = 25². Рівність виконується.">ні</button>
+        <button type="button" class="quiz-option" data-explain="Обернена теорема Піфагора дозволяє перевірити саме за сторонами.">не можна визначити без кутів</button>
+        <button type="button" class="quiz-option" data-explain="7 + 24 > 25, тож трикутник існує. І він прямокутний.">такого трикутника не існує</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ CHAPTER 5 ═══════════════════ -->
+<div class="c5" id="rozdil5">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">розділ V</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Многокутники та <em>площі</em></h2>
+  <div class="sub">скільки місця займає фігура</div>
+
+  <h3>Многокутник і сума його кутів</h3>
+  <p><b>Многокутник</b> — замкнена ламана, що обмежує частину площини. Із вершини опуклого n-кутника можна провести діагоналі, які розріжуть його на <b>n − 2</b> трикутники. Звідси:</p>
+
+  <div class="formula">
+    <div class="eq">S<sub>кутів</sub> = 180° · (n − 2)</div>
+    <div class="where">сума кутів опуклого n-кутника; сума зовнішніх кутів (по одному при вершині) — завжди 360°</div>
+  </div>
+
+  <div class="example">
+    <p>П'ятикутник: 180° · 3 = 540°. Шестикутник: 180° · 4 = <b>720°</b>. У правильного шестикутника кожен кут 720° : 6 = 120° — тому бджолині стільники так щільно складаються: три кути по 120° дають рівно 360°.</p>
+  </div>
+
+  <h3>Що таке площа</h3>
+  <p><b>Площа</b> — величина, що показує, скільки одиничних квадратів (1 см², 1 м²) уміщує фігура. Дві властивості: рівні фігури мають рівні площі; якщо фігуру розрізали на частини, її площа — сума площ частин. Фігури з однаковою площею називають <b>рівновеликими</b>.</p>
+
+  <h3>Формули площ</h3>
+
+  <svg class="illu" viewBox="0 0 600 230" width="100%" style="max-width:560px">
+    <polygon points="20,180 140,180 180,80 60,80" fill="none" stroke="#a21caf" stroke-width="2.5"/>
+    <line x1="60" y1="80" x2="60" y2="180" stroke="#6b4d68" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="66" y="136" font-family="Caveat" font-size="20" fill="#6b4d68">h</text>
+    <text x="80" y="200" text-anchor="middle" font-family="Caveat" font-size="20" fill="#6b4d68">a</text>
+    <polygon points="220,180 380,180 270,70" fill="none" stroke="#a21caf" stroke-width="2.5"/>
+    <line x1="270" y1="70" x2="270" y2="180" stroke="#6b4d68" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="276" y="136" font-family="Caveat" font-size="20" fill="#6b4d68">h</text>
+    <text x="300" y="200" text-anchor="middle" font-family="Caveat" font-size="20" fill="#6b4d68">a</text>
+    <polygon points="420,180 580,180 540,80 460,80" fill="none" stroke="#a21caf" stroke-width="2.5"/>
+    <line x1="460" y1="80" x2="460" y2="180" stroke="#6b4d68" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <text x="466" y="136" font-family="Caveat" font-size="20" fill="#6b4d68">h</text>
+    <text x="500" y="72" text-anchor="middle" font-family="Caveat" font-size="20" fill="#6b4d68">b</text>
+    <text x="500" y="200" text-anchor="middle" font-family="Caveat" font-size="20" fill="#6b4d68">a</text>
+    <text x="100" y="224" text-anchor="middle" font-family="Space Grotesk" font-size="15" font-style="italic" fill="#a21caf">S = a · h</text>
+    <text x="300" y="224" text-anchor="middle" font-family="Space Grotesk" font-size="15" font-style="italic" fill="#a21caf">S = ½ a · h</text>
+    <text x="500" y="224" text-anchor="middle" font-family="Space Grotesk" font-size="15" font-style="italic" fill="#a21caf">S = (a + b)/2 · h</text>
+  </svg>
+
+  <div class="box">
+    <span class="label">Усі формули площ 8 класу</span>
+    <ul>
+      <li><b>Прямокутник:</b> S = a · b; &nbsp; <b>квадрат:</b> S = a².</li>
+      <li><b>Паралелограм:</b> S = a · h — сторона на висоту, проведену до неї. (Відріж трикутник з одного боку, приклади з іншого — вийде прямокутник.)</li>
+      <li><b>Трикутник:</b> S = ½ a · h — половина паралелограма. Для прямокутного: S = ½ · a · b (добуток катетів навпіл).</li>
+      <li><b>Ромб:</b> S = ½ d₁ · d₂ — половина добутку діагоналей (або a · h).</li>
+      <li><b>Трапеція:</b> S = (a + b)/2 · h — півсума основ на висоту.</li>
+    </ul>
+    <p class="tip">висота завжди перпендикулярна до тієї сторони, на яку множимо</p>
+  </div>
+
+  <div class="example">
+    <p>Рівнобічна трапеція з основами 6 і 14 см та бічною стороною 5 см. Висота: опустимо її з кінця меншої основи — відріжемо на більшій (14 − 6)/2 = 4 см. За Піфагором h = √(25 − 16) = 3 см. Площа: (6 + 14)/2 · 3 = <b>30 см²</b>.</p>
+  </div>
+
+  <div class="example">
+    <p>Площі подібних фігур відносяться як <b>k²</b>. Якщо збільшити всі сторони трикутника втричі, його площа зросте в <b>9</b> разів.</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Кожен персонаж у 3D-грі чи мультфільмі — це сітка з тисяч і мільйонів трикутників. Відеокарта постійно рахує їхні площі й нахили, щоб вирішити, як освітити кожен трикутник і скільки пікселів він займе на екрані. Площі рахують і в зовсім буденних справах: скільки плитки купити на ремонт, скільки фарби на стіну, скільки сонячних панелей поміститься на даху і скільки енергії вони дадуть. А землеміри досі ділять ділянки складної форми на трикутники й трапеції — рівно так, як у цьому розділі.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: многокутники та площі</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Сторона паралелограма 10 см, висота, проведена до неї, — 4 см. Знайди площу.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="½ · a · h — формула трикутника, а не паралелограма.">20 см²</button>
+        <button type="button" class="quiz-option" data-correct data-explain="S = a · h = 10 · 4 = 40 см².">40 см²</button>
+        <button type="button" class="quiz-option" data-explain="Площа — добуток, а не сума.">14 см²</button>
+        <button type="button" class="quiz-option" data-explain="Це 2(10 + 4) — схоже на периметр, а не площу.">28 см²</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Сторона трикутника 12 см, висота до неї 5 см. Знайди площу.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Забули ½: трикутник — половина паралелограма.">60 см²</button>
+        <button type="button" class="quiz-option" data-explain="Площа — це добуток, а не сума.">17 см²</button>
+        <button type="button" class="quiz-option" data-correct data-explain="S = ½ · 12 · 5 = 30 см².">30 см²</button>
+        <button type="button" class="quiz-option" data-explain="Перевір: ½ · 12 · 5 = 30.">34 см²</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Основи трапеції 4 см і 10 см, висота 6 см. Знайди площу.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Забули поділити суму основ на 2.">84 см²</button>
+        <button type="button" class="quiz-option" data-correct data-explain="S = (4 + 10)/2 · 6 = 7 · 6 = 42 см².">42 см²</button>
+        <button type="button" class="quiz-option" data-explain="Основи не перемножуються — беремо їх півсуму.">240 см²</button>
+        <button type="button" class="quiz-option" data-explain="Півсума основ 7 множиться на висоту 6, а не додається до неї.">20 см²</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Діагоналі ромба 6 см і 8 см. Знайди його площу.</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="S = ½ · 6 · 8 = 24 см².">24 см²</button>
+        <button type="button" class="quiz-option" data-explain="Забули ½: площа ромба — половина добутку діагоналей.">48 см²</button>
+        <button type="button" class="quiz-option" data-explain="Сума діагоналей не дає площу.">14 см²</button>
+        <button type="button" class="quiz-option" data-explain="5 — це сторона ромба (за Піфагором з половинок діагоналей 3 і 4), а не площа.">5 см²</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Чому дорівнює сума кутів опуклого шестикутника?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="360° — сума кутів чотирикутника (або зовнішніх кутів будь-якого многокутника).">360°</button>
+        <button type="button" class="quiz-option" data-explain="Це 180° · 6. Трикутників не n, а n − 2.">1080°</button>
+        <button type="button" class="quiz-option" data-explain="540° — це п'ятикутник: 180° · 3.">540°</button>
+        <button type="button" class="quiz-option" data-correct data-explain="180° · (6 − 2) = 720°.">720°</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<div class="outro">
+  <h3>Усе. Це вся геометрія 8 класу.</h3>
+  <p>Проходь розділи разом зі школою: прочитай теорію, переглянь малюнок, спробуй довести теорему сам, перш ніж розгорнути доведення. Перед заліком — картки й усі п'ять тестів підряд.</p>
+  <p>Подивись, як усе складається в ланцюжок: паралельні прямі дають теорему Фалеса, Фалес — подібність, подібність — теорему Піфагора й тригонометрію, а Піфагор — висоти для площ. Геометрія 8 класу — це одна велика історія.</p>
+  <div class="sig">~ удачі цього року ~</div>
+</div>
+</div>
+
+<script>
+(function(){
+  var current = document.documentElement.getAttribute('data-theme') || 'light';
+  function setTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem('geometria-theme', t); } catch(e) {}
+    document.querySelectorAll('.theme-toggle button').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-theme-set') === t);
+    });
+    current = t;
+  }
+  setTheme(current);
+  document.querySelectorAll('.theme-toggle button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      setTheme(btn.getAttribute('data-theme-set'));
+    });
+  });
+
+  document.querySelectorAll('.cards-section').forEach(function(section){
+    var cards = section.querySelectorAll('.flip-card');
+    var prev = section.querySelector('.cards-prev');
+    var next = section.querySelector('.cards-next');
+    var nowEl = section.querySelector('.cards-counter .now');
+    var totalEl = section.querySelector('.cards-counter .total');
+    var dotsWrap = section.querySelector('.cards-dots');
+    var total = cards.length;
+    var idx = 0;
+    if (totalEl) totalEl.textContent = total;
+
+    var dots = [];
+    for (var i = 0; i < total; i++){
+      (function(j){
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'cards-dot';
+        dot.setAttribute('aria-label', 'Картка ' + (j + 1));
+        dot.addEventListener('click', function(){ go(j); });
+        dotsWrap.appendChild(dot);
+        dots.push(dot);
+      })(i);
+    }
+
+    function go(i){
+      cards[idx].classList.remove('active', 'flipped');
+      dots[idx].classList.remove('active');
+      idx = (i + total) % total;
+      cards[idx].classList.add('active');
+      dots[idx].classList.add('active');
+      if (nowEl) nowEl.textContent = idx + 1;
+    }
+
+    cards.forEach(function(card){
+      card.addEventListener('click', function(){
+        if (card.classList.contains('active')) card.classList.toggle('flipped');
+      });
+    });
+
+    prev.addEventListener('click', function(){ go(idx - 1); });
+    next.addEventListener('click', function(){ go(idx + 1); });
+
+    document.addEventListener('keydown', function(e){
+      var rect = section.getBoundingClientRect();
+      var inView = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
+      if (!inView) return;
+      var tag = document.activeElement && document.activeElement.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft'){ e.preventDefault(); go(idx - 1); }
+      else if (e.key === 'ArrowRight'){ e.preventDefault(); go(idx + 1); }
+    });
+
+    go(0);
+  });
+
+  document.querySelectorAll('.quiz').forEach(function(quiz){
+    var questions = quiz.querySelectorAll('.quiz-q');
+    var total = questions.length;
+    var result = quiz.querySelector('.quiz-result');
+    var scoreEl = result.querySelector('.quiz-score');
+    var percentEl = result.querySelector('.quiz-percent');
+    var barFill = result.querySelector('.quiz-bar-fill');
+    var verdictEl = result.querySelector('.quiz-verdict');
+    var restartBtn = result.querySelector('.quiz-restart');
+
+    var answered = 0;
+    var correctCount = 0;
+
+    function verdictFor(p){
+      if (p === 100) return '✦ Бездоганно. Готовий до іспиту.';
+      if (p >= 80)  return 'Дуже добре. Перечитай ті, де помилився.';
+      if (p >= 60)  return 'Непогано. Повтори тему й спробуй ще раз.';
+      if (p >= 40)  return 'Ще трохи практики — і вийде.';
+      return 'Не страшно. Перечитай теорію і повертайся.';
+    }
+
+    function setFeedback(fb, prefix, explain, kind){
+      while (fb.firstChild) fb.removeChild(fb.firstChild);
+      var b = document.createElement('b');
+      b.textContent = prefix;
+      fb.appendChild(b);
+      fb.appendChild(document.createTextNode(' ' + explain));
+      fb.classList.add('show', kind);
+    }
+
+    function showResult(){
+      var p = Math.round(correctCount / total * 100);
+      scoreEl.textContent = correctCount + ' / ' + total;
+      percentEl.textContent = p + '%';
+      verdictEl.textContent = verdictFor(p);
+      result.classList.add('show');
+      requestAnimationFrame(function(){ barFill.style.width = p + '%'; });
+    }
+
+    function reset(){
+      answered = 0;
+      correctCount = 0;
+      questions.forEach(function(q){
+        q.querySelectorAll('.quiz-option').forEach(function(o){
+          o.disabled = false;
+          o.classList.remove('correct', 'wrong', 'reveal');
+        });
+        var fb = q.querySelector('.quiz-feedback');
+        fb.classList.remove('show', 'ok', 'no');
+        fb.textContent = '';
+      });
+      result.classList.remove('show');
+      barFill.style.width = '0%';
+      quiz.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+
+    questions.forEach(function(q){
+      var options = q.querySelectorAll('.quiz-option');
+      var fb = q.querySelector('.quiz-feedback');
+
+      options.forEach(function(opt){
+        opt.addEventListener('click', function(){
+          if (opt.disabled) return;
+          options.forEach(function(o){ o.disabled = true; });
+
+          var isCorrect = opt.hasAttribute('data-correct');
+          var explain = opt.getAttribute('data-explain') || '';
+
+          if (isCorrect){
+            opt.classList.add('correct');
+            setFeedback(fb, 'Правильно.', explain, 'ok');
+            correctCount++;
+          } else {
+            opt.classList.add('wrong');
+            options.forEach(function(o){
+              if (o.hasAttribute('data-correct')) o.classList.add('reveal');
+            });
+            setFeedback(fb, 'Не зовсім.', explain, 'no');
+          }
+
+          answered++;
+          if (answered === total) showResult();
+        });
+      });
+    });
+
+    restartBtn.addEventListener('click', reset);
+  });
+})();
+</script>
+<button type="button" class="to-plan" aria-label="До списку тем">↑ до тем</button>
+<script>
+(function(){
+  var plan=document.getElementById('plan');
+  var btn=document.querySelector('.to-plan');
+  if(!plan||!btn)return;
+  function onScroll(){
+    var planBottom=plan.offsetTop+plan.offsetHeight;
+    if(window.scrollY>planBottom-100)btn.classList.add('show');
+    else btn.classList.remove('show');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  btn.addEventListener('click',function(){plan.scrollIntoView({behavior:'smooth',block:'start'});});
+})();
+</script>
+</body>
+</html>

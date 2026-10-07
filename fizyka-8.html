@@ -1,0 +1,3447 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Фізика · 8 клас · вся програма року</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Cotton Candy — light theme (calm cream) */
+  --bg: #faf7f4;
+  --paper: #ffffff;
+  --paper-2: #fdfbf9;
+  --ink: #2d1830;
+  --ink-soft: #6b4d68;
+  --line: #ebe0e4;
+  --rule: #d9c8d0;
+  --orange: #b03171;       /* muted rose — chapter 1 */
+  --orange-soft: #fbe6ee;
+  --teal: #0d6f87;         /* deep cyan — chapter 2 */
+  --teal-soft: #d6effa;
+  --blue: #5b21b6;         /* deep violet — chapter 3 */
+  --blue-soft: #ece5f8;
+  --gold: #92400e;         /* warm amber — chapter 4 */
+  --gold-soft: #fbedd9;
+  --plum: #a21caf;         /* deep magenta — chapter 5 */
+  --plum-soft: #f6e1f5;
+  --shadow: 0 1px 0 rgba(76,29,79,.06), 0 18px 40px -22px rgba(76,29,79,.18);
+  --bg-glow-1: rgba(176,49,113,.025);
+  --bg-glow-2: rgba(91,33,182,.025);
+  --quiz-ok-bg: #d8efd2;
+  --quiz-ok-border: #4a8a3a;
+  --quiz-ok-text: #2a5520;
+  --quiz-no-bg: #fde2e4;
+  --quiz-no-border: #b04a4a;
+  --quiz-no-text: #762020;
+  --quiz-reveal-bg: #ecf6e8;
+  --bar-track: rgba(255,255,255,.18);
+}
+
+[data-theme="dark"]{
+  /* Plum Glow — dark theme */
+  --bg: #1a0e2a;
+  --paper: #261438;
+  --paper-2: #2e1a44;
+  --ink: #fce7f3;
+  --ink-soft: #d8b8e8;
+  --line: #3d1f5e;
+  --rule: #4d2f6e;
+  --orange: #f9a8d4;       /* light pink */
+  --orange-soft: rgba(249,168,212,.18);
+  --teal: #67e8f9;         /* light cyan */
+  --teal-soft: rgba(103,232,249,.16);
+  --blue: #c084fc;         /* light violet */
+  --blue-soft: rgba(192,132,252,.16);
+  --gold: #fcd34d;         /* peach */
+  --gold-soft: rgba(252,211,77,.16);
+  --plum: #f472b6;         /* hot pink */
+  --plum-soft: rgba(244,114,182,.16);
+  --shadow: 0 1px 0 rgba(0,0,0,.4), 0 18px 40px -22px rgba(0,0,0,.6);
+  --bg-glow-1: rgba(249,168,212,.06);
+  --bg-glow-2: rgba(192,132,252,.06);
+  --quiz-ok-bg: rgba(74,138,58,.18);
+  --quiz-ok-border: #6abb55;
+  --quiz-ok-text: #b8e9aa;
+  --quiz-no-bg: rgba(176,74,74,.18);
+  --quiz-no-border: #d96a6a;
+  --quiz-no-text: #fbb8b8;
+  --quiz-reveal-bg: rgba(74,138,58,.10);
+  --bar-track: rgba(252,231,243,.18);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(circle at 20% 10%, var(--bg-glow-1), transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--bg-glow-2), transparent 40%);
+  min-height: 100vh;
+  transition: background-color .35s ease, color .35s ease;
+}
+
+/* subtle paper texture */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+}
+
+.wrap{
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 28px 100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ───────── HEADER ───────── */
+.tag{
+  font-family: 'Caveat', cursive;
+  color: var(--orange);
+  font-size: 1.6rem;
+  letter-spacing: .02em;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+h1.title{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 14px 0 18px;
+  color: var(--ink);
+}
+h1.title em{
+  font-style: italic;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.lede{
+  font-size: 1.18rem;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin-bottom: 28px;
+}
+
+.meta{
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--ink-soft);
+}
+.meta span strong{ color: var(--ink); }
+
+/* ───────── PLAN ───────── */
+.plan{
+  margin: 56px 0 64px;
+  padding: 32px 28px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.plan::before{
+  content:none;
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  background: var(--bg);
+  padding: 0 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  color: var(--orange);
+}
+.plan-home{
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  display: inline-block;
+  background: var(--bg);
+  padding: 0 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.55;
+  color: var(--orange);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .15s, transform .15s;
+}
+.plan-home:hover{ color: var(--ink); transform: scale(1.12); }
+
+.plan h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 1.6rem;
+  margin-bottom: 22px;
+  color: var(--ink);
+}
+.days{ display: grid; gap: 10px; }
+.day{
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 18px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--rule);
+}
+.day:last-child{ border-bottom: none; }
+a.day{ text-decoration: none; color: inherit; cursor: pointer; border-radius: 4px; transition: background .15s; }
+a.day:hover{ background: var(--paper-2); }
+.day .num{
+  font-family: 'Caveat', cursive;
+  font-size: 1.7rem;
+  color: var(--orange);
+  font-weight: 700;
+}
+.day .what{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.day .what small{
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin-top: 3px;
+}
+.day .pill{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--orange-soft);
+  color: var(--orange);
+}
+.day.t1 .pill{ background: var(--orange-soft); color: var(--orange); }
+.day.t2 .pill{ background: var(--teal-soft); color: var(--teal); }
+.day.t3 .pill{ background: var(--blue-soft); color: var(--blue); }
+.day.t4 .pill{ background: var(--gold-soft); color: var(--gold); }
+.day.t5 .pill{ background: var(--plum-soft); color: var(--plum); }
+
+/* ───────── CHAPTERS ───────── */
+.chapter{
+  margin: 80px 0;
+  position: relative;
+}
+.chapter-head{
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+.chapter-num{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  letter-spacing: .05em;
+}
+.chapter-line{
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.chapter h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.chapter .sub{
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  margin-bottom: 32px;
+}
+
+.c1 .chapter h2 em, .c1 .sub{ color: var(--orange); }
+.c2 .chapter h2 em, .c2 .sub{ color: var(--teal); }
+.c3 .chapter h2 em, .c3 .sub{ color: var(--blue); }
+.c4 .chapter h2 em, .c4 .sub{ color: var(--gold); }
+.c5 .chapter h2 em, .c5 .sub{ color: var(--plum); }
+.chapter h2 em{ font-style: italic; font-weight: 600; }
+
+/* paragraphs */
+p{ margin-bottom: 16px; }
+p + p{ margin-top: 0; }
+
+h3{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 36px 0 14px;
+  letter-spacing: -0.005em;
+}
+h3::before{
+  content: "§ ";
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* call-out boxes */
+.box{
+  margin: 24px 0;
+  padding: 22px 24px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+  position: relative;
+}
+.c2 .box{ border-left-color: var(--teal); }
+.c3 .box{ border-left-color: var(--blue); }
+.c4 .box{ border-left-color: var(--gold); }
+.c5 .box{ border-left-color: var(--plum); }
+
+.box .label{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  margin-bottom: 8px;
+  display: block;
+}
+.c2 .box .label{ color: var(--teal); }
+.c3 .box .label{ color: var(--blue); }
+.c4 .box .label{ color: var(--gold); }
+.c5 .box .label{ color: var(--plum); }
+
+/* formula card */
+.formula{
+  margin: 28px 0;
+  padding: 28px 24px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 14px 30px -14px rgba(31,29,26,.4);
+}
+.formula::before, .formula::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--bg);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.formula::before{ left: -4px; }
+.formula::after{ right: -4px; }
+
+.formula .eq{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 2.2rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+  margin-bottom: 10px;
+}
+.formula .where{
+  font-size: .92rem;
+  opacity: .85;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* example block */
+.example{
+  margin: 24px 0;
+  padding: 24px;
+  background: var(--orange-soft);
+  border-radius: 4px;
+  position: relative;
+}
+.c2 .example{ background: var(--teal-soft); }
+.c3 .example{ background: var(--blue-soft); }
+.c4 .example{ background: var(--gold-soft); }
+.c5 .example{ background: var(--plum-soft); }
+
+.example::before{
+  content: "З життя";
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  background: var(--bg);
+  padding: 0 10px;
+  color: var(--orange);
+  transform: rotate(-1.5deg);
+}
+.c2 .example::before{ color: var(--teal); }
+.c3 .example::before{ color: var(--blue); }
+.c4 .example::before{ color: var(--gold); }
+.c5 .example::before{ color: var(--plum); }
+
+.example p:last-child{ margin-bottom: 0; }
+/* "цікавинка" — сучасне застосування теми та чому вона важлива */
+.fact{
+  margin: 26px 0;
+  padding: 20px 24px 20px 58px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 6px;
+  position: relative;
+  box-shadow: var(--shadow);
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+.c2 .fact{ border-left-color: var(--teal); }
+.c3 .fact{ border-left-color: var(--blue); }
+.c4 .fact{ border-left-color: var(--gold); }
+.c5 .fact{ border-left-color: var(--plum); }
+.fact::before{
+  content: "✦";
+  position: absolute;
+  left: 22px;
+  top: 18px;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--orange);
+}
+.c2 .fact::before{ color: var(--teal); }
+.c3 .fact::before{ color: var(--blue); }
+.c4 .fact::before{ color: var(--gold); }
+.c5 .fact::before{ color: var(--plum); }
+.fact .fact-label{
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  margin-bottom: 6px;
+}
+.c2 .fact .fact-label{ color: var(--teal); }
+.c3 .fact .fact-label{ color: var(--blue); }
+.c4 .fact .fact-label{ color: var(--gold); }
+.c5 .fact .fact-label{ color: var(--plum); }
+.fact p:last-child{ margin-bottom: 0; }
+
+
+/* important inline */
+b, strong{ font-weight: 600; color: var(--ink); }
+.hl-o{ background: linear-gradient(transparent 60%, var(--orange-soft) 60%); padding: 0 2px; }
+.hl-t{ background: linear-gradient(transparent 60%, var(--teal-soft) 60%); padding: 0 2px; }
+.hl-b{ background: linear-gradient(transparent 60%, var(--blue-soft) 60%); padding: 0 2px; }
+.hl-g{ background: linear-gradient(transparent 60%, var(--gold-soft) 60%); padding: 0 2px; }
+
+ul{ padding-left: 24px; margin: 14px 0 18px; }
+li{ margin-bottom: 8px; }
+li::marker{ color: var(--orange); }
+.c2 li::marker{ color: var(--teal); }
+.c3 li::marker{ color: var(--blue); }
+.c4 li::marker{ color: var(--gold); }
+.c5 li::marker{ color: var(--plum); }
+
+/* illustrations */
+.illu{
+  margin: 24px auto;
+  display: block;
+  max-width: 100%;
+}
+
+/* small note */
+.note{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  padding: 12px 0 8px;
+  transform: rotate(-.5deg);
+}
+
+/* density table */
+.dtable{
+  border-collapse: collapse;
+  width: 100%;
+  margin: 18px 0;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+.dtable th, .dtable td{
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: .96rem;
+}
+.dtable th{
+  background: var(--bg);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: .88rem;
+  letter-spacing: .04em;
+}
+.dtable tr:last-child td{ border-bottom: none; }
+.dtable .num{ font-family: 'Space Grotesk', sans-serif; font-feature-settings: "tnum"; color: var(--teal); font-weight: 600; }
+
+/* solution problem */
+.problem{
+  margin: 32px 0;
+  padding: 28px 28px 24px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+.problem .num{
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  color: var(--plum);
+  font-weight: 700;
+  line-height: 1;
+}
+.problem .stmt{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  margin: 8px 0 20px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--plum);
+  background: var(--bg);
+}
+.steps{
+  counter-reset: step;
+}
+.step{
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+  align-items: start;
+}
+.step::before{
+  content: counter(step);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--plum);
+  background: var(--plum-soft);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.step .body p{ margin-bottom: 6px; }
+.answer{
+  margin-top: 14px;
+  padding: 14px 18px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/* footer */
+.outro{
+  margin-top: 90px;
+  padding: 40px 28px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  text-align: center;
+}
+.outro h3{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: var(--paper);
+}
+.outro h3::before{ content: ""; }
+.outro p{ opacity: .85; max-width: 540px; margin: 0 auto 12px; }
+.outro .sig{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--orange);
+  margin-top: 18px;
+}
+
+/* small SVG decorations */
+.deco-line{ display: block; margin: 24px auto; opacity: .5; }
+
+.tip{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  display: inline-block;
+  background: var(--gold-soft);
+  padding: 4px 14px;
+  border-radius: 20px;
+  transform: rotate(-1deg);
+  color: var(--gold);
+  margin: 8px 0;
+}
+
+/* ───────── FLIP CARDS / CAROUSEL ───────── */
+.cards-section{ margin: 56px 0 64px; }
+.cards-head{
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+.cards-section h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.8rem;
+  color: var(--ink);
+}
+.cards-section .sub{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  color: var(--ink-soft);
+  margin-bottom: 22px;
+}
+
+.cards-counter{
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  letter-spacing: .08em;
+  margin-bottom: 14px;
+}
+.cards-counter .now{ color: var(--orange); font-weight: 600; }
+
+.cards-carousel{
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  gap: 18px;
+  align-items: center;
+}
+.cards-arrow{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background .15s, color .15s, transform .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+.cards-arrow:hover{
+  background: var(--ink);
+  color: var(--paper);
+  transform: scale(1.06);
+}
+.cards-arrow:active{ transform: scale(.96); }
+
+.cards-stage{
+  position: relative;
+  height: 360px;
+  perspective: 1400px;
+}
+.flip-card{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+.flip-card.active{
+  opacity: 1;
+  pointer-events: auto;
+}
+.flip-card-inner{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .7s cubic-bezier(.4,.2,.2,1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-card-inner{ transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back{
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.flip-card-front{
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+}
+.flip-card-back{
+  background: var(--ink);
+  color: var(--paper);
+  transform: rotateY(180deg);
+  border-color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  padding: 22px 24px;
+  text-align: left;
+}
+.flip-card-q{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 3rem;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.flip-card-hint{
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  color: var(--ink-soft);
+  margin-top: 16px;
+}
+.flip-card-a{
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  line-height: 1.15;
+  text-align: center;
+  margin: 4px 0 0;
+}
+.flip-card-a small{
+  display: inline;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem;
+  opacity: .75;
+  margin-left: 6px;
+  font-weight: 400;
+}
+.flip-card-purpose{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  text-align: center;
+  opacity: .92;
+  margin: 6px 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(255,255,255,.18);
+}
+.flip-card-vars{
+  display: grid;
+  grid-template-columns: minmax(48px, auto) 1fr;
+  column-gap: 18px;
+  row-gap: 8px;
+  align-content: start;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+.flip-card-vars dt{
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--orange);
+  text-align: right;
+  font-size: 1rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+.flip-card-vars dd{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .85rem;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  padding-top: 1px;
+  color: inherit;
+  opacity: .92;
+}
+.flip-card.c-o .flip-card-vars dt{ color: var(--orange); }
+.flip-card.c-t .flip-card-vars dt{ color: var(--teal); }
+.flip-card.c-b .flip-card-vars dt{ color: var(--blue); }
+.flip-card.c-g .flip-card-vars dt{ color: var(--gold); }
+.flip-card.c-p .flip-card-vars dt{ color: var(--plum); }
+
+/* override the global b{color: var(--ink)} inside dark cards */
+.flip-card-back b, .flip-card-back strong{ color: inherit; font-weight: 700; }
+
+.flip-card-note{
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255,255,255,.15);
+  opacity: .88;
+  line-height: 1.25;
+}
+.flip-card-tag{
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  margin-top: 18px;
+  opacity: .85;
+}
+.flip-card.c-o .flip-card-tag{ color: var(--orange-soft); }
+.flip-card.c-t .flip-card-tag{ color: var(--teal-soft); }
+.flip-card.c-b .flip-card-tag{ color: var(--blue-soft); }
+.flip-card.c-g .flip-card-tag{ color: var(--gold-soft); }
+.flip-card.c-p .flip-card-tag{ color: var(--plum-soft); }
+.flip-card.c-o .flip-card-front{ border-top: 4px solid var(--orange); }
+.flip-card.c-t .flip-card-front{ border-top: 4px solid var(--teal); }
+.flip-card.c-b .flip-card-front{ border-top: 4px solid var(--blue); }
+.flip-card.c-g .flip-card-front{ border-top: 4px solid var(--gold); }
+.flip-card.c-p .flip-card-front{ border-top: 4px solid var(--plum); }
+
+.cards-dots{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.cards-dot{
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--rule);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+}
+.cards-dot:hover{ transform: scale(1.4); background: var(--ink-soft); }
+.cards-dot.active{ background: var(--orange); transform: scale(1.4); }
+
+.cards-tip{
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 18px;
+}
+
+/* ───────── QUIZ ───────── */
+.quiz{
+  margin: 40px 0 8px;
+  padding: 30px 28px 22px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.quiz::before{
+  content: "?";
+  position: absolute;
+  top: -20px;
+  left: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+.c2 .quiz::before{ background: var(--teal); }
+.c3 .quiz::before{ background: var(--blue); }
+.c4 .quiz::before{ background: var(--gold); }
+.c5 .quiz::before{ background: var(--plum); }
+
+.quiz-title{
+  font-family: 'Caveat', cursive;
+  font-size: 1.7rem;
+  color: var(--orange);
+  display: block;
+  line-height: 1.1;
+}
+.c2 .quiz-title{ color: var(--teal); }
+.c3 .quiz-title{ color: var(--blue); }
+.c4 .quiz-title{ color: var(--gold); }
+.c5 .quiz-title{ color: var(--plum); }
+
+.quiz-sub{
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin-bottom: 22px;
+}
+
+.quiz-q{
+  margin: 22px 0;
+  padding-top: 22px;
+  border-top: 1px dashed var(--rule);
+}
+.quiz-q:first-of-type{ border-top: none; padding-top: 6px; }
+
+.quiz-q-text{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 10px;
+}
+.quiz-q-text .qn{
+  color: var(--ink-soft);
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+.quiz-options{ display: grid; gap: 8px; }
+.quiz-option{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  color: var(--ink);
+  transition: background .15s, border-color .15s, transform .15s;
+}
+.quiz-option:hover:not(:disabled){
+  background: var(--bg);
+  border-color: var(--rule);
+  transform: translateX(2px);
+}
+.quiz-option:disabled{ cursor: default; }
+.quiz-option.correct{
+  background: var(--quiz-ok-bg);
+  border-color: var(--quiz-ok-border);
+  color: var(--quiz-ok-text);
+}
+.quiz-option.wrong{
+  background: var(--quiz-no-bg);
+  border-color: var(--quiz-no-border);
+  color: var(--quiz-no-text);
+}
+.quiz-option.reveal{
+  border-color: var(--quiz-ok-border);
+  background: var(--quiz-reveal-bg);
+  color: var(--quiz-ok-text);
+}
+
+.quiz-feedback{
+  margin-top: 12px;
+  padding: 10px 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .96rem;
+  border-left: 3px solid var(--ink-soft);
+  background: var(--bg);
+  border-radius: 0 3px 3px 0;
+  display: none;
+}
+.quiz-feedback.show{ display: block; }
+.quiz-feedback.ok{ border-left-color: var(--quiz-ok-border); color: var(--quiz-ok-text); }
+.quiz-feedback.no{ border-left-color: var(--quiz-no-border); color: var(--quiz-no-text); }
+
+.quiz-result{
+  margin-top: 26px;
+  padding: 20px 22px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+  display: none;
+}
+.quiz-result.show{ display: block; }
+.quiz-result-line{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.quiz-score{ font-size: 1.3rem; font-style: italic; font-weight: 600; }
+.quiz-percent{ font-family: 'Caveat', cursive; font-size: 1.4rem; color: var(--orange); }
+.c2 .quiz-percent{ color: var(--teal-soft); }
+.c3 .quiz-percent{ color: var(--blue-soft); }
+.c4 .quiz-percent{ color: var(--gold-soft); }
+.c5 .quiz-percent{ color: var(--plum-soft); }
+.quiz-bar{
+  height: 8px;
+  background: var(--bar-track);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.quiz-bar-fill{
+  height: 100%;
+  background: var(--orange);
+  width: 0;
+  transition: width .8s cubic-bezier(.4,.2,.2,1);
+}
+.c2 .quiz-bar-fill{ background: var(--teal-soft); }
+.c3 .quiz-bar-fill{ background: var(--blue-soft); }
+.c4 .quiz-bar-fill{ background: var(--gold-soft); }
+.c5 .quiz-bar-fill{ background: var(--plum-soft); }
+.quiz-verdict{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--paper);
+  opacity: .92;
+  display: block;
+  margin-top: 8px;
+}
+.quiz-restart{
+  margin-top: 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-style: italic;
+  font-size: .92rem;
+  background: transparent;
+  border: 1px solid var(--paper);
+  color: var(--paper);
+  padding: 6px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: .85;
+  transition: opacity .15s, background .15s;
+}
+.quiz-restart:hover{ opacity: 1; background: rgba(251,246,234,.1); }
+
+/* ───────── DARK-THEME OVERRIDES (inverted cards stay readable) ───────── */
+[data-theme="dark"] .formula,
+[data-theme="dark"] .answer,
+[data-theme="dark"] .outro,
+[data-theme="dark"] .quiz-result,
+[data-theme="dark"] .flip-card-back{
+  background: linear-gradient(135deg, #2e1a44, #3d1f5e);
+  color: #fce7f3;
+  border: 1px solid #4d2f6e;
+}
+[data-theme="dark"] .formula .where{ color: #d8b8e8; opacity: .9; }
+[data-theme="dark"] .outro h3{ color: #fce7f3; }
+[data-theme="dark"] .outro p{ color: #d8b8e8; }
+[data-theme="dark"] .outro .sig{ color: var(--orange); }
+[data-theme="dark"] .quiz-verdict{ color: #fce7f3; }
+[data-theme="dark"] .quiz-restart{ border-color: #d8b8e8; color: #fce7f3; }
+[data-theme="dark"] .quiz-percent{ color: var(--orange); }
+[data-theme="dark"] .flip-card-back{ border-radius: 6px; }
+[data-theme="dark"] .flip-card-tag{ opacity: 1; }
+
+/* dark — softer contrast for body radial glows is already done via --bg-glow-* */
+
+/* ───────── THEME TOGGLE ───────── */
+.theme-toggle{
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  font-family: 'JetBrains Mono', monospace;
+  backdrop-filter: blur(8px);
+}
+.theme-toggle button{
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: .72rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background .2s, color .2s;
+}
+.theme-toggle button:hover{ color: var(--ink); }
+.theme-toggle button.on{
+  background: var(--orange);
+  color: var(--paper);
+}
+[data-theme="dark"] .theme-toggle button.on{ color: var(--bg); }
+
+/* All elements smoothly transition colors */
+.wrap, .plan, .day, .chapter, .box, .formula, .example, .problem, .answer,
+.outro, .quiz, .quiz-option, .quiz-feedback, .quiz-result, .flip-card-front,
+.flip-card-back, .cards-arrow, .cards-dot, .dtable, .dtable th, .dtable td{
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+
+@media (max-width: 600px){
+  .theme-toggle{ top: 12px; right: 12px; padding: 3px; }
+  .theme-toggle button{ padding: 5px 9px; font-size: .68rem; }
+  body{ font-size: 17px; }
+  .wrap{ padding: 32px 18px 80px; }
+  .formula .eq{ font-size: 1.6rem; }
+  .day{ grid-template-columns: 60px 1fr; }
+  .day .pill{ grid-column: 1 / -1; justify-self: start; margin-top: 4px; }
+  .cards-carousel{ grid-template-columns: 44px 1fr 44px; gap: 10px; }
+  .cards-arrow{ width: 44px; height: 44px; font-size: 1.3rem; }
+  .cards-stage{ height: 340px; }
+  .flip-card-front{ padding: 20px; }
+  .flip-card-back{ padding: 18px 18px; }
+  .flip-card-q{ font-size: 2.1rem; }
+  .flip-card-a{ font-size: 1.45rem; }
+  .flip-card-hint{ font-size: 1.3rem; }
+  .flip-card-purpose{ font-size: 1.15rem; margin: 4px 0 10px; padding-bottom: 8px; }
+  .flip-card-vars{ column-gap: 12px; row-gap: 6px; }
+  .flip-card-vars dt{ font-size: .92rem; }
+  .flip-card-vars dd{ font-size: .78rem; line-height: 1.35; }
+  .flip-card-note{ font-size: 1.1rem; padding-top: 8px; margin-top: 10px; }
+  .flip-card-tag{ font-size: 1.15rem; }
+}
+.home-link{display:inline-flex;align-items:center;gap:7px;font-family:'Space Grotesk',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);text-decoration:none;margin-bottom:28px;transition:color .15s,transform .15s}
+.home-link:hover{color:var(--orange);transform:translateX(-4px)}
+.to-plan{position:fixed;right:18px;bottom:18px;z-index:50;display:inline-flex;align-items:center;gap:7px;padding:11px 18px;background:var(--orange);color:#fff;border:none;border-radius:999px;font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.03em;cursor:pointer;box-shadow:var(--shadow);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s,filter .2s}
+.to-plan.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.to-plan:hover{filter:brightness(.92)}
+[data-theme="dark"] .to-plan{color:var(--bg)}
+#plan{scroll-margin-top:22px}
+@media (max-width:600px){.to-plan{right:12px;bottom:12px;padding:9px 14px;font-size:.78rem}}
+
+/* ── mobile: зручні тап-зони для навігації ── */
+@media (max-width: 600px){
+  .home-link{ padding: 10px 6px; margin-bottom: 16px; font-size: .94rem; }
+  .plan-home{ font-size: 1.65rem; padding: 8px 18px; top: -22px; }
+  .to-plan{
+    right: 14px; bottom: 14px;
+    padding: 15px 24px;
+    font-size: .98rem;
+    gap: 9px;
+    box-shadow: 0 10px 26px -6px rgba(0,0,0,.4);
+  }
+}
+/* ── SVG illustration colours — dark-theme overrides ── */
+[data-theme="dark"] svg.illu [fill="#2d1830"]   { fill:   #e8d4f5; }
+[data-theme="dark"] svg.illu [stroke="#2d1830"] { stroke: #e8d4f5; }
+[data-theme="dark"] svg.illu [fill="#b03171"]   { fill:   #f9a8d4; }
+[data-theme="dark"] svg.illu [stroke="#b03171"] { stroke: #f9a8d4; }
+[data-theme="dark"] svg.illu [fill="#0d6f87"]   { fill:   #67e8f9; }
+[data-theme="dark"] svg.illu [stroke="#0d6f87"] { stroke: #67e8f9; }
+[data-theme="dark"] svg.illu [fill="#6b4d68"]   { fill:   #c4a8d8; }
+[data-theme="dark"] svg.illu [stroke="#6b4d68"] { stroke: #c4a8d8; }
+[data-theme="dark"] svg.illu [fill="#5b21b6"]   { fill:   #c084fc; }
+[data-theme="dark"] svg.illu [stroke="#5b21b6"] { stroke: #c084fc; }
+[data-theme="dark"] svg.illu [fill="#92400e"]   { fill:   #fcd34d; }
+[data-theme="dark"] svg.illu [stroke="#92400e"] { stroke: #fcd34d; }
+[data-theme="dark"] svg.illu [fill="#a21caf"]   { fill:   #f472b6; }
+[data-theme="dark"] svg.illu [stroke="#a21caf"] { stroke: #f472b6; }
+</style>
+<script>
+(function(){
+  try {
+    var saved = localStorage.getItem('fizyka-theme');
+    var theme = saved || 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch(e) {}
+})();
+</script>
+</head>
+<body>
+<div class="theme-toggle" role="group" aria-label="Тема оформлення">
+  <button type="button" class="tt-light on" data-theme-set="light" aria-label="Світла тема">☀ light</button>
+  <button type="button" class="tt-dark" data-theme-set="dark" aria-label="Темна тема">☾ dark</button>
+</div>
+<div class="wrap">
+<a class="home-link" href="index.html">← усі курси</a>
+
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header>
+  <div class="tag">~ для тих, хто хоче розуміти, а не зубрити ~</div>
+  <h1 class="title">Фізика 8 класу,<br/><em>яку справді можна зрозуміти</em></h1>
+  <p class="lede">Уся програма фізики за 8 клас (НУШ): теплові явища — від температури до теплових двигунів — і електрика — від електризації до закону Ома та потужності струму. Відкривай тему, яку саме проходите в класі, — або пройди все підряд перед заліком. Прості пояснення, задачі крок за кроком, картки й тест після кожної теми.</p>
+  <div class="meta">
+    <span><strong>11</strong> тем</span>
+    <span><strong>12</strong> тестів</span>
+    <span><strong>19</strong> карток</span>
+    <span>≈ <strong>30</strong> хв на тему</span>
+  </div>
+</header>
+
+<!-- ═══════════════════ PLAN ═══════════════════ -->
+<section class="plan" id="plan">
+  <a class="plan-home" href="index.html" title="На головну сторінку" aria-label="На головну сторінку">⌂</a>
+  <h2>Теми курсу</h2>
+  <div class="days">
+    <a href="#tema1" class="day t1">
+      <span class="num">1</span>
+      <span class="what">Температура і внутрішня енергія <small>теплова рівновага, шкали Цельсія й Кельвіна, два способи змінити внутрішню енергію</small></span>
+      <span class="pill">теплота</span>
+    </a>
+    <a href="#tema2" class="day t2">
+      <span class="num">2</span>
+      <span class="what">Теплопередача <small>теплопровідність, конвекція, випромінювання</small></span>
+      <span class="pill">теплота</span>
+    </a>
+    <a href="#tema3" class="day t3">
+      <span class="num">3</span>
+      <span class="what">Кількість теплоти <small>питома теплоємність, Q = cmΔt, рівняння теплового балансу</small></span>
+      <span class="pill">теплота</span>
+    </a>
+    <a href="#tema4" class="day t4">
+      <span class="num">4</span>
+      <span class="what">Плавлення і кристалізація <small>питома теплота плавлення, графік нагрівання льоду</small></span>
+      <span class="pill">теплота</span>
+    </a>
+    <a href="#tema5" class="day t5">
+      <span class="num">5</span>
+      <span class="what">Випаровування і кипіння <small>конденсація, температура кипіння, питома теплота пароутворення</small></span>
+      <span class="pill">теплота</span>
+    </a>
+    <a href="#tema6" class="day t1">
+      <span class="num">6</span>
+      <span class="what">Паливо й теплові двигуни <small>теплота згоряння, двигун внутрішнього згоряння, ККД</small></span>
+      <span class="pill">теплота</span>
+    </a>
+    <a href="#tema7" class="day t2">
+      <span class="num">7</span>
+      <span class="what">Електричний заряд <small>електризація, взаємодія зарядів, закон Кулона, електричне поле</small></span>
+      <span class="pill">електрика</span>
+    </a>
+    <a href="#tema8" class="day t3">
+      <span class="num">8</span>
+      <span class="what">Струм, напруга, опір. Закон Ома <small>I = q/t, U = A/q, R = ρl/S, I = U/R</small></span>
+      <span class="pill">електрика</span>
+    </a>
+    <a href="#tema9" class="day t4">
+      <span class="num">9</span>
+      <span class="what">З'єднання провідників <small>послідовне й паралельне</small></span>
+      <span class="pill">електрика</span>
+    </a>
+    <a href="#tema10" class="day t5">
+      <span class="num">10</span>
+      <span class="what">Робота й потужність струму <small>A = UIt, P = UI, кіловат-година, закон Джоуля–Ленца</small></span>
+      <span class="pill">електрика</span>
+    </a>
+    <a href="#tema11" class="day t1">
+      <span class="num">11</span>
+      <span class="what">Струм у різних середовищах <small>метали, електроліти й електроліз, гази, напівпровідники, безпека</small></span>
+      <span class="pill">електрика</span>
+    </a>
+    <a href="#final-quiz" class="day t2">
+      <span class="num">★</span>
+      <span class="what">Великий тест <small>підсумкова перевірка з усього курсу</small></span>
+      <span class="pill">фінал</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════ FLASHCARDS ═══════════════════ -->
+<section class="cards-section" id="kartki">
+  <div class="cards-head">
+    <h2>Картки-нагадувалки</h2>
+  </div>
+  <div class="sub">клікни на картку, щоб побачити; ← / → — перелистати</div>
+
+  <div class="cards-counter"><span class="now">1</span> / <span class="total">19</span></div>
+
+  <div class="cards-carousel">
+    <button type="button" class="cards-arrow cards-prev" aria-label="Попередня картка">◂</button>
+    <div class="cards-stage">
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: шкала Кельвіна">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">T = ?</div>
+          <div class="flip-card-hint">абсолютна температура</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">T = t + 273</div>
+          <div class="flip-card-purpose">кельвіни = градуси Цельсія + 273</div>
+          <dl class="flip-card-vars">
+            <dt>T</dt><dd>температура в кельвінах, К</dd>
+            <dt>t</dt><dd>температура в °C</dd>
+            <dt>0 К</dt><dd>абсолютний нуль, −273 °C</dd>
+          </dl>
+          <p class="flip-card-note">27 °C = 300 К</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: способи теплопередачі">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">3 види теплопередачі</div>
+          <div class="flip-card-hint">як тепло переходить від тіла до тіла</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">провідність · конвекція · випромінювання</div>
+          <div class="flip-card-purpose">завжди від теплішого до холоднішого</div>
+          <dl class="flip-card-vars">
+            <dt>теплопровідність</dt><dd>через речовину, без її переміщення</dd>
+            <dt>конвекція</dt><dd>потоки рідини чи газу</dd>
+            <dt>випромінювання</dt><dd>працює навіть у вакуумі</dd>
+          </dl>
+          <p class="flip-card-note">Сонце гріє Землю випромінюванням</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: кількість теплоти при нагріванні">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">Q = ?</div>
+          <div class="flip-card-hint">нагрівання чи охолодження</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">Q = c · m · Δt</div>
+          <div class="flip-card-purpose">скільки теплоти треба, щоб нагріти тіло</div>
+          <dl class="flip-card-vars">
+            <dt>c</dt><dd>питома теплоємність, Дж/(кг·°C)</dd>
+            <dt>m</dt><dd>маса, кг</dd>
+            <dt>Δt</dt><dd>t₂ − t₁, зміна температури</dd>
+          </dl>
+          <p class="flip-card-note">c води = 4200 Дж/(кг·°C)</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-o" aria-label="Картка: рівняння теплового балансу">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">Q<sub>віддане</sub> = ?</div>
+          <div class="flip-card-hint">рівняння теплового балансу</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">Q<sub>віддане</sub> = Q<sub>отримане</sub></div>
+          <div class="flip-card-purpose">скільки віддало гаряче тіло — стільки отримало холодне</div>
+          <dl class="flip-card-vars">
+            <dt>умова</dt><dd>немає втрат у навколишнє середовище</dd>
+            <dt>результат</dt><dd>спільна температура θ</dd>
+          </dl>
+          <p class="flip-card-note">1 кг 20 °C + 1 кг 80 °C → 50 °C</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: плавлення">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">Q<sub>плавл</sub> = ?</div>
+          <div class="flip-card-hint">плавлення при температурі плавлення</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">Q = λ · m</div>
+          <div class="flip-card-purpose">температура під час плавлення не змінюється</div>
+          <dl class="flip-card-vars">
+            <dt>λ</dt><dd>питома теплота плавлення, Дж/кг</dd>
+            <dt>λ льоду</dt><dd>332 кДж/кг</dd>
+            <dt>кристалізація</dt><dd>те саме Q виділяється</dd>
+          </dl>
+          <p class="flip-card-note">2 кг льоду → 664 кДж</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: пароутворення">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">Q<sub>пари</sub> = ?</div>
+          <div class="flip-card-hint">пароутворення при кипінні</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">Q = r · m</div>
+          <div class="flip-card-purpose">скільки теплоти, щоб перетворити рідину на пару</div>
+          <dl class="flip-card-vars">
+            <dt>r</dt><dd>питома теплота пароутворення, Дж/кг (іноді — L)</dd>
+            <dt>r води</dt><dd>2,3 МДж/кг</dd>
+            <dt>конденсація</dt><dd>те саме Q виділяється</dd>
+          </dl>
+          <p class="flip-card-note">під час кипіння t = const</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: згоряння палива">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">Q<sub>згоряння</sub> = ?</div>
+          <div class="flip-card-hint">повне згоряння палива</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">Q = q · m</div>
+          <div class="flip-card-purpose">теплота, що виділяється під час згоряння</div>
+          <dl class="flip-card-vars">
+            <dt>q</dt><dd>питома теплота згоряння, Дж/кг</dd>
+            <dt>бензин</dt><dd>46 МДж/кг</dd>
+            <dt>сухі дрова</dt><dd>≈ 10 МДж/кг</dd>
+          </dl>
+          <p class="flip-card-note">2 кг дров → 20 МДж</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-t" aria-label="Картка: ККД">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">η = ?</div>
+          <div class="flip-card-hint">коефіцієнт корисної дії</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">η = A<sub>кор</sub> / Q · 100%</div>
+          <div class="flip-card-purpose">яка частка енергії пішла на корисну роботу</div>
+          <dl class="flip-card-vars">
+            <dt>A<sub>кор</sub></dt><dd>корисна робота</dd>
+            <dt>Q</dt><dd>теплота від нагрівника (палива)</dd>
+            <dt>завжди</dt><dd>η &lt; 100%</dd>
+          </dl>
+          <p class="flip-card-note">ДВЗ авто ≈ 25–40%</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: взаємодія зарядів">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">+ і + ? &nbsp;+ і − ?</div>
+          <div class="flip-card-hint">взаємодія зарядів</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">однойменні відштовхуються</div>
+          <div class="flip-card-purpose">різнойменні — притягуються</div>
+          <dl class="flip-card-vars">
+            <dt>e</dt><dd>1,6 · 10⁻¹⁹ Кл — елементарний заряд</dd>
+            <dt>електрон</dt><dd>заряд −e</dd>
+            <dt>тіло «+»</dt><dd>втратило електрони</dd>
+          </dl>
+          <p class="flip-card-note">заряд вимірюють у кулонах (Кл)</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: закон Кулона">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">F = ?</div>
+          <div class="flip-card-hint">закон Кулона</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">F = k · |q₁| · |q₂| / r²</div>
+          <div class="flip-card-purpose">сила взаємодії двох точкових зарядів</div>
+          <dl class="flip-card-vars">
+            <dt>k</dt><dd>9 · 10⁹ Н·м²/Кл²</dd>
+            <dt>r</dt><dd>відстань між зарядами</dd>
+          </dl>
+          <p class="flip-card-note">r удвічі більша → F у 4 рази менша</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: сила струму">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">I = ?</div>
+          <div class="flip-card-hint">сила струму</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">I = q / t</div>
+          <div class="flip-card-purpose">який заряд проходить через переріз за 1 с</div>
+          <dl class="flip-card-vars">
+            <dt>одиниця</dt><dd>ампер, 1 А = 1 Кл/с</dd>
+            <dt>амперметр</dt><dd>вмикають послідовно</dd>
+          </dl>
+          <p class="flip-card-note">30 Кл за 60 с → 0,5 А</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-b" aria-label="Картка: напруга">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">U = ?</div>
+          <div class="flip-card-hint">електрична напруга</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">U = A / q</div>
+          <div class="flip-card-purpose">робота поля з переміщення заряду 1 Кл</div>
+          <dl class="flip-card-vars">
+            <dt>одиниця</dt><dd>вольт, 1 В = 1 Дж/Кл</dd>
+            <dt>вольтметр</dt><dd>вмикають паралельно</dd>
+          </dl>
+          <p class="flip-card-note">розетка — 230 В</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: закон Ома">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">I = ?</div>
+          <div class="flip-card-hint">закон Ома для ділянки кола</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">I = U / R</div>
+          <div class="flip-card-purpose">струм прямо пропорційний напрузі й обернено — опору</div>
+          <dl class="flip-card-vars">
+            <dt>U = I · R</dt><dd>напруга</dd>
+            <dt>R = U / I</dt><dd>опір, Ом</dd>
+          </dl>
+          <p class="flip-card-note">12 В, 4 Ом → 3 А</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: опір провідника">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">R = ?</div>
+          <div class="flip-card-hint">опір дроту</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">R = ρ · l / S</div>
+          <div class="flip-card-purpose">довший дріт — більший опір; товщий — менший</div>
+          <dl class="flip-card-vars">
+            <dt>ρ</dt><dd>питомий опір, Ом·мм²/м</dd>
+            <dt>l</dt><dd>довжина, м</dd>
+            <dt>S</dt><dd>площа перерізу, мм²</dd>
+          </dl>
+          <p class="flip-card-note">ρ міді = 0,017 Ом·мм²/м</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: послідовне з'єднання">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">послідовно</div>
+          <div class="flip-card-hint">один за одним</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">R = R₁ + R₂</div>
+          <div class="flip-card-purpose">струм однаковий, напруги додаються</div>
+          <dl class="flip-card-vars">
+            <dt>I</dt><dd>I₁ = I₂ = I</dd>
+            <dt>U</dt><dd>U = U₁ + U₂</dd>
+          </dl>
+          <p class="flip-card-note">одна лампа згоріла → гаснуть усі</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-g" aria-label="Картка: паралельне з'єднання">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">паралельно</div>
+          <div class="flip-card-hint">гілки між двома вузлами</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">1/R = 1/R₁ + 1/R₂</div>
+          <div class="flip-card-purpose">напруга однакова, струми додаються</div>
+          <dl class="flip-card-vars">
+            <dt>U</dt><dd>U₁ = U₂ = U</dd>
+            <dt>I</dt><dd>I = I₁ + I₂</dd>
+            <dt>два резистори</dt><dd>R = R₁R₂ / (R₁ + R₂)</dd>
+          </dl>
+          <p class="flip-card-note">так увімкнено все у квартирі</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: робота й потужність струму">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">P = ? &nbsp; A = ?</div>
+          <div class="flip-card-hint">потужність і робота струму</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">P = U · I, &nbsp;A = U · I · t</div>
+          <div class="flip-card-purpose">потужність — робота за 1 с</div>
+          <dl class="flip-card-vars">
+            <dt>P</dt><dd>вати, Вт</dd>
+            <dt>також</dt><dd>P = I²R = U²/R</dd>
+          </dl>
+          <p class="flip-card-note">230 В · 5 А = 1150 Вт</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: кіловат-година">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">1 кВт·год = ?</div>
+          <div class="flip-card-hint">одиниця з рахунку за світло</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">= 3,6 · 10⁶ Дж</div>
+          <div class="flip-card-purpose">робота приладу потужністю 1 кВт за 1 годину</div>
+          <dl class="flip-card-vars">
+            <dt>A</dt><dd>= P (кВт) · t (год)</dd>
+          </dl>
+          <p class="flip-card-note">чайник 2 кВт × 0,5 год = 1 кВт·год</p>
+        </div>
+      </div>
+    </button>
+
+    <button type="button" class="flip-card c-p" aria-label="Картка: закон Джоуля–Ленца">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-card-q">Q = ?</div>
+          <div class="flip-card-hint">нагрівання провідника струмом</div>
+        </div>
+        <div class="flip-card-back">
+          <div class="flip-card-a">Q = I² · R · t</div>
+          <div class="flip-card-purpose">закон Джоуля–Ленца</div>
+          <dl class="flip-card-vars">
+            <dt>I удвічі більший</dt><dd>тепла в 4 рази більше</dd>
+            <dt>застосування</dt><dd>чайники, обігрівачі, запобіжники</dd>
+          </dl>
+          <p class="flip-card-note">2 А, 10 Ом, 60 с → 2400 Дж</p>
+        </div>
+      </div>
+    </button>
+
+    </div>
+    <button type="button" class="cards-arrow cards-next" aria-label="Наступна картка">▸</button>
+  </div>
+  <div class="cards-dots"></div>
+  <div class="cards-tip">19 формул, які треба знати напам'ять</div>
+</section>
+
+<!-- ═══════════════════ TEMA 1 ═══════════════════ -->
+<div class="c1" id="tema1">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">тема 1</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Температура і <em>внутрішня енергія</em></h2>
+  <div class="sub">що насправді означає «гаряче» і «холодне»</div>
+
+  <h3>Температура і теплова рівновага</h3>
+  <p>Усі речовини складаються з частинок (атомів, молекул), які <b>безперервно й хаотично рухаються</b>. Що швидше вони рухаються, то вища <b>температура</b>. Отже, температура — це міра того, наскільки інтенсивно рухаються частинки тіла.</p>
+  <p>Якщо гаряче тіло торкається холодного, гаряче остигає, а холодне нагрівається — доки температури не зрівняються. Цей стан називають <b>тепловою рівновагою</b>. Саме тому термометру треба «полежати» під пахвою кілька хвилин.</p>
+
+  <h3>Шкали Цельсія і Кельвіна</h3>
+  <p>У побуті температуру вимірюють у <b>градусах Цельсія</b> (°C): 0 °C — тане лід, 100 °C — кипить вода. Фізики також користуються <b>шкалою Кельвіна</b>: її нуль — <b>абсолютний нуль</b> (−273 °C), найнижча можлива температура, за якої хаотичний рух частинок припиняється.</p>
+
+  <div class="formula">
+    <div class="eq">T = t + 273</div>
+    <div class="where">T — у кельвінах (К), t — у градусах Цельсія; крок шкал однаковий</div>
+  </div>
+
+  <div class="example">
+    <p>Кімнатна температура 20 °C = 293 К. Температура тіла 36,6 °C ≈ 310 К. А на поверхні Місяця вночі близько −170 °C = 103 К.</p>
+  </div>
+
+  <h3>Внутрішня енергія</h3>
+  <p><b>Внутрішня енергія</b> — це сумарна енергія всіх частинок тіла: кінетична енергія їхнього руху і потенціальна енергія їхньої взаємодії. Що вища температура, то більша внутрішня енергія. Вимірюють її, як і будь-яку енергію, у <b>джоулях</b> (Дж).</p>
+
+  <div class="box">
+    <span class="label">Два способи змінити внутрішню енергію</span>
+    <ul>
+      <li><b>Виконання роботи.</b> Потри долоні — вони нагріються. Накачуєш колесо — насос стає гарячим. Сила тертя чи стиснення збільшує рух частинок.</li>
+      <li><b>Теплопередача.</b> Тепло саме переходить від гарячого тіла до холодного без виконання роботи: ложка в гарячому чаї, руки біля батареї.</li>
+    </ul>
+    <p class="tip">енергія не зникає — вона лише переходить з одного виду в інший</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Квантові комп'ютери, якими сьогодні займаються Google та IBM, працюють при температурі близько 0,01 К — це холодніше, ніж у відкритому космосі (≈ 3 К). Лише там частинки настільки «заспокоюються», що не заважають обчисленням. А тепловізори, якими рятувальники шукають людей під завалами, бачать різницю температур у соті частки градуса — бо що тепліше тіло, то інтенсивніше рухаються його частинки й то більше воно випромінює.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: температура і внутрішня енергія</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Скільки кельвінів становить 27 °C?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="273 треба додати, а не відняти.">−246 К</button>
+        <button type="button" class="quiz-option" data-correct data-explain="T = t + 273 = 27 + 273 = 300 К.">300 К</button>
+        <button type="button" class="quiz-option" data-explain="Крок шкал однаковий, але нулі різні — треба додати 273.">27 К</button>
+        <button type="button" class="quiz-option" data-explain="Додали 273 двічі.">573 К</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Ти швидко тереш долоні, і вони нагріваються. Як змінилась їхня внутрішня енергія?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Тепло ні від чого гарячого не надходило — долоні нагріла робота сили тертя.">збільшилась через теплопередачу</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Ти виконуєш роботу проти сили тертя — вона й збільшує внутрішню енергію.">збільшилась через виконання роботи</button>
+        <button type="button" class="quiz-option" data-explain="Долоні нагрілися — отже, внутрішня енергія зросла.">зменшилась</button>
+        <button type="button" class="quiz-option" data-explain="Температура зросла, а з нею і внутрішня енергія.">не змінилась</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Що відбувається з молекулами води, коли її нагрівають?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Розмір молекул не змінюється — змінюється швидкість їхнього руху.">молекули збільшуються</button>
+        <button type="button" class="quiz-option" data-explain="Кількість молекул не залежить від температури.">молекул стає більше</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Температура — міра інтенсивності руху частинок. Нагріли — рухаються швидше.">молекули рухаються швидше</button>
+        <button type="button" class="quiz-option" data-explain="Навпаки — при нагріванні рух пришвидшується.">молекули сповільнюються</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Чому дорівнює абсолютний нуль за шкалою Цельсія?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="0 °C — це температура танення льоду, а не абсолютний нуль.">0 °C</button>
+        <button type="button" class="quiz-option" data-explain="−100 °C — дуже холодно, але до абсолютного нуля ще далеко.">−100 °C</button>
+        <button type="button" class="quiz-option" data-correct data-explain="0 К = −273 °C — найнижча можлива температура.">−273 °C</button>
+        <button type="button" class="quiz-option" data-explain="Знак не той: абсолютний нуль — від'ємна температура за Цельсієм.">+273 °C</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Гарячий чай поставили в кімнаті. Коли настане теплова рівновага?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Теплообмін не припиняється, доки є різниця температур.">коли чай охолоне до 0 °C</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Рівновага — коли температури зрівнялися: чай має температуру кімнати.">коли температура чаю стане рівною температурі повітря</button>
+        <button type="button" class="quiz-option" data-explain="Повністю чай випарується не скоро, а рівновага настає значно раніше.">коли чай повністю випарується</button>
+        <button type="button" class="quiz-option" data-explain="Рівновага настане — щойно температури зрівняються.">ніколи</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ TEMA 2 ═══════════════════ -->
+<div class="c2" id="tema2">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">тема 2</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Види <em>теплопередачі</em></h2>
+  <div class="sub">три шляхи, якими тепло мандрує</div>
+
+  <p>Тепло завжди передається <b>від теплішого тіла до холоднішого</b>, і тільки трьома способами.</p>
+
+  <h3>1. Теплопровідність</h3>
+  <p>Частинки гарячої частини тіла штовхають сусідів — і рух передається далі, як естафета. <b>Сама речовина при цьому не переміщується.</b> Так нагрівається ручка металевої ложки в чаї.</p>
+
+  <div class="box">
+    <span class="label">Хто проводить тепло добре, а хто погано</span>
+    <ul>
+      <li><b>Добрі провідники</b> — метали: мідь, алюміній, срібло. Тому каструлі металеві.</li>
+      <li><b>Погані провідники (теплоізолятори)</b> — дерево, пластик, вовна, пінопласт і особливо <b>повітря</b>.</li>
+      <li>Пухнасті речі (пух, хутро, вата) гріють, бо тримають у собі багато повітря.</li>
+    </ul>
+  </div>
+
+  <h3>2. Конвекція</h3>
+  <p>У рідинах і газах нагріті шари <b>розширюються, стають легшими й піднімаються вгору</b>, а холодні опускаються на їх місце. Утворюються потоки — конвекційні течії. У твердих тілах конвекція неможлива: частинки там не можуть вільно переміщатися.</p>
+
+  <div class="example">
+    <p>Батарею ставлять <b>унизу</b> під вікном: тепле повітря від неї піднімається і прогріває всю кімнату. А кондиціонер вішають <b>угорі</b>: холодне повітря опускається. Вітер і морські течії — теж конвекція в масштабі планети.</p>
+  </div>
+
+  <h3>3. Випромінювання</h3>
+  <p>Усі тіла випромінюють енергію — що гарячіші, то більше. Це <b>єдиний спосіб, що працює у вакуумі</b>: так Сонце нагріває Землю через 150 мільйонів кілометрів порожнечі.</p>
+
+  <div class="box">
+    <span class="label">Темне і світле</span>
+    <ul>
+      <li><b>Темні</b> поверхні добре поглинають і добре випромінюють енергію.</li>
+      <li><b>Світлі й блискучі</b> — відбивають. Тому влітку краще світлий одяг, а рятувальні ковдри — блискучі.</li>
+    </ul>
+    <p class="tip">термос «вимикає» всі три способи: вакуум між стінками, дзеркальні стінки, щільна кришка</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Процесор у твоєму ноутбуці чи ігровій консолі виділяє стільки тепла, що без охолодження згорів би за секунди. Інженери поєднують усі три способи: мідна пластина й «теплові трубки» відводять тепло теплопровідністю, вентилятор жене повітря — це вимушена конвекція, а чорні радіатори ще й випромінюють. Найпотужніші дата-центри, що навчають штучний інтелект, охолоджують рідиною — вода має набагато більшу теплоємність, ніж повітря (про це — наступна тема).</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: теплопередача</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Яким способом енергія Сонця потрапляє на Землю?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Для теплопровідності потрібна речовина, а між Сонцем і Землею — вакуум.">теплопровідністю</button>
+        <button type="button" class="quiz-option" data-explain="Конвекції потрібні рідина або газ, а в космосі їх практично немає.">конвекцією</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Лише випромінювання поширюється у вакуумі.">випромінюванням</button>
+        <button type="button" class="quiz-option" data-explain="Один зі способів таки працює — випромінювання.">ніяким, вакуум не пропускає тепло</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Чому батарею опалення встановлюють біля підлоги?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Тепле повітря піднімається вгору, а холодне опускається до батареї — конвекція прогріває всю кімнату.">щоб тепле повітря піднімалось і перемішувалось (конвекція)</button>
+        <button type="button" class="quiz-option" data-explain="Повітря — поганий провідник, основну роботу робить конвекція.">щоб краще працювала теплопровідність повітря</button>
+        <button type="button" class="quiz-option" data-explain="Справа не в зручності, а у фізиці: тепле повітря йде вгору.">так просто зручніше під'єднувати труби</button>
+        <button type="button" class="quiz-option" data-explain="Біля підлоги батарея не випромінює краще — справа в потоках повітря.">щоб посилити випромінювання</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Яка речовина найкраще проводить тепло?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Повітря — один із найгірших провідників тепла.">повітря</button>
+        <button type="button" class="quiz-option" data-explain="Дерево — теплоізолятор, тому з нього роблять ручки.">дерево</button>
+        <button type="button" class="quiz-option" data-explain="Вата тримає повітря і майже не проводить тепло.">вата</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Метали, особливо мідь, — найкращі провідники тепла.">мідь</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Чому подвійні склопакети зберігають тепло в домі?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Скло пропускає світло — справа в прошарку між стеклами.">скло не пропускає світло</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Між стеклами — шар повітря (або газу), а він дуже погано проводить тепло.">між стеклами шар повітря — поганого провідника</button>
+        <button type="button" class="quiz-option" data-explain="Скло нагрівається повільно, але головне — повітряний прошарок.">подвійне скло саме гріє кімнату</button>
+        <button type="button" class="quiz-option" data-explain="Тепло виходить усіма способами; повітряний шар гальмує теплопровідність.">конвекція у склі неможлива</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>У якому середовищі конвекція неможлива?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="У рідинах конвекція є — згадай, як закипає вода в каструлі.">у рідинах</button>
+        <button type="button" class="quiz-option" data-explain="У газах конвекція є — вітер, тяга в димарі.">у газах</button>
+        <button type="button" class="quiz-option" data-correct data-explain="У твердих тілах частинки не можуть вільно переміщатися — потоків не буде.">у твердих тілах</button>
+        <button type="button" class="quiz-option" data-explain="Є середовище, де конвекції немає: тверді тіла (і вакуум).">вона можлива всюди</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ TEMA 3 ═══════════════════ -->
+<div class="c3" id="tema3">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">тема 3</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Кількість <em>теплоти</em></h2>
+  <div class="sub">скільки енергії треба, щоб нагріти</div>
+
+  <h3>Кількість теплоти і питома теплоємність</h3>
+  <p><b>Кількість теплоти Q</b> — енергія, яку тіло отримує або віддає під час теплопередачі. Вимірюють у джоулях. Вона залежить від трьох речей: <b>маси</b> тіла, <b>зміни температури</b> і <b>речовини</b>.</p>
+  <p>Залежність від речовини описує <b>питома теплоємність c</b> — кількість теплоти, потрібна, щоб нагріти 1 кг речовини на 1 °C.</p>
+
+  <div class="formula">
+    <div class="eq">Q = c · m · (t₂ − t₁)</div>
+    <div class="where">c — Дж/(кг·°C), m — кг, t₁ і t₂ — початкова й кінцева температури; при охолодженні Q &lt; 0 — тіло віддає теплоту</div>
+  </div>
+
+  <table class="dtable">
+    <thead>
+      <tr><th>Речовина</th><th>c, Дж/(кг·°C)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Вода</td><td class="num">4200</td></tr>
+      <tr><td>Лід</td><td class="num">2100</td></tr>
+      <tr><td>Алюміній</td><td class="num">920</td></tr>
+      <tr><td>Цегла</td><td class="num">880</td></tr>
+      <tr><td>Сталь</td><td class="num">500</td></tr>
+      <tr><td>Мідь</td><td class="num">400</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note">У води теплоємність дуже велика: вона повільно нагрівається і повільно остигає.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Яку кількість теплоти треба, щоб нагріти 3 кг води від 20 °C до кипіння (100 °C)?</p>
+    <div class="steps">
+      <div class="step"><div class="body"><p>Дано: c = 4200 Дж/(кг·°C), m = 3 кг, t₁ = 20 °C, t₂ = 100 °C.</p></div></div>
+      <div class="step"><div class="body"><p>Q = c · m · (t₂ − t₁) = 4200 · 3 · 80.</p></div></div>
+      <div class="step"><div class="body"><p>4200 · 3 = 12 600; 12 600 · 80 = <b>1 008 000 Дж</b> ≈ 1 МДж.</p></div></div>
+    </div>
+    <div class="answer">≈ 1 МДж</div>
+  </div>
+
+  <h3>Рівняння теплового балансу</h3>
+  <p>Коли змішують гарячу і холодну воду (або кидають гарячий метал у воду), теплота переходить від гарячого тіла до холодного, доки температури не зрівняються. Якщо втрат немає:</p>
+
+  <div class="formula">
+    <div class="eq">Q<sub>віддане</sub> = Q<sub>отримане</sub></div>
+    <div class="where">c₁m₁(t₁ − θ) = c₂m₂(θ − t₂), де θ — спільна кінцева температура</div>
+  </div>
+
+  <div class="example">
+    <p>Змішали 2 кг води при 10 °C і 1 кг при 70 °C. Нехай кінцева температура θ. Гаряча вода віддає: 4200 · 1 · (70 − θ). Холодна отримує: 4200 · 2 · (θ − 10). Прирівнюємо й скорочуємо на 4200: 70 − θ = 2θ − 20 → 3θ = 90 → <b>θ = 30 °C</b>.</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Велика теплоємність води робить її найкращим «акумулятором тепла» на планеті. Через це біля моря зими м'якші, а літо прохолодніше, ніж далеко від нього: океан повільно нагрівається влітку й повільно віддає тепло взимку. Тому ж у системах опалення по трубах ганяють саме воду, а сучасні «теплові батареї» для сонячних і вітрових електростанцій запасають надлишкову енергію в нагрітій воді, піску чи розплавленій солі — щоб віддати її вночі.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: кількість теплоти</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Яку кількість теплоти треба, щоб нагріти 2 кг води на 10 °C?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Не помножили на масу 2 кг.">42 кДж</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Q = 4200 · 2 · 10 = 84 000 Дж = 84 кДж.">84 кДж</button>
+        <button type="button" class="quiz-option" data-explain="Помилка в 10 разів: 4200 · 2 · 10 = 84 000 Дж.">840 кДж</button>
+        <button type="button" class="quiz-option" data-explain="Масу й температуру треба помножити, а не додати.">50,4 кДж</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Що показує питома теплоємність речовини?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це про температуру плавлення, а не про теплоємність.">за якої температури речовина плавиться</button>
+        <button type="button" class="quiz-option" data-correct data-explain="c — кількість теплоти для нагрівання 1 кг на 1 °C.">скільки теплоти треба, щоб нагріти 1 кг на 1 °C</button>
+        <button type="button" class="quiz-option" data-explain="Це теплопровідність — інша властивість.">як швидко речовина проводить тепло</button>
+        <button type="button" class="quiz-option" data-explain="Це питома теплота згоряння, тема 6.">скільки теплоти виділяється під час згоряння</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Однакові за масою шматки міді й алюмінію отримали однакову кількість теплоти. Який нагріється більше?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Δt = Q/(cm). У міді c = 400 — менше, ніж в алюмінію (920), тож мідь нагріється більше.">мідь</button>
+        <button type="button" class="quiz-option" data-explain="В алюмінію більша теплоємність (920 проти 400), тож він нагріється менше.">алюміній</button>
+        <button type="button" class="quiz-option" data-explain="Теплоємності різні, тож і нагрівання різне.">однаково</button>
+        <button type="button" class="quiz-option" data-explain="Вистачає даних: порівнюємо питомі теплоємності.">не можна визначити</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Змішали 1 кг води при 20 °C і 1 кг води при 80 °C. Яка буде температура суміші?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Температури не додаються.">100 °C</button>
+        <button type="button" class="quiz-option" data-explain="Це різниця температур, а не температура суміші.">60 °C</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Маси й речовина однакові, тож θ — посередині: (20 + 80)/2 = 50 °C.">50 °C</button>
+        <button type="button" class="quiz-option" data-explain="Гаряча вода віддасть тепло — суміш буде тепліша за 20 °C.">20 °C</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>У яких одиницях вимірюють питому теплоємність?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Дж — одиниця кількості теплоти Q, а не c.">Дж</button>
+        <button type="button" class="quiz-option" data-explain="Дж/кг — одиниця λ, r чи q, де температура не змінюється.">Дж/кг</button>
+        <button type="button" class="quiz-option" data-correct data-explain="c = Q/(m·Δt), тож одиниця — Дж/(кг·°C).">Дж/(кг·°C)</button>
+        <button type="button" class="quiz-option" data-explain="Вати — одиниця потужності.">Вт</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ TEMA 4 ═══════════════════ -->
+<div class="c4" id="tema4">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">тема 4</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Плавлення і <em>кристалізація</em></h2>
+  <div class="sub">коли тепло не підвищує температуру</div>
+
+  <h3>Агрегатні стани</h3>
+  <p>Речовина може бути <b>твердою</b>, <b>рідкою</b> або <b>газоподібною</b>. Перехід з твердого стану в рідкий — <b>плавлення</b>, з рідкого в твердий — <b>кристалізація</b> (тверднення). Для кристалічних речовин обидва процеси відбуваються при <b>одній і тій самій температурі</b> — температурі плавлення. Для льоду це 0 °C, для олова — 232 °C, для заліза — 1539 °C.</p>
+
+  <h3>Графік нагрівання льоду</h3>
+  <p>Візьмемо лід при −20 °C і будемо рівномірно його нагрівати. Графік температури виглядатиме так:</p>
+
+  <svg class="illu" viewBox="0 0 600 280" width="100%" style="max-width:540px">
+    <line x1="60" y1="20" x2="60" y2="250" stroke="#2d1830" stroke-width="2"/>
+    <line x1="60" y1="250" x2="580" y2="250" stroke="#2d1830" stroke-width="2"/>
+    <line x1="60" y1="200" x2="560" y2="200" stroke="#ebe0e4" stroke-width="1"/>
+    <line x1="60" y1="50" x2="560" y2="50" stroke="#ebe0e4" stroke-width="1"/>
+    <text x="52" y="205" text-anchor="end" font-family="Space Grotesk" font-size="14" fill="#6b4d68">0</text>
+    <text x="52" y="55" text-anchor="end" font-family="Space Grotesk" font-size="14" fill="#6b4d68">100</text>
+    <text x="52" y="235" text-anchor="end" font-family="Space Grotesk" font-size="14" fill="#6b4d68">−20</text>
+    <text x="66" y="24" font-family="Space Grotesk" font-size="14" fill="#6b4d68">t, °C</text>
+    <text x="548" y="272" font-family="Space Grotesk" font-size="14" fill="#6b4d68">час</text>
+    <polyline points="60,230 110,200 250,200 330,50 500,50 540,26" fill="none" stroke="#92400e" stroke-width="3"/>
+    <text x="72" y="196" font-family="Caveat" font-size="18" fill="#6b4d68">лід</text>
+    <text x="180" y="190" text-anchor="middle" font-family="Caveat" font-size="22" fill="#92400e">плавлення</text>
+    <text x="180" y="222" text-anchor="middle" font-family="Caveat" font-size="18" fill="#6b4d68">лід + вода</text>
+    <text x="300" y="140" font-family="Caveat" font-size="18" fill="#6b4d68">вода</text>
+    <text x="415" y="40" text-anchor="middle" font-family="Caveat" font-size="22" fill="#92400e">кипіння</text>
+    <text x="415" y="72" text-anchor="middle" font-family="Caveat" font-size="18" fill="#6b4d68">вода + пара</text>
+    <text x="520" y="20" font-family="Caveat" font-size="18" fill="#6b4d68">пара</text>
+  </svg>
+
+  <div class="box">
+    <span class="label">Що видно з графіка</span>
+    <ul>
+      <li><b>Похилі ділянки</b> — тіло нагрівається, Q = cmΔt.</li>
+      <li><b>Горизонтальні ділянки</b> — зміна агрегатного стану. Теплота надходить, а температура <b>не змінюється</b>: уся енергія йде на руйнування кристалічної ґратки (або на відрив молекул при кипінні).</li>
+    </ul>
+  </div>
+
+  <h3>Питома теплота плавлення</h3>
+  <p><b>Питома теплота плавлення λ</b> («лямбда») — кількість теплоти, потрібна, щоб розплавити 1 кг речовини, <b>узятої при температурі плавлення</b>. Під час кристалізації рівно стільки ж теплоти виділяється.</p>
+
+  <div class="formula">
+    <div class="eq">Q = λ · m</div>
+    <div class="where">λ — Дж/кг; для льоду λ = 332 кДж/кг = 3,32 · 10⁵ Дж/кг</div>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Скільки теплоти треба, щоб 0,5 кг льоду при −10 °C перетворити на воду при 0 °C?</p>
+    <div class="steps">
+      <div class="step"><div class="body"><p><b>Крок 1 — нагріти лід до 0 °C:</b> Q₁ = c<sub>льоду</sub> · m · Δt = 2100 · 0,5 · 10 = 10 500 Дж.</p></div></div>
+      <div class="step"><div class="body"><p><b>Крок 2 — розплавити:</b> Q₂ = λ · m = 332 000 · 0,5 = 166 000 Дж.</p></div></div>
+      <div class="step"><div class="body"><p><b>Разом:</b> Q = Q₁ + Q₂ = 10 500 + 166 000 = 176 500 Дж.</p></div></div>
+    </div>
+    <div class="answer">≈ 177 кДж</div>
+  </div>
+
+  <p class="tip">якщо речовина не при температурі плавлення — спочатку її треба туди «довести»</p>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Те, що під час плавлення температура стоїть на місці, — основа «акумуляторів холоду»: гелеві пакети в сумках-холодильниках і контейнерах для доставки вакцин довго тримають 0 °C, поки повністю не розтануть. На тому самому працюють матеріали з «фазовим переходом» у сучасних будинках і навіть у спортивному одязі: вдень вони плавляться й поглинають надлишок тепла, а вночі тверднуть і віддають його. А 3D-принтер робить деталь, розплавляючи пластик і даючи йому кристалізуватися шар за шаром.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: плавлення і кристалізація</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Як змінюється температура льоду під час плавлення?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Теплота надходить, але йде на руйнування ґратки, а не на нагрівання.">зростає</button>
+        <button type="button" class="quiz-option" data-explain="Лід отримує теплоту, тож охолоджуватися не може.">знижується</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Поки лід тане, температура суміші лишається 0 °C.">не змінюється</button>
+        <button type="button" class="quiz-option" data-explain="Для кристалічних речовин поведінка однозначна: температура стала.">спочатку росте, потім спадає</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Скільки теплоти треба, щоб розплавити 2 кг льоду при 0 °C (λ = 332 кДж/кг)?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Треба помножити на масу, а не поділити.">166 кДж</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Q = λm = 332 · 2 = 664 кДж.">664 кДж</button>
+        <button type="button" class="quiz-option" data-explain="Лід уже при 0 °C, нагрівати його не треба — лише Q = λm.">668,2 кДж</button>
+        <button type="button" class="quiz-option" data-explain="Це Q для 1 кг, а маса 2 кг.">332 кДж</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Що означає горизонтальна ділянка на графіку нагрівання кристалічної речовини?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Нагрівання — це похилі ділянки, де температура росте.">речовина швидко нагрівається</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Температура стала — відбувається зміна агрегатного стану (плавлення чи кипіння).">зміну агрегатного стану</button>
+        <button type="button" class="quiz-option" data-explain="Нагрівник працює й далі: теплота йде на плавлення.">нагрівник вимкнули</button>
+        <button type="button" class="quiz-option" data-explain="Охолодження — це спадна ділянка.">речовина охолоджується</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Куди йде теплота, яку отримує лід під час плавлення?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Температура не росте, тож рух частинок не пришвидшується.">на прискорення руху молекул</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Енергія йде на руйнування кристалічної ґратки — молекули «відриваються» від своїх місць.">на руйнування кристалічної ґратки</button>
+        <button type="button" class="quiz-option" data-explain="Енергія не зникає — вона змінює стан речовини.">вона зникає</button>
+        <button type="button" class="quiz-option" data-explain="Лід не віддає тепло під час плавлення — він його поглинає.">її віддає лід навколишньому повітрю</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>За якої температури кристалізується (замерзає) чиста вода?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Температура кристалізації дорівнює температурі плавлення: 0 °C.">0 °C</button>
+        <button type="button" class="quiz-option" data-explain="Чиста вода замерзає при 0 °C, а не нижче.">−4 °C</button>
+        <button type="button" class="quiz-option" data-explain="+4 °C — температура, за якої вода найщільніша, але не замерзає.">+4 °C</button>
+        <button type="button" class="quiz-option" data-explain="0 К = −273 °C — це абсолютний нуль.">−273 °C</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ TEMA 5 ═══════════════════ -->
+<div class="c5" id="tema5">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">тема 5</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Випаровування і <em>кипіння</em></h2>
+  <div class="sub">з рідини — у пару і назад</div>
+
+  <h3>Випаровування</h3>
+  <p><b>Випаровування</b> — перехід рідини в пару з її <b>поверхні</b>. Воно відбувається за будь-якої температури: калюжа висихає і взимку. Найшвидші молекули вилітають з поверхні, а ті, що лишилися, в середньому повільніші — тому <b>рідина під час випаровування охолоджується</b>.</p>
+
+  <div class="box">
+    <span class="label">Випаровування пришвидшується, якщо</span>
+    <ul>
+      <li>підвищити <b>температуру</b> рідини;</li>
+      <li>збільшити <b>площу поверхні</b> (розлита вода висихає швидше, ніж у склянці);</li>
+      <li>є <b>вітер</b> — він відносить пару від поверхні;</li>
+      <li>рідина <b>легка на випаровування</b> (спирт, ацетон — швидше, ніж вода).</li>
+    </ul>
+  </div>
+
+  <p><b>Конденсація</b> — зворотний процес: пара перетворюється на рідину і <b>віддає</b> теплоту. Роса, запотіле дзеркало, хмари — усе це конденсація.</p>
+
+  <h3>Кипіння</h3>
+  <p><b>Кипіння</b> — бурхливе пароутворення <b>в усьому об'ємі</b> рідини: усередині утворюються бульбашки пари, піднімаються й лопаються. Відбувається воно при певній <b>температурі кипіння</b>, і поки рідина кипить, її температура <b>не змінюється</b> (горизонтальна ділянка на графіку в темі 4).</p>
+
+  <div class="box">
+    <span class="label">Від чого залежить температура кипіння</span>
+    <ul>
+      <li>Від <b>речовини</b>: вода — 100 °C, спирт — 78 °C.</li>
+      <li>Від <b>тиску</b>: що менший тиск, то нижча температура кипіння. У горах вода кипить при 85–90 °C, і картопля вариться довше. У скороварці тиск вищий — вода кипить при ~120 °C, і їжа готується швидше.</li>
+    </ul>
+  </div>
+
+  <h3>Питома теплота пароутворення</h3>
+
+  <div class="formula">
+    <div class="eq">Q = r · m</div>
+    <div class="where">r — питома теплота пароутворення (у деяких підручниках — L); для води r = 2,3 МДж/кг = 2,3 · 10⁶ Дж/кг</div>
+  </div>
+
+  <p>Це кількість теплоти, потрібна, щоб перетворити 1 кг рідини, узятої <b>при температурі кипіння</b>, на пару. Під час конденсації стільки ж виділяється — тому опік парою значно небезпечніший, ніж окропом.</p>
+
+  <div class="example">
+    <p>Щоб випарувати 0,2 кг окропу: Q = 2 300 000 · 0,2 = <b>460 000 Дж</b>. Для порівняння: нагріти ці 0,2 кг від 20 °C до 100 °C — лише 4200 · 0,2 · 80 = 67 200 Дж. Випарувати воду майже в 7 разів «дорожче», ніж довести до кипіння!</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Холодильник і кондиціонер — це машини випаровування. Усередині по трубках циркулює спеціальна рідина: у морозильній камері вона випаровується й забирає тепло, а в решітці ззаду конденсується й віддає його кімнаті (тому решітка тепла). Тепловий насос, яким дедалі частіше опалюють будинки, працює так само, лише «навпаки» — забирає тепло з холодної вулиці й віддає в дім. А твоє тіло охолоджується потом: випаровування з шкіри — головний «кондиціонер» людини.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: випаровування і кипіння</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Що пришвидшує висихання білизни?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Зменшення площі поверхні сповільнює випаровування.">скласти її вдвоє</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Вітер відносить пару від поверхні — випаровування пришвидшується.">вітер</button>
+        <button type="button" class="quiz-option" data-explain="Нижча температура — повільніше випаровування.">холодна погода</button>
+        <button type="button" class="quiz-option" data-explain="Під накриттям пара накопичується і випаровування гальмується.">накрити плівкою</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Скільки теплоти треба, щоб перетворити на пару 0,5 кг води при 100 °C (r = 2,3 МДж/кг)?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Помножили на 2 замість 0,5.">4,6 МДж</button>
+        <button type="button" class="quiz-option" data-explain="Вода вже при 100 °C — нагрівати її не треба, лише випарувати.">1,32 МДж</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Q = rm = 2,3 · 0,5 = 1,15 МДж.">1,15 МДж</button>
+        <button type="button" class="quiz-option" data-explain="Це для 1 кг, а маса 0,5 кг.">2,3 МДж</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Чому, вийшовши з води після купання, стає холодно навіть у спеку?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Вода на шкірі нагрівається від тіла, а холодно через випаровування.">вода холодніша за повітря</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Вода випаровується зі шкіри і забирає з собою енергію — тіло охолоджується.">випаровування води забирає тепло з тіла</button>
+        <button type="button" class="quiz-option" data-explain="Конденсація, навпаки, віддає тепло.">на шкірі конденсується пара</button>
+        <button type="button" class="quiz-option" data-explain="Це відчуття має фізичну причину — випаровування.">це лише здається</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Чому в горах вода закипає при температурі нижчій за 100 °C?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Вода та сама — змінюється тиск.">у горах інша вода</button>
+        <button type="button" class="quiz-option" data-explain="Холодніше повітря не знижує температуру кипіння.">у горах холодніше</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Атмосферний тиск у горах менший, а що менший тиск, то нижча температура кипіння.">у горах менший атмосферний тиск</button>
+        <button type="button" class="quiz-option" data-explain="Сила тяжіння в горах майже така сама і на кипіння не впливає.">у горах менша сила тяжіння</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Як змінюється температура води, поки вона кипить?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Поки рідина кипить, уся теплота йде на пароутворення — температура стала.">не змінюється</button>
+        <button type="button" class="quiz-option" data-explain="Навіть якщо зробити вогонь сильнішим, вода просто кипітиме швидше, але не гарячіше.">поступово зростає</button>
+        <button type="button" class="quiz-option" data-explain="Вода отримує теплоту, тож охолоджуватися не буде.">знижується</button>
+        <button type="button" class="quiz-option" data-explain="При сталому тиску температура кипіння стала.">стрибає то вгору, то вниз</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ TEMA 6 ═══════════════════ -->
+<div class="c1" id="tema6">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">тема 6</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Паливо й <em>теплові двигуни</em></h2>
+  <div class="sub">як теплота стає рухом</div>
+
+  <h3>Енергія палива</h3>
+  <p>Під час згоряння палива (дров, вугілля, газу, бензину) хімічна енергія перетворюється на внутрішню — виділяється теплота. Скільки — залежить від маси і виду палива.</p>
+
+  <div class="formula">
+    <div class="eq">Q = q · m</div>
+    <div class="where">q — питома теплота згоряння, Дж/кг: бензин — 46 МДж/кг, природний газ — 44 МДж/кг, кам'яне вугілля — 27 МДж/кг, сухі дрова — ≈ 10 МДж/кг</div>
+  </div>
+
+  <h3>Тепловий двигун</h3>
+  <p><b>Тепловий двигун</b> перетворює внутрішню енергію палива на механічну роботу. У будь-якого теплового двигуна три обов'язкові частини:</p>
+
+  <div class="box">
+    <span class="label">Будова теплового двигуна</span>
+    <ul>
+      <li><b>Нагрівник</b> — джерело теплоти (згоряння палива).</li>
+      <li><b>Робоче тіло</b> — газ, який розширюється і виконує роботу (штовхає поршень чи крутить турбіну).</li>
+      <li><b>Холодильник</b> — куди йде невикористана теплота (атмосфера, вода).</li>
+    </ul>
+  </div>
+
+  <p>Автомобільний <b>двигун внутрішнього згоряння</b> працює за чотири такти: <b>впуск</b> (циліндр наповнюється пальною сумішшю), <b>стиснення</b>, <b>робочий хід</b> (суміш спалахує від іскри, гази штовхають поршень — лише тут виконується корисна робота) і <b>випуск</b> відпрацьованих газів. Інші теплові двигуни — парові й газові турбіни на електростанціях, реактивні двигуни літаків.</p>
+
+  <h3>Коефіцієнт корисної дії</h3>
+  <p>Жоден двигун не перетворює на роботу всю енергію палива: частина обов'язково йде в холодильник, частина — на тертя. Ефективність показує <b>ККД</b>:</p>
+
+  <div class="formula">
+    <div class="eq">η = A<sub>кор</sub> / Q<sub>повна</sub> · 100%</div>
+    <div class="where">A<sub>кор</sub> — корисна робота, Q<sub>повна</sub> — теплота від згоряння палива; завжди η &lt; 100%</div>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Двигун автомобіля спалив 2 кг бензину і виконав корисну роботу 23 МДж. Знайди ККД двигуна.</p>
+    <div class="steps">
+      <div class="step"><div class="body"><p>Повна теплота: Q = q · m = 46 МДж/кг · 2 кг = 92 МДж.</p></div></div>
+      <div class="step"><div class="body"><p>ККД: η = 23 / 92 · 100% = <b>25%</b>.</p></div></div>
+      <div class="step"><div class="body"><p>Тобто лише чверть енергії бензину рухає авто, решта нагріває повітря.</p></div></div>
+    </div>
+    <div class="answer">25%</div>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Звичайний бензиновий автомобіль має ККД близько 25–35%: дві третини енергії палива буквально вилітають у вихлопну трубу й радіатор. Електродвигун перетворює на рух понад 90% енергії батареї — головна причина, чому світ переходить на електромобілі. А найефективніші теплові машини — газові турбіни сучасних електростанцій з ККД до 60%: вони використовують гарячі вихлопні гази вдруге, щоб ще й закрутити парову турбіну.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: паливо й двигуни</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Скільки теплоти виділиться під час повного згоряння 2 кг сухих дров (q = 10 МДж/кг)?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Треба помножити, а не поділити.">5 МДж</button>
+        <button type="button" class="quiz-option" data-explain="Це для 1 кг.">10 МДж</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Q = qm = 10 · 2 = 20 МДж.">20 МДж</button>
+        <button type="button" class="quiz-option" data-explain="Помилка в порядку: 10 · 2 = 20 МДж.">200 МДж</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Двигун отримав від палива 100 кДж і виконав корисну роботу 25 кДж. Який його ККД?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="75% — це частка втраченої енергії.">75%</button>
+        <button type="button" class="quiz-option" data-correct data-explain="η = 25/100 · 100% = 25%.">25%</button>
+        <button type="button" class="quiz-option" data-explain="Поділили навпаки: 100/25 = 4 — ККД не може бути більше 100%.">400%</button>
+        <button type="button" class="quiz-option" data-explain="Це відношення без множення на 100%. У відсотках — 25%.">0,25%</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Чи можна створити тепловий двигун з ККД 100%?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Навіть без тертя частина теплоти обов'язково йде в холодильник.">так, якщо прибрати тертя</button>
+        <button type="button" class="quiz-option" data-explain="Вид палива змінює лише кількість теплоти, а не ККД.">так, з кращим паливом</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Ні: частина теплоти завжди передається холодильнику, тому η &lt; 100%.">ні, частина теплоти завжди йде в холодильник</button>
+        <button type="button" class="quiz-option" data-explain="Це закон природи, а не технологічна проблема.">так, у майбутньому</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Які три основні частини має кожен тепловий двигун?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Нагрівник дає теплоту, робоче тіло виконує роботу, холодильник забирає залишок.">нагрівник, робоче тіло, холодильник</button>
+        <button type="button" class="quiz-option" data-explain="Це частини автомобіля, а не будь-якого теплового двигуна.">бак, колеса, кермо</button>
+        <button type="button" class="quiz-option" data-explain="Батарея — від електродвигуна, а не теплового.">батарея, мотор, провід</button>
+        <button type="button" class="quiz-option" data-explain="Поршень є не в усіх двигунах (наприклад, у турбіні його немає).">поршень, циліндр, свічка</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Під час якого такту двигун внутрішнього згоряння виконує корисну роботу?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Під час впуску суміш лише надходить у циліндр.">впуск</button>
+        <button type="button" class="quiz-option" data-explain="Під час стиснення двигун, навпаки, витрачає енергію.">стиснення</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Суміш згоряє, гарячі гази штовхають поршень — це єдиний «корисний» такт.">робочий хід</button>
+        <button type="button" class="quiz-option" data-explain="Під час випуску відпрацьовані гази лише виходять.">випуск</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ TEMA 7 ═══════════════════ -->
+<div class="c2" id="tema7">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">тема 7</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Електричний <em>заряд</em></h2>
+  <div class="sub">звідки береться електрика</div>
+
+  <h3>Електризація</h3>
+  <p>Потри повітряну кульку об волосся — і вона притягує папірці та «прилипає» до стіни. Кулька <b>наелектризувалась</b>: отримала <b>електричний заряд</b>. Під час тертя частина <b>електронів</b> переходить з одного тіла на інше.</p>
+
+  <div class="box">
+    <span class="label">Два види зарядів</span>
+    <ul>
+      <li>Тіло, що <b>отримало</b> зайві електрони, заряджене <b>негативно (−)</b>.</li>
+      <li>Тіло, що <b>втратило</b> електрони, заряджене <b>позитивно (+)</b>.</li>
+      <li>Під час тертя заряджаються <b>обидва</b> тіла — рівними за модулем і протилежними за знаком зарядами.</li>
+    </ul>
+  </div>
+
+  <svg class="illu" viewBox="0 0 600 170" width="100%" style="max-width:520px">
+    <circle cx="90" cy="70" r="24" fill="none" stroke="#b03171" stroke-width="2.5"/>
+    <text x="90" y="79" text-anchor="middle" font-family="Space Grotesk" font-size="26" fill="#b03171">+</text>
+    <circle cx="210" cy="70" r="24" fill="none" stroke="#b03171" stroke-width="2.5"/>
+    <text x="210" y="79" text-anchor="middle" font-family="Space Grotesk" font-size="26" fill="#b03171">+</text>
+    <line x1="60" y1="70" x2="22" y2="70" stroke="#2d1830" stroke-width="2"/><polyline points="32,62 22,70 32,78" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <line x1="240" y1="70" x2="278" y2="70" stroke="#2d1830" stroke-width="2"/><polyline points="268,62 278,70 268,78" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <text x="150" y="140" text-anchor="middle" font-family="Caveat" font-size="24" fill="#6b4d68">однойменні — відштовхуються</text>
+    <circle cx="390" cy="70" r="24" fill="none" stroke="#b03171" stroke-width="2.5"/>
+    <text x="390" y="79" text-anchor="middle" font-family="Space Grotesk" font-size="26" fill="#b03171">+</text>
+    <circle cx="510" cy="70" r="24" fill="none" stroke="#0d6f87" stroke-width="2.5"/>
+    <text x="510" y="78" text-anchor="middle" font-family="Space Grotesk" font-size="28" fill="#0d6f87">−</text>
+    <line x1="418" y1="70" x2="446" y2="70" stroke="#2d1830" stroke-width="2"/><polyline points="436,62 446,70 436,78" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <line x1="482" y1="70" x2="454" y2="70" stroke="#2d1830" stroke-width="2"/><polyline points="464,62 454,70 464,78" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <text x="450" y="140" text-anchor="middle" font-family="Caveat" font-size="24" fill="#6b4d68">різнойменні — притягуються</text>
+  </svg>
+
+  <h3>Електричний заряд</h3>
+  <p>Заряд позначають <b>q</b> і вимірюють у <b>кулонах</b> (Кл). Найменший заряд у природі — <b>елементарний</b>: e = 1,6 · 10⁻¹⁹ Кл. Такий заряд (зі знаком «−») має електрон, а зі знаком «+» — протон. Заряд будь-якого тіла — ціле число елементарних зарядів.</p>
+
+  <div class="box">
+    <span class="label">Закон збереження заряду</span>
+    <p>У замкненій системі алгебраїчна сума зарядів не змінюється. Заряди не виникають «з нічого» — вони лише перерозподіляються між тілами.</p>
+  </div>
+
+  <h3>Провідники й діелектрики</h3>
+  <p><b>Провідники</b> мають вільні заряджені частинки й добре проводять заряд: метали, графіт, розчини солей, тіло людини. <b>Діелектрики</b> (ізолятори) майже не проводять: гума, пластик, скло, сухе дерево, фарфор. Тому дроти мідні, а обплетення — пластикове.</p>
+
+  <h3>Закон Кулона</h3>
+  <p>Сила взаємодії двох точкових зарядів <b>прямо пропорційна</b> добутку їхніх модулів і <b>обернено пропорційна квадрату відстані</b> між ними.</p>
+
+  <div class="formula">
+    <div class="eq">F = k · |q₁| · |q₂| / r²</div>
+    <div class="where">k = 9 · 10⁹ Н·м²/Кл²; r — відстань між зарядами, м</div>
+  </div>
+
+  <div class="example">
+    <p>Відстань між зарядами збільшили втричі — сила зменшиться в 3² = <b>9 разів</b>. Один із зарядів збільшили вдвічі — сила зросте вдвічі.</p>
+  </div>
+
+  <h3>Електричне поле</h3>
+  <p>Заряди взаємодіють на відстані, бо кожен заряд створює навколо себе <b>електричне поле</b> — особливу форму матерії, що діє на інші заряди з певною силою. Поле не бачимо, але виявляємо за його дією: наелектризована кулька притягує папірці саме через поле.</p>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Лазерні принтери й ксерокси працюють на електризації: барабан заряджають, лазер «малює» на ньому розряджені ділянки, і частинки фарби-тонера прилипають саме туди, а потім переносяться на папір. Електростатичні фільтри очищують дим на заводах — заряджені пилинки притягуються до пластин. А сенсорний екран твого телефона реагує на палець тому, що тіло людини — провідник: дотик змінює розподіл зарядів у сітці під склом. Тому в звичайних рукавичках-діелектриках екран і не працює.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: електричний заряд</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Як взаємодіють два позитивно заряджені тіла?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Притягуються різнойменні заряди.">притягуються</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Однойменні заряди відштовхуються.">відштовхуються</button>
+        <button type="button" class="quiz-option" data-explain="Заряджені тіла завжди взаємодіють.">не взаємодіють</button>
+        <button type="button" class="quiz-option" data-explain="Характер взаємодії визначається лише знаками зарядів.">залежить від їхньої маси</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Скляна паличка після тертя об шовк зарядилась позитивно. Що з нею сталося?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Протони під час тертя не переходять — вони в ядрах атомів.">отримала протони</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Позитивний заряд означає, що тіло втратило частину електронів.">втратила електрони</button>
+        <button type="button" class="quiz-option" data-explain="Отримання електронів дало б негативний заряд.">отримала електрони</button>
+        <button type="button" class="quiz-option" data-explain="Заряд не виникає з нічого — електрони перейшли на шовк.">створила новий заряд</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Відстань між двома зарядами збільшили вдвічі. Як змінилась сила їхньої взаємодії?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Сила залежить від квадрата відстані, а не просто від відстані.">зменшилась у 2 рази</button>
+        <button type="button" class="quiz-option" data-correct data-explain="F ~ 1/r²: (2)² = 4, тож сила зменшилась у 4 рази.">зменшилась у 4 рази</button>
+        <button type="button" class="quiz-option" data-explain="Що далі заряди, то слабша взаємодія.">збільшилась у 4 рази</button>
+        <button type="button" class="quiz-option" data-explain="Відстань входить у закон Кулона — сила зміниться.">не змінилась</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Чому дорівнює елементарний заряд?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="1 Кл — величезний заряд, у мільярди мільярдів разів більший за елементарний.">1 Кл</button>
+        <button type="button" class="quiz-option" data-explain="9 · 10⁹ — це коефіцієнт k у законі Кулона.">9 · 10⁹ Кл</button>
+        <button type="button" class="quiz-option" data-correct data-explain="e = 1,6 · 10⁻¹⁹ Кл — заряд електрона за модулем.">1,6 · 10⁻¹⁹ Кл</button>
+        <button type="button" class="quiz-option" data-explain="Показник має бути від'ємним: заряд дуже малий.">1,6 · 10¹⁹ Кл</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Який із матеріалів є діелектриком?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Мідь — один із найкращих провідників.">мідь</button>
+        <button type="button" class="quiz-option" data-explain="Розчин солі проводить струм — це провідник.">солона вода</button>
+        <button type="button" class="quiz-option" data-explain="Графіт (стрижень олівця) — провідник.">графіт</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Гума майже не має вільних зарядів — це діелектрик.">гума</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ TEMA 8 ═══════════════════ -->
+<div class="c3" id="tema8">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">тема 8</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Струм, напруга, опір. <em>Закон Ома</em></h2>
+  <div class="sub">три величини, що описують коло</div>
+
+  <h3>Електричний струм</h3>
+  <p><b>Електричний струм</b> — напрямлений рух заряджених частинок. Щоб він існував, потрібні: <b>вільні заряджені частинки</b>, <b>джерело струму</b> (батарейка, акумулятор, генератор), яке створює електричне поле, і <b>замкнене коло</b>. За напрям струму умовно беруть напрям руху позитивних зарядів — від «+» до «−» джерела.</p>
+
+  <h3>Сила струму</h3>
+  <p><b>Сила струму I</b> показує, який заряд проходить через поперечний переріз провідника за 1 секунду.</p>
+
+  <div class="formula">
+    <div class="eq">I = q / t</div>
+    <div class="where">одиниця — ампер (А); вимірюють <b>амперметром</b>, який вмикають у коло <b>послідовно</b></div>
+  </div>
+
+  <h3>Напруга</h3>
+  <p><b>Напруга U</b> показує, яку роботу виконує електричне поле, переміщуючи заряд 1 Кл. Це «сила поштовху», з якою джерело жене заряди по колу.</p>
+
+  <div class="formula">
+    <div class="eq">U = A / q</div>
+    <div class="where">одиниця — вольт (В); вимірюють <b>вольтметром</b>, який вмикають <b>паралельно</b> ділянці</div>
+  </div>
+
+  <h3>Опір</h3>
+  <p>Провідник «заважає» руху зарядів: електрони стикаються з йонами кристалічної ґратки. Цю властивість описує <b>опір R</b>, одиниця — <b>ом</b> (Ом). Опір дроту залежить від матеріалу, довжини й товщини:</p>
+
+  <div class="formula">
+    <div class="eq">R = ρ · l / S</div>
+    <div class="where">ρ — питомий опір матеріалу (Ом·мм²/м), l — довжина (м), S — площа поперечного перерізу (мм²)</div>
+  </div>
+
+  <table class="dtable">
+    <thead>
+      <tr><th>Матеріал</th><th>ρ, Ом·мм²/м</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Срібло</td><td class="num">0,016</td></tr>
+      <tr><td>Мідь</td><td class="num">0,017</td></tr>
+      <tr><td>Алюміній</td><td class="num">0,028</td></tr>
+      <tr><td>Залізо</td><td class="num">0,10</td></tr>
+      <tr><td>Ніхром</td><td class="num">1,1</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note">Довший дріт — більший опір; товщий — менший. Тому нагрівальні спіралі роблять з ніхрому, а дроти — з міді.</p>
+
+  <h3>Закон Ома для ділянки кола</h3>
+  <p>Німецький фізик Георг Ом експериментально встановив, як пов'язані три величини:</p>
+
+  <div class="formula">
+    <div class="eq">I = U / R</div>
+    <div class="where">сила струму прямо пропорційна напрузі та обернено пропорційна опору</div>
+  </div>
+
+  <div class="example">
+    <p>Лампочку з опором 460 Ом вмикають у розетку 230 В. Струм: I = 230 / 460 = <b>0,5 А</b>. Звідси ще дві форми закону: <b>U = I · R</b> і <b>R = U / I</b>.</p>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Мідний дріт завдовжки 100 м має переріз 1,7 мм². Яка сила струму в ньому при напрузі 3 В?</p>
+    <div class="steps">
+      <div class="step"><div class="body"><p>Опір: R = ρl/S = 0,017 · 100 / 1,7 = 1,7 / 1,7 = <b>1 Ом</b>.</p></div></div>
+      <div class="step"><div class="body"><p>За законом Ома: I = U/R = 3 / 1 = <b>3 А</b>.</p></div></div>
+    </div>
+    <div class="answer">3 А</div>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Закон Ома — щоденний інструмент кожного інженера-електронника. Ним рахують резистори, що обмежують струм через світлодіоди (інакше ті миттєво згорають), товщину кабелів для електромобільних зарядних станцій і навіть роботу датчиків: термометр у смарт-годиннику — це провідник, опір якого змінюється з температурою, і годинник просто вимірює струм. А надпровідники — матеріали з нульовим опором при дуже низьких температурах — уже працюють у магнітах томографів і поїздах на магнітній подушці.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: струм, напруга, опір</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Через провідник за 1 хв пройшов заряд 30 Кл. Яка сила струму?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Час треба взяти в секундах: 1 хв = 60 с.">30 А</button>
+        <button type="button" class="quiz-option" data-correct data-explain="I = q/t = 30 Кл / 60 с = 0,5 А.">0,5 А</button>
+        <button type="button" class="quiz-option" data-explain="Треба ділити заряд на час, а не множити.">1800 А</button>
+        <button type="button" class="quiz-option" data-explain="Поділили час на заряд — навпаки.">2 А</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Напруга на резисторі 12 В, опір 4 Ом. Яка сила струму?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="I = U/R, а не U · R.">48 А</button>
+        <button type="button" class="quiz-option" data-explain="Поділили навпаки: R/U.">⅓ А</button>
+        <button type="button" class="quiz-option" data-correct data-explain="I = U/R = 12/4 = 3 А.">3 А</button>
+        <button type="button" class="quiz-option" data-explain="Величини не віднімаються.">8 А</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Як вмикають амперметр у коло?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Амперметр має «пропускати через себе» весь струм — тому його вмикають послідовно.">послідовно</button>
+        <button type="button" class="quiz-option" data-explain="Паралельно вмикають вольтметр.">паралельно</button>
+        <button type="button" class="quiz-option" data-explain="Розташування важливе: тільки послідовне вмикання покаже струм у колі.">як завгодно</button>
+        <button type="button" class="quiz-option" data-explain="Амперметр вмикають у робоче коло, послідовно.">лише без джерела струму</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Довжину дроту збільшили вдвічі. Як змінився його опір?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Опір пропорційний довжині, а не обернено пропорційний.">зменшився вдвічі</button>
+        <button type="button" class="quiz-option" data-correct data-explain="R = ρl/S: l більша вдвічі → R більший удвічі.">збільшився вдвічі</button>
+        <button type="button" class="quiz-option" data-explain="Довжина входить у формулу в першому степені, не в квадраті.">збільшився в 4 рази</button>
+        <button type="button" class="quiz-option" data-explain="Довжина впливає на опір: R = ρl/S.">не змінився</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Напругу на провіднику збільшили з 6 В до 18 В. Як змінилась сила струму (опір сталий)?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Струм прямо пропорційний напрузі, а не обернено.">зменшилась утричі</button>
+        <button type="button" class="quiz-option" data-explain="Пропорційність лінійна, не квадратична.">збільшилась у 9 разів</button>
+        <button type="button" class="quiz-option" data-explain="За законом Ома струм залежить від напруги.">не змінилась</button>
+        <button type="button" class="quiz-option" data-correct data-explain="I = U/R: напруга зросла втричі (18/6 = 3) — і струм утричі.">збільшилась утричі</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ TEMA 9 ═══════════════════ -->
+<div class="c4" id="tema9">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">тема 9</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>З'єднання <em>провідників</em></h2>
+  <div class="sub">послідовно чи паралельно</div>
+
+  <svg class="illu" viewBox="0 0 600 230" width="100%" style="max-width:560px">
+    <!-- series -->
+    <polyline points="70,50 40,50 40,170 145,170" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <polyline points="155,170 260,170 260,50 220,50" fill="none" stroke="#2d1830" stroke-width="2"/>
+    <line x1="120" y1="50" x2="170" y2="50" stroke="#2d1830" stroke-width="2"/>
+    <rect x="70" y="40" width="50" height="20" fill="none" stroke="#92400e" stroke-width="2.5"/>
+    <rect x="170" y="40" width="50" height="20" fill="none" stroke="#92400e" stroke-width="2.5"/>
+    <line x1="145" y1="154" x2="145" y2="186" stroke="#2d1830" stroke-width="2.5"/>
+    <line x1="155" y1="162" x2="155" y2="178" stroke="#2d1830" stroke-width="4"/>
+    <text x="95" y="32" text-anchor="middle" font-family="Caveat" font-size="20" fill="#92400e">R₁</text>
+    <text x="195" y="32" text-anchor="middle" font-family="Caveat" font-size="20" fill="#92400e">R₂</text>
+    <text x="150" y="110" text-anchor="middle" font-family="Caveat" font-size="22" fill="#6b4d68">послідовне</text>
+    <text x="150" y="218" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-style="italic" fill="#92400e">R = R₁ + R₂</text>
+    <!-- parallel -->
+    <line x1="380" y1="50" x2="380" y2="170" stroke="#2d1830" stroke-width="2"/>
+    <line x1="520" y1="50" x2="520" y2="170" stroke="#2d1830" stroke-width="2"/>
+    <line x1="380" y1="50" x2="425" y2="50" stroke="#2d1830" stroke-width="2"/><line x1="475" y1="50" x2="520" y2="50" stroke="#2d1830" stroke-width="2"/>
+    <line x1="380" y1="110" x2="425" y2="110" stroke="#2d1830" stroke-width="2"/><line x1="475" y1="110" x2="520" y2="110" stroke="#2d1830" stroke-width="2"/>
+    <rect x="425" y="40" width="50" height="20" fill="none" stroke="#92400e" stroke-width="2.5"/>
+    <rect x="425" y="100" width="50" height="20" fill="none" stroke="#92400e" stroke-width="2.5"/>
+    <line x1="380" y1="170" x2="445" y2="170" stroke="#2d1830" stroke-width="2"/><line x1="455" y1="170" x2="520" y2="170" stroke="#2d1830" stroke-width="2"/>
+    <line x1="445" y1="154" x2="445" y2="186" stroke="#2d1830" stroke-width="2.5"/>
+    <line x1="455" y1="162" x2="455" y2="178" stroke="#2d1830" stroke-width="4"/>
+    <circle cx="380" cy="110" r="4" fill="#2d1830"/><circle cx="520" cy="110" r="4" fill="#2d1830"/>
+    <text x="450" y="32" text-anchor="middle" font-family="Caveat" font-size="20" fill="#92400e">R₁</text>
+    <text x="450" y="92" text-anchor="middle" font-family="Caveat" font-size="20" fill="#92400e">R₂</text>
+    <text x="450" y="146" text-anchor="middle" font-family="Caveat" font-size="22" fill="#6b4d68">паралельне</text>
+    <text x="450" y="218" text-anchor="middle" font-family="Space Grotesk" font-size="14" font-style="italic" fill="#92400e">1/R = 1/R₁ + 1/R₂</text>
+  </svg>
+
+  <h3>Послідовне з'єднання</h3>
+  <p>Провідники вмикають <b>один за одним</b>, без розгалужень. Увесь струм проходить через кожен провідник по черзі.</p>
+
+  <div class="box">
+    <span class="label">Закони послідовного з'єднання</span>
+    <ul>
+      <li><b>I = I₁ = I₂</b> — сила струму однакова в усіх провідниках.</li>
+      <li><b>U = U₁ + U₂</b> — загальна напруга дорівнює сумі напруг.</li>
+      <li><b>R = R₁ + R₂</b> — загальний опір дорівнює сумі опорів (більший за кожен).</li>
+    </ul>
+    <p class="tip">мінус: один елемент перегорів — коло розірване, все гасне (старі ялинкові гірлянди)</p>
+  </div>
+
+  <h3>Паралельне з'єднання</h3>
+  <p>Провідники вмикають між <b>двома спільними точками (вузлами)</b>. Струм розгалужується, частина йде через кожну гілку.</p>
+
+  <div class="box">
+    <span class="label">Закони паралельного з'єднання</span>
+    <ul>
+      <li><b>U = U₁ = U₂</b> — напруга однакова на всіх гілках.</li>
+      <li><b>I = I₁ + I₂</b> — загальний струм дорівнює сумі струмів у гілках.</li>
+      <li><b>1/R = 1/R₁ + 1/R₂</b> — загальний опір <em>менший</em> за найменший з опорів. Для двох: R = R₁R₂ / (R₁ + R₂). Для n однакових: R = R₁/n.</li>
+    </ul>
+    <p class="tip">так увімкнено всі прилади в квартирі: кожен отримує 230 В і працює незалежно</p>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Резистори 3 Ом і 6 Ом увімкнено паралельно до джерела напругою 12 В. Знайди загальний опір і загальну силу струму.</p>
+    <div class="steps">
+      <div class="step"><div class="body"><p>Загальний опір: R = 3 · 6 / (3 + 6) = 18 / 9 = <b>2 Ом</b>.</p></div></div>
+      <div class="step"><div class="body"><p>Загальний струм: I = U/R = 12 / 2 = <b>6 А</b>.</p></div></div>
+      <div class="step"><div class="body"><p>Перевірка через гілки: I₁ = 12/3 = 4 А, I₂ = 12/6 = 2 А, разом 6 А ✓.</p></div></div>
+    </div>
+    <div class="answer">2 Ом, 6 А</div>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Акумулятор електромобіля — це тисячі маленьких елементів, схожих на батарейки. Їх з'єднують послідовно, щоб отримати високу напругу (400–800 В), і паралельно — щоб збільшити запас енергії та струм. Так само збирають сонячні електростанції з панелей. А в павербанку чи ноутбуці є спеціальна схема, яка стежить за кожним елементом: якщо один «просяде», вся послідовна група почне працювати гірше.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: з'єднання провідників</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Резистори 4 Ом і 6 Ом увімкнено послідовно. Який загальний опір?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це опір для паралельного з'єднання: 24/10.">2,4 Ом</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Послідовно: R = 4 + 6 = 10 Ом.">10 Ом</button>
+        <button type="button" class="quiz-option" data-explain="Опори не множаться.">24 Ом</button>
+        <button type="button" class="quiz-option" data-explain="Опори при послідовному з'єднанні додаються.">2 Ом</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Два резистори по 6 Ом увімкнено паралельно. Який загальний опір?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="12 Ом — це послідовне з'єднання.">12 Ом</button>
+        <button type="button" class="quiz-option" data-explain="При паралельному з'єднанні опір менший за кожен з опорів.">6 Ом</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Для n однакових: R = 6/2 = 3 Ом.">3 Ом</button>
+        <button type="button" class="quiz-option" data-explain="Перевір: 1/R = 1/6 + 1/6 = 1/3 → R = 3 Ом.">36 Ом</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Резистори 3 Ом і 6 Ом увімкнено паралельно. Який загальний опір?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="R = 3 · 6 / (3 + 6) = 18/9 = 2 Ом.">2 Ом</button>
+        <button type="button" class="quiz-option" data-explain="9 Ом — це послідовне з'єднання.">9 Ом</button>
+        <button type="button" class="quiz-option" data-explain="Загальний опір паралельного з'єднання менший за найменший (3 Ом).">4,5 Ом</button>
+        <button type="button" class="quiz-option" data-explain="Добуток треба ще поділити на суму.">18 Ом</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Як увімкнено електроприлади у квартирі?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Тоді вимкнення одного приладу вимикало б усі.">послідовно</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Паралельно: кожен прилад отримує повну напругу мережі й працює незалежно.">паралельно</button>
+        <button type="button" class="quiz-option" data-explain="Усі побутові прилади в мережі — паралельно.">лампи послідовно, решта паралельно</button>
+        <button type="button" class="quiz-option" data-explain="Спосіб вмикання в квартирі один — паралельний.">залежить від поверху</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Резистори 3 Ом і 5 Ом увімкнено послідовно, струм у колі 2 А. Яка загальна напруга?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це напруга лише на першому резисторі: 2 · 3.">6 В</button>
+        <button type="button" class="quiz-option" data-explain="Це напруга лише на другому резисторі: 2 · 5.">10 В</button>
+        <button type="button" class="quiz-option" data-explain="Поділили опір на струм, а треба помножити: U = IR.">4 В</button>
+        <button type="button" class="quiz-option" data-correct data-explain="R = 3 + 5 = 8 Ом, U = IR = 2 · 8 = 16 В (або 6 + 10).">16 В</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ TEMA 10 ═══════════════════ -->
+<div class="c5" id="tema10">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">тема 10</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Робота й <em>потужність струму</em></h2>
+  <div class="sub">за що ми платимо в рахунку за світло</div>
+
+  <h3>Робота і потужність</h3>
+  <p>Рухаючи заряди, електричне поле виконує роботу: крутить мотор, світить лампою, гріє воду. З означення напруги (U = A/q) і сили струму (q = It) отримуємо:</p>
+
+  <div class="formula">
+    <div class="eq">A = U · I · t, &nbsp;&nbsp; P = U · I</div>
+    <div class="where">A — робота, Дж; P — потужність (робота за 1 с), Вт; з законом Ома також P = I²R = U²/R</div>
+  </div>
+
+  <div class="example">
+    <p>Чайник у мережі 230 В споживає струм 8 А. Потужність: P = 230 · 8 = <b>1840 Вт ≈ 1,8 кВт</b>. За 3 хв (180 с) він виконає роботу A = 1840 · 180 = 331 200 Дж ≈ 0,33 МДж.</p>
+  </div>
+
+  <h3>Кіловат-година</h3>
+  <p>Джоуль — замала одиниця для побуту. Лічильник рахує електроенергію в <b>кіловат-годинах</b>: це робота приладу потужністю 1 кВт протягом 1 години.</p>
+
+  <div class="formula">
+    <div class="eq">1 кВт·год = 1000 Вт · 3600 с = 3,6 · 10⁶ Дж</div>
+    <div class="where">A (кВт·год) = P (кВт) · t (год)</div>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Обігрівач потужністю 1,5 кВт працює 4 години на день. Скільки коштує його робота за 30 днів, якщо 1 кВт·год коштує 4,32 грн?</p>
+    <div class="steps">
+      <div class="step"><div class="body"><p>За день: A = 1,5 кВт · 4 год = 6 кВт·год.</p></div></div>
+      <div class="step"><div class="body"><p>За місяць: 6 · 30 = 180 кВт·год.</p></div></div>
+      <div class="step"><div class="body"><p>Вартість: 180 · 4,32 = <b>777,6 грн</b>.</p></div></div>
+    </div>
+    <div class="answer">≈ 778 грн</div>
+  </div>
+
+  <h3>Закон Джоуля–Ленца</h3>
+  <p>Струм нагріває провідник: електрони, стикаючись з йонами ґратки, передають їм енергію. Кількість теплоти встановили незалежно Джеймс Джоуль і Емілій Ленц:</p>
+
+  <div class="formula">
+    <div class="eq">Q = I² · R · t</div>
+    <div class="where">кількість теплоти, що виділяється в провіднику зі струмом</div>
+  </div>
+
+  <div class="box">
+    <span class="label">Де це працює</span>
+    <ul>
+      <li><b>Корисно:</b> чайники, праски, обігрівачі, фени — спіраль з ніхрому з великим опором.</li>
+      <li><b>Шкідливо:</b> нагрівання дротів — втрати в лініях електропередач, перегрів проводки.</li>
+      <li><b>Захист:</b> плавкий запобіжник і автоматичний вимикач розмикають коло, коли струм стає небезпечно великим (коротке замикання).</li>
+    </ul>
+    <p class="tip">струм удвічі більший — тепла вчетверо більше, бо I у квадраті</p>
+  </div>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>Через закон Джоуля–Ленца електроенергію передають на великі відстані під напругою в сотні тисяч вольт: при тій самій потужності P = UI висока напруга означає малий струм, а втрати I²R падають у рази. Тому біля електростанцій стоять трансформатори-«підвищувачі», а біля будинків — «понижувачі». А швидка зарядка телефона підвищує напругу в кабелі (до 9–20 В), щоб подати більшу потужність, не перегріваючи тонкі дроти.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: робота й потужність струму</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Прилад працює від мережі 230 В, сила струму 5 А. Яка його потужність?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="P = U · I, а не U / I.">46 Вт</button>
+        <button type="button" class="quiz-option" data-correct data-explain="P = UI = 230 · 5 = 1150 Вт.">1150 Вт</button>
+        <button type="button" class="quiz-option" data-explain="Величини не додаються.">235 Вт</button>
+        <button type="button" class="quiz-option" data-explain="Помилка в 10 разів: 230 · 5 = 1150.">11 500 Вт</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Чайник потужністю 2 кВт працював 30 хв. Скільки електроенергії він спожив?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Час треба взяти в годинах: 30 хв = 0,5 год.">60 кВт·год</button>
+        <button type="button" class="quiz-option" data-correct data-explain="A = P · t = 2 кВт · 0,5 год = 1 кВт·год.">1 кВт·год</button>
+        <button type="button" class="quiz-option" data-explain="Потужність треба помножити на час, а не поділити.">4 кВт·год</button>
+        <button type="button" class="quiz-option" data-explain="Це за 1 годину, а чайник працював пів години.">2 кВт·год</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Струм 2 А протікає через резистор 10 Ом протягом 1 хв. Скільки теплоти виділиться?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Струм треба піднести до квадрата: 2² = 4.">1200 Дж</button>
+        <button type="button" class="quiz-option" data-explain="Час — у секундах: 1 хв = 60 с.">40 Дж</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Q = I²Rt = 4 · 10 · 60 = 2400 Дж.">2400 Дж</button>
+        <button type="button" class="quiz-option" data-explain="Перевір: 2² · 10 · 60 = 2400.">240 Дж</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Силу струму в провіднику збільшили вдвічі. Як зміниться кількість теплоти за той самий час?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Струм у формулі Джоуля–Ленца стоїть у квадраті.">збільшиться вдвічі</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Q = I²Rt: 2² = 4, тепла вчетверо більше.">збільшиться в 4 рази</button>
+        <button type="button" class="quiz-option" data-explain="Більший струм — більше тепла.">зменшиться вдвічі</button>
+        <button type="button" class="quiz-option" data-explain="Кількість теплоти залежить від струму.">не зміниться</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Скільки кіловат-годин спожиє лампа 60 Вт за 10 годин?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="600 — це Вт·год. У кіловат-годинах — 0,6.">600 кВт·год</button>
+        <button type="button" class="quiz-option" data-explain="Помилка в 10 разів: 60 Вт · 10 год = 600 Вт·год = 0,6 кВт·год.">6 кВт·год</button>
+        <button type="button" class="quiz-option" data-explain="Потужність треба помножити на час.">6 Вт·год</button>
+        <button type="button" class="quiz-option" data-correct data-explain="A = 0,06 кВт · 10 год = 0,6 кВт·год.">0,6 кВт·год</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ TEMA 11 ═══════════════════ -->
+<div class="c1" id="tema11">
+<section class="chapter">
+  <div class="chapter-head">
+    <span class="chapter-num">тема 11</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Струм у різних <em>середовищах</em></h2>
+  <div class="sub">хто саме несе заряд</div>
+
+  <div class="box">
+    <span class="label">Метали</span>
+    <p>Носії струму — <b>вільні електрони</b>. При нагріванні йони ґратки коливаються сильніше, електронам важче проходити, тому <b>опір металів зростає з температурою</b>.</p>
+  </div>
+
+  <div class="box">
+    <span class="label">Рідини (електроліти)</span>
+    <p>Чиста вода майже не проводить струм, а розчини солей, кислот і лугів — проводять. Молекули в них розпадаються на <b>йони</b> (позитивні й негативні), які і є носіями заряду. Проходячи через розчин, струм виділяє на електродах речовину — це <b>електроліз</b>. Його використовують, щоб покривати метали шаром нікелю, хрому чи золота (гальваностегія), добувати алюміній і очищувати мідь.</p>
+  </div>
+
+  <div class="box">
+    <span class="label">Гази</span>
+    <p>Звичайне повітря — діелектрик. Але якщо газ <b>йонізувати</b> (сильно нагріти, опромінити, прикласти дуже високу напругу), у ньому з'являються електрони й йони — виникає <b>газовий розряд</b>. Приклади: <b>блискавка</b> та іскра (іскровий розряд), неонові рекламні трубки й лампи денного світла (тліючий розряд), електрозварювання (дуговий розряд).</p>
+  </div>
+
+  <div class="box">
+    <span class="label">Напівпровідники</span>
+    <p>Кремній, германій — «посередині» між провідниками й діелектриками. Їхня особливість: <b>опір зменшується при нагріванні та освітленні</b> (навпаки, ніж у металів). Додаючи до кремнію домішки, роблять діоди, транзистори, світлодіоди, сонячні батареї — основу всієї електроніки.</p>
+  </div>
+
+  <h3>Безпека</h3>
+  <p>Тіло людини — провідник. Небезпечним вважають струм понад ~0,05 А, а напругу понад <b>36 В</b> (у вологих приміщеннях — ще нижчу). Правила прості: не торкайся оголених дротів і пошкоджених приладів, не вмикай техніку мокрими руками, не наближайся до обірваних проводів на вулиці (крокова напруга!) і не ховайся під деревом у грозу.</p>
+
+  <div class="fact">
+    <span class="fact-label">цікавинка · де це в житті</span>
+    <p>У процесорі твого смартфона — понад 15 мільярдів кремнієвих транзисторів, і кожен — це крихітний напівпровідниковий «вимикач» струму. Сонячна панель — теж напівпровідник: світло вибиває в кремнії електрони, і виникає струм. А електроліз сьогодні — одна з найважливіших «зелених» технологій: ним розкладають воду на водень і кисень, щоб отримати чисте паливо для заводів і вантажівок, а ще — переробляють старі акумулятори, повертаючи з них літій і мідь.</p>
+  </div>
+
+  <div class="quiz">
+    <span class="quiz-title">Перевір себе</span>
+    <p class="quiz-sub">міні-тест: струм у різних середовищах</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Що таке електричний струм у металах?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Йони в металі закріплені у вузлах ґратки — вони лише коливаються.">рух позитивних йонів</button>
+        <button type="button" class="quiz-option" data-correct data-explain="У металах заряд переносять вільні електрони.">напрямлений рух вільних електронів</button>
+        <button type="button" class="quiz-option" data-explain="Протони в ядрах атомів — вони не рухаються вздовж дроту.">рух протонів</button>
+        <button type="button" class="quiz-option" data-explain="Йони обох знаків несуть струм в електролітах, а не в металах.">рух йонів обох знаків</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Хто переносить заряд у розчині солі?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Вільних електронів у розчині практично немає.">вільні електрони</button>
+        <button type="button" class="quiz-option" data-explain="Молекули води нейтральні.">молекули води</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Сіль розпадається на позитивні й негативні йони — вони і несуть струм.">позитивні й негативні йони</button>
+        <button type="button" class="quiz-option" data-explain="Розчин солі добре проводить струм.">ніхто, розчин не проводить</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Для чого використовують електроліз?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Електроліз осаджує метал на виріб — так хромують, нікелюють, золотять.">щоб покрити виріб шаром металу</button>
+        <button type="button" class="quiz-option" data-explain="Лампи розжарювання — це нагрівання металу, а не електроліз.">щоб світила лампа розжарювання</button>
+        <button type="button" class="quiz-option" data-explain="Процесори охолоджують радіаторами й вентиляторами, а не електролізом.">щоб охолоджувати процесори</button>
+        <button type="button" class="quiz-option" data-explain="Блискавка — газовий розряд, не електроліз.">щоб утворити блискавку</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Як змінюється опір напівпровідника при нагріванні?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Зростає опір металів. У напівпровідників навпаки.">збільшується</button>
+        <button type="button" class="quiz-option" data-correct data-explain="При нагріванні в напівпровіднику звільняється більше носіїв заряду — опір зменшується.">зменшується</button>
+        <button type="button" class="quiz-option" data-explain="Опір напівпровідників сильно залежить від температури.">не змінюється</button>
+        <button type="button" class="quiz-option" data-explain="Залежність однозначна: опір падає.">спочатку зростає, потім спадає</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Блискавка — це приклад струму в…</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Блискавка проходить через повітря, а не через метал.">металах</button>
+        <button type="button" class="quiz-option" data-explain="Хоч у хмарах є вода, розряд іде через повітря.">електролітах</button>
+        <button type="button" class="quiz-option" data-explain="Напівпровідники тут ні до чого.">напівпровідниках</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Це іскровий розряд у газі (повітрі), йонізованому величезною напругою.">газах</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 5</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ FINAL QUIZ ═══════════════════ -->
+<section class="chapter" id="final-quiz">
+  <div class="chapter-head">
+    <span class="chapter-num">фінал</span>
+    <span class="chapter-line"></span>
+  </div>
+  <h2>Великий <em>тест</em></h2>
+  <div class="sub" style="color: var(--orange);">10 питань з усього курсу — змішано</div>
+
+  <div class="quiz">
+    <span class="quiz-title">Фінальна перевірка</span>
+    <p class="quiz-sub">не підглядай — зроби чесно й подивись на бал</p>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">1.</span><span>Скільки теплоти треба, щоб нагріти 0,5 кг алюмінію (c = 920 Дж/(кг·°C)) на 20 °C?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Не помножили на масу 0,5 кг.">18 400 Дж</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Q = 920 · 0,5 · 20 = 9200 Дж.">9200 Дж</button>
+        <button type="button" class="quiz-option" data-explain="Масу треба помножити, а не поділити: 920 · 0,5 · 20.">36 800 Дж</button>
+        <button type="button" class="quiz-option" data-explain="Не помножили на зміну температури.">460 Дж</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">2.</span><span>Чому ручки каструль роблять з пластику або дерева?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Справа не в ціні, а в теплопровідності.">так дешевше</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Пластик і дерево погано проводять тепло — ручка не нагрівається.">вони погано проводять тепло</button>
+        <button type="button" class="quiz-option" data-explain="Випромінювання тут другорядне — головне теплопровідність.">вони добре випромінюють тепло</button>
+        <button type="button" class="quiz-option" data-explain="Конвекція у твердих тілах неможлива.">у них сильна конвекція</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">3.</span><span>Що відбувається з температурою води, коли вона кристалізується?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Під час зміни агрегатного стану температура стала.">знижується</button>
+        <button type="button" class="quiz-option" data-explain="Вода віддає теплоту, але температура не зростає.">підвищується</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Поки вода замерзає, температура суміші лишається 0 °C — виділяється теплота кристалізації.">лишається сталою, 0 °C</button>
+        <button type="button" class="quiz-option" data-explain="Кристалізація відбувається при 0 °C.">падає до −273 °C</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">4.</span><span>Скільки теплоти виділиться під час повного згоряння 0,5 кг бензину (q = 46 МДж/кг)?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Q = qm = 46 · 0,5 = 23 МДж.">23 МДж</button>
+        <button type="button" class="quiz-option" data-explain="Це для 1 кг.">46 МДж</button>
+        <button type="button" class="quiz-option" data-explain="Помножили на 2 замість 0,5.">92 МДж</button>
+        <button type="button" class="quiz-option" data-explain="Помилка в 10 разів.">2,3 МДж</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">5.</span><span>Що станеться, якщо наелектризовану кульку піднести до дрібних папірців?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Папірці під дією поля електризуються так, що притягуються.">папірці відштовхнуться</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Поле кульки перерозподіляє заряди в папірцях — і вони притягуються.">папірці притягнуться</button>
+        <button type="button" class="quiz-option" data-explain="Заряджена кулька створює поле, яке діє на папірці.">нічого</button>
+        <button type="button" class="quiz-option" data-explain="Кулька не нагрівається від електризації помітно.">папірці нагріються</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">6.</span><span>Як треба увімкнути вольтметр, щоб виміряти напругу на лампі?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Послідовно вмикають амперметр.">послідовно з лампою</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Вольтметр вмикають паралельно ділянці, на якій вимірюють напругу.">паралельно лампі</button>
+        <button type="button" class="quiz-option" data-explain="Вольтметр вимірює напругу на конкретній ділянці — вмикається паралельно їй.">замість лампи</button>
+        <button type="button" class="quiz-option" data-explain="Розташування важливе: вольтметр — паралельно.">будь-як</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">7.</span><span>Напруга 6 В, сила струму 0,2 А. Який опір провідника?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="R = U/I, а не U · I.">1,2 Ом</button>
+        <button type="button" class="quiz-option" data-explain="Поділили навпаки: I/U.">0,03 Ом</button>
+        <button type="button" class="quiz-option" data-correct data-explain="R = U/I = 6 / 0,2 = 30 Ом.">30 Ом</button>
+        <button type="button" class="quiz-option" data-explain="Перевір ділення: 6 / 0,2 = 30.">3 Ом</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">8.</span><span>Три однакові резистори по 9 Ом увімкнено паралельно. Який загальний опір?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="27 Ом — це послідовне з'єднання.">27 Ом</button>
+        <button type="button" class="quiz-option" data-correct data-explain="Для n однакових паралельних: R = 9/3 = 3 Ом.">3 Ом</button>
+        <button type="button" class="quiz-option" data-explain="Паралельний опір менший за кожен з опорів.">9 Ом</button>
+        <button type="button" class="quiz-option" data-explain="Ділимо на кількість, а не на квадрат кількості.">1 Ом</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">9.</span><span>Лампа розрахована на 230 В і 100 Вт. Яка сила струму в ній?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-explain="Це U/P. Сила струму I = P/U = 100/230 ≈ 0,43 А.">2,3 А</button>
+        <button type="button" class="quiz-option" data-explain="Потужність треба поділити на напругу, а не помножити.">23 000 А</button>
+        <button type="button" class="quiz-option" data-explain="Помилка в діленні: 100/230 ≈ 0,43, а не 0,23.">0,23 А</button>
+        <button type="button" class="quiz-option" data-correct data-explain="P = UI → I = P/U = 100/230 ≈ 0,43 А.">≈ 0,43 А</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-q">
+      <div class="quiz-q-text"><span class="qn">10.</span><span>Як змінюється опір металевого дроту при нагріванні?</span></div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-option" data-correct data-explain="Йони ґратки коливаються сильніше й заважають електронам — опір металу зростає.">збільшується</button>
+        <button type="button" class="quiz-option" data-explain="Зменшується опір напівпровідників, а не металів.">зменшується</button>
+        <button type="button" class="quiz-option" data-explain="Опір металів залежить від температури.">не змінюється</button>
+        <button type="button" class="quiz-option" data-explain="Залежність однозначна — опір металу росте.">стає нульовим</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="quiz-result">
+      <div class="quiz-result-line">
+        <span class="quiz-score">0 / 10</span>
+        <span class="quiz-percent">0%</span>
+      </div>
+      <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+      <span class="quiz-verdict"></span>
+      <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<div class="outro">
+  <h3>Усе. Це вся фізика 8 класу.</h3>
+  <p>Проходь теми разом зі школою: прочитай теорію, розв'яжи задачу сам, а потім звір з розв'язком. Перед заліком — картки й великий тест.</p>
+  <p>Перша половина року — про те, як теплота стає роботою, друга — як рух зарядів стає світлом, теплом і рухом. Енергія не зникає, вона лише змінює вигляд. Це й є головна ідея фізики 8 класу.</p>
+  <div class="sig">~ удачі цього року ~</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var current = document.documentElement.getAttribute('data-theme') || 'light';
+  function setTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem('fizyka-theme', t); } catch(e) {}
+    document.querySelectorAll('.theme-toggle button').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-theme-set') === t);
+    });
+    current = t;
+  }
+  setTheme(current);
+  document.querySelectorAll('.theme-toggle button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      setTheme(btn.getAttribute('data-theme-set'));
+    });
+  });
+
+  document.querySelectorAll('.cards-section').forEach(function(section){
+    var cards = section.querySelectorAll('.flip-card');
+    var prev = section.querySelector('.cards-prev');
+    var next = section.querySelector('.cards-next');
+    var nowEl = section.querySelector('.cards-counter .now');
+    var totalEl = section.querySelector('.cards-counter .total');
+    var dotsWrap = section.querySelector('.cards-dots');
+    var total = cards.length;
+    var idx = 0;
+    if (totalEl) totalEl.textContent = total;
+
+    var dots = [];
+    for (var i = 0; i < total; i++){
+      (function(j){
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'cards-dot';
+        dot.setAttribute('aria-label', 'Картка ' + (j + 1));
+        dot.addEventListener('click', function(){ go(j); });
+        dotsWrap.appendChild(dot);
+        dots.push(dot);
+      })(i);
+    }
+
+    function go(i){
+      cards[idx].classList.remove('active', 'flipped');
+      dots[idx].classList.remove('active');
+      idx = (i + total) % total;
+      cards[idx].classList.add('active');
+      dots[idx].classList.add('active');
+      if (nowEl) nowEl.textContent = idx + 1;
+    }
+
+    cards.forEach(function(card){
+      card.addEventListener('click', function(){
+        if (card.classList.contains('active')) card.classList.toggle('flipped');
+      });
+    });
+
+    prev.addEventListener('click', function(){ go(idx - 1); });
+    next.addEventListener('click', function(){ go(idx + 1); });
+
+    document.addEventListener('keydown', function(e){
+      var rect = section.getBoundingClientRect();
+      var inView = rect.top < window.innerHeight * 0.9 && rect.bottom > window.innerHeight * 0.1;
+      if (!inView) return;
+      var tag = document.activeElement && document.activeElement.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft'){ e.preventDefault(); go(idx - 1); }
+      else if (e.key === 'ArrowRight'){ e.preventDefault(); go(idx + 1); }
+    });
+
+    go(0);
+  });
+
+  document.querySelectorAll('.quiz').forEach(function(quiz){
+    var questions = quiz.querySelectorAll('.quiz-q');
+    var total = questions.length;
+    var result = quiz.querySelector('.quiz-result');
+    var scoreEl = result.querySelector('.quiz-score');
+    var percentEl = result.querySelector('.quiz-percent');
+    var barFill = result.querySelector('.quiz-bar-fill');
+    var verdictEl = result.querySelector('.quiz-verdict');
+    var restartBtn = result.querySelector('.quiz-restart');
+
+    var answered = 0;
+    var correctCount = 0;
+
+    function verdictFor(p){
+      if (p === 100) return '✦ Бездоганно. Готовий до іспиту.';
+      if (p >= 80)  return 'Дуже добре. Перечитай ті, де помилився.';
+      if (p >= 60)  return 'Непогано. Повтори тему й спробуй ще раз.';
+      if (p >= 40)  return 'Ще трохи практики — і вийде.';
+      return 'Не страшно. Перечитай теорію і повертайся.';
+    }
+
+    function setFeedback(fb, prefix, explain, kind){
+      while (fb.firstChild) fb.removeChild(fb.firstChild);
+      var b = document.createElement('b');
+      b.textContent = prefix;
+      fb.appendChild(b);
+      fb.appendChild(document.createTextNode(' ' + explain));
+      fb.classList.add('show', kind);
+    }
+
+    function showResult(){
+      var p = Math.round(correctCount / total * 100);
+      scoreEl.textContent = correctCount + ' / ' + total;
+      percentEl.textContent = p + '%';
+      verdictEl.textContent = verdictFor(p);
+      result.classList.add('show');
+      requestAnimationFrame(function(){ barFill.style.width = p + '%'; });
+    }
+
+    function reset(){
+      answered = 0;
+      correctCount = 0;
+      questions.forEach(function(q){
+        q.querySelectorAll('.quiz-option').forEach(function(o){
+          o.disabled = false;
+          o.classList.remove('correct', 'wrong', 'reveal');
+        });
+        var fb = q.querySelector('.quiz-feedback');
+        fb.classList.remove('show', 'ok', 'no');
+        fb.textContent = '';
+      });
+      result.classList.remove('show');
+      barFill.style.width = '0%';
+      quiz.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+
+    questions.forEach(function(q){
+      var options = q.querySelectorAll('.quiz-option');
+      var fb = q.querySelector('.quiz-feedback');
+
+      options.forEach(function(opt){
+        opt.addEventListener('click', function(){
+          if (opt.disabled) return;
+          options.forEach(function(o){ o.disabled = true; });
+
+          var isCorrect = opt.hasAttribute('data-correct');
+          var explain = opt.getAttribute('data-explain') || '';
+
+          if (isCorrect){
+            opt.classList.add('correct');
+            setFeedback(fb, 'Правильно.', explain, 'ok');
+            correctCount++;
+          } else {
+            opt.classList.add('wrong');
+            options.forEach(function(o){
+              if (o.hasAttribute('data-correct')) o.classList.add('reveal');
+            });
+            setFeedback(fb, 'Не зовсім.', explain, 'no');
+          }
+
+          answered++;
+          if (answered === total) showResult();
+        });
+      });
+    });
+
+    restartBtn.addEventListener('click', reset);
+  });
+})();
+</script>
+<button type="button" class="to-plan" aria-label="До списку тем">↑ до тем</button>
+<script>
+(function(){
+  var plan=document.getElementById('plan');
+  var btn=document.querySelector('.to-plan');
+  if(!plan||!btn)return;
+  function onScroll(){
+    var planBottom=plan.offsetTop+plan.offsetHeight;
+    if(window.scrollY>planBottom-100)btn.classList.add('show');
+    else btn.classList.remove('show');
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  btn.addEventListener('click',function(){plan.scrollIntoView({behavior:'smooth',block:'start'});});
+})();
+</script>
+</body>
+</html>
