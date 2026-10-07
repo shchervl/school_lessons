@@ -1796,6 +1796,39 @@ li::marker{ color: var(--orange); }
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
   </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Бісектриса кута A паралелограма ABCD перетинає сторону BC у точці K, BK = 7 см, KC = 3 см. Знайди периметр паралелограма.</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Порівняй кути BAK і AKB. Згадай про паралельні прямі AD і BC.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>∠BAK = ∠KAD, бо AK — бісектриса.</p><p>∠KAD = ∠AKB як внутрішні різносторонні при AD ∥ BC і січній AK.</p><p>Отже, ∠BAK = ∠AKB, трикутник ABK рівнобедрений: AB = BK = 7 см. BC = 7 + 3 = 10 см.</p><p>P = 2(7 + 10) = 34 см.</p>
+      <div class="answer">34 см</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Діагоналі прямокутника перетинаються під кутом 60°, а сума діагоналі й меншої сторони дорівнює 18 см. Знайди діагональ.</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Розглянь трикутник, утворений двома половинками діагоналей і меншою стороною. Який він?</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Діагоналі прямокутника рівні й діляться навпіл, тож AO = BO = d/2.</p><p>Трикутник AOB рівнобедрений з кутом 60° при вершині — отже, рівносторонній: AB = d/2. (Навпроти кута 60° лежить менша сторона.)</p><p>d + d/2 = 18 → 3d/2 = 18 → d = 12 см.</p>
+      <div class="answer">12 см</div>
+      </div>
+    </details>
+  </div>
 </section>
 </div>
 
@@ -1986,6 +2019,39 @@ li::marker{ color: var(--orange); }
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
   </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Доведи, що середини сторін будь-якого чотирикутника є вершинами паралелограма. Знайди периметр цього паралелограма, якщо діагоналі чотирикутника 10 см і 14 см.</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Проведи діагональ AC. Для яких трикутників відрізки, що сполучають середини сторін, будуть середніми лініями?</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Нехай M, N, P, Q — середини AB, BC, CD, DA. У трикутнику ABC MN — середня лінія: MN ∥ AC і MN = AC/2.</p><p>У трикутнику ACD QP — середня лінія: QP ∥ AC і QP = AC/2.</p><p>Отже, MN ∥ QP і MN = QP — за ознакою MNPQ паралелограм.</p><p>Його сторони — половини діагоналей: 5 і 7 см. Периметр 2(5 + 7) = 24 см, тобто сумі діагоналей.</p>
+      <div class="answer">паралелограм; P = 24 см</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Доведи, що трапеція, вписана в коло, — рівнобічна.</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Запиши дві рівності для кутів: одну — бо чотирикутник вписаний, другу — бо AD ∥ BC.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Нехай ABCD — трапеція з основами AD і BC.</p><p>Вона вписана в коло, тому ∠B + ∠D = 180°.</p><p>При паралельних AD і BC кути, прилеглі до бічної сторони AB, у сумі дають 180°: ∠A + ∠B = 180°.</p><p>Звідси ∠A = ∠D — кути при основі рівні, отже, трапеція рівнобічна.</p>
+      <div class="answer">доведено</div>
+      </div>
+    </details>
+  </div>
 </section>
 </div>
 
@@ -2141,6 +2207,39 @@ li::marker{ color: var(--orange); }
       <span class="quiz-verdict"></span>
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
+  </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Основи трапеції 6 см і 12 см. Через точку перетину діагоналей проведено пряму, паралельну основам. Знайди довжину її відрізка, що лежить усередині трапеції.</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Трикутники, утворені діагоналями й основами, подібні. У якому відношенні точка O ділить діагоналі?</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Нехай BC = 6, AD = 12, O — точка перетину діагоналей. △BOC ∼ △DOA (за двома кутами) з k = 6/12, тож AO : OC = 2 : 1, тобто AO/AC = 2/3.</p><p>Пряма перетинає AB у точці M. У △ABC: MO ∥ BC, тому MO/BC = AO/AC = 2/3, MO = 4 см.</p><p>Аналогічно в △DBC: ON = 2/3 · BC = 4 см.</p><p>MN = 4 + 4 = 8 см. (Загалом відповідь 2ab/(a + b).)</p>
+      <div class="answer">8 см</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Доведи, що медіани трикутника перетинаються в одній точці, яка ділить кожну з них у відношенні 2 : 1, рахуючи від вершини.</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Нехай медіани AA₁ і BB₁ перетинаються в точці G. Чим є відрізок A₁B₁? Знайди пару подібних трикутників.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>A₁B₁ — середня лінія трикутника ABC: A₁B₁ ∥ AB і A₁B₁ = AB/2.</p><p>△GA₁B₁ ∼ △GAB за двома кутами (вертикальні кути при G і внутрішні різносторонні при A₁B₁ ∥ AB), k = 1/2.</p><p>Отже, GA₁ = AG/2 і GB₁ = BG/2, тобто G ділить кожну медіану як 2 : 1 від вершини.</p><p>Третя медіана теж має перетнути AA₁ у точці, що ділить її як 2 : 1, — а така точка одна. Отже, усі три медіани проходять через G.</p>
+      <div class="answer">доведено</div>
+      </div>
+    </details>
   </div>
 </section>
 </div>
@@ -2327,6 +2426,39 @@ li::marker{ color: var(--orange); }
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
   </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Стародавня китайська задача. Бамбук заввишки 10 чі зламався так, що його верхівка торкнулася землі на відстані 3 чі від основи. На якій висоті зламався бамбук?</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Нижня частина стовбура, відламана частина й земля утворюють прямокутний трикутник. Позначимо висоту зламу x — якою тоді є гіпотенуза?</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Нехай залишок стовбура x чі, тоді відламана частина (гіпотенуза) — 10 − x.</p><p>За Піфагором: x² + 3² = (10 − x)² → x² + 9 = 100 − 20x + x².</p><p>20x = 91 → x = 4,55 чі.</p>
+      <div class="answer">4,55 чі</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Чи можна занести в кімнату розміром 4 м × 3 м × 2,5 м (висота) дошку завдовжки 6 м так, щоб вона повністю вмістилась усередині?</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Найдовший відрізок у кімнаті — діагональ, що з'єднує протилежні кути підлоги й стелі. Порахуй її двічі за Піфагором.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Діагональ підлоги: √(4² + 3²) = 5 м.</p><p>Діагональ кімнати — гіпотенуза трикутника з катетами 5 м і 2,5 м: √(25 + 6,25) = √31,25 ≈ 5,59 м.</p><p>5,59 < 6, тому дошка не вміститься навіть по діагоналі.</p>
+      <div class="answer">ні, ≈ 5,59 м < 6 м</div>
+      </div>
+    </details>
+  </div>
 </section>
 </div>
 
@@ -2469,6 +2601,39 @@ li::marker{ color: var(--orange); }
       <span class="quiz-verdict"></span>
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
+  </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Бічна сторона рівнобедреного трикутника 13 см, основа 10 см. Знайди висоту, проведену до бічної сторони.</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Площу трикутника можна порахувати двома способами — через різні висоти.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Висота до основи ділить її навпіл: h = √(13² − 5²) = 12 см.</p><p>Площа S = ½ · 10 · 12 = 60 см².</p><p>Та сама площа через бічну сторону: 60 = ½ · 13 · h₂ → h₂ = 120/13 ≈ 9,23 см.</p>
+      <div class="answer">120/13 см ≈ 9,23 см</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Точку M усередині паралелограма ABCD сполучили з усіма вершинами. Доведи, що S(AMB) + S(CMD) = ½ S(ABCD).</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Трикутники AMB і CMD мають рівні основи AB і CD. Що можна сказати про суму їхніх висот?</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Нехай AB = CD = a, h₁ і h₂ — відстані від M до прямих AB і CD.</p><p>S(AMB) + S(CMD) = ½ a h₁ + ½ a h₂ = ½ a (h₁ + h₂).</p><p>AB ∥ CD, і M лежить між ними, тому h₁ + h₂ = h — висота паралелограма.</p><p>Отже, сума дорівнює ½ a h = ½ S(ABCD) — де б не стояла точка M.</p>
+      <div class="answer">доведено</div>
+      </div>
+    </details>
   </div>
 </section>
 </div>

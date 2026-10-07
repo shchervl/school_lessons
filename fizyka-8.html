@@ -342,6 +342,40 @@ h3::before{
 .c4 .box .label{ color: var(--gold); }
 .c5 .box .label{ color: var(--plum); }
 
+/* collapsible proof box */
+details.proof{
+  margin: 24px 0;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--orange);
+  border-radius: 2px;
+}
+details.proof > summary{
+  padding: 14px 24px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--orange);
+  user-select: none;
+}
+details.proof > summary::-webkit-details-marker{ display: none; }
+details.proof > summary::before{
+  content: '▶';
+  font-size: .65rem;
+  transition: transform .2s;
+  display: inline-block;
+}
+details.proof[open] > summary::before{ transform: rotate(90deg); }
+details.proof > .proof-body{
+  padding: 0 24px 22px;
+}
+
 /* formula card */
 .formula{
   margin: 28px 0;
@@ -1772,6 +1806,24 @@ li::marker{ color: var(--orange); }
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
   </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">За якої температури число на шкалі Кельвіна вдвічі більше за число на шкалі Цельсія?</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Запиши рівність T = 2t і підстав T = t + 273.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>T = t + 273 і за умовою T = 2t.</p><p>t + 273 = 2t → t = 273 °C.</p><p>Перевірка: T = 273 + 273 = 546 К — справді вдвічі більше.</p>
+      <div class="answer">t = 273 °C (T = 546 К)</div>
+      </div>
+    </details>
+  </div>
 </section>
 </div>
 
@@ -1891,6 +1943,24 @@ li::marker{ color: var(--orange); }
       <span class="quiz-verdict"></span>
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
+  </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">У морозний день металева ручка дверей здається набагато холоднішою, ніж дерев'яна, хоча обидві мають однакову температуру повітря. Поясни чому.</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Відчуття «холодно» — це не температура предмета, а те, як швидко рука віддає тепло.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Шкіра відчуває не температуру предмета, а швидкість, з якою з неї йде тепло.</p><p>Метал — добрий провідник: він швидко відводить тепло від руки вглиб і далі. Шкіра в місці дотику швидко охолоджується.</p><p>Дерево — поганий провідник: тонкий шар під пальцями швидко прогрівається до температури шкіри, і тепловтрати майже припиняються.</p><p>Влітку на сонці — навпаки: метал здається гарячішим, бо швидко віддає тепло руці.</p>
+      <div class="answer">метал швидше відводить тепло від руки</div>
+      </div>
+    </details>
   </div>
 </section>
 </div>
@@ -2026,6 +2096,39 @@ li::marker{ color: var(--orange); }
       <span class="quiz-verdict"></span>
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
+  </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">На скільки градусів могла б нагрітися вода, впавши з водоспаду висотою 100 м, якщо вся її механічна енергія перейде у внутрішню? (g = 10 Н/кг)</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Потенціальна енергія mgh перетворюється на теплоту cmΔt. Що станеться з масою?</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>mgh = cmΔt — маса скорочується!</p><p>Δt = gh/c = 10 · 100 / 4200 ≈ 0,24 °C.</p><p>Саме так Джеймс Джоуль у XIX столітті шукав зв'язок між роботою й теплотою — і навіть міряв температуру води біля водоспадів.</p>
+      <div class="answer">≈ 0,24 °C</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">У 200 г води при 20 °C опустили мідну кульку масою 100 г, нагріту до 100 °C. Яка встановиться температура? (c міді = 400 Дж/(кг·°C), втратами знехтувати)</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Запиши рівняння теплового балансу: теплота, яку віддала кулька, дорівнює теплоті, яку отримала вода.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Кулька віддає: 400 · 0,1 · (100 − θ) = 40(100 − θ).</p><p>Вода отримує: 4200 · 0,2 · (θ − 20) = 840(θ − 20).</p><p>840θ − 16 800 = 4000 − 40θ → 880θ = 20 800 → θ ≈ 23,6 °C.</p><p>Вода нагрілася лише на 3,6 °C — так проявляється її велика теплоємність.</p>
+      <div class="answer">≈ 23,6 °C</div>
+      </div>
+    </details>
   </div>
 </section>
 </div>
@@ -2169,6 +2272,24 @@ li::marker{ color: var(--orange); }
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
   </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">У 1 кг води при 30 °C кинули 1 кг льоду при 0 °C. Яка встановиться температура і скільки льоду розтане?</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Порівняй: скільки теплоти може віддати вода, остигаючи до 0 °C, і скільки треба, щоб розтопити весь лід.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Остигаючи до 0 °C, вода віддасть: Q = 4200 · 1 · 30 = 126 000 Дж.</p><p>Щоб розтопити весь лід, треба λm = 332 000 Дж — це більше. Отже, увесь лід не розтане, і кінцева температура 0 °C.</p><p>Розтане: m = 126 000 / 332 000 ≈ 0,38 кг.</p>
+      <div class="answer">0 °C; розтане ≈ 0,38 кг льоду</div>
+      </div>
+    </details>
+  </div>
 </section>
 </div>
 
@@ -2294,6 +2415,24 @@ li::marker{ color: var(--orange); }
       <span class="quiz-verdict"></span>
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
+  </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Скільки пари при 100 °C треба впустити в 1 кг води при 20 °C, щоб нагріти воду до 100 °C?</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Пара, конденсуючись, віддає rm. Цього має вистачити, щоб нагріти воду на 80 °C.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Воді потрібно Q = 4200 · 1 · 80 = 336 000 Дж.</p><p>Пара віддає під час конденсації Q = r · m (сконденсована вода вже при 100 °C, далі не остигає).</p><p>m = 336 000 / 2 300 000 ≈ 0,146 кг ≈ 146 г.</p><p>Лише 146 г пари нагрівають цілий кілограм води майже до кипіння — ось чому опік парою такий небезпечний.</p>
+      <div class="answer">≈ 146 г</div>
+      </div>
+    </details>
   </div>
 </section>
 </div>
@@ -2422,6 +2561,24 @@ li::marker{ color: var(--orange); }
       <span class="quiz-verdict"></span>
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
+  </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Автомобіль витрачає 8 л бензину на 100 км. ККД двигуна 25%. Оціни середню силу опору руху. (Густина бензину 710 кг/м³)</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Корисна робота двигуна йде на подолання опору: A = F · s. Почни з маси бензину.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Маса бензину: 8 л = 0,008 м³, m = 710 · 0,008 = 5,68 кг.</p><p>Теплота згоряння: Q = 46 · 10⁶ · 5,68 ≈ 261 МДж.</p><p>Корисна робота: A = 0,25 · 261 ≈ 65,3 МДж.</p><p>F = A/s = 65,3 · 10⁶ / 100 000 ≈ 650 Н — приблизно вага 65-кілограмового вантажу.</p>
+      <div class="answer">≈ 650 Н</div>
+      </div>
+    </details>
   </div>
 </section>
 </div>
@@ -2564,6 +2721,24 @@ li::marker{ color: var(--orange); }
       <span class="quiz-verdict"></span>
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
+  </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Дві однакові металеві кульки мають заряди +6 нКл і −2 нКл. Їх доторкнули одна до одної і розвели на ту саму відстань. Який заряд у кожної? Як змінилась сила взаємодії?</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>За законом збереження заряду загальний заряд не змінюється, а однакові кульки ділять його порівну.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Загальний заряд: +6 + (−2) = +4 нКл. Кульки однакові — кожна отримує +2 нКл.</p><p>До дотику: F ~ |6 · (−2)| = 12. Після: F ~ 2 · 2 = 4. Сила зменшилась утричі.</p><p>І змінився її характер: кульки притягувались, а тепер відштовхуються.</p>
+      <div class="answer">по +2 нКл; сила менша в 3 рази, тепер відштовхування</div>
+      </div>
+    </details>
   </div>
 </section>
 </div>
@@ -2715,6 +2890,24 @@ li::marker{ color: var(--orange); }
       <span class="quiz-verdict"></span>
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
+  </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Дріт опором 16 Ом розрізали на 4 рівні частини і скрутили їх у джгут (з'єднали паралельно). Який опір джгута?</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>R = ρl/S. Як змінились довжина й площа перерізу провідника?</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Довжина зменшилась у 4 рази, а площа перерізу збільшилась у 4 рази (4 дроти поруч).</p><p>R = ρl/S зменшиться в 4 · 4 = 16 разів: 16 / 16 = 1 Ом.</p><p>Перевірка інакше: кожна частина має 4 Ом, а чотири однакові паралельно — 4 / 4 = 1 Ом.</p>
+      <div class="answer">1 Ом</div>
+      </div>
+    </details>
   </div>
 </section>
 </div>
@@ -2870,6 +3063,24 @@ li::marker{ color: var(--orange); }
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
   </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Є три резистори по 6 Ом. Які загальні опори можна отримати, якщо обов'язково використати всі три?</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Варіантів чотири: усі послідовно, усі паралельно і два змішані.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Усі послідовно: 6 + 6 + 6 = 18 Ом.</p><p>Усі паралельно: 6 / 3 = 2 Ом.</p><p>Два послідовно (12 Ом) і паралельно до них третій: 12 · 6 / 18 = 4 Ом.</p><p>Два паралельно (3 Ом) і послідовно третій: 3 + 6 = 9 Ом.</p>
+      <div class="answer">2, 4, 9 і 18 Ом</div>
+      </div>
+    </details>
+  </div>
 </section>
 </div>
 
@@ -3006,6 +3217,24 @@ li::marker{ color: var(--orange); }
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
   </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Дві лампи розраховані на 230 В, потужністю 60 Вт і 100 Вт. Їх увімкнули в мережу послідовно. Яка з них світитиме яскравіше?</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Знайди опір кожної лампи: R = U²/P. При послідовному з'єднанні струм однаковий — тоді яскравіше світить та, де більше P = I²R.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>R₆₀ = 230² / 60 ≈ 882 Ом, R₁₀₀ = 230² / 100 = 529 Ом. Менш потужна лампа має більший опір!</p><p>Послідовно струм однаковий, тож потужність P = I²R більша там, де більший опір.</p><p>Отже, яскравіше світитиме 60-ватна лампа (хоча обидві — тьмяніше, ніж зазвичай).</p>
+      <div class="answer">лампа 60 Вт</div>
+      </div>
+    </details>
+  </div>
 </section>
 </div>
 
@@ -3115,6 +3344,24 @@ li::marker{ color: var(--orange); }
       <span class="quiz-verdict"></span>
       <button type="button" class="quiz-restart">↻ Спробувати ще раз</button>
     </div>
+  </div>
+
+  <h3>Спробуй розв'язати</h3>
+  <p>Задачі, над якими варто подумати. Спершу спробуй сам — підказка й розв'язання сховані нижче.</p>
+
+  <div class="problem">
+    <span class="num">Задача</span>
+    <p class="stmt">Птах сидить на дроті лінії електропередачі, по якому тече струм 100 А. Відстань між лапками 5 см. Оціни напругу між лапками. Алюмінієвий дріт має переріз 100 мм² (ρ = 0,028 Ом·мм²/м).</p>
+    <details class="proof">
+      <summary>Підказка</summary>
+      <div class="proof-body"><p>Птах «підключений» паралельно до ділянки дроту довжиною 5 см. Знайди опір цієї ділянки і напругу на ній за законом Ома.</p></div>
+    </details>
+    <details class="proof">
+      <summary>Розв'язання</summary>
+      <div class="proof-body"><p>Опір ділянки: R = 0,028 · 0,05 / 100 = 0,000014 Ом.</p><p>Напруга: U = I · R = 100 · 0,000014 = 0,0014 В — це тисячні частки вольта.</p><p>Струм через птаха мізерний, тому він у безпеці. Але якщо він торкнеться одночасно двох дротів або дроту й опори — напруга буде тисячі вольт.</p>
+      <div class="answer">≈ 0,0014 В</div>
+      </div>
+    </details>
   </div>
 </section>
 </div>
